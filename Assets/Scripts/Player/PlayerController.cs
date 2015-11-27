@@ -10,7 +10,7 @@ namespace Assets.Scripts.Player
 	{
 		//componenets to manage
 		private PlayerMovement movement;
-		private PlayerData data;
+		//private PlayerData data;
 		private PlayerAttack attack;
 
 		void Start()
@@ -50,10 +50,12 @@ namespace Assets.Scripts.Player
 		{
 			get { return attack; }
 		}
+        /*
 		public PlayerData DataComponent
 		{
 			get { return data; }
 		}
+        */
 		public PlayerMovement MovementComponent
 		{
 			get { return movement; }

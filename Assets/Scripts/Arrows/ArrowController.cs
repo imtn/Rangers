@@ -10,7 +10,7 @@ namespace Assets.Scripts.Arrows
         private event ArrowEvent Init, Effect;
 
         // Caching the rigidbody
-        private Rigidbody rigidbody;
+        new private Rigidbody rigidbody;
 
         void Awake()
         {
