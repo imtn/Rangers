@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using Assets.Scripts.Util;
 
 namespace Assets.Scripts.Arrows
@@ -73,8 +72,6 @@ namespace Assets.Scripts.Arrows
                     return gameObject.AddComponent<PoisonArrow>();
                 case Enums.Arrows.Ricochet:
                     return gameObject.AddComponent<RicochetArrow>();
-                case Enums.Arrows.Piercing:
-                    return gameObject.AddComponent<PiercingArrow>();
                 case Enums.Arrows.Ghost:
                     return gameObject.AddComponent<GhostArrow>();
                 case Enums.Arrows.Gravity:
