@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Arrows
 {
-    public class PoisonArrow : ArrowProperty
+    public class AcidArrow : ArrowProperty
     {
         public override void Init() { }
 
