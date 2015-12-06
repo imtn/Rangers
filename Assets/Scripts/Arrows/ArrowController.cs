@@ -49,10 +49,8 @@ namespace Assets.Scripts.Arrows
                 if (((1 << i) & types) > 0)
                 {
                     ArrowProperty temp = GetArrowProperty((Enums.Arrows)i);                 
-                    //arrows.Add(temp);
                     Init += temp.Init;
                     Effect += temp.Effect;
-                    Debug.Log(temp.GetType());
                 }
             }
         }
@@ -69,7 +67,7 @@ namespace Assets.Scripts.Arrows
                 case Enums.Arrows.Thunder:
                     return gameObject.AddComponent<ThunderArrow>();
                 case Enums.Arrows.Poison:
-                    return gameObject.AddComponent<PoisonArrow>();
+                    return gameObject.AddComponent<AcidArrow>();
                 case Enums.Arrows.Ricochet:
                     return gameObject.AddComponent<RicochetArrow>();
                 case Enums.Arrows.Ghost:

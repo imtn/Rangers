@@ -5,11 +5,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Assets.Scripts.Data
 {
+    /*
+     * This class will save all the data for the game
+     */
 	public class SaveManager : DataManager
 	{
-		public static SaveManager instance;
+        // Use a singleton instance to make sure there is only one
+        public static SaveManager instance;
 
-		protected override void Init()
+        // Sets up singleton instance. Will remain if one does not already exist in scene
+        protected override void Init()
 		{
 			if(instance == null)
 			{
@@ -22,35 +27,38 @@ namespace Assets.Scripts.Data
 			}
 		}
 
-		public static void SaveAudio(float sfxVol, float musicVol)
+        // Saves the audio settings for this game
+		public static void SaveAudio(AudioData data)
 		{
 #if UNITY_WEBPLAYER
-			PlayerPrefs.SetFloat(audioHash + 0, sfxVol);
-			PlayerPrefs.SetFloat(audioHash + 1, musicVol);
+            // Set appropriate hash values
+			PlayerPrefs.SetFloat(audioHash + 0, data.SFXVol);
+			PlayerPrefs.SetFloat(audioHash + 1, data.MusicVol);
+            PlayerPrefs.SetFloat(audioHash + 2, data.VoiceVol);
 #else
+            // Create a new save file
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Create(audioDataPath);
-
-			AudioData data = new AudioData(sfxVol, musicVol);
 
 			bf.Serialize(file, data);
 			file.Close();
 #endif
 		}
 
-		public static void SaveVideo(int resolutionIndex, int qualityIndex, bool fullscreen)
+        // Saves the video settings for this game
+        public static void SaveVideo(VideoData data)
 		{
 #if UNITY_WEBPLAYER
-			PlayerPrefs.SetInt(videoHash + 0, resolutionIndex);
-			PlayerPrefs.SetInt(videoHash + 1, qualityIndex);
-			int full = _fullscreen ? 1 : 0;
+            // Set appropriate hash values
+			PlayerPrefs.SetInt(videoHash + 0, data.ResolutionIndex);
+			PlayerPrefs.SetInt(videoHash + 1, data.QualityIndex);
+			int full = data.Fullscreen ? 1 : 0;
 			PlayerPrefs.SetInt(videoHash + 2, full);
 #else
-			BinaryFormatter bf = new BinaryFormatter();
+            // Create a new save file
+            BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Create(videoDataPath);
 			
-			VideoData data = new VideoData(resolutionIndex, qualityIndex, fullscreen);
-
 			bf.Serialize(file, data);
 			file.Close();
 #endif

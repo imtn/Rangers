@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Util
+namespace Assets.Scripts.Timers
 {
+    // Timer used for counting down
     public class CountdownTimer : Timer
     {
         // Delegates and events to fire once timer times out

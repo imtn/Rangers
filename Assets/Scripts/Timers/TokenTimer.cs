@@ -1,8 +1,10 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using Assets.Scripts.Util;
+using UnityEngine;
 
-namespace Assets.Scripts.Util
+namespace Assets.Scripts.Timers
 {
+    // Functions like a normal timer with the added benefit of having the IDs being related to tokens
     public class TokenTimer : Timer
     {
         // Delegates and events to fire once timer times out
@@ -20,6 +22,7 @@ namespace Assets.Scripts.Util
             tokenType = (Enums.Arrows)Enum.Parse(typeof(Enums.Arrows), id);
         }
 
+        // How the timer counts
         protected override void UpdateTimer()
         {
             if (on)

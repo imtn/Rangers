@@ -1,64 +1,38 @@
 ﻿using UnityEngine;
+using TeamUtility.IO;
 
-/*
- * This class wil manage all the player's components,
- * such as movement, data , etc
- */
 namespace Assets.Scripts.Player
-{
-	public class PlayerController : MonoBehaviour
-	{
-		//componenets to manage
-		private PlayerMovement movement;
-		//private PlayerData data;
-		private PlayerAttack attack;
+{ 
+    /*
+     * Class that handles player specific components of the controller
+     * Uses input
+     */
+    public class PlayerController : Controller
+    {
+        protected Profile profile;
 
-		void Start()
-		{
-			//init all componenets
-			InitializePlayerComponents();
-		}
-		void Update()
-		{
-			//run all components
-			//data.Run();
-			movement.Run();
-			attack.Run();
-		}
+        // Overriding the controller initialize
+        protected override void InitializePlayerComponents()
+        {
+            // Call the base initialize
+            base.InitializePlayerComponents();
+            // Add the extra profile component
+            profile = gameObject.AddComponent<Profile>();
+        }
 
-		void FixedUpdate()
-		{
-			//run all fixed components for physics
-			movement.FixedRun();
-		}
+        void Update()
+        {
+            if (InputManager.GetAxis("Vertical") != 0) parkour.MoveVertical();
+            if (InputManager.GetAxis("Horizontal") != 0) parkour.MoveHorizontal();
+            if (InputManager.GetButtonDown("Fire")) archery.Fire();
+        }
 
-		//assigning references
-		private void InitializePlayerComponents()
-		{
-			//get all components to manage
-			//data = GetComponent<PlayerData>();
-			movement = GetComponent<PlayerMovement>();
-			attack = GetComponent<PlayerAttack>();
-
-            //tell all components this is their controller
-            //data.Controller = this;
-            movement.Controller = this;
-            attack.Controller = this;
-		}
-
-		public PlayerAttack AttackComponent
-		{
-			get { return attack; }
-		}
-        /*
-		public PlayerData DataComponent
-		{
-			get { return data; }
-		}
-        */
-		public PlayerMovement MovementComponent
-		{
-			get { return movement; }
-		}
-	}
+        #region C# Properties
+        public Profile ProfileComponent
+        {
+            get { return profile; }
+            set { profile = value; }
+        }
+        #endregion
+    }
 }

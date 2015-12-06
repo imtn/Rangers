@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System;
 
-namespace Assets.Scripts.Util
+namespace Assets.Scripts.Timers
 {
+    // Timer class that can fire events
     public abstract class Timer : MonoBehaviour
     {
         // Delegates and events to fire once timer times out
@@ -24,7 +25,6 @@ namespace Assets.Scripts.Util
             timer = 0f;
             this.id = id;
             on = true;
-
         }
 
         void Update()
@@ -42,7 +42,11 @@ namespace Assets.Scripts.Util
                 {
                     timer = interval;
                     // If the event has subscribers, fire it
-                    if (TimeOut != null) TimeOut(this);
+                    if (TimeOut != null)
+                    {
+                        TimeOut(this);
+                        Debug.Log("Timed Out");
+                    }
                     Destroy(this);
                 }
             }
@@ -54,23 +58,24 @@ namespace Assets.Scripts.Util
             Initialize(interval, id);
         }
 
+        #region C# Properties
         public bool Enabled
         {
             get { return on; }
             set { on = value; }
         }
-
         public string ID
         {
             get { return id; }
         }
+        #endregion
 
         public override string ToString()
         {
             return timer.ToString();
         }
 
-        public string ToString(int places)
+        public string ToString(int places = 2)
         {
             return Math.Round(timer, places).ToString();
         }

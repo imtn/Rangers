@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
-using System;
 
 namespace Assets.Scripts.Data
 {
+    /* 
+     * This class is the parent for saving data and will hold all the paths necessary to save and load data
+     */
 	public abstract class DataManager : MonoBehaviour
 	{
+        // Can't save data to disk on web, so for now using playerprefs instead
 #if UNITY_WEBPLAYER
 		protected static string audioHash = "Rangers Audio";
 		protected static string videoHash = "Rangers Video";
@@ -13,79 +16,13 @@ namespace Assets.Scripts.Data
 		protected static string videoDataPath = Application.persistentDataPath + "/Video.dat";
 #endif
 
+        // Call init on awake to initialize everything
 		void Awake()
 		{
 			Init();
 		}
 
+        // Abstract method for children to set themselves up
 		protected abstract void Init();
-	}
-
-	[Serializable]
-	public class VideoData
-	{
-		private int resolutionIndex;
-		private int qualityIndex;
-		private bool fullScreen;
-
-		public VideoData()
-		{
-			resolutionIndex = 0;
-			qualityIndex = 0;
-			fullScreen = false;
-		}
-
-		public VideoData(int resolutionIndex, int qualityIndex, bool fullScreen)
-		{
-			this.resolutionIndex = resolutionIndex;
-			this.qualityIndex = qualityIndex;
-			this.fullScreen = fullScreen;
-		}
-
-		public int ResolutionIndex
-		{
-			get { return resolutionIndex; }
-			set { resolutionIndex = value; }
-		}
-		public int QualityIndex
-		{
-			get { return qualityIndex; }
-			set { qualityIndex = value; }
-		}
-		public bool Fullscreen
-		{
-			get { return fullScreen; }
-			set { fullScreen = value; }
-		}
-	}
-
-	[Serializable]
-	public class AudioData
-	{
-		private float sfxVol;
-		private float musicVol;
-
-		public AudioData()
-		{
-			sfxVol = 1f;
-			musicVol = 1f;
-		}
-
-		public AudioData(float sfxVol, float musicVol)
-		{
-			this.sfxVol = sfxVol;
-			this.musicVol = musicVol;
-		}
-		
-		public float SFXVol
-		{
-			get { return sfxVol; }
-			set { sfxVol = value; }
-		}
-		public float MusicVol
-		{
-			get { return musicVol; }
-			set { musicVol = value; }
-		}
 	}
 }

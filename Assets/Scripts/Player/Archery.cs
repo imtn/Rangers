@@ -1,38 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Assets.Scripts.Timers;
 using Assets.Scripts.Tokens;
 using Assets.Scripts.Util;
 
+/*
+ * This class handles all the shooting that can be done by actors
+ */
 namespace Assets.Scripts.Player
 {
-	public class PlayerAttack : PlayerControllerObject
+	public class Archery : ControllerObject
 	{
         [SerializeField]
         private GameObject arrowPrefab;
-        public Transform firePoint;
+        [SerializeField]
+        private Transform firePoint;
 
         // All the token timers running
-        List<TokenTimer> timers;
+        private List<TokenTimer> timers;
 
         // The current types of arrows to fire
-        public int types = 1;
+        private int types = 1;
 
         void Awake()
         {
             timers = new List<TokenTimer>();
         }
-        
-		public override void Run ()
-		{
-            if (Input.GetButtonDown("Jump")) Fire();
-		}
 
-		public override void FixedRun ()
-		{
-			throw new System.NotImplementedException ();
-		}
-
-        private void Fire()
+        // Fires an arrow
+        public void Fire()
         {
             GameObject arrow = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
             arrow.GetComponent<Rigidbody>().AddRelativeForce(arrow.transform.right * 10, ForceMode.Impulse);
@@ -53,8 +49,9 @@ namespace Assets.Scripts.Player
                     // Add a new Token Timer and initialize it
                     TokenTimer tt = gameObject.AddComponent<TokenTimer>();
                     tt.Initialize(TokenTimer.TOKEN_INTERVAL, ((ArrowToken)token).Type.ToString());
+                    // Make sure that the token is removed from the component when the timer times out
                     tt.TimeOut += new TokenTimer.TimerEvent(RemoveToken);
-                    types |= (1 << (int)tt.TokenType);
+                    types = Bitwise.SetBit(types, (int)tt.TokenType);
                     timers.Add(tt);
                 }
                 else
@@ -69,7 +66,7 @@ namespace Assets.Scripts.Player
         private void RemoveToken(TokenTimer tt)
         {
             // Clear the appropriate token bit and remove the timer from the list of running timers
-            types &= ~(1 << (int)tt.TokenType);
+            types = Bitwise.ClearBit(types, (int)tt.TokenType);
             TokenTimer t = timers.Find(i => i.ID.Equals(tt.TokenType.ToString()));
             timers.Remove(t);
         }

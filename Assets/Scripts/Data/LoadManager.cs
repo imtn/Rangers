@@ -3,10 +3,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Assets.Scripts.Data
 {
+    /*
+     * Class will load in data from player prefs or from disk
+     */
 	public class LoadManager : DataManager
 	{
+        // Use a singleton instance to make sure there is only one
 		private static LoadManager instance;
 
+        // Sets up singleton instance. Will remain if one does not already exist in scene
 		protected override void Init()
 		{
 			if(instance == null)
@@ -20,25 +25,30 @@ namespace Assets.Scripts.Data
 			}
 		}
 
+        // Loads the audio data for this game
 		public static AudioData LoadAudio()
 		{
+            // Get a default audiodata in case none exists
 			AudioData data = new AudioData();
 #if UNITY_WEBPLAYER
-
+            // If there is data related to audio, get those values
 			if(PlayerPrefs.HasKey(audioHash + 0))
 			{
 				data.SFXVol = PlayerPrefs.GetFloat(audioHash + 0);
 				data.MusicVol = PlayerPrefs.GetFloat(audioHash + 1);
+                data.VoiceVol = PlayerPrefs.GetFloat(audioHash + 2);
 			}
+            // Otherwise save the default data
 			else
 			{
-				SaveManager.SaveAudio(1f, 1f);
+				SaveManager.SaveAudio(new AudioData());
 			}
 			return data;
 #else
-
-			if(File.Exists(audioDataPath))
+            // If a file exists
+            if (File.Exists(audioDataPath))
 			{
+                // Open the file and get all the data from the file to load
 				BinaryFormatter bf = new BinaryFormatter();
 				FileStream file = File.Open(audioDataPath, FileMode.Open);
 
@@ -48,10 +58,11 @@ namespace Assets.Scripts.Data
 
 				return data;
 			}
+            // No file exists, so save the default data
 			else
 			{
 				AudioData newData = new AudioData();
-				SaveManager.SaveAudio(1f, 1f);
+				SaveManager.SaveAudio(newData);
 				return newData;
 			}
 #endif
@@ -61,7 +72,7 @@ namespace Assets.Scripts.Data
 		{
 			VideoData data = new VideoData();
 #if UNITY_WEBPLAYER
-
+            // If there is data related to video, get those values
 			if(PlayerPrefs.HasKey(videoHash + 0))
 			{
 				data.ResolutionIndex = PlayerPrefs.GetInt(videoHash + 0);
@@ -69,14 +80,15 @@ namespace Assets.Scripts.Data
 				int full = PlayerPrefs.GetInt(videoHash + 2);
 				data.Fullscreen = (full == 1) ? true : false;
 			}
+            // Otherwise save the default data
 			else
 			{
-				SaveManager.SaveVideo(data.ResolutionIndex, data.QualityIndex, data.Fullscreen);
+				SaveManager.SaveVideo(new VideoData());
 			}
 			return data;
 #else
-
-			if(File.Exists(videoDataPath))
+            // If a file exists
+            if (File.Exists(videoDataPath))
 			{
 				BinaryFormatter bf = new BinaryFormatter();
 				FileStream file = File.Open(videoDataPath, FileMode.Open);
@@ -87,10 +99,11 @@ namespace Assets.Scripts.Data
 				
 				return data;
 			}
-			else
-			{
+            // No file exists, so save the default data
+            else
+            {
 				VideoData newData = new VideoData();
-				SaveManager.SaveVideo(data.ResolutionIndex, data.QualityIndex, data.Fullscreen);
+				SaveManager.SaveVideo(newData);
 				return newData;
 			}
 #endif
