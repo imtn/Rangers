@@ -9,7 +9,12 @@ namespace Assets.Scripts.Player
      */
     public class PlayerController : Controller
     {
+        // ID for identifying which player is accepting input
+        [SerializeField]
+        private PlayerID id;
+
         protected Profile profile;
+        private bool fire;
 
         // Overriding the controller initialize
         protected override void InitializePlayerComponents()
@@ -22,9 +27,17 @@ namespace Assets.Scripts.Player
 
         void Update()
         {
-            if (InputManager.GetAxis("Vertical") != 0) parkour.MoveVertical();
-            if (InputManager.GetAxis("Horizontal") != 0) parkour.MoveHorizontal();
-            if (InputManager.GetButtonDown("Fire")) archery.Fire();
+            if (InputManager.GetAxis("Vertical", id) != 0) parkour.MoveVertical();
+            if (InputManager.GetAxis("Horizontal", id) != 0) parkour.MoveHorizontal();
+            if (InputManager.GetAxis("Fire", id) > 0)
+            {
+                fire = true;
+            }
+            else if (fire && InputManager.GetAxis("Fire", id) == 0)
+            {
+                archery.Fire();
+                fire = false;
+            }
         }
 
         #region C# Properties
@@ -32,6 +45,10 @@ namespace Assets.Scripts.Player
         {
             get { return profile; }
             set { profile = value; }
+        }
+        public PlayerID ID
+        {
+            get { return id; }
         }
         #endregion
     }
