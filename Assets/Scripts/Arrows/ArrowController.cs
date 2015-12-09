@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Player;
 using Assets.Scripts.Util;
 
 namespace Assets.Scripts.Arrows
@@ -7,6 +8,8 @@ namespace Assets.Scripts.Arrows
     {
         private delegate void ArrowEvent();
         private event ArrowEvent Init, Effect;
+
+        private float damage = 35f;
 
         // Caching the rigidbody
         new private Rigidbody rigidbody;
@@ -29,6 +32,11 @@ namespace Assets.Scripts.Arrows
 
         void OnCollisionEnter(Collision col)
         {
+            if(col.transform.tag.Equals("Player"))
+            {
+                Controller controller = col.transform.GetComponent<Controller>();
+                controller.LifeComponent.ModifyHealth(-damage);
+            }
             if (Effect != null) Effect();
             Destroy(rigidbody);
             Destroy(this);

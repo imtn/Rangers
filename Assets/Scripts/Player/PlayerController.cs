@@ -9,21 +9,8 @@ namespace Assets.Scripts.Player
      */
     public class PlayerController : Controller
     {
-        // ID for identifying which player is accepting input
-        [SerializeField]
-        private PlayerID id;
-
-        protected Profile profile;
+        
         private bool fire;
-
-        // Overriding the controller initialize
-        protected override void InitializePlayerComponents()
-        {
-            // Call the base initialize
-            base.InitializePlayerComponents();
-            // Add the extra profile component
-            profile = gameObject.AddComponent<Profile>();
-        }
 
         void Update()
         {
@@ -39,17 +26,5 @@ namespace Assets.Scripts.Player
                 fire = false;
             }
         }
-
-        #region C# Properties
-        public Profile ProfileComponent
-        {
-            get { return profile; }
-            set { profile = value; }
-        }
-        public PlayerID ID
-        {
-            get { return id; }
-        }
-        #endregion
     }
 }

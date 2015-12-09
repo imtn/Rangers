@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TeamUtility.IO;
 
 namespace Assets.Scripts.Player
 {
@@ -9,10 +10,15 @@ namespace Assets.Scripts.Player
      */
     public class Controller : MonoBehaviour
     {
+        // ID for identifying which player is accepting input
+        [SerializeField]
+        protected PlayerID id;
+
         // Componenets to manage
         protected Parkour parkour;
         protected Life life;
         protected Archery archery;
+        protected Profile profile;
 
         void Start()
         {
@@ -27,11 +33,13 @@ namespace Assets.Scripts.Player
             life = GetComponent<Life>();
             parkour = GetComponent<Parkour>();
             archery = GetComponent<Archery>();
+            profile = GetComponent<Profile>();
 
             // Tell all components this is their controller
             life.Controller = this;
             parkour.Controller = this;
             archery.Controller = this;
+            profile.Controller = this;
         }
 
         #region C# Properties
@@ -46,6 +54,14 @@ namespace Assets.Scripts.Player
         public Parkour ParkourComponent
         {
             get { return parkour; }
+        }
+        public Profile ProfileComponent
+        {
+            get { return profile; }
+        }
+        public PlayerID ID
+        {
+            get { return id; }
         }
         #endregion
     }
