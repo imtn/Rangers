@@ -33,13 +33,13 @@ namespace Assets.Scripts.Player
         void Update()
         {
             // Updating the indicator of which direction the player is going to fire
-            if(InputManager.GetAxis("LookHorizontal", ((PlayerController)controller).ID) == 0 && InputManager.GetAxis("LookVertical", ((PlayerController)controller).ID) == 0)
+            if(InputManager.GetAxis("LookHorizontal_P" + (int)((PlayerController)controller).ID, ((PlayerController)controller).ID) == 0 && InputManager.GetAxis("LookVertical_P" + (int)((PlayerController)controller).ID, ((PlayerController)controller).ID) == 0)
             {
                 firePoint.localPosition = Vector3.right * distance;
             }
             else
             {
-                firePoint.localPosition = Vector3.Normalize(new Vector3(InputManager.GetAxis("LookHorizontal", ((PlayerController)controller).ID), InputManager.GetAxis("LookVertical", ((PlayerController)controller).ID), 0)) * distance;
+                firePoint.localPosition = Vector3.Normalize(new Vector3(InputManager.GetAxis("LookHorizontal_P" + (int)((PlayerController)controller).ID, ((PlayerController)controller).ID), InputManager.GetAxis("LookVertical_P" + (int)((PlayerController)controller).ID, ((PlayerController)controller).ID), 0)) * distance;
             }
         }
 
