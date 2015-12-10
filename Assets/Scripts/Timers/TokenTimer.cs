@@ -22,20 +22,10 @@ namespace Assets.Scripts.Timers
             tokenType = (Enums.Arrows)Enum.Parse(typeof(Enums.Arrows), id);
         }
 
-        // How the timer counts
-        protected override void UpdateTimer()
+        protected override void FireTimerEvent()
         {
-            if (on)
-            {
-                timer += Time.deltaTime;
-                if (timer >= interval)
-                {
-                    timer = interval;
-                    // If the event has subscribers, fire it
-                    if (TimeOut != null) TimeOut(this);
-                    Destroy(this);
-                }
-            }
+            // If the event has subscribers, fire it
+            if (TimeOut != null) TimeOut(this);
         }
 
         public Enums.Arrows TokenType

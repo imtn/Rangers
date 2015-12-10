@@ -24,10 +24,16 @@ namespace Assets.Scripts.Timers
                 {
                     timer = 0;
                     // If the event has subscribers, fire it
-                    if (TimeOut != null) TimeOut(this);
+                    FireTimerEvent();
                     Destroy(this);
                 }
             }
+        }
+
+        protected override void FireTimerEvent()
+        {
+            // If the event has subscribers, fire it
+            if (TimeOut != null) TimeOut(this);
         }
     }
 }

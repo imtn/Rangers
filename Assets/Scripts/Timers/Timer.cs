@@ -41,12 +41,7 @@ namespace Assets.Scripts.Timers
                 if (timer >= interval)
                 {
                     timer = interval;
-                    // If the event has subscribers, fire it
-                    if (TimeOut != null)
-                    {
-                        TimeOut(this);
-                        Debug.Log("Timed Out");
-                    }
+                    FireTimerEvent();
                     Destroy(this);
                 }
             }
@@ -56,6 +51,15 @@ namespace Assets.Scripts.Timers
         public virtual void Reset()
         {
             Initialize(interval, id);
+        }
+
+        protected virtual void FireTimerEvent()
+        {
+            // If the event has subscribers, fire it
+            if (TimeOut != null)
+            {
+                TimeOut(this);
+            }
         }
 
         #region C# Properties

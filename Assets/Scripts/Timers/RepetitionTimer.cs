@@ -42,9 +42,8 @@ namespace Assets.Scripts.Timers
                 timer += Time.deltaTime;
                 if (timer >= interval)
                 {
-                    timer = interval;
                     // If the event has subscribers, fire it
-                    if (TimeOut != null) TimeOut(this);
+                    FireTimerEvent();
                     timer = 0;
                     if (type.Equals(Enums.RepetitionTimerSettings.Limited))
                     {
@@ -52,6 +51,12 @@ namespace Assets.Scripts.Timers
                     }
                 }
             }
+        }
+
+        protected override void FireTimerEvent()
+        {
+            // If the event has subscribers, fire it
+            if (TimeOut != null) TimeOut(this);
         }
     }
 }
