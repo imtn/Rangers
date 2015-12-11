@@ -11,12 +11,16 @@ namespace Assets.Scripts.Arrows
 
         private float damage = 35f;
 
-        // Caching the rigidbody
+        // Caching the rigidbody, collider, and collision info
         new private Rigidbody rigidbody;
+        new private Collider collider;
+        private CollisionInfo colInfo;
 
         void Awake()
         {
             rigidbody = GetComponent<Rigidbody>();
+            collider = GetComponent<Collider>();
+            colInfo = GetComponent<CollisionInfo>();
         }
 
         public void InitArrow(int types)
@@ -37,13 +41,25 @@ namespace Assets.Scripts.Arrows
                 Controller controller = col.transform.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage);
             }
+            // Update collision info for arrow components to use
+            colInfo.HitPosition = col.contacts[0].point;
+            colInfo.HitRotation = Quaternion.identity;
+
             if (Effect != null) Effect();
             Destroy(rigidbody);
+            Destroy(collider);
             Destroy(this);
         }
 
         void OnTriggerEnter(Collider col)
         {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit))
+            {
+                Debug.Log("Point of contact: " + hit.point);
+                colInfo.HitPosition = hit.point;
+                colInfo.HitRotation = Quaternion.identity;
+            }
             if (Effect != null) Effect();
         }
 
@@ -56,7 +72,8 @@ namespace Assets.Scripts.Arrows
                 // Check to see if the type exists int he current arrow
                 if (((1 << i) & types) > 0)
                 {
-                    ArrowProperty temp = GetArrowProperty((Enums.Arrows)i);                 
+                    ArrowProperty temp = GetArrowProperty((Enums.Arrows)i);
+                    temp.Type = (Enums.Arrows)i;              
                     Init += temp.Init;
                     Effect += temp.Effect;
                 }

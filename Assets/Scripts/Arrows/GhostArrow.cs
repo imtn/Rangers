@@ -6,6 +6,7 @@ namespace Assets.Scripts.Arrows
     {
         public override void Init()
         {
+            base.Init();
             GetComponent<Collider>().isTrigger = true;
         }
 

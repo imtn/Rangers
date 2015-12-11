@@ -1,9 +1,15 @@
 ﻿namespace Assets.Scripts.Arrows
 {
-    public class FireballArrow : ArrowProperty
+    public class FireballArrow : SpawnerArrow
     {
-        public override void Init() { }
+        public override void Init()
+        {
+            base.Init();
+        }
 
-        public override void Effect() { }
+        public override void Effect()
+        {
+            base.Effect();
+        }
     }
 }
