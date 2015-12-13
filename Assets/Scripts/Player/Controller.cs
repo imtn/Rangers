@@ -42,6 +42,16 @@ namespace Assets.Scripts.Player
             profile.Controller = this;
         }
 
+        public void Disable()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void Enable()
+        {
+            gameObject.SetActive(true);
+        }
+
         #region C# Properties
         public Archery ArcheryComponent
         {

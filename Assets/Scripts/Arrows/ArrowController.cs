@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Player;
 using Assets.Scripts.Util;
+using TeamUtility.IO;
 
 namespace Assets.Scripts.Arrows
 {
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Arrows
         private event ArrowEvent Init, Effect;
 
         private float damage = 35f;
+        private PlayerID fromPlayer;
 
         // Reference to arrowhead
         [SerializeField]
@@ -27,8 +29,9 @@ namespace Assets.Scripts.Arrows
             colInfo = GetComponent<CollisionInfo>();
         }
 
-        public void InitArrow(int types)
+        public void InitArrow(int types, PlayerID fromPlayer)
         {
+            this.fromPlayer = fromPlayer;
             GenerateArrowProperties(types);
             if (Init != null) Init();
         }
@@ -48,6 +51,7 @@ namespace Assets.Scripts.Arrows
             // Update collision info for arrow components to use
             colInfo.HitPosition = arrowhead.position;
             colInfo.HitRotation = arrowhead.rotation;
+            colInfo.IsTrigger = false;
 
             if (Effect != null) Effect();
             Destroy(rigidbody);
@@ -57,9 +61,15 @@ namespace Assets.Scripts.Arrows
 
         void OnTriggerEnter(Collider col)
         {
+            if (col.transform.tag.Equals("Player"))
+            {
+                Controller controller = col.transform.GetComponent<Controller>();
+                controller.LifeComponent.ModifyHealth(-damage);
+            }
             // Update collision info for arrow components to use
             colInfo.HitPosition = arrowhead.position;
             colInfo.HitRotation = arrowhead.rotation;
+            colInfo.IsTrigger = false;
 
             if (Effect != null) Effect();
         }
@@ -71,10 +81,11 @@ namespace Assets.Scripts.Arrows
             for(int i = 0; i < (int)Enums.Arrows.NumTypes; i++)
             {
                 // Check to see if the type exists int he current arrow
-                if (((1 << i) & types) > 0)
+                if(Bitwise.IsBitOn(types, i))
                 {
                     ArrowProperty temp = GetArrowProperty((Enums.Arrows)i);
-                    temp.Type = (Enums.Arrows)i;              
+                    temp.Type = (Enums.Arrows)i;
+                    temp.FromPlayer = fromPlayer;        
                     Init += temp.Init;
                     Effect += temp.Effect;
                 }

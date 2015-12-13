@@ -28,6 +28,7 @@ namespace Assets.Scripts.Player
         private void Die(PlayerID lastID = PlayerID.None)
         {
             lastAttacker = lastID;
+            controller.Disable();
             if(--lives > 0)
             {
                 Debug.Log("Lives: " + lives);
@@ -39,6 +40,7 @@ namespace Assets.Scripts.Player
         public void Respawn()
         {
             health = MAX_HEALTH;
+            controller.Enable();
         }
 
         // Overriding the collect token method from player controller object
