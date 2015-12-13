@@ -11,6 +11,10 @@ namespace Assets.Scripts.Arrows
 
         private float damage = 35f;
 
+        // Reference to arrowhead
+        [SerializeField]
+        private Transform arrowhead;
+
         // Caching the rigidbody, collider, and collision info
         new private Rigidbody rigidbody;
         new private Collider collider;
@@ -42,8 +46,8 @@ namespace Assets.Scripts.Arrows
                 controller.LifeComponent.ModifyHealth(-damage);
             }
             // Update collision info for arrow components to use
-            colInfo.HitPosition = col.contacts[0].point;
-            colInfo.HitRotation = Quaternion.identity;
+            colInfo.HitPosition = arrowhead.position;
+            colInfo.HitRotation = arrowhead.rotation;
 
             if (Effect != null) Effect();
             Destroy(rigidbody);
@@ -53,13 +57,10 @@ namespace Assets.Scripts.Arrows
 
         void OnTriggerEnter(Collider col)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit))
-            {
-                Debug.Log("Point of contact: " + hit.point);
-                colInfo.HitPosition = hit.point;
-                colInfo.HitRotation = Quaternion.identity;
-            }
+            // Update collision info for arrow components to use
+            colInfo.HitPosition = arrowhead.position;
+            colInfo.HitRotation = arrowhead.rotation;
+
             if (Effect != null) Effect();
         }
 
