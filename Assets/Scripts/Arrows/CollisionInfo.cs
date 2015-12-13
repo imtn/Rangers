@@ -6,6 +6,7 @@ namespace Assets.Scripts.Arrows
     {
         private Vector3 hitPosition;
         private Quaternion hitRotation;
+        private bool isTrigger;
 
         #region C# Properties
         public Vector3 HitPosition
@@ -18,6 +19,12 @@ namespace Assets.Scripts.Arrows
         {
             get { return hitRotation; }
             set { hitRotation = value; }
+        }
+
+        public bool IsTrigger
+        {
+            get { return isTrigger; }
+            set { isTrigger = value; }
         }
         #endregion
     }

@@ -48,7 +48,7 @@ namespace Assets.Scripts.Player
         {
             GameObject arrow = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
             arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - transform.position) * 10, ForceMode.Impulse);
-            arrow.GetComponent<Arrows.ArrowController>().InitArrow(types);
+            arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
         }
 
         // Called by colliding with a Token (from Token's OnTriggerEnter)
