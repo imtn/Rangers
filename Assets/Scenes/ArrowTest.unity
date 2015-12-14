@@ -1167,6 +1167,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1902508452}
   - 114: {fileID: 1902508451}
+  - 114: {fileID: 1902508455}
+  - 114: {fileID: 1902508454}
+  - 114: {fileID: 1902508453}
   m_Layer: 0
   m_Name: Input Manager
   m_TagString: Untagged
@@ -1286,6 +1289,62 @@ MonoBehaviour:
       type: 0
       axis: 0
       joystick: 0
+    - name: CycleRight_P1
+      description: 
+      positive: 355
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: CycleLeft_P1
+      description: 
+      positive: 354
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Start_P1
+      description: 
+      positive: 357
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Select_P1
+      description: 
+      positive: 356
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
     - name: Submit_P1
       description: 
       positive: 350
@@ -1302,7 +1361,7 @@ MonoBehaviour:
       joystick: 0
     - name: Cancel_P1
       description: 
-      positive: 356
+      positive: 351
       negative: 0
       altPositive: 0
       altNegative: 0
@@ -1313,6 +1372,90 @@ MonoBehaviour:
       invert: 0
       type: 0
       axis: 0
+      joystick: 0
+    - name: Crouch_P1
+      description: 
+      positive: 351
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: CancelShot_P1
+      description: 
+      positive: 352
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Melee_P1
+      description: 
+      positive: 352
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Grab_P1
+      description: 
+      positive: 353
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Taunt2_P1
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 1000
+      snap: 1
+      invert: 0
+      type: 3
+      axis: 5
+      joystick: 0
+    - name: Taunt4_P1
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 1000
+      snap: 1
+      invert: 0
+      type: 3
+      axis: 5
       joystick: 0
     - name: DPADHorizontal
       description: 
@@ -1327,6 +1470,34 @@ MonoBehaviour:
       invert: 0
       type: 3
       axis: 5
+      joystick: 0
+    - name: Taunt1_P1
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 1000
+      snap: 1
+      invert: 0
+      type: 3
+      axis: 6
+      joystick: 0
+    - name: Taunt3_P1
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 1000
+      snap: 1
+      invert: 0
+      type: 3
+      axis: 6
       joystick: 0
     - name: DPADVertical
       description: 
@@ -1384,426 +1555,6 @@ MonoBehaviour:
       type: 3
       axis: 8
       joystick: 0
-    - name: Horizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 1
-    - name: Horizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 2
-    - name: Horizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 3
-    - name: Vertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 1
-    - name: Vertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 2
-    - name: Vertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 3
-    - name: LookHorizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 1
-    - name: LookHorizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 2
-    - name: LookHorizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 3
-    - name: LookVertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 4
-      joystick: 1
-    - name: LookVertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 4
-      joystick: 2
-    - name: LookVertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 4
-      joystick: 3
-    - name: MenuHorizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 1
-    - name: MenuHorizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 2
-    - name: MenuHorizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 3
-    - name: MenuVertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 1
-    - name: MenuVertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 2
-    - name: MenuVertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 3
-    - name: Jump_P2
-      description: 
-      positive: 370
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Jump_P3
-      description: 
-      positive: 390
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Jump_P4
-      description: 
-      positive: 410
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Submit_P2
-      description: 
-      positive: 370
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Submit_P3
-      description: 
-      positive: 390
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Submit_P4
-      description: 
-      positive: 410
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Cancel_P2
-      description: 
-      positive: 376
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Cancel_P3
-      description: 
-      positive: 396
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Cancel_P4
-      description: 
-      positive: 416
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Fire_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 9
-      joystick: 1
-    - name: Fire_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 9
-      joystick: 2
-    - name: Fire_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 9
-      joystick: 3
     isExpanded: 1
   - name: OSX_Gamepad
     axes:
@@ -1905,6 +1656,62 @@ MonoBehaviour:
       type: 0
       axis: 0
       joystick: 0
+    - name: CycleRight_P1
+      description: 
+      positive: 364
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: CycleLeft_P1
+      description: 
+      positive: 363
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Start_P1
+      description: 
+      positive: 359
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Select_P1
+      description: 
+      positive: 360
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
     - name: Submit_P1
       description: 
       positive: 366
@@ -1921,7 +1728,119 @@ MonoBehaviour:
       joystick: 0
     - name: Cancel_P1
       description: 
-      positive: 359
+      positive: 367
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Crouch_P1
+      description: 
+      positive: 367
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: CancelShot_P1
+      description: 
+      positive: 368
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Melee_P1
+      description: 
+      positive: 368
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Grab_P1
+      description: 
+      positive: 369
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Taunt1_P1
+      description: 
+      positive: 355
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Taunt2_P1
+      description: 
+      positive: 358
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Taunt3_P1
+      description: 
+      positive: 356
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Taunt4_P1
+      description: 
+      positive: 357
       negative: 0
       altPositive: 0
       altNegative: 0
@@ -2003,426 +1922,6 @@ MonoBehaviour:
       type: 3
       axis: 4
       joystick: 0
-    - name: Horizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 1
-    - name: Horizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 2
-    - name: Horizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 3
-    - name: Vertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 1
-    - name: Vertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 2
-    - name: Vertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 1
-      type: 3
-      axis: 1
-      joystick: 3
-    - name: LookHorizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 2
-      joystick: 1
-    - name: LookHorizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 2
-      joystick: 2
-    - name: LookHorizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 2
-      joystick: 3
-    - name: LookVertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 1
-    - name: LookVertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 2
-    - name: LookVertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 3
-    - name: MenuHorizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 1
-    - name: MenuHorizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 2
-    - name: MenuHorizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 3
-    - name: MenuVertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 1
-    - name: MenuVertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 2
-    - name: MenuVertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 3
-    - name: Jump_P2
-      description: 
-      positive: 386
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Jump_P3
-      description: 
-      positive: 406
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Jump_P4
-      description: 
-      positive: 426
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Submit_P2
-      description: 
-      positive: 386
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Submit_P3
-      description: 
-      positive: 406
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Submit_P4
-      description: 
-      positive: 426
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Cancel_P2
-      description: 
-      positive: 379
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Cancel_P3
-      description: 
-      positive: 399
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Cancel_P4
-      description: 
-      positive: 419
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Fire_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 5
-      joystick: 1
-    - name: Fire_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 5
-      joystick: 2
-    - name: Fire_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 5
-      joystick: 3
     isExpanded: 0
   - name: Linux_Gamepad
     axes:
@@ -2524,6 +2023,62 @@ MonoBehaviour:
       type: 0
       axis: 0
       joystick: 0
+    - name: CycleRight_P1
+      description: 
+      positive: 355
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: CycleLeft_P1
+      description: 
+      positive: 354
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Start_P1
+      description: 
+      positive: 357
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Select_P1
+      description: 
+      positive: 356
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
     - name: Submit_P1
       description: 
       positive: 350
@@ -2540,7 +2095,63 @@ MonoBehaviour:
       joystick: 0
     - name: Cancel_P1
       description: 
-      positive: 357
+      positive: 351
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Crouch_P1
+      description: 
+      positive: 351
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: CancelShot_P1
+      description: 
+      positive: 352
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Melee_P1
+      description: 
+      positive: 352
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 0
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: Grab_P1
+      description: 
+      positive: 353
       negative: 0
       altPositive: 0
       altNegative: 0
@@ -2566,7 +2177,63 @@ MonoBehaviour:
       type: 3
       axis: 6
       joystick: 0
+    - name: Taunt2_P1
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 1000
+      snap: 1
+      invert: 0
+      type: 3
+      axis: 6
+      joystick: 0
+    - name: Taunt4_P1
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 1000
+      snap: 1
+      invert: 0
+      type: 3
+      axis: 6
+      joystick: 0
     - name: DPADVertical
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 1000
+      snap: 1
+      invert: 0
+      type: 3
+      axis: 7
+      joystick: 0
+    - name: Taunt1_P1
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 0
+      sensitivity: 1000
+      snap: 1
+      invert: 0
+      type: 3
+      axis: 7
+      joystick: 0
+    - name: Taunt3_P1
       description: 
       positive: 0
       negative: 0
@@ -2622,426 +2289,6 @@ MonoBehaviour:
       type: 3
       axis: 2
       joystick: 0
-    - name: Horizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 1
-    - name: Horizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 2
-    - name: Horizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 3
-    - name: Vertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 1
-    - name: Vertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 2
-    - name: Vertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 3
-    - name: LookHorizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 1
-    - name: LookHorizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 2
-    - name: LookHorizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 3
-      joystick: 3
-    - name: LookVertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 4
-      joystick: 1
-    - name: LookVertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 4
-      joystick: 2
-    - name: LookVertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 4
-      joystick: 3
-    - name: MenuHorizontal_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 1
-    - name: MenuHorizontal_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 2
-    - name: MenuHorizontal_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 0
-      joystick: 3
-    - name: MenuVertical_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 1
-    - name: MenuVertical_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 2
-    - name: MenuVertical_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0.2
-      gravity: 0
-      sensitivity: 1
-      snap: 0
-      invert: 0
-      type: 3
-      axis: 1
-      joystick: 3
-    - name: Jump_P2
-      description: 
-      positive: 370
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Jump_P3
-      description: 
-      positive: 390
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Jump_P4
-      description: 
-      positive: 410
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Submit_P2
-      description: 
-      positive: 370
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Submit_P3
-      description: 
-      positive: 390
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Submit_P4
-      description: 
-      positive: 410
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Cancel_P2
-      description: 
-      positive: 377
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 1
-    - name: Cancel_P3
-      description: 
-      positive: 397
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 2
-    - name: Cancel_P4
-      description: 
-      positive: 417
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 0
-      snap: 0
-      invert: 0
-      type: 0
-      axis: 0
-      joystick: 3
-    - name: Fire_P2
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 5
-      joystick: 1
-    - name: Fire_P3
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 5
-      joystick: 2
-    - name: Fire_P4
-      description: 
-      positive: 0
-      negative: 0
-      altPositive: 0
-      altNegative: 0
-      deadZone: 0
-      gravity: 0
-      sensitivity: 1000
-      snap: 1
-      invert: 0
-      type: 3
-      axis: 5
-      joystick: 3
     isExpanded: 0
   playerOneDefault: Windows_Gamepad
   playerTwoDefault: Windows_Gamepad
@@ -3061,3 +2308,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+--- !u!114 &1902508453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902508450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97728f80395fbf42a5e00b6d740d5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputConfiguration: Linux_Gamepad
+  _numberOfClones: 3
+--- !u!114 &1902508454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902508450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97728f80395fbf42a5e00b6d740d5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputConfiguration: OSX_Gamepad
+  _numberOfClones: 3
+--- !u!114 &1902508455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902508450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97728f80395fbf42a5e00b6d740d5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputConfiguration: Windows_Gamepad
+  _numberOfClones: 3

@@ -1,157 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Input playerOneDefault="Windows_Gamepad" playerTwoDefault="Windows_Gamepad" playerThreeDefault="Windows_Gamepad" playerFourDefault="Windows_Gamepad">
-  <InputConfiguration name="KeyboardAndMouse">
-    <AxisConfiguration name="Horizontal_P1">
-      <description />
-      <positive>D</positive>
-      <altPositive>None</altPositive>
-      <negative>A</negative>
-      <altNegative>None</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>3</gravity>
-      <sensitivity>3</sensitivity>
-      <snap>true</snap>
-      <invert>false</invert>
-      <type>DigitalAxis</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="Vertical_P1">
-      <description />
-      <positive>W</positive>
-      <altPositive>None</altPositive>
-      <negative>S</negative>
-      <altNegative>None</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>3</gravity>
-      <sensitivity>3</sensitivity>
-      <snap>true</snap>
-      <invert>false</invert>
-      <type>DigitalAxis</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="LookHorizontal_P1">
-      <description />
-      <positive>None</positive>
-      <altPositive>None</altPositive>
-      <negative>None</negative>
-      <altNegative>None</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>1</gravity>
-      <sensitivity>0.1</sensitivity>
-      <snap>false</snap>
-      <invert>false</invert>
-      <type>MouseAxis</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="LookVertical_P1">
-      <description />
-      <positive>None</positive>
-      <altPositive>None</altPositive>
-      <negative>None</negative>
-      <altNegative>None</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>1</gravity>
-      <sensitivity>0.1</sensitivity>
-      <snap>false</snap>
-      <invert>false</invert>
-      <type>MouseAxis</type>
-      <axis>1</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="MenuHorizontal_P1">
-      <description />
-      <positive>D</positive>
-      <altPositive>RightArrow</altPositive>
-      <negative>A</negative>
-      <altNegative>LeftArrow</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>3</gravity>
-      <sensitivity>3</sensitivity>
-      <snap>true</snap>
-      <invert>false</invert>
-      <type>DigitalAxis</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="MenuVertical_P1">
-      <description />
-      <positive>W</positive>
-      <altPositive>UpArrow</altPositive>
-      <negative>S</negative>
-      <altNegative>DownArrow</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>3</gravity>
-      <sensitivity>3</sensitivity>
-      <snap>true</snap>
-      <invert>false</invert>
-      <type>DigitalAxis</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="Jump_P1">
-      <description />
-      <positive>Space</positive>
-      <altPositive>None</altPositive>
-      <negative>None</negative>
-      <altNegative>None</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>0</gravity>
-      <sensitivity>0</sensitivity>
-      <snap>false</snap>
-      <invert>false</invert>
-      <type>Button</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="Fire_P1">
-      <description />
-      <positive>Space</positive>
-      <altPositive>None</altPositive>
-      <negative>None</negative>
-      <altNegative>None</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>0</gravity>
-      <sensitivity>0</sensitivity>
-      <snap>false</snap>
-      <invert>false</invert>
-      <type>Button</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="Submit_P1">
-      <description />
-      <positive>Space</positive>
-      <altPositive>None</altPositive>
-      <negative>None</negative>
-      <altNegative>None</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>0</gravity>
-      <sensitivity>0</sensitivity>
-      <snap>false</snap>
-      <invert>false</invert>
-      <type>Button</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-    <AxisConfiguration name="Cancel_P1">
-      <description />
-      <positive>Escape</positive>
-      <altPositive>None</altPositive>
-      <negative>None</negative>
-      <altNegative>None</altNegative>
-      <deadZone>0</deadZone>
-      <gravity>0</gravity>
-      <sensitivity>0</sensitivity>
-      <snap>false</snap>
-      <invert>false</invert>
-      <type>Button</type>
-      <axis>0</axis>
-      <joystick>0</joystick>
-    </AxisConfiguration>
-  </InputConfiguration>
   <InputConfiguration name="Windows_Gamepad">
     <AxisConfiguration name="Horizontal_P1">
       <description />
@@ -258,6 +106,66 @@
       <axis>0</axis>
       <joystick>0</joystick>
     </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P1">
+      <description />
+      <positive>Joystick1Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P1">
+      <description />
+      <positive>Joystick1Button4</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P1">
+      <description />
+      <positive>Joystick1Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P1">
+      <description />
+      <positive>Joystick1Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
     <AxisConfiguration name="Submit_P1">
       <description />
       <positive>Joystick1Button0</positive>
@@ -275,7 +183,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P1">
       <description />
-      <positive>Joystick1Button6</positive>
+      <positive>Joystick1Button1</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -286,6 +194,96 @@
       <invert>false</invert>
       <type>Button</type>
       <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P1">
+      <description />
+      <positive>Joystick1Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P1">
+      <description />
+      <positive>Joystick1Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P1">
+      <description />
+      <positive>Joystick1Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P1">
+      <description />
+      <positive>Joystick1Button3</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P1">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>5</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P1">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>5</axis>
       <joystick>0</joystick>
     </AxisConfiguration>
     <AxisConfiguration name="DPADHorizontal">
@@ -301,6 +299,36 @@
       <invert>false</invert>
       <type>AnalogAxis</type>
       <axis>5</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P1">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P1">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
       <joystick>0</joystick>
     </AxisConfiguration>
     <AxisConfiguration name="DPADVertical">
@@ -678,6 +706,186 @@
       <axis>0</axis>
       <joystick>3</joystick>
     </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P2">
+      <description />
+      <positive>Joystick2Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P3">
+      <description />
+      <positive>Joystick3Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P4">
+      <description />
+      <positive>Joystick4Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P2">
+      <description />
+      <positive>Joystick2Button4</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P3">
+      <description />
+      <positive>Joystick3Button4</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P4">
+      <description />
+      <positive>Joystick4Button4</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P2">
+      <description />
+      <positive>Joystick2Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P3">
+      <description />
+      <positive>Joystick3Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P4">
+      <description />
+      <positive>Joystick4Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P2">
+      <description />
+      <positive>Joystick2Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P3">
+      <description />
+      <positive>Joystick3Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P4">
+      <description />
+      <positive>Joystick4Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
     <AxisConfiguration name="Submit_P2">
       <description />
       <positive>Joystick2Button0</positive>
@@ -725,7 +933,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P2">
       <description />
-      <positive>Joystick2Button6</positive>
+      <positive>Joystick2Button1</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -740,7 +948,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P3">
       <description />
-      <positive>Joystick3Button6</positive>
+      <positive>Joystick3Button1</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -755,7 +963,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P4">
       <description />
-      <positive>Joystick4Button6</positive>
+      <positive>Joystick4Button1</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -766,6 +974,366 @@
       <invert>false</invert>
       <type>Button</type>
       <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P2">
+      <description />
+      <positive>Joystick2Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P3">
+      <description />
+      <positive>Joystick3Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P4">
+      <description />
+      <positive>Joystick4Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P2">
+      <description />
+      <positive>Joystick2Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P3">
+      <description />
+      <positive>Joystick3Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P4">
+      <description />
+      <positive>Joystick4Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P2">
+      <description />
+      <positive>Joystick2Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P3">
+      <description />
+      <positive>Joystick3Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P4">
+      <description />
+      <positive>Joystick4Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P2">
+      <description />
+      <positive>Joystick2Button3</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P3">
+      <description />
+      <positive>Joystick3Button3</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P4">
+      <description />
+      <positive>Joystick4Button3</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P2">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>5</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P3">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>5</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P4">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>5</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P2">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>5</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P3">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>5</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P4">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>5</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P2">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P3">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P4">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P2">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P3">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P4">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
       <joystick>3</joystick>
     </AxisConfiguration>
     <AxisConfiguration name="Fire_P2">
@@ -920,6 +1488,66 @@
       <axis>0</axis>
       <joystick>0</joystick>
     </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P1">
+      <description />
+      <positive>Joystick1Button14</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P1">
+      <description />
+      <positive>Joystick1Button13</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P1">
+      <description />
+      <positive>Joystick1Button9</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P1">
+      <description />
+      <positive>Joystick1Button10</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
     <AxisConfiguration name="Submit_P1">
       <description />
       <positive>Joystick1Button16</positive>
@@ -937,7 +1565,127 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P1">
       <description />
-      <positive>Joystick1Button9</positive>
+      <positive>Joystick1Button17</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P1">
+      <description />
+      <positive>Joystick1Button17</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P1">
+      <description />
+      <positive>Joystick1Button18</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P1">
+      <description />
+      <positive>Joystick1Button18</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P1">
+      <description />
+      <positive>Joystick1Button19</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P1">
+      <description />
+      <positive>Joystick1Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P1">
+      <description />
+      <positive>Joystick1Button8</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P1">
+      <description />
+      <positive>Joystick1Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P1">
+      <description />
+      <positive>Joystick1Button7</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -1340,6 +2088,186 @@
       <axis>0</axis>
       <joystick>3</joystick>
     </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P2">
+      <description />
+      <positive>Joystick2Button14</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P3">
+      <description />
+      <positive>Joystick3Button14</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P4">
+      <description />
+      <positive>Joystick4Button14</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P2">
+      <description />
+      <positive>Joystick2Button13</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P3">
+      <description />
+      <positive>Joystick3Button13</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P4">
+      <description />
+      <positive>Joystick4Button13</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P2">
+      <description />
+      <positive>Joystick2Button9</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P3">
+      <description />
+      <positive>Joystick3Button9</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P4">
+      <description />
+      <positive>Joystick4Button9</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P2">
+      <description />
+      <positive>Joystick2Button10</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P3">
+      <description />
+      <positive>Joystick3Button10</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P4">
+      <description />
+      <positive>Joystick4Button10</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
     <AxisConfiguration name="Submit_P2">
       <description />
       <positive>Joystick2Button16</positive>
@@ -1387,7 +2315,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P2">
       <description />
-      <positive>Joystick2Button9</positive>
+      <positive>Joystick2Button17</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -1402,7 +2330,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P3">
       <description />
-      <positive>Joystick3Button9</positive>
+      <positive>Joystick3Button17</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -1417,7 +2345,367 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P4">
       <description />
-      <positive>Joystick4Button9</positive>
+      <positive>Joystick4Button17</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P2">
+      <description />
+      <positive>Joystick2Button17</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P3">
+      <description />
+      <positive>Joystick3Button17</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P4">
+      <description />
+      <positive>Joystick4Button17</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P2">
+      <description />
+      <positive>Joystick2Button18</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P3">
+      <description />
+      <positive>Joystick3Button18</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P4">
+      <description />
+      <positive>Joystick4Button18</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P2">
+      <description />
+      <positive>Joystick2Button18</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P3">
+      <description />
+      <positive>Joystick3Button18</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P4">
+      <description />
+      <positive>Joystick4Button18</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P2">
+      <description />
+      <positive>Joystick2Button19</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P3">
+      <description />
+      <positive>Joystick3Button19</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P4">
+      <description />
+      <positive>Joystick4Button19</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P2">
+      <description />
+      <positive>Joystick2Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P3">
+      <description />
+      <positive>Joystick3Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P4">
+      <description />
+      <positive>Joystick4Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P2">
+      <description />
+      <positive>Joystick2Button8</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P3">
+      <description />
+      <positive>Joystick3Button8</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P4">
+      <description />
+      <positive>Joystick4Button8</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P2">
+      <description />
+      <positive>Joystick2Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P3">
+      <description />
+      <positive>Joystick3Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P4">
+      <description />
+      <positive>Joystick4Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P2">
+      <description />
+      <positive>Joystick2Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P3">
+      <description />
+      <positive>Joystick3Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P4">
+      <description />
+      <positive>Joystick4Button7</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -1582,6 +2870,66 @@
       <axis>0</axis>
       <joystick>0</joystick>
     </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P1">
+      <description />
+      <positive>Joystick1Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P1">
+      <description />
+      <positive>Joystick1Button4</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P1">
+      <description />
+      <positive>Joystick1Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P1">
+      <description />
+      <positive>Joystick1Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
     <AxisConfiguration name="Submit_P1">
       <description />
       <positive>Joystick1Button0</positive>
@@ -1599,7 +2947,67 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P1">
       <description />
-      <positive>Joystick1Button7</positive>
+      <positive>Joystick1Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P1">
+      <description />
+      <positive>Joystick1Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P1">
+      <description />
+      <positive>Joystick1Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P1">
+      <description />
+      <positive>Joystick1Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P1">
+      <description />
+      <positive>Joystick1Button3</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -1627,7 +3035,67 @@
       <axis>6</axis>
       <joystick>0</joystick>
     </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P1">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P1">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
     <AxisConfiguration name="DPADVertical">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>7</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P1">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>7</axis>
+      <joystick>0</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P1">
       <description />
       <positive>None</positive>
       <altPositive>None</altPositive>
@@ -2002,6 +3470,186 @@
       <axis>0</axis>
       <joystick>3</joystick>
     </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P2">
+      <description />
+      <positive>Joystick2Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P3">
+      <description />
+      <positive>Joystick3Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleRight_P4">
+      <description />
+      <positive>Joystick4Button5</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P2">
+      <description />
+      <positive>Joystick2Button4</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P3">
+      <description />
+      <positive>Joystick3Button4</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CycleLeft_P4">
+      <description />
+      <positive>Joystick4Button4</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P2">
+      <description />
+      <positive>Joystick2Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P3">
+      <description />
+      <positive>Joystick3Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Start_P4">
+      <description />
+      <positive>Joystick4Button7</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P2">
+      <description />
+      <positive>Joystick2Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P3">
+      <description />
+      <positive>Joystick3Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Select_P4">
+      <description />
+      <positive>Joystick4Button6</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
     <AxisConfiguration name="Submit_P2">
       <description />
       <positive>Joystick2Button0</positive>
@@ -2049,7 +3697,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P2">
       <description />
-      <positive>Joystick2Button7</positive>
+      <positive>Joystick2Button1</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -2064,7 +3712,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P3">
       <description />
-      <positive>Joystick3Button7</positive>
+      <positive>Joystick3Button1</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -2079,7 +3727,7 @@
     </AxisConfiguration>
     <AxisConfiguration name="Cancel_P4">
       <description />
-      <positive>Joystick4Button7</positive>
+      <positive>Joystick4Button1</positive>
       <altPositive>None</altPositive>
       <negative>None</negative>
       <altNegative>None</altNegative>
@@ -2090,6 +3738,366 @@
       <invert>false</invert>
       <type>Button</type>
       <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P2">
+      <description />
+      <positive>Joystick2Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P3">
+      <description />
+      <positive>Joystick3Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Crouch_P4">
+      <description />
+      <positive>Joystick4Button1</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P2">
+      <description />
+      <positive>Joystick2Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P3">
+      <description />
+      <positive>Joystick3Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="CancelShot_P4">
+      <description />
+      <positive>Joystick4Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P2">
+      <description />
+      <positive>Joystick2Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P3">
+      <description />
+      <positive>Joystick3Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Melee_P4">
+      <description />
+      <positive>Joystick4Button2</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P2">
+      <description />
+      <positive>Joystick2Button3</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P3">
+      <description />
+      <positive>Joystick3Button3</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Grab_P4">
+      <description />
+      <positive>Joystick4Button3</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>0</sensitivity>
+      <snap>false</snap>
+      <invert>false</invert>
+      <type>Button</type>
+      <axis>0</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P2">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P3">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt2_P4">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P2">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P3">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt4_P4">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>6</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P2">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>7</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P3">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>7</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt1_P4">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>7</axis>
+      <joystick>3</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P2">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>7</axis>
+      <joystick>1</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P3">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>7</axis>
+      <joystick>2</joystick>
+    </AxisConfiguration>
+    <AxisConfiguration name="Taunt3_P4">
+      <description />
+      <positive>None</positive>
+      <altPositive>None</altPositive>
+      <negative>None</negative>
+      <altNegative>None</altNegative>
+      <deadZone>0</deadZone>
+      <gravity>0</gravity>
+      <sensitivity>1000</sensitivity>
+      <snap>true</snap>
+      <invert>false</invert>
+      <type>AnalogAxis</type>
+      <axis>7</axis>
       <joystick>3</joystick>
     </AxisConfiguration>
     <AxisConfiguration name="Fire_P2">
