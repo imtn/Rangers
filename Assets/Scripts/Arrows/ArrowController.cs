@@ -103,7 +103,7 @@ namespace Assets.Scripts.Arrows
                     return gameObject.AddComponent<IceArrow>();
                 case Enums.Arrows.Thunder:
                     return gameObject.AddComponent<ThunderArrow>();
-                case Enums.Arrows.Poison:
+                case Enums.Arrows.Acid:
                     return gameObject.AddComponent<AcidArrow>();
                 case Enums.Arrows.Ricochet:
                     return gameObject.AddComponent<RicochetArrow>();

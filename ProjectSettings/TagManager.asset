@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Token
+  - Arrow
+  - Effect
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - 
   - Token
   - Player
-  - 
-  - 
-  - 
+  - Arrow
+  - ArrowDestroyer
+  - Effect
   - 
   - 
   - 
