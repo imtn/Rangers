@@ -8,6 +8,8 @@ namespace Assets.Scripts.Timers
         // Delegates and events to fire once timer times out
         new public delegate void TimerEvent(RepetitionTimer t);
         new public event TimerEvent TimeOut;
+        public event TimerEvent FinalTick;
+
 
         private Enums.RepetitionTimerSettings type;
         private int repeat = 0;
@@ -24,7 +26,7 @@ namespace Assets.Scripts.Timers
         }
 
         // Initializing the timer and turning it on
-        public void Initialize(float interval, string id, int repeat = 0)
+        public void Initialize(float interval, string id, int repeat)
         {
             // Call base
             base.Initialize(interval, id);
@@ -47,7 +49,7 @@ namespace Assets.Scripts.Timers
                     timer = 0;
                     if (type.Equals(Enums.RepetitionTimerSettings.Limited))
                     {
-                        if (--repeat <= 0) Destroy(this);
+                        if (--repeat <= 0) FireFinalEvent();
                     }
                 }
             }
@@ -57,6 +59,12 @@ namespace Assets.Scripts.Timers
         {
             // If the event has subscribers, fire it
             if (TimeOut != null) TimeOut(this);
+        }
+
+        protected void FireFinalEvent()
+        {
+            if (FinalTick != null) FinalTick(this);
+            Destroy(this);
         }
     }
 }

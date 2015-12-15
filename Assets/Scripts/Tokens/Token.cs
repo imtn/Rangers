@@ -12,7 +12,8 @@ namespace Assets.Scripts.Tokens
         void OnTriggerEnter(Collider col)
         {
             TokenCollected(col.GetComponent<Controller>());
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         // Token will use the Controller to get the appropriate component
