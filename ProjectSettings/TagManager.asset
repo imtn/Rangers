@@ -7,6 +7,7 @@ TagManager:
   - Token
   - Arrow
   - Effect
+  - ArrowDestroyer
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Arrow
   - ArrowDestroyer
   - Effect
-  - 
+  - Environment
   - 
   - 
   - 

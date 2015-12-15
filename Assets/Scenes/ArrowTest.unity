@@ -85,6 +85,36 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &132520985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 132520986}
+  m_Layer: 11
+  m_Name: ArrowDestroyers
+  m_TagString: ArrowDestroyer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &132520986
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 132520985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.5986729, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1096793687}
+  - {fileID: 1283036900}
+  - {fileID: 918825456}
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
 --- !u!1001 &276430917
 Prefab:
   m_ObjectHideFlags: 0
@@ -98,7 +128,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485490, guid: 620705417fe842d46bb079b8700f00ed, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.59867311
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 485490, guid: 620705417fe842d46bb079b8700f00ed, type: 2}
       propertyPath: m_LocalPosition.z
@@ -123,6 +153,10 @@ Prefab:
     - target: {fileID: 485490, guid: 620705417fe842d46bb079b8700f00ed, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448590, guid: 620705417fe842d46bb079b8700f00ed, type: 2}
+      propertyPath: type
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 620705417fe842d46bb079b8700f00ed, type: 2}
@@ -215,7 +249,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &784841478
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +353,7 @@ Transform:
   m_Children:
   - {fileID: 1531974724}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &784841485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +429,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &894864034
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +504,59 @@ Transform:
   m_LocalScale: {x: 1, y: 12.87, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
+--- !u!1 &918825453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 918825456}
+  - 114: {fileID: 918825455}
+  - 65: {fileID: 918825454}
+  m_Layer: 11
+  m_Name: ArrowDestroyer
+  m_TagString: ArrowDestroyer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &918825454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 918825453}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 50, y: 20, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &918825455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 918825453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aacfef785bc05d49a594e8846fbf6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &918825456
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 918825453}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 132520986}
+  m_RootOrder: 2
 --- !u!1 &1004933993
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +619,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 302682812}
   m_RootOrder: 0
+--- !u!1001 &1086149842
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 485490, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 485490, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 485490, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485490, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485490, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485490, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485490, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 485490, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &1096793686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1096793687}
+  - 114: {fileID: 1096793689}
+  - 65: {fileID: 1096793688}
+  m_Layer: 11
+  m_Name: ArrowDestroyer
+  m_TagString: ArrowDestroyer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1096793687
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096793686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25, y: -3.5986729, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 132520986}
+  m_RootOrder: 0
+--- !u!65 &1096793688
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096793686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30, y: 50, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1096793689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096793686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aacfef785bc05d49a594e8846fbf6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1123281892
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +798,58 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 2
+--- !u!1 &1283036897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1283036900}
+  - 114: {fileID: 1283036899}
+  - 65: {fileID: 1283036898}
+  m_Layer: 11
+  m_Name: ArrowDestroyer
+  m_TagString: ArrowDestroyer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1283036898
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1283036897}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30, y: 50, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1283036899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1283036897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aacfef785bc05d49a594e8846fbf6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1283036900
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1283036897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.11, y: -3.5986729, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 132520986}
   m_RootOrder: 1
 --- !u!1 &1356824449
 GameObject:
@@ -657,7 +889,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &1434509982
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,7 +964,7 @@ Transform:
   m_LocalScale: {x: 1, y: 12.87, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &1493696160
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +1039,7 @@ Transform:
   m_LocalScale: {x: 28.33, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1517385329
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +1143,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485490, guid: 01a4cc8acebc9074ca37ca449dc7e031, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.88999999
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 485490, guid: 01a4cc8acebc9074ca37ca449dc7e031, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1018,7 +1250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 12.87, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1 &1887505951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1286,7 @@ Transform:
   m_Children:
   - {fileID: 302682812}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!114 &1887505953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2307,7 +2539,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!114 &1902508453
 MonoBehaviour:
   m_ObjectHideFlags: 0

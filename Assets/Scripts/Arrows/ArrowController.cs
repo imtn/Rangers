@@ -12,6 +12,7 @@ namespace Assets.Scripts.Arrows
 
         private float damage = 35f;
         private PlayerID fromPlayer;
+        private float bounciness = 0;
 
         // Reference to arrowhead
         [SerializeField]
@@ -19,6 +20,7 @@ namespace Assets.Scripts.Arrows
 
         // Caching the rigidbody, collider, and collision info
         new private Rigidbody rigidbody;
+        private Vector3 prevVelocity;
         new private Collider collider;
         private CollisionInfo colInfo;
 
@@ -39,11 +41,14 @@ namespace Assets.Scripts.Arrows
         void Update()
         {
             if (rigidbody.velocity != Vector3.zero) transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
+            prevVelocity = rigidbody.velocity;
+
         }
 
         void OnCollisionEnter(Collision col)
         {
-            if(col.transform.tag.Equals("Player"))
+            if (col.transform.tag.Equals("ArrowDestroyer")) return;
+            if (col.transform.tag.Equals("Player"))
             {
                 Controller controller = col.transform.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage);
@@ -54,13 +59,21 @@ namespace Assets.Scripts.Arrows
             colInfo.IsTrigger = false;
 
             if (Effect != null) Effect();
-            Destroy(rigidbody);
-            Destroy(collider);
-            Destroy(this);
+            if (--bounciness <= 0)
+            {
+                Destroy(rigidbody);
+                Destroy(collider);
+                Destroy(this);
+            }
+            else
+            {
+                rigidbody.velocity = Vector3.Reflect(prevVelocity, col.contacts[0].normal);
+            }
         }
 
         void OnTriggerEnter(Collider col)
         {
+            if (col.transform.tag.Equals("ArrowDestroyer")) return;
             if (col.transform.tag.Equals("Player"))
             {
                 Controller controller = col.transform.GetComponent<Controller>();
@@ -106,6 +119,7 @@ namespace Assets.Scripts.Arrows
                 case Enums.Arrows.Acid:
                     return gameObject.AddComponent<AcidArrow>();
                 case Enums.Arrows.Ricochet:
+                    bounciness = 4;
                     return gameObject.AddComponent<RicochetArrow>();
                 case Enums.Arrows.Ghost:
                     return gameObject.AddComponent<GhostArrow>();
