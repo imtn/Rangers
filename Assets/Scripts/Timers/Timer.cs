@@ -72,6 +72,11 @@ namespace Assets.Scripts.Timers
         {
             get { return id; }
         }
+
+        public float CurrentTime
+        {
+            get { return timer; }
+        }
         #endregion
 
         public override string ToString()
