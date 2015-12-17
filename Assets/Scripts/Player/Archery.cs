@@ -17,8 +17,6 @@ namespace Assets.Scripts.Player
         [SerializeField]
         private Transform firePoint;
 
-        private float distance = 1.5f;
-
         // All the token timers running
         private List<TokenTimer> timers;
 
@@ -30,25 +28,17 @@ namespace Assets.Scripts.Player
             timers = new List<TokenTimer>();
         }
 
-        void Update()
-        {
-            // Updating the indicator of which direction the player is going to fire
-            if(InputManager.GetAxis("LookHorizontal_P" + (int)((PlayerController)controller).ID, ((PlayerController)controller).ID) == 0 && InputManager.GetAxis("LookVertical_P" + (int)((PlayerController)controller).ID, ((PlayerController)controller).ID) == 0)
-            {
-                firePoint.localPosition = Vector3.right * distance;
-            }
-            else
-            {
-                firePoint.localPosition = Vector3.Normalize(new Vector3(InputManager.GetAxis("LookHorizontal_P" + (int)((PlayerController)controller).ID, ((PlayerController)controller).ID), InputManager.GetAxis("LookVertical_P" + (int)((PlayerController)controller).ID, ((PlayerController)controller).ID), 0)) * distance;
-            }
-        }
-
         // Fires an arrow
         public void Fire()
         {
             GameObject arrow = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
             arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - transform.position) * 10, ForceMode.Impulse);
             arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
+        }
+
+        public void UpdateFirePoint(Vector3 position)
+        {
+            firePoint.localPosition = position;
         }
 
         // Called by colliding with a Token (from Token's OnTriggerEnter)

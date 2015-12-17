@@ -10,9 +10,13 @@ namespace Assets.Scripts.Player
      */
     public class Controller : MonoBehaviour
     {
+        protected float shake, maxShake = 0.5f;
         // ID for identifying which player is accepting input
         [SerializeField]
         protected PlayerID id;
+
+        // Distance from firePoint to player
+        protected float distanceToPlayer = 1.5f;
 
         // Componenets to manage
         protected Parkour parkour;
