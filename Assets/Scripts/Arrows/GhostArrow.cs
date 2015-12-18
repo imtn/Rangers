@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TeamUtility.IO;
 
 namespace Assets.Scripts.Arrows
 {
@@ -10,6 +11,6 @@ namespace Assets.Scripts.Arrows
             GetComponent<Collider>().isTrigger = true;
         }
 
-        public override void Effect() { }
+        public override void Effect(PlayerID hitPlayer) { }
     } 
 }

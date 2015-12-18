@@ -81,6 +81,11 @@ namespace Assets.Scripts.Data
             get { return currentGameSettings; }
             set { currentGameSettings = value; }
         }
+
+        public List<Controller> AllPlayers
+        {
+            get { return controllers; }
+        }
         #endregion
     }
 }

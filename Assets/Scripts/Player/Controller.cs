@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using Assets.Scripts.Timers;
 using TeamUtility.IO;
 
 namespace Assets.Scripts.Player
@@ -15,6 +17,9 @@ namespace Assets.Scripts.Player
         [SerializeField]
         protected PlayerID id;
 
+        // List of timers for checking effects
+        protected List<Timer> effectTimers;
+
         // Distance from firePoint to player
         protected float distanceToPlayer = 1.5f;
 
@@ -26,6 +31,9 @@ namespace Assets.Scripts.Player
 
         void Start()
         {
+            // Initialize the effect timers list
+            effectTimers = new List<Timer>();
+
             // Init all componenets
             InitializePlayerComponents();
         }

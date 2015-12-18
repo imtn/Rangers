@@ -55,6 +55,12 @@ namespace Assets.Scripts.Timers
             }
         }
 
+        public override void Reset()
+        {
+            if (type.Equals(Enums.RepetitionTimerSettings.Unlimited)) Initialize(interval, id);
+            else Initialize(interval, id, repeat);
+        }
+
         protected override void FireTimerEvent()
         {
             // If the event has subscribers, fire it

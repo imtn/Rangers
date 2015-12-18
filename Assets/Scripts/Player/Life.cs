@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts.Tokens;
+using Assets.Scripts.Timers;
 using Assets.Scripts.Data;
+using Assets.Scripts.Attacks;
 using UnityEngine;
 using TeamUtility.IO;
 
@@ -39,6 +41,20 @@ namespace Assets.Scripts.Player
 
         public void Respawn()
         {
+            SpawnAttack[] currentAttacks = GetComponents<SpawnAttack>();
+            for(int i = 0; i < currentAttacks.Length; i++)
+            {
+                Destroy(currentAttacks[i]);
+            }
+
+            Timer[] timers = GetComponents<Timer>();
+            for(int i = 0; i < timers.Length; i++)
+            {
+                if (timers[i].ID.EndsWith("Attack")) Destroy(timers[i]);
+            }
+
+            controller.ArcheryComponent.ClearAllTokens();
+
             health = MAX_HEALTH;
             controller.Enable();
         }

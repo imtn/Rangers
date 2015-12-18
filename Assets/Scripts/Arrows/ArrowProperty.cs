@@ -6,14 +6,12 @@ namespace Assets.Scripts.Arrows
 {
     public abstract class ArrowProperty : MonoBehaviour
     {
-        // How much damage a single arrow will do
-        protected float baseDamage = 10;
         // Type of arrow this component is
         protected Enums.Arrows type;
         // The collision info for the children to use
         protected CollisionInfo colInfo;
         // The player who the ID belongs to
-        protected PlayerID fromPlayer;
+        protected PlayerID fromPlayer, hitPlayer;
 
         // Runs at start
         public virtual void Init()
@@ -21,7 +19,7 @@ namespace Assets.Scripts.Arrows
             colInfo = GetComponent<CollisionInfo>();
         }
         // Runs when arrow hits or passes through something as applicable
-        public abstract void Effect();
+        public abstract void Effect(PlayerID hitPlayer);
 
         #region C# Properties
         public Enums.Arrows Type

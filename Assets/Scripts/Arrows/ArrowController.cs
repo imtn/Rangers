@@ -8,10 +8,12 @@ namespace Assets.Scripts.Arrows
     public class ArrowController : MonoBehaviour
     {
         private delegate void ArrowEvent();
-        private event ArrowEvent Init, Effect;
+        private delegate void ArrowHitEvent(PlayerID hitPlayer);
+        private event ArrowEvent Init;
+        private event ArrowHitEvent Effect;
 
         private float damage = 35f;
-        private PlayerID fromPlayer;
+        private PlayerID fromPlayer, hitPlayer;
         private float bounciness = 0;
 
         // Reference to arrowhead
@@ -52,13 +54,14 @@ namespace Assets.Scripts.Arrows
             {
                 Controller controller = col.transform.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage);
+                hitPlayer = controller.ID;
             }
             // Update collision info for arrow components to use
             colInfo.HitPosition = arrowhead.position;
             colInfo.HitRotation = arrowhead.rotation;
             colInfo.IsTrigger = false;
 
-            if (Effect != null) Effect();
+            if (Effect != null) Effect(hitPlayer);
             if (--bounciness <= 0)
             {
                 Destroy(rigidbody);
@@ -78,13 +81,14 @@ namespace Assets.Scripts.Arrows
             {
                 Controller controller = col.transform.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage);
+                hitPlayer = controller.ID;
             }
             // Update collision info for arrow components to use
             colInfo.HitPosition = arrowhead.position;
             colInfo.HitRotation = arrowhead.rotation;
             colInfo.IsTrigger = false;
 
-            if (Effect != null) Effect();
+            if (Effect != null) Effect(hitPlayer);
         }
 
         // Add all the arrow types and setup the appropriate delegates

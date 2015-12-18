@@ -76,5 +76,15 @@ namespace Assets.Scripts.Player
             TokenTimer t = timers.Find(i => i.ID.Equals(tt.TokenType.ToString()));
             timers.Remove(t);
         }
+
+        public void ClearAllTokens()
+        {
+            foreach (TokenTimer t in timers)
+            {
+                types = Bitwise.ClearBit(types, (int)t.TokenType);
+                Destroy(t);
+            }
+            timers.Clear();
+        }
 	}
 }
