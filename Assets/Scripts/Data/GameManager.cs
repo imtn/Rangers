@@ -15,10 +15,10 @@ namespace Assets.Scripts.Data
         private List<Controller> controllers;
 
         [SerializeField]
-        private List<Enums.Tokens> enabledTokens;
-        [SerializeField]
         private List<GameObject> allTokens;
         private Dictionary<Enums.Tokens, Enums.Frequency> tokens;
+
+        private GameSettings currentGameSettings;
 
         // Sets up singleton instance. Will remain if one does not already exist in scene
         void Awake()
@@ -34,11 +34,6 @@ namespace Assets.Scripts.Data
             }
 
             controllers = new List<Controller>();
-            tokens = new Dictionary<Enums.Tokens, Enums.Frequency>();
-            tokens.Add(Enums.Tokens.Fireball, Enums.Frequency.Abundant);
-            tokens.Add(Enums.Tokens.Ghost, Enums.Frequency.Abundant);
-            tokens.Add(Enums.Tokens.Ricochet, Enums.Frequency.Abundant);
-            TokenSpawner.instance.Init(tokens);
         }
 
         void Start()
@@ -48,6 +43,8 @@ namespace Assets.Scripts.Data
             {
                 controllers.Add(findControllers[i]);
             }
+            currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
+            TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);
         }
 
         public void Respawn(PlayerID id)
@@ -77,6 +74,12 @@ namespace Assets.Scripts.Data
         public List<GameObject> AllTokens
         {
             get { return allTokens; }
+        }
+
+        public GameSettings CurrentGameSettings
+        {
+            get { return currentGameSettings; }
+            set { currentGameSettings = value; }
         }
         #endregion
     }

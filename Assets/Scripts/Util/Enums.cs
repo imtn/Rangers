@@ -5,9 +5,10 @@
      */
     public static class Enums
     {
-        public enum Arrows { Normal, Fireball, Ice, Thunder, Acid, Ricochet, Ghost, Gravity, NumTypes};
-        public enum Tokens { Fireball, Ice, Thunder, Acid, Ricochet, Ghost, Gravity, Health};
-        public enum RepetitionTimerSettings { Limited, Unlimited};
-        public enum Frequency { None, Sparce, Infrequent, Average, Frequent, Abundant, NumTypes};
+        public enum Arrows { Normal, Fireball, Ice, Thunder, Acid, Ricochet, Ghost, Gravity, NumTypes };
+        public enum Tokens { Fireball, Ice, Thunder, Acid, Ricochet, Ghost, Gravity, Health, NumTypes };
+        public enum GameType { Stock, Kills };
+        public enum RepetitionTimerSettings { Limited, Unlimited };
+        public enum Frequency { None, Sparce, Infrequent, Average, Frequent, Abundant, NumTypes };
     }
 }

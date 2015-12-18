@@ -63,5 +63,18 @@ namespace Assets.Scripts.Data
 			file.Close();
 #endif
 		}
-	}
+
+        // Saves the Game settings for this game
+        public static void SaveGameSettings(GameSettings data, string extension)
+        {
+            // Create a new save file
+            if (!Directory.Exists(settingsDataPath)) Directory.CreateDirectory(settingsDataPath);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(settingsDataPath + extension);
+            Debug.Log(settingsDataPath + extension);
+
+            bf.Serialize(file, data);
+            file.Close();
+        }
+    }
 }

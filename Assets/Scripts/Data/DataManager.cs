@@ -12,14 +12,19 @@ namespace Assets.Scripts.Data
 		protected static string audioHash = "Rangers Audio";
 		protected static string videoHash = "Rangers Video";
 #else
-		protected static string audioDataPath = Application.persistentDataPath + "/Audio.dat";
-		protected static string videoDataPath = Application.persistentDataPath + "/Video.dat";
+		protected static string audioDataPath;
+		protected static string videoDataPath;
+        protected static string settingsDataPath;
 #endif
 
         // Call init on awake to initialize everything
 		void Awake()
 		{
-			Init();
+            audioDataPath = Application.persistentDataPath + "/Audio.dat";
+            videoDataPath = Application.persistentDataPath + "/Video.dat";
+            settingsDataPath = Application.persistentDataPath + "/GameSettings/";
+
+            Init();
 		}
 
         // Abstract method for children to set themselves up

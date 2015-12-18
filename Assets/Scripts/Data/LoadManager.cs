@@ -61,9 +61,8 @@ namespace Assets.Scripts.Data
             // No file exists, so save the default data
 			else
 			{
-				AudioData newData = new AudioData();
-				SaveManager.SaveAudio(newData);
-				return newData;
+				SaveManager.SaveAudio(data);
+				return data;
 			}
 #endif
 		}
@@ -102,11 +101,36 @@ namespace Assets.Scripts.Data
             // No file exists, so save the default data
             else
             {
-				VideoData newData = new VideoData();
-				SaveManager.SaveVideo(newData);
-				return newData;
+				SaveManager.SaveVideo(data);
+				return data;
 			}
 #endif
 		}
-	}
+
+        // Loads the game settings from a certain file
+        public static GameSettings LoadGameSettings(string extension)
+        {
+            // Get a default settings in case none exists
+            GameSettings data = new GameSettings();
+            // If a file exists
+            if (File.Exists(settingsDataPath + extension))
+            {
+                // Open the file and get all the data from the file to load
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(settingsDataPath + extension, FileMode.Open);
+
+                data = (GameSettings)bf.Deserialize(file);
+
+                file.Close();
+
+                return data;
+            }
+            // No file exists, so save the default data
+            else
+            {
+                SaveManager.SaveGameSettings(data, extension);
+                return data;
+            }
+        }
+    }
 }
