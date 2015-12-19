@@ -2,19 +2,35 @@
 
 namespace Assets.Scripts.Timers
 {
-    // Timer used for counting down
+    /// <summary>
+    /// Timer used for counting down
+    /// </summary>
     public class CountdownTimer : Timer
     {
-        // Delegates and events to fire once timer times out
+        /// <summary>
+        /// Delegates and events to fire once timer times out
+        /// </summary>
+        /// <param name="t">Timer that has timer out</param>
         new public delegate void TimerEvent(CountdownTimer t);
+        /// <summary>
+        /// The timeout event
+        /// </summary>
         new public event TimerEvent TimeOut;
 
+        /// <summary>
+        /// Initialze and start the timer
+        /// </summary>
+        /// <param name="interval">How long the timer will run for</param>
+        /// <param name="id">ID of the timer</param>
         public override void Initialize(float interval, string id)
         {
             base.Initialize(interval, id);
             timer = interval;
         }
 
+        /// <summary>
+        /// Updating the timer to count down
+        /// </summary>
         protected override void UpdateTimer()
         {
             if (on)
@@ -30,6 +46,9 @@ namespace Assets.Scripts.Timers
             }
         }
 
+        /// <summary>
+        /// Fires the timeout delegate
+        /// </summary>
         protected override void FireTimerEvent()
         {
             // If the event has subscribers, fire it

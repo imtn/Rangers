@@ -1,8 +1,8 @@
 ﻿namespace Assets.Scripts.Util
 {
-    /*
-     * Holds all of the enums used in the game
-     */
+    /// <summary>
+    /// Holds all of the enums used in the game
+    /// </summary>
     public static class Enums
     {
         public enum Arrows { Normal, Fireball, Ice, Thunder, Acid, Ricochet, Ghost, Gravity, NumTypes };

@@ -5,11 +5,11 @@ using TeamUtility.IO;
 
 namespace Assets.Scripts.Player
 {
-    /*
-     * This class wil manage all the player's (and enemy's) components,
-     * such as movement, data , etc
-     * Will also allow the different components to talk to one another
-     */
+    /// <summary>
+    /// This class wil manage all the player's (and enemy's) components,
+    /// such as movement, data , etc
+    /// Will also allow the different components to talk to one another
+    /// </summary>
     public class Controller : MonoBehaviour
     {
         protected float shake, maxShake = 0.5f;
@@ -38,7 +38,9 @@ namespace Assets.Scripts.Player
             InitializePlayerComponents();
         }
 
-        // Assigning references
+        /// <summary>
+        /// Assigning references
+        /// </summary>
         protected virtual void InitializePlayerComponents()
         {
             // Add all components to manage
@@ -54,33 +56,54 @@ namespace Assets.Scripts.Player
             profile.Controller = this;
         }
 
+        /// <summary>
+        /// Disables the player
+        /// </summary>
         public void Disable()
         {
             gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Reenables the player
+        /// </summary>
         public void Enable()
         {
             gameObject.SetActive(true);
         }
 
         #region C# Properties
+        /// <summary>
+        /// Archery component of the player
+        /// </summary>
         public Archery ArcheryComponent
         {
             get { return archery; }
         }
+        /// <summary>
+        /// Life component of the player
+        /// </summary>
         public Life LifeComponent
         {
             get { return life; }
         }
+        /// <summary>
+        /// Parkour component of the player
+        /// </summary>
         public Parkour ParkourComponent
         {
             get { return parkour; }
         }
+        /// <summary>
+        /// Profile component of the player
+        /// </summary>
         public Profile ProfileComponent
         {
             get { return profile; }
         }
+        /// <summary>
+        /// ID of the player
+        /// </summary>
         public PlayerID ID
         {
             get { return id; }

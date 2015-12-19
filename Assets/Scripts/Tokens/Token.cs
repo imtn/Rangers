@@ -3,20 +3,23 @@ using Assets.Scripts.Player;
 
 namespace Assets.Scripts.Tokens
 {
-    /*
-     * Tokens will be collected by players to add effects. Effects do not stack
-     */
+    /// <summary>
+    /// Tokens will be collected by players to add effects. Effects do not stack
+    /// </summary>
     public abstract class Token : MonoBehaviour
     {
         // Tokens will be collected via trigger
         void OnTriggerEnter(Collider col)
         {
             TokenCollected(col.GetComponent<Controller>());
-            //Destroy(gameObject);
+            // Set inactive since we are pooling
             gameObject.SetActive(false);
         }
 
-        // Token will use the Controller to get the appropriate component
+        /// <summary>
+        /// Token will use the Controller to get the appropriate component
+        /// </summary>
+        /// <param name="controller">The controller that is collecting the token</param>
         protected abstract void TokenCollected(Controller controller);
 	}
 }

@@ -3,13 +3,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Assets.Scripts.Data
 {
-    /*
-     * Class will load in data from player prefs or from disk
-     */
-	public class LoadManager : DataManager
+    /// <summary>
+    /// Class will load in data from player prefs or from disk
+    /// </summary>
+    public class LoadManager : DataManager
 	{
-        // Use a singleton instance to make sure there is only one
-		private static LoadManager instance;
+        /// <summary>
+        ///  Use a singleton instance to make sure there is only one
+        /// </summary>
+		public static LoadManager instance;
 
         // Sets up singleton instance. Will remain if one does not already exist in scene
 		protected override void Init()
@@ -25,7 +27,10 @@ namespace Assets.Scripts.Data
 			}
 		}
 
-        // Loads the audio data for this game
+        /// <summary>
+        /// Loads the audio data for this game
+        /// </summary>
+        /// <returns>The audio settings saved to disk or player prefs</returns>
 		public static AudioData LoadAudio()
 		{
             // Get a default audiodata in case none exists
@@ -67,9 +72,14 @@ namespace Assets.Scripts.Data
 #endif
 		}
 
+        /// <summary>
+        /// Loads the video data for this game
+        /// </summary>
+        /// <returns>The video settings saved to disk or player prefs</returns>
 		public static VideoData LoadVideo()
 		{
-			VideoData data = new VideoData();
+            // Get a default videodata in case none exists
+            VideoData data = new VideoData();
 #if UNITY_WEBPLAYER
             // If there is data related to video, get those values
 			if(PlayerPrefs.HasKey(videoHash + 0))
@@ -107,7 +117,11 @@ namespace Assets.Scripts.Data
 #endif
 		}
 
-        // Loads the game settings from a certain file
+        /// <summary>
+        /// Loads the game settings from a certain file
+        /// </summary>
+        /// <param name="extension">The extension where the desired settings are saved</param>
+        /// <returns>The certain game settings at a specific location</returns>
         public static GameSettings LoadGameSettings(string extension)
         {
             // Get a default settings in case none exists

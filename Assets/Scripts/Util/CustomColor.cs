@@ -2,6 +2,9 @@
 
 namespace Assets.Scripts.Util
 {
+    /// <summary>
+    /// Used for overriding Unity's colors that go from 0-1
+    /// </summary>
     public static class CustomColor
     {
         private const float MAX_RGBVal = 255.0f;
@@ -21,6 +24,13 @@ namespace Assets.Scripts.Util
         public static Color White = Convert255(255.0f, 255.0f, 255.0f);
         public static Color Black = Convert255(0f, 0f, 0f);
 
+        /// <summary>
+        /// Converts a color from 0-1 to 0-255
+        /// </summary>
+        /// <param name="r">The amount of red (0-255)</param>
+        /// <param name="g">The amount of green (0-255)</param>
+        /// <param name="b">The amount of blue (0-255)</param>
+        /// <returns>Color created from inputs</returns>
         public static Color Convert255(float r, float g, float b)
         {
             r = Mathf.Clamp(r, 0f, MAX_RGBVal);
@@ -29,6 +39,14 @@ namespace Assets.Scripts.Util
             return new Color((r / MAX_RGBVal), (g / MAX_RGBVal), (b / MAX_RGBVal));
         }
 
+        /// <summary>
+        /// Converts a color from 0-1 to 0-255
+        /// </summary>
+        /// <param name="r">The amount of red (0-255)</param>
+        /// <param name="g">The amount of green (0-255)</param>
+        /// <param name="b">The amount of blue (0-255)</param>
+        /// <param name="a">The amount of alpha (0-255)</param>
+        /// <returns>Color created from inputs</returns>
         public static Color Convert255(float r, float g, float b, float a)
         {
             r = Mathf.Clamp(r, 0f, MAX_RGBVal);
@@ -37,26 +55,5 @@ namespace Assets.Scripts.Util
             a = Mathf.Clamp(a, 0f, MAX_RGBVal);
             return new Color((r / MAX_RGBVal), (g / MAX_RGBVal), (b / MAX_RGBVal), (a / MAX_RGBVal));
         }
-
-        /*
-        public static Color ColorFromElement(Enums.Element element)
-        {
-            switch (element)
-            {
-                case Enums.Element.Fire:
-                    return Convert255(175.0f, 30.0f, 30.0f);
-                case Enums.Element.Water:
-                    return Convert255(30.0f, 30.0f, 175.0f);
-                case Enums.Element.Thunder:
-                    return Convert255(225.0f, 225.0f, 30.0f);
-                case Enums.Element.Earth:
-                    return Convert255(85.0f, 50.0f, 15.0f);
-                case Enums.Element.Wood:
-                    return Convert255(30.0f, 175.0f, 30.0f);
-                default:
-                    return Convert255(128.0f, 128.0f, 128.0f);
-            }
-        }
-        */
     }
 }

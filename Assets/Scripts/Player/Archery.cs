@@ -5,9 +5,9 @@ using Assets.Scripts.Tokens;
 using Assets.Scripts.Util;
 using TeamUtility.IO;
 
-/*
- * This class handles all the shooting that can be done by actors
- */
+/// <summary>
+/// This class handles all the shooting that can be done by actors
+/// </summary>
 namespace Assets.Scripts.Player
 {
 	public class Archery : ControllerObject
@@ -36,12 +36,19 @@ namespace Assets.Scripts.Player
             arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
         }
 
+        /// <summary>
+        /// Sets the firepoint for the player
+        /// </summary>
+        /// <param name="position">Position where the firepoint is set to</param>
         public void UpdateFirePoint(Vector3 position)
         {
             firePoint.localPosition = position;
         }
 
-        // Called by colliding with a Token (from Token's OnTriggerEnter)
+        /// <summary>
+        /// Called by colliding with a Token (from Token's OnTriggerEnter)
+        /// </summary>
+        /// <param name="token">Token that was collected</param>
         public override void CollectToken(Token token)
         {
             // Handle what type of token was collected
@@ -77,6 +84,9 @@ namespace Assets.Scripts.Player
             timers.Remove(t);
         }
 
+        /// <summary>
+        /// Removes all active tokens from the player so shooting an arrow is only the normal arrow
+        /// </summary>
         public void ClearAllTokens()
         {
             foreach (TokenTimer t in timers)

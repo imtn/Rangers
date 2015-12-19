@@ -7,17 +7,25 @@ using TeamUtility.IO;
 
 namespace Assets.Scripts.Data
 {
+    /// <summary>
+    /// Manager to control everything as the top of the pyramid
+    /// </summary>
     public class GameManager : MonoBehaviour
     {
-        // Use a singleton instance to make sure there is only one
+        /// <summary>
+        /// Use a singleton instance to make sure there is only one
+        /// </summary>
         public static GameManager instance;
 
+        // List of all the controllers of the players
         private List<Controller> controllers;
 
+        // List of all the types of tokens available
         [SerializeField]
         private List<GameObject> allTokens;
         private Dictionary<Enums.Tokens, Enums.Frequency> tokens;
 
+        // Vurrent game settings to abide by
         private GameSettings currentGameSettings;
 
         // Sets up singleton instance. Will remain if one does not already exist in scene
@@ -38,28 +46,42 @@ namespace Assets.Scripts.Data
 
         void Start()
         {
+            // Find all the players
             Controller[] findControllers = FindObjectsOfType<Controller>();
             for(int i = 0; i < findControllers.Length; i++)
             {
                 controllers.Add(findControllers[i]);
             }
+            // Load the last settings used
             currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
+            // Initialize the tokens
             TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);
         }
 
+        /// <summary>
+        /// Sets up the player so it can respawn.
+        /// </summary>
+        /// <param name="id">The ID of the player that died</param>
         public void Respawn(PlayerID id)
         {
+            // Find the dead player
             Controller deadPlayer = controllers.Find(x => x.ID.Equals(id));
             if(deadPlayer != null)
             {
+                // Initialize the respawn timer
                 CountdownTimer t = gameObject.AddComponent<CountdownTimer>();
                 t.Initialize(3f, deadPlayer.ID.ToString());
                 t.TimeOut += new CountdownTimer.TimerEvent(ResawnHelper);
             }
         }
 
+        /// <summary>
+        /// Target for the respawn timer to run on timeout.
+        /// </summary>
+        /// <param name="t">The timer that is firing the event</param>
         private void ResawnHelper(CountdownTimer t)
         {
+            // Find the dead player again
             Controller deadPlayer = controllers.Find(x => x.ID.Equals(System.Enum.Parse(typeof(PlayerID), t.ID)));
             if (deadPlayer != null)
             {
@@ -71,17 +93,24 @@ namespace Assets.Scripts.Data
         }
 
         #region C# Properties
+        /// <summary>
+        /// List of all the tokens prefabs
+        /// </summary>
         public List<GameObject> AllTokens
         {
             get { return allTokens; }
         }
-
+        /// <summary>
+        /// Current game settings to check rules against
+        /// </summary>
         public GameSettings CurrentGameSettings
         {
             get { return currentGameSettings; }
             set { currentGameSettings = value; }
         }
-
+        /// <summary>
+        /// All the players in the current game
+        /// </summary>
         public List<Controller> AllPlayers
         {
             get { return controllers; }

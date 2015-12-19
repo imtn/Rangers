@@ -4,27 +4,41 @@ using Assets.Scripts.Timers;
 
 namespace Assets.Scripts.Attacks
 {
+    /// <summary>
+    /// Attack that will deal damage over time to the player
+    /// </summary>
     public class AcidAttack : SpawnAttack
     {
-        RepetitionTimer t;
+        // The timer to repeatidly damage the player
+        private RepetitionTimer t;
+        // Amount of damage to deal to the player each iteration
         new protected float damage = 5;
+        // Amount of time to pass before repeating the damage
         private float damageInterval = 1f;
-        private int numHits = 6;
+        // Number of times to repeat the damage
+        private int numHits = 4;
+        // Caching the controller of the hit player
         private Controller controller;
 
         void Start()
         {
+            // Get all AcidAttacks already on the player (this componenent should have at least been added)
             AcidAttack[] currentAttacks = gameObject.GetComponents<AcidAttack>();
+            // If this componenent is not the only AcidAttack on the player
             if(currentAttacks.Length > 1)
             {
                 for(int i  = 0; i < currentAttacks.Length; i++)
                 {
+                    // Reset the timer if it is the original timer and not this timer
                     if(currentAttacks[i] != this) currentAttacks[i].Timer.Reset();
                 }
+                // Destroy this AcidAttack because it is not the original
                 Destroy(this);
             }
+            // This is the only AcidAttack on the player
             else
             {
+                // Initialize the acid attack
                 controller = GetComponent<Controller>();
                 t = gameObject.AddComponent<RepetitionTimer>();
                 t.Initialize(damageInterval, "Acid Attack", numHits);
@@ -33,17 +47,22 @@ namespace Assets.Scripts.Attacks
             }
         }
 
+        // Target for the repeating timer
         private void DamagePlayer(RepetitionTimer t)
         {
             controller.LifeComponent.ModifyHealth(-damage, fromPlayer);
         }
 
+        // Target for the timer's final timeout
         private void FinalHit(RepetitionTimer t)
         {
             Destroy(this);
         }
 
         #region C# Properties
+        /// <summary>
+        /// The timer that is running for this attack
+        /// </summary>
         public RepetitionTimer Timer
         {
             get { return t; }

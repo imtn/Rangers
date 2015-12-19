@@ -2,6 +2,9 @@
 
 namespace Assets.Scripts.Arrows
 {
+    /// <summary>
+    /// Arrow property that spawns an explosion on impact.
+    /// </summary>
     public class FireballArrow : SpawnerProperty
     {
         public override void Init()

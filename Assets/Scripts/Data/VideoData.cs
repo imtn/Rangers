@@ -1,8 +1,8 @@
 ﻿using System;
 
-/*
- * Class for saving video settings
- */
+/// <summary>
+/// Class for saving video settings
+/// </summary>
 [Serializable]
 public class VideoData
 {
@@ -11,7 +11,9 @@ public class VideoData
     private bool fullScreen;
 
     #region Constructors
-    // Default settings
+    /// <summary>
+    /// Default settings
+    /// </summary>
     public VideoData()
     {
         resolutionIndex = 0;
@@ -19,7 +21,12 @@ public class VideoData
         fullScreen = false;
     }
 
-    // Manually initialize the settings
+    /// <summary>
+    /// Manually initialize the settings
+    /// </summary>
+    /// <param name="resolutionIndex">The index to the current resolution</param>
+    /// <param name="qualityIndex">The index to the current quality</param>
+    /// <param name="fullScreen">Whether or not the game is fullscreen</param>
     public VideoData(int resolutionIndex, int qualityIndex, bool fullScreen)
     {
         this.resolutionIndex = resolutionIndex;
@@ -29,16 +36,25 @@ public class VideoData
     #endregion
 
     #region C# Properties
+    /// <summary>
+    /// The index to the current resolution
+    /// </summary>
     public int ResolutionIndex
     {
         get { return resolutionIndex; }
         set { resolutionIndex = value; }
     }
+    /// <summary>
+    /// The index to the current quality
+    /// </summary>
     public int QualityIndex
     {
         get { return qualityIndex; }
         set { qualityIndex = value; }
     }
+    /// <summary>
+    /// Whether or not the game is fullscreen
+    /// </summary>
     public bool Fullscreen
     {
         get { return fullScreen; }

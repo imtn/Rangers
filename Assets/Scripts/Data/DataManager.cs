@@ -2,16 +2,17 @@
 
 namespace Assets.Scripts.Data
 {
-    /* 
-     * This class is the parent for saving data and will hold all the paths necessary to save and load data
-     */
-	public abstract class DataManager : MonoBehaviour
+    /// <summary>
+    /// This class is the parent for saving data and will hold all the paths necessary to save and load data
+    /// </summary>
+    public abstract class DataManager : MonoBehaviour
 	{
         // Can't save data to disk on web, so for now using playerprefs instead
 #if UNITY_WEBPLAYER
 		protected static string audioHash = "Rangers Audio";
 		protected static string videoHash = "Rangers Video";
 #else
+        // All the data path variables
 		protected static string audioDataPath;
 		protected static string videoDataPath;
         protected static string settingsDataPath;
@@ -27,7 +28,9 @@ namespace Assets.Scripts.Data
             Init();
 		}
 
-        // Abstract method for children to set themselves up
+        /// <summary>
+        /// Abstract method for children to set themselves up
+        /// </summary>
 		protected abstract void Init();
 	}
 }

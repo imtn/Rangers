@@ -4,12 +4,15 @@ using Assets.Scripts.Util;
 
 namespace Assets.Scripts.Data
 {
+    /// <summary>
+    /// Manager that deals with the attacks and their effects
+    /// </summary>
     public class AttackManager : MonoBehaviour
     {
-        // Use a singleton instance to make sure there is only one
+        /// Use a singleton instance to make sure there is only one
         public static AttackManager instance;
 
-        // List of possible attack effect prefabs
+        /// List of possible attack effect prefabs
         [SerializeField]
         private List<GameObject> effectPrefabs;
 
@@ -29,7 +32,11 @@ namespace Assets.Scripts.Data
             if(effectPrefabs == null) effectPrefabs = new List<GameObject>();
         }
 
-        // Gets the prefab based on the arrow type
+        /// <summary>
+        /// Gets the prefab based on the arrow type.
+        /// </summary>
+        /// <param name="type">The type of arrow that needs a prefab.</param>
+        /// <returns>The appropriate effect for the arrow property.</returns>
         public GameObject GetEffect(Enums.Arrows type)
         {
             // Will check null in the script that gets this object

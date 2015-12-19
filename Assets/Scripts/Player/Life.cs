@@ -7,12 +7,15 @@ using TeamUtility.IO;
 
 namespace Assets.Scripts.Player
 {
-    /*
-     * Handles all the components related to in game Life
-     * such as lives, health, respawning, etc
-     */
-	public class Life : ControllerObject
+    /// <summary>
+    /// Handles all the components related to in game Life
+    /// such as lives, health, respawning, etc
+    /// </summary>
+    public class Life : ControllerObject
 	{
+        /// <summary>
+        /// The max health a player can have
+        /// </summary>
         public const float MAX_HEALTH = 100f;
 
         private float health = MAX_HEALTH, lives = Mathf.Infinity;
@@ -20,6 +23,11 @@ namespace Assets.Scripts.Player
         // Last player to hit this player
         private PlayerID lastAttacker = PlayerID.None;
 
+        /// <summary>
+        /// Modifies a player's heath
+        /// </summary>
+        /// <param name="delta">The amound to change (should be negative for damage)</param>
+        /// <param name="id">The player who dealt the damage</param>
         public void ModifyHealth(float delta, PlayerID id = PlayerID.None)
         {
             health = Mathf.Clamp((health + delta), 0, MAX_HEALTH);
@@ -27,6 +35,7 @@ namespace Assets.Scripts.Player
             if (health <= 0) Die(id);
         }
 
+        // Handles when players die
         private void Die(PlayerID lastID = PlayerID.None)
         {
             lastAttacker = lastID;
@@ -39,6 +48,9 @@ namespace Assets.Scripts.Player
             }
         }
 
+        /// <summary>
+        /// Respawns the player and clears all previous effects
+        /// </summary>
         public void Respawn()
         {
             SpawnAttack[] currentAttacks = GetComponents<SpawnAttack>();
@@ -59,7 +71,10 @@ namespace Assets.Scripts.Player
             controller.Enable();
         }
 
-        // Overriding the collect token method from player controller object
+        /// <summary>
+        /// Overriding the collect token method from player controller object
+        /// </summary>
+        /// <param name="token">The token that was collected</param>
         public override void CollectToken(Token token)
         {
             // Handle what type of token was collected
@@ -71,11 +86,17 @@ namespace Assets.Scripts.Player
         }
 
         #region C# Properties
+        /// <summary>
+        /// Health of the player
+        /// </summary>
         public float Health
         {
             get { return health; }
             set { health = value; }
         }
+        /// <summary>
+        /// Number of lives the player has
+        /// </summary>
         public float Lives
         {
             get { return lives; }

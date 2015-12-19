@@ -2,6 +2,9 @@
 
 namespace Assets.Scripts.Util
 {
+    /// <summary>
+    /// Handles the animation component for events like pausing
+    /// </summary>
 	public class AnimationInfo : MonoBehaviour
 	{
         // Speed of the animator to save
@@ -27,12 +30,18 @@ namespace Assets.Scripts.Util
             anim = GetComponent<Animator>();
         }
 		
+        /// <summary>
+        /// Pausing the anumator
+        /// </summary>
 		public void PauseAnimator()
 		{
 			speed = anim.speed;
 			anim.speed = 0;
 		}
 		
+        /// <summary>
+        /// Unpausing the animator
+        /// </summary>
 		public void UnpauseAnimator()
 		{
 			anim.speed = speed;
