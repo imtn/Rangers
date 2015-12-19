@@ -16,6 +16,10 @@ namespace Assets.Scripts.Arrows
         private event ArrowEvent Init;
         private event ArrowHitEvent Effect;
 
+        // Layers that should not activate the arrow's effects
+        [SerializeField]
+        private LayerMask doNotActivate;
+
         // Damage to be dealt when hit by an arrow
         private float damage = 35f;
         // Player IDs for passing along information
@@ -67,8 +71,8 @@ namespace Assets.Scripts.Arrows
         // Arrow hits something
         void OnCollisionEnter(Collision col)
         {
-            // Eventually add a layer mask to this
-            if (col.transform.tag.Equals("ArrowDestroyer")) return;
+            // Check to see a layer of the object should not activate the effects
+            if ((doNotActivate.value & (1 << col.gameObject.layer)) != 0) return;
             // If the arrow his a player
             if (col.transform.tag.Equals("Player"))
             {
@@ -101,7 +105,8 @@ namespace Assets.Scripts.Arrows
         // Arrow goes through something
         void OnTriggerEnter(Collider col)
         {
-            if (col.transform.tag.Equals("ArrowDestroyer")) return;
+            // Check to see a layer of the object should not activate the effects
+            if ((doNotActivate.value & (1 << col.gameObject.layer)) != 0) return;
             // If the arrow his a player
             if (col.transform.tag.Equals("Player"))
             {

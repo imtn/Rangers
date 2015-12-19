@@ -178,6 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73b56a9564df0840b6687670ba45fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doNotActivate:
+    serializedVersion: 2
+    m_Bits: 2048
   arrowhead: {fileID: 410588}
 --- !u!1001 &100100000
 Prefab:
@@ -205,6 +208,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: doNotActivate.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
