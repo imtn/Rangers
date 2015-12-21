@@ -19,6 +19,8 @@ public class GameSettings
     public const float DEFAULT_TIME = 5f, DEFAULT_KILLS = 15f, DEFAULT_STOCK = 5f, MAX_TIME = 99f, MAX_KILLS = 99f, MAX_STOCK = 99f, MAX_ARROWS = 99f;
     // All modifiable fields
     private float timeLimit, killLimit, stockLimit, arrowLimit, damageModifier, gravityModifier, speedModifier, tokenSpawnFreq, playerSpawnFreq;
+    // Non modifiable field
+    private int targetsInLevel;
     // Whether or not time is enabled
     private bool timeLimitEnabled;
     // What type of game is running
@@ -44,6 +46,7 @@ public class GameSettings
         speedModifier = 1f;
         tokenSpawnFreq = 5f;
         playerSpawnFreq = 3f;
+        targetsInLevel = 0;
         timeLimitEnabled = false;
         enabledTokens = new Dictionary<Enums.Tokens, Enums.Frequency>();
         for(int i = 0; i < (int)Enums.Tokens.NumTypes; i++)
@@ -145,6 +148,14 @@ public class GameSettings
     {
         get { return playerSpawnFreq; }
         set { playerSpawnFreq = value; }
+    }
+    /// <summary>
+    /// The number of targets in a level for target practice
+    /// </summary>
+    public int TargetsInLevel
+    {
+        get { return targetsInLevel; }
+        set { targetsInLevel = value; }
     }
     /// <summary>
     /// Whether or not there is a time limit on the match
