@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Level;
 using Assets.Scripts.Player;
 using Assets.Scripts.Util;
 using TeamUtility.IO;
@@ -81,6 +82,10 @@ namespace Assets.Scripts.Arrows
                 controller.LifeComponent.ModifyHealth(-damage);
                 hitPlayer = controller.ID;
             }
+            else if(col.transform.tag.Equals("Target"))
+            {
+                col.gameObject.GetComponent<Target>().TargetHit(fromPlayer);
+            }
             // Update collision info for arrow components to use
             colInfo.HitPosition = arrowhead.position;
             colInfo.HitRotation = arrowhead.rotation;
@@ -113,6 +118,10 @@ namespace Assets.Scripts.Arrows
                 Controller controller = col.transform.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage);
                 hitPlayer = controller.ID;
+            }
+            else if (col.transform.tag.Equals("Target"))
+            {
+                col.gameObject.GetComponent<Target>().TargetHit(fromPlayer);
             }
             // Update collision info for arrow components to use
             colInfo.HitPosition = arrowhead.position;

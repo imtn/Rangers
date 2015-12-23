@@ -6,7 +6,7 @@ namespace Assets.Scripts.Timers
     /// <summary>
     /// Timer class that can fire events
     /// </summary>
-    public abstract class Timer : MonoBehaviour
+    public class Timer : MonoBehaviour
     {
         /// <summary>
         /// Delegates and events to fire once timer times out

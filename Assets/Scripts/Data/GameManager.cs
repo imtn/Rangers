@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Assets.Scripts.Level;
 using Assets.Scripts.Player;
 using Assets.Scripts.Timers;
 using Assets.Scripts.Util;
@@ -25,7 +26,10 @@ namespace Assets.Scripts.Data
         private List<GameObject> allTokens;
         private Dictionary<Enums.Tokens, Enums.Frequency> tokens;
 
-        // Vurrent game settings to abide by
+        // Match timer (optional)
+        private Timer matchTimer;
+
+        // Current game settings to abide by
         private GameSettings currentGameSettings;
 
         // Sets up singleton instance. Will remain if one does not already exist in scene
@@ -46,16 +50,51 @@ namespace Assets.Scripts.Data
 
         void Start()
         {
+            // Call Init
+            InitializeMatch();
+        }
+
+        /// <summary>
+        /// Initializes the match when one is started
+        /// </summary>
+        private void InitializeMatch()
+        {
             // Find all the players
             Controller[] findControllers = FindObjectsOfType<Controller>();
-            for(int i = 0; i < findControllers.Length; i++)
+            for (int i = 0; i < findControllers.Length; i++)
             {
                 controllers.Add(findControllers[i]);
             }
             // Load the last settings used
             currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
+            // Check for targets
+            currentGameSettings.Type = Enums.GameType.Target;
             // Initialize the tokens
             TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);
+
+            if (currentGameSettings.Type.Equals(Enums.GameType.Target))
+            {
+                currentGameSettings.TargetsInLevel = FindObjectsOfType<Target>().Length;
+                matchTimer = gameObject.AddComponent<Timer>();
+                matchTimer.Initialize(Mathf.Infinity, "Match Timer");
+            }
+        }
+
+        /// <summary>
+        /// Handles a target being destroyed and checks to see if the game is over
+        /// </summary>
+        /// <param name="fromPlayer">The player that hit the target</param>
+        public void TargetDestroyed(PlayerID fromPlayer)
+        {
+            if (--currentGameSettings.TargetsInLevel <= 0) GameOver();
+        }
+
+        /// <summary>
+        /// Handles what happens when the game is over
+        /// </summary>
+        private void GameOver()
+        {
+            Debug.Log("Match concluded");
         }
 
         /// <summary>

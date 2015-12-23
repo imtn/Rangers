@@ -8,6 +8,7 @@ TagManager:
   - Arrow
   - Effect
   - ArrowDestroyer
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - ArrowDestroyer
   - Effect
   - Environment
-  - 
+  - Target
   - 
   - 
   - 
