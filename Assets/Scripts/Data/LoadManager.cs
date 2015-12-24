@@ -1,5 +1,9 @@
-﻿using System.IO;
+﻿using UnityEngine;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml;
 using System.Runtime.Serialization.Formatters.Binary;
+using Assets.Scripts.Util;
 
 namespace Assets.Scripts.Data
 {
@@ -144,7 +148,118 @@ namespace Assets.Scripts.Data
             {
                 SaveManager.SaveGameSettings(data, extension);
                 return data;
+            }            
+        }
+
+        public static GameSettings LoadGameSettingsXML(string extension)
+        {
+            // Get a default settings in case none exists
+            GameSettings data = new GameSettings();
+
+            TextAsset xmlFile = (TextAsset)Resources.Load(xmlSettingsDataPath + extension);
+            MemoryStream assetStream = new MemoryStream(xmlFile.bytes);
+            XmlReader reader = XmlReader.Create(assetStream);
+
+            bool endofSettings = false;
+            while (reader.Read() && !endofSettings)
+            {
+                if (reader.IsStartElement())
+                {
+                    switch (reader.LocalName)
+                    {
+                        case "Type":
+                            data.Type = (Enums.GameType)System.Enum.Parse(typeof(Enums.GameType), reader.ReadElementContentAsString());
+                            Debug.Log("Type: " + data.Type.ToString());
+                            break;
+                        case "TimeLimitEnabled":
+                            data.TimeLimitEnabled = reader.ReadElementContentAsBoolean();
+                            Debug.Log("Time Limit Enabled: " + data.TimeLimitEnabled);
+                            break;
+                        case "TimeLimit":
+                            data.TimeLimit = reader.ReadElementContentAsFloat();
+                            Debug.Log("Timer Limit: " + data.TimeLimit);
+                            break;
+                        case "KillLimit":
+                            data.KillLimit = reader.ReadElementContentAsFloat();
+                            Debug.Log("Kill Limit: " + data.KillLimit);
+                            break;
+                        case "StockLimit":
+                            data.StockLimit = reader.ReadElementContentAsFloat();
+                            Debug.Log("Stock Limit: " + data.StockLimit);
+                            break;
+                        case "ArrowLimit":
+                            data.ArrowLimit = reader.ReadElementContentAsFloat();
+                            Debug.Log("Arrow Limit: " + data.ArrowLimit);
+                            break;
+                        case "DamageModifier":
+                            data.DamageModifier = reader.ReadElementContentAsFloat();
+                            Debug.Log("Damage Modifier: " + data.DamageModifier);
+                            break;
+                        case "GravityModifier":
+                            data.GravityModifier = reader.ReadElementContentAsFloat();
+                            Debug.Log("Gravity Modifier: " + data.GravityModifier);
+                            break;
+                        case "SpeedModifier":
+                            data.SpeedModifier = reader.ReadElementContentAsFloat();
+                            Debug.Log("Speed Modifier: " + data.SpeedModifier);
+                            break;
+                        case "TokenSpawnFreq":
+                            data.TokenSpawnFreq = reader.ReadElementContentAsFloat();
+                            Debug.Log("Token Spawn Freq: " + data.TokenSpawnFreq);
+                            break;
+                        case "PlayerSpawnFreq":
+                            data.PlayerSpawnFreq = reader.ReadElementContentAsFloat();
+                            Debug.Log("Player Spawn Freq: " + data.PlayerSpawnFreq);
+                            break;
+                        case "EnabledTokens":
+                            Dictionary<Enums.Tokens, Enums.Frequency> dict = new Dictionary<Enums.Tokens, Enums.Frequency>();
+                            XmlReader inner = reader.ReadSubtree();
+                            while (inner.Read())
+                            {
+                                if (inner.IsStartElement())
+                                {
+                                    if (inner.LocalName.Equals("Token"))
+                                    {
+                                        Enums.Tokens t = (Enums.Tokens)System.Enum.Parse(typeof(Enums.Tokens), inner.ReadElementContentAsString());
+                                        inner.ReadToFollowing("Frequency");
+                                        Enums.Frequency f = (Enums.Frequency)System.Enum.Parse(typeof(Enums.Frequency), inner.ReadElementContentAsString());
+                                        dict.Add(t, f);
+                                        Debug.Log("Added Token: " + t.ToString() + " : " + f.ToString());
+                                    }
+                                }
+                            }
+                            data.EnabledTokens = dict;
+                            inner.Close();
+                            break;
+                        case "DefaultTokens":
+                            List<Enums.Tokens> defaultTokens = new List<Enums.Tokens>();
+                            XmlReader tokens = reader.ReadSubtree();
+                            while (tokens.Read())
+                            {
+                                if (tokens.IsStartElement())
+                                {
+                                    if (tokens.LocalName.Equals("Token"))
+                                    {
+                                        Enums.Tokens t = (Enums.Tokens)System.Enum.Parse(typeof(Enums.Tokens), tokens.ReadElementContentAsString());
+                                        defaultTokens.Add(t);
+                                        Debug.Log("Added Default Token: " + t.ToString());
+                                    }
+                                }
+                            }
+                            data.DefaultTokens = defaultTokens;
+                            tokens.Close();
+                            break;
+                        case "GameSettings":
+                            Debug.Log("Reading Settings");
+                            break;
+                        default:
+                            endofSettings = true;
+                            break;
+                    }
+                }
             }
+            reader.Close();
+            return data;
         }
     }
 }
