@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Token
   - Ground
+  - Arrow
+  - Effect
+  - ArrowDestroyer
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -17,11 +21,11 @@ TagManager:
   - 
   - Token
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Arrow
+  - ArrowDestroyer
+  - Effect
+  - Environment
+  - Target
   - 
   - 
   - 

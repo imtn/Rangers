@@ -6,6 +6,6 @@ namespace TeamUtility.IO
 {
     public enum PlayerID
     {
-        One, Two, Three, Four
+        One = 1, Two, Three, Four, None
     }
 }

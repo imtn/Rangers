@@ -5,9 +5,9 @@ using Assets.Scripts.Tokens;
 using Assets.Scripts.Util;
 using TeamUtility.IO;
 
-/*
- * This class handles all the shooting that can be done by actors
- */
+/// <summary>
+/// This class handles all the shooting that can be done by actors
+/// </summary>
 namespace Assets.Scripts.Player
 {
 	public class Archery : ControllerObject
@@ -16,8 +16,6 @@ namespace Assets.Scripts.Player
         private GameObject arrowPrefab;
         [SerializeField]
         private Transform firePoint;
-
-        private float distance = 1.5f;
 
         // All the token timers running
         private List<TokenTimer> timers;
@@ -30,28 +28,27 @@ namespace Assets.Scripts.Player
             timers = new List<TokenTimer>();
         }
 
-        void Update()
-        {
-            // Updating the indicator of which direction the player is going to fire
-            if(InputManager.GetAxis("LookHorizontal", ((PlayerController)controller).ID) == 0 && InputManager.GetAxis("LookVertical", ((PlayerController)controller).ID) == 0)
-            {
-                firePoint.localPosition = Vector3.right * distance;
-            }
-            else
-            {
-                firePoint.localPosition = Vector3.Normalize(new Vector3(InputManager.GetAxis("LookHorizontal", ((PlayerController)controller).ID), InputManager.GetAxis("LookVertical", ((PlayerController)controller).ID), 0)) * distance;
-            }
-        }
-
         // Fires an arrow
         public void Fire()
         {
             GameObject arrow = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
             arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - transform.position) * 10, ForceMode.Impulse);
-            arrow.GetComponent<Arrows.ArrowController>().InitArrow(types);
+            arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
         }
 
-        // Called by colliding with a Token (from Token's OnTriggerEnter)
+        /// <summary>
+        /// Sets the firepoint for the player
+        /// </summary>
+        /// <param name="position">Position where the firepoint is set to</param>
+        public void UpdateFirePoint(Vector3 position)
+        {
+            firePoint.localPosition = position;
+        }
+
+        /// <summary>
+        /// Called by colliding with a Token (from Token's OnTriggerEnter)
+        /// </summary>
+        /// <param name="token">Token that was collected</param>
         public override void CollectToken(Token token)
         {
             // Handle what type of token was collected
@@ -85,6 +82,19 @@ namespace Assets.Scripts.Player
             types = Bitwise.ClearBit(types, (int)tt.TokenType);
             TokenTimer t = timers.Find(i => i.ID.Equals(tt.TokenType.ToString()));
             timers.Remove(t);
+        }
+
+        /// <summary>
+        /// Removes all active tokens from the player so shooting an arrow is only the normal arrow
+        /// </summary>
+        public void ClearAllTokens()
+        {
+            foreach (TokenTimer t in timers)
+            {
+                types = Bitwise.ClearBit(types, (int)t.TokenType);
+                Destroy(t);
+            }
+            timers.Clear();
         }
 	}
 }

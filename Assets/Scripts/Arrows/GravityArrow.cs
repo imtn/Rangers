@@ -1,9 +1,12 @@
-﻿namespace Assets.Scripts.Arrows
+﻿using TeamUtility.IO;
+
+namespace Assets.Scripts.Arrows
 {
+    /// <summary>
+    /// Arrow property that creates an area where there is no gravity.
+    /// </summary>
     public class GravityArrow : ArrowProperty
     {
-        public override void Init() { }
-
-        public override void Effect() { }
+        public override void Effect(PlayerID hitPlayer) { }
     } 
 }

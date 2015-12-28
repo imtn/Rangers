@@ -5,12 +5,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Assets.Scripts.Data
 {
-    /*
-     * This class will save all the data for the game
-     */
-	public class SaveManager : DataManager
+    /// <summary>
+    /// This class will save all the data for the game
+    /// </summary>
+    public class SaveManager : DataManager
 	{
-        // Use a singleton instance to make sure there is only one
+        /// <summary>
+        /// Use a singleton instance to make sure there is only one
+        /// </summary>
         public static SaveManager instance;
 
         // Sets up singleton instance. Will remain if one does not already exist in scene
@@ -27,7 +29,10 @@ namespace Assets.Scripts.Data
 			}
 		}
 
-        // Saves the audio settings for this game
+        /// <summary>
+        /// Saves the audio settings for this game
+        /// </summary>
+        /// <param name="data">The data to be saved</param>
 		public static void SaveAudio(AudioData data)
 		{
 #if UNITY_WEBPLAYER
@@ -45,7 +50,10 @@ namespace Assets.Scripts.Data
 #endif
 		}
 
-        // Saves the video settings for this game
+        /// <summary>
+        /// Saves the video settings for this game
+        /// </summary>
+        /// <param name="data">The data to be saved</param>
         public static void SaveVideo(VideoData data)
 		{
 #if UNITY_WEBPLAYER
@@ -63,5 +71,22 @@ namespace Assets.Scripts.Data
 			file.Close();
 #endif
 		}
-	}
+
+        /// <summary>
+        /// Saves the Game settings for this game
+        /// </summary>
+        /// <param name="data">The data to be saved</param>
+        /// <param name="extension">The name of the path/file to save</param>
+        public static void SaveGameSettings(GameSettings data, string extension)
+        {
+            // Create a new save file
+            if (!Directory.Exists(settingsDataPath)) Directory.CreateDirectory(settingsDataPath);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(settingsDataPath + extension);
+            Debug.Log(settingsDataPath + extension);
+
+            bf.Serialize(file, data);
+            file.Close();
+        }
+    }
 }

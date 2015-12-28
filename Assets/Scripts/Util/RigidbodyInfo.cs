@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-/*
- * Information about an object's rigidbody
- * Used for pausing and unpausing
- */
 namespace Assets.Scripts.Util
 {
-public class RigidbodyInfo : MonoBehaviour
-{
+    /// <summary>
+    /// Information about an object's rigidbody
+    /// Used for pausing and unpausing
+    /// </summary>
+    public class RigidbodyInfo : MonoBehaviour
+    {
         // Is rigidbody kinematic?
         private  bool kinematic;
 
@@ -40,7 +40,9 @@ public class RigidbodyInfo : MonoBehaviour
 			//Data.GameManager.GameUnpause -= UnpauseMotion;
 		}
 
-        // Pause rigidbody
+        /// <summary>
+        /// Pause rigidbody
+        /// </summary>
         public void PauseMotion()
         {
             kinematic = body.isKinematic;
@@ -66,6 +68,9 @@ public class RigidbodyInfo : MonoBehaviour
             }
         }
 
+        /// <summary>
+        /// Unpause rigidbody
+        /// </summary>
         public void UnpauseMotion()
         {
             if (!kinematic && !freezeRotation)
