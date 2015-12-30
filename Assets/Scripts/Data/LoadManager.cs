@@ -169,47 +169,47 @@ namespace Assets.Scripts.Data
                     {
                         case "Type":
                             data.Type = (Enums.GameType)System.Enum.Parse(typeof(Enums.GameType), reader.ReadElementContentAsString());
-                            Debug.Log("Type: " + data.Type.ToString());
+                            // Debug.Log("Type: " + data.Type.ToString());
                             break;
                         case "TimeLimitEnabled":
                             data.TimeLimitEnabled = reader.ReadElementContentAsBoolean();
-                            Debug.Log("Time Limit Enabled: " + data.TimeLimitEnabled);
+                            // Debug.Log("Time Limit Enabled: " + data.TimeLimitEnabled);
                             break;
                         case "TimeLimit":
                             data.TimeLimit = reader.ReadElementContentAsFloat();
-                            Debug.Log("Timer Limit: " + data.TimeLimit);
+                            // Debug.Log("Timer Limit: " + data.TimeLimit);
                             break;
                         case "KillLimit":
                             data.KillLimit = reader.ReadElementContentAsFloat();
-                            Debug.Log("Kill Limit: " + data.KillLimit);
+                            // Debug.Log("Kill Limit: " + data.KillLimit);
                             break;
                         case "StockLimit":
                             data.StockLimit = reader.ReadElementContentAsFloat();
-                            Debug.Log("Stock Limit: " + data.StockLimit);
+                            // Debug.Log("Stock Limit: " + data.StockLimit);
                             break;
                         case "ArrowLimit":
                             data.ArrowLimit = reader.ReadElementContentAsFloat();
-                            Debug.Log("Arrow Limit: " + data.ArrowLimit);
+                            // Debug.Log("Arrow Limit: " + data.ArrowLimit);
                             break;
                         case "DamageModifier":
                             data.DamageModifier = reader.ReadElementContentAsFloat();
-                            Debug.Log("Damage Modifier: " + data.DamageModifier);
+                            // Debug.Log("Damage Modifier: " + data.DamageModifier);
                             break;
                         case "GravityModifier":
                             data.GravityModifier = reader.ReadElementContentAsFloat();
-                            Debug.Log("Gravity Modifier: " + data.GravityModifier);
+                            // Debug.Log("Gravity Modifier: " + data.GravityModifier);
                             break;
                         case "SpeedModifier":
                             data.SpeedModifier = reader.ReadElementContentAsFloat();
-                            Debug.Log("Speed Modifier: " + data.SpeedModifier);
+                            // Debug.Log("Speed Modifier: " + data.SpeedModifier);
                             break;
                         case "TokenSpawnFreq":
                             data.TokenSpawnFreq = reader.ReadElementContentAsFloat();
-                            Debug.Log("Token Spawn Freq: " + data.TokenSpawnFreq);
+                            // Debug.Log("Token Spawn Freq: " + data.TokenSpawnFreq);
                             break;
                         case "PlayerSpawnFreq":
                             data.PlayerSpawnFreq = reader.ReadElementContentAsFloat();
-                            Debug.Log("Player Spawn Freq: " + data.PlayerSpawnFreq);
+                            // Debug.Log("Player Spawn Freq: " + data.PlayerSpawnFreq);
                             break;
                         case "EnabledTokens":
                             Dictionary<Enums.Tokens, Enums.Frequency> dict = new Dictionary<Enums.Tokens, Enums.Frequency>();
@@ -224,7 +224,7 @@ namespace Assets.Scripts.Data
                                         inner.ReadToFollowing("Frequency");
                                         Enums.Frequency f = (Enums.Frequency)System.Enum.Parse(typeof(Enums.Frequency), inner.ReadElementContentAsString());
                                         dict.Add(t, f);
-                                        Debug.Log("Added Token: " + t.ToString() + " : " + f.ToString());
+                                        // Debug.Log("Added Token: " + t.ToString() + " : " + f.ToString());
                                     }
                                 }
                             }
@@ -242,7 +242,7 @@ namespace Assets.Scripts.Data
                                     {
                                         Enums.Tokens t = (Enums.Tokens)System.Enum.Parse(typeof(Enums.Tokens), tokens.ReadElementContentAsString());
                                         defaultTokens.Add(t);
-                                        Debug.Log("Added Default Token: " + t.ToString());
+                                        // Debug.Log("Added Default Token: " + t.ToString());
                                     }
                                 }
                             }
@@ -250,7 +250,7 @@ namespace Assets.Scripts.Data
                             tokens.Close();
                             break;
                         case "GameSettings":
-                            Debug.Log("Reading Settings");
+                            // Debug.Log("Reading Settings");
                             break;
                         default:
                             endofSettings = true;

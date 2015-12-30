@@ -14,6 +14,10 @@ namespace Assets.Scripts.Arrows
         /// Effect that will be spawned on impact
         /// </summary>
         protected GameObject spawnEffect;
+		/// <summary>
+		/// The spawned reference to update if need be
+		/// </summary>
+		protected GameObject spawnedReference;
 
         public override void Init()
         {
@@ -28,6 +32,7 @@ namespace Assets.Scripts.Arrows
             if (spawnEffect != null)
             {
                 GameObject g = (GameObject)Instantiate(spawnEffect, colInfo.HitPosition, colInfo.HitRotation);
+				spawnedReference = g;
                 //g.GetComponent<SpawnAttack>().UpdatePlayerInfo(fromPlayer, hitPlayer);
             }
             else Debug.Log("Arrow of type: " + type.ToString() + " could not load an effect");

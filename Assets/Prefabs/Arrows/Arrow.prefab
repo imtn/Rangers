@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doNotActivate:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 6144
   arrowhead: {fileID: 410588}
 --- !u!1001 &100100000
 Prefab:
@@ -211,7 +211,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: doNotActivate.m_Bits
-      value: 2048
+      value: 6144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

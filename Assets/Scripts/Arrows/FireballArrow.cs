@@ -1,4 +1,5 @@
 ﻿using TeamUtility.IO;
+using Assets.Scripts.Attacks;
 
 namespace Assets.Scripts.Arrows
 {
@@ -15,6 +16,7 @@ namespace Assets.Scripts.Arrows
         public override void Effect(PlayerID hitPlayer)
         {
             base.Effect(hitPlayer);
+			spawnedReference.GetComponent<FireballAttack> ().UpdatePlayerInfo (fromPlayer, hitPlayer);
         }
     }
 }
