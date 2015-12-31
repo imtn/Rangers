@@ -27,10 +27,10 @@ public class PrototypingKeyboardParkour : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown(KeyCode.Space)) {
-			GetComponent<RobotParkour>().Jump();
+//			GetComponent<RobotParkour>().Jump();
 		}
 
-		GetComponent<RobotParkour>().Locomote(charmotion);
+//		GetComponent<RobotParkour>().Locomote(charmotion);
 
 	}
 }

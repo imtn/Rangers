@@ -23,6 +23,9 @@ namespace Assets.Scripts.Player
         // The current types of arrows to fire
         private int types = 1;
 
+		// So that the arrow fires realistically from the bow --kartik
+		public Transform bowPosition;
+
         void Awake()
         {
             timers = new List<TokenTimer>();

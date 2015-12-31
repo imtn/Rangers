@@ -15,18 +15,18 @@ public class PrototypingGamepadParkour : MonoBehaviour {
 	void FixedUpdate () {
 
 		if(InputManager.GetButtonDown("Jump")) {
-			GetComponent<RobotParkour>().Jump();
+//			GetComponent<RobotParkour>().Jump();
 		}
 		if(InputManager.GetButtonDown("Cancel")) {
-			GetComponent<RobotParkour>().SlideOn();
+//			GetComponent<RobotParkour>().SlideOn();
 		}
 		if(InputManager.GetButtonUp("Cancel") || !InputManager.GetButton("Cancel")) {
-			GetComponent<RobotParkour>().SlideOff();
+//			GetComponent<RobotParkour>().SlideOff();
 		}
 
 		charmotion = Mathf.MoveTowards(charmotion, InputManager.GetAxis("Horizontal"), Time.deltaTime*4f);
 
-		GetComponent<RobotParkour>().Locomote(charmotion);
+//		GetComponent<RobotParkour>().Locomote(charmotion);
 
 	}
 }
