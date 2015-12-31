@@ -17,6 +17,8 @@ namespace Assets.Scripts.Player
         [SerializeField]
         private Transform firePoint;
 
+		private bool upperBodyFacingRight = true;
+
         // All the token timers running
         private List<TokenTimer> timers;
 
@@ -35,7 +37,7 @@ namespace Assets.Scripts.Player
         public void Fire()
         {
             GameObject arrow = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
-            arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - transform.position) * 10, ForceMode.Impulse);
+			arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - bowPosition.position) * 10, ForceMode.Impulse);
             arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
         }
 
@@ -47,6 +49,40 @@ namespace Assets.Scripts.Player
         {
             firePoint.localPosition = position;
         }
+
+		public void UpdateBodyAim(float strength) {
+			float angle = Mathf.Atan((firePoint.position.y-bowPosition.position.y)/(firePoint.position.x-bowPosition.position.x))*Mathf.Rad2Deg;
+			if(firePoint.position.x < bowPosition.position.x) {
+				upperBodyFacingRight = false;
+			} else {
+				upperBodyFacingRight = true;
+			}
+
+			if(upperBodyFacingRight && GetComponent<Parkour>().FacingRight) {
+				bowPosition.localEulerAngles = new Vector3(0f,0f,Mathf.Max(angle,-45f));
+				UpdateTorsoAim(Mathf.Clamp01(strength));
+			} else if(!upperBodyFacingRight && !GetComponent<Parkour>().FacingRight) {
+				bowPosition.localEulerAngles = new Vector3(0f,0f,Mathf.Max(-angle,-45));
+				UpdateTorsoAim(Mathf.Clamp01(strength));
+			} else if(upperBodyFacingRight && !GetComponent<Parkour>().FacingRight) {
+				bowPosition.localEulerAngles = new Vector3(0f,180,Mathf.Max(angle,-45f));
+				UpdateTorsoAim(-Mathf.Clamp01(strength));
+			} else if(!upperBodyFacingRight && GetComponent<Parkour>().FacingRight) {
+				bowPosition.localEulerAngles = new Vector3(0f,180,Mathf.Max(-angle,-45f));
+				UpdateTorsoAim(-Mathf.Clamp01(strength));
+			}
+
+			GetComponent<Animator>().SetFloat("BowStrength",strength);
+
+		}
+
+		private void UpdateTorsoAim(float val) {
+//			if(val > 0) {
+//				bowPosition.parent.localEulerAngles = new Vector3(0f,Mathf.Max(0.5f, val)*90f,0f);
+//			} else if (val < 0) {
+//				bowPosition.parent.localEulerAngles = new Vector3(0f,Mathf.Max(0.5f, -val)*90f,0f);
+//			}
+		}
 
         /// <summary>
         /// Called by colliding with a Token (from Token's OnTriggerEnter)

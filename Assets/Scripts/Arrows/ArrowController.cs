@@ -98,6 +98,7 @@ namespace Assets.Scripts.Arrows
             {
                 Destroy(rigidbody);
                 Destroy(collider);
+				transform.FindChild("Model").GetComponent<ParticleSystem>().Stop(); //TODO: Fix for efficiency
                 Destroy(this);
             }
             else

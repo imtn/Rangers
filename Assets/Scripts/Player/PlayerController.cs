@@ -21,7 +21,11 @@ namespace Assets.Scripts.Player
             // Updating the indicator of which direction the player is going to fire
             if (InputManager.GetAxis("LookHorizontal_P" + (int)id, id) == 0 && InputManager.GetAxis("LookVertical_P" + (int)id, id) == 0)
             {
-                archery.UpdateFirePoint(Vector3.Normalize(Vector3.right + new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), 0f)) * distanceToPlayer);
+				if(parkour.FacingRight) {
+                	archery.UpdateFirePoint(Vector3.Normalize(Vector3.right + new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), 0f)) * distanceToPlayer);
+				} else {
+					archery.UpdateFirePoint(Vector3.Normalize(Vector3.left + new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), 0f)) * distanceToPlayer);
+				}
             }
             else
             {
@@ -33,7 +37,7 @@ namespace Assets.Scripts.Player
             if (InputManager.GetAxis("Fire_P" + (int)id, id) > 0)
             {
                 fire = true;
-                shake = 0.1f;
+//                shake = 0.1f;
             }
 			else if (fire && (InputManager.GetAxis("Fire_P" + (int)id, id) == 0 || InputManager.GetAxis("Fire_P" + (int)id, id) == -1))
             {
@@ -44,7 +48,12 @@ namespace Assets.Scripts.Player
                 fire = false;
                 shake = 0f;
             }
+
         }
+
+		void LateUpdate() {
+			archery.UpdateBodyAim(InputManager.GetAxis("Fire_P" + (int)id, id));
+		}
 
 		void FixedUpdate() {
 			//This has to happen every fixed update as of now, can't think of a better way to handle it --kartik

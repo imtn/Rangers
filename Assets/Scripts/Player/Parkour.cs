@@ -82,7 +82,8 @@ namespace Assets.Scripts.Player
 
 			}
 
-			Debug.Log("Jumping: " + jumping + ", Land Trigger: " + GetComponent<Animator>().GetBool("Land") + ", JTime: " + jumpingTimeOffset);
+//			Debug.Log("Jumping: " + jumping + ", Land Trigger: " + GetComponent<Animator>().GetBool("Land") + ", JTime: " + jumpingTimeOffset);
+//			Debug.Log(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Airtime"));
 		}
 
 		public void SlideOn() {
@@ -112,10 +113,16 @@ namespace Assets.Scripts.Player
 		}
 
 		void OnCollisionStay(Collision other) {
-			if(jumping && jumpingTimeOffset <= 0 && other.gameObject.tag.Equals("Ground")) {
+			if(jumping && GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Airtime") && other.gameObject.tag.Equals("Ground")) {
 				Debug.Log("Colliding With Ground");
 				GetComponent<Animator>().SetTrigger("Land");
 				jumping = false;
+			}
+		}
+
+		public bool FacingRight {
+			get {
+				return facingRight;
 			}
 		}
 
