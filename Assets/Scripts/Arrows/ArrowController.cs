@@ -64,9 +64,12 @@ namespace Assets.Scripts.Arrows
         void Update()
         {
             // Point the arrow the direction it is travelling
-            if (rigidbody.velocity != Vector3.zero) transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
-            // Cache the previous velocity
-            prevVelocity = rigidbody.velocity;
+            if (rigidbody != null && rigidbody.velocity != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
+                // Cache the previous velocity
+                prevVelocity = rigidbody.velocity;
+            }
         }
 
         // Arrow hits something
