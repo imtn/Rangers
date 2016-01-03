@@ -5,6 +5,8 @@ using Assets.Scripts.Player;
 using Assets.Scripts.Timers;
 using Assets.Scripts.Util;
 using TeamUtility.IO;
+using System;
+using System.Reflection;
 
 namespace Assets.Scripts.Data
 {
@@ -31,6 +33,8 @@ namespace Assets.Scripts.Data
 
         // Current game settings to abide by
         private GameSettings currentGameSettings;
+        // CustomColor object for efficient color getting
+        private CustomColor customColor;
 
         // Sets up singleton instance. Will remain if one does not already exist in scene
         void Awake()
@@ -46,6 +50,7 @@ namespace Assets.Scripts.Data
             }
 
             controllers = new List<Controller>();
+            customColor = new CustomColor();
         }
 
         void Start()
