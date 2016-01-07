@@ -147,61 +147,27 @@ namespace TeamUtility.IO
 				return;
 			
 			PopulateLookupTables();
-			// Player One
 			if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsWebPlayer)
 			{
 				_playerOneConfig = _configurationTable [Config_Name_Windows];
-			}
+                _playerTwoConfig = _configurationTable[Config_Name_Windows];
+                _playerThreeConfig = _configurationTable[Config_Name_Windows];
+                _playerFourConfig = _configurationTable[Config_Name_Windows];
+            }
 			else if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer)
 			{
 				_playerOneConfig = _configurationTable [Config_Name_OSX];
-			}
-			else if (Application.platform == RuntimePlatform.LinuxPlayer)
+                _playerTwoConfig = _configurationTable[Config_Name_OSX];
+                _playerThreeConfig = _configurationTable[Config_Name_OSX];
+                _playerFourConfig = _configurationTable[Config_Name_OSX];
+            }
+            else if (Application.platform == RuntimePlatform.LinuxPlayer)
 			{
 				_playerOneConfig = _configurationTable [Config_Name_Linux];
-			}
-
-			// Player Two
-			if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsWebPlayer)
-			{
-				_playerTwoConfig = _configurationTable [Config_Name_Windows];
-			}
-			else if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer)
-			{
-				_playerTwoConfig = _configurationTable [Config_Name_OSX];
-			}
-			else if (Application.platform == RuntimePlatform.LinuxPlayer)
-			{
-				_playerTwoConfig = _configurationTable [Config_Name_Linux];
-			}
-
-			// Player Three
-			if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsWebPlayer)
-			{
-				_playerThreeConfig = _configurationTable [Config_Name_Windows];
-			}
-			else if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer)
-			{
-				_playerThreeConfig = _configurationTable [Config_Name_OSX];
-			}
-			else if (Application.platform == RuntimePlatform.LinuxPlayer)
-			{
-				_playerThreeConfig = _configurationTable [Config_Name_Linux];
-			}
-
-			// Player Four
-			if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsWebPlayer)
-			{
-				_playerFourConfig = _configurationTable [Config_Name_Windows];
-			}
-			else if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer)
-			{
-				_playerFourConfig = _configurationTable [Config_Name_OSX];
-			}
-			else if (Application.platform == RuntimePlatform.LinuxPlayer)
-			{
-				_playerFourConfig = _configurationTable [Config_Name_Linux];
-			}
+                _playerTwoConfig = _configurationTable[Config_Name_Linux];
+                _playerThreeConfig = _configurationTable[Config_Name_Linux];
+                _playerFourConfig = _configurationTable[Config_Name_Linux];
+            }
 
 			/*
             if (!string.IsNullOrEmpty(playerOneDefault) && _configurationTable.ContainsKey(playerOneDefault))
