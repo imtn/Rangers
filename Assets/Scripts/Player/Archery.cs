@@ -51,6 +51,7 @@ namespace Assets.Scripts.Player
         }
 
 		public void UpdateBodyAim(float strength) {
+			bowPosition.localRotation = Quaternion.identity;
 			float angle = Mathf.Atan((firePoint.position.y-bowPosition.position.y)/(firePoint.position.x-bowPosition.position.x))*Mathf.Rad2Deg;
 			if(firePoint.position.x < bowPosition.position.x) {
 				upperBodyFacingRight = false;
@@ -59,16 +60,16 @@ namespace Assets.Scripts.Player
 			}
 
 			if(upperBodyFacingRight && GetComponent<Parkour>().FacingRight) {
-				bowPosition.localEulerAngles = new Vector3(0f,0f,Mathf.Max(angle,-45f));
+				bowPosition.Rotate(new Vector3(0f,0f,Mathf.Max(angle,-45f)), Space.World);
 				UpdateTorsoAim(Mathf.Clamp01(strength));
 			} else if(!upperBodyFacingRight && !GetComponent<Parkour>().FacingRight) {
-				bowPosition.localEulerAngles = new Vector3(0f,0f,Mathf.Max(-angle,-45));
+				bowPosition.Rotate(new Vector3(0f,0f,Mathf.Min(angle,45f)), Space.World);
 				UpdateTorsoAim(Mathf.Clamp01(strength));
 			} else if(upperBodyFacingRight && !GetComponent<Parkour>().FacingRight) {
-				bowPosition.localEulerAngles = new Vector3(0f,180,Mathf.Max(angle,-45f));
+				bowPosition.Rotate(new Vector3(0f,180f,Mathf.Min(-angle,45f)), Space.World);
 				UpdateTorsoAim(-Mathf.Clamp01(strength));
 			} else if(!upperBodyFacingRight && GetComponent<Parkour>().FacingRight) {
-				bowPosition.localEulerAngles = new Vector3(0f,180,Mathf.Max(-angle,-45f));
+				bowPosition.Rotate(new Vector3(0f,180f,Mathf.Max(-angle,-45f)), Space.World);
 				UpdateTorsoAim(-Mathf.Clamp01(strength));
 			}
 
@@ -77,11 +78,11 @@ namespace Assets.Scripts.Player
 		}
 
 		private void UpdateTorsoAim(float val) {
-//			if(val > 0) {
-//				bowPosition.parent.localEulerAngles = new Vector3(0f,Mathf.Max(0.5f, val)*90f,0f);
-//			} else if (val < 0) {
-//				bowPosition.parent.localEulerAngles = new Vector3(0f,Mathf.Max(0.5f, -val)*90f,0f);
-//			}
+			if(val > 0) {
+				bowPosition.Rotate(new Vector3(0f,Mathf.Max(0.5f, val)*90f,0f), Space.Self);
+			} else if (val < 0) {
+				bowPosition.Rotate(new Vector3(0f,Mathf.Max(0.5f, -val)*90f,0f), Space.Self);
+			}
 		}
 
         /// <summary>

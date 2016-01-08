@@ -34,6 +34,7 @@ namespace Assets.Scripts.Player
 						GetComponent<Animator>().SetFloat("RunSpeed", motion);
 						transform.Translate(Vector3.forward*motion*Time.deltaTime*8);
 					} else {
+						GetComponent<Animator>().SetFloat("RunSpeed", motion);
 						transform.Translate(Vector3.forward*motion*Time.deltaTime*4);
 					}
 				}
@@ -94,26 +95,34 @@ namespace Assets.Scripts.Player
 			GetComponent<Animator>().SetBool("Slide", false);
 		}
 
-		//	void OnAnimatorIK() {
-		//		if(Vector3.Distance(transform.position+Vector3.up, IKThingy.transform.position) < 1f) {
-		//			GetComponent<Animator>().SetIKPosition(AvatarIKGoal.RightHand,IKThingy.transform.position + new Vector3(-0.5f,0,0));
-		//			GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,1);
-		//			GetComponent<Animator>().SetIKPosition(AvatarIKGoal.LeftHand,IKThingy.transform.position + new Vector3(0.5f,0,0));
-		//			GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
-		//			jumping = false;
-		////			GetComponent<Rigidbody>().velocity = Vector3.zero;
-		//		} else {
-		//			GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,0);
-		//			GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,0);
-		//		}
-		//	}
+		void OnAnimatorIK() {
+			Collider[] overlaps = Physics.OverlapSphere(transform.position + Vector3.up,0.5f);
+			foreach(Collider c in overlaps) {
+				if(c.gameObject.tag.Equals("Ledge")) {
+					IKThingy = c.gameObject;
+					break;
+				}
+				IKThingy = null;
+			}
+			if(IKThingy != null) {
+				GetComponent<Animator>().SetIKPosition(AvatarIKGoal.RightHand,IKThingy.transform.position + new Vector3(-0.5f,0,0));
+				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,1);
+				GetComponent<Animator>().SetIKPosition(AvatarIKGoal.LeftHand,IKThingy.transform.position + new Vector3(0.5f,0,0));
+				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
+				jumping = false;
+	//			GetComponent<Rigidbody>().velocity = Vector3.zero;
+			} else {
+				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,0);
+				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,0);
+			}
+		}
 
 		public void JumpVelocity() {
 			GetComponent<Rigidbody>().velocity = Vector3.up*7f;
 		}
 
 		void OnCollisionStay(Collision other) {
-			if(jumping && GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Airtime") && other.gameObject.tag.Equals("Ground")) {
+			if((GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Airtime") || GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("AirtimeLeft")) && other.gameObject.tag.Equals("Ground")) {
 				Debug.Log("Colliding With Ground");
 				GetComponent<Animator>().SetTrigger("Land");
 				jumping = false;

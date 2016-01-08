@@ -10,6 +10,7 @@ TagManager:
   - Effect
   - ArrowDestroyer
   - Target
+  - Ledge
   layers:
   - Default
   - TransparentFX
