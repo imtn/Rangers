@@ -42,7 +42,7 @@ namespace Assets.Scripts.Arrows
         void Awake()
         {
             rigidbody = GetComponent<Rigidbody>();
-            collider = GetComponent<Collider>();
+			collider = GetComponentInChildren<Collider>();
             colInfo = GetComponent<CollisionInfo>();
         }
 
@@ -78,14 +78,14 @@ namespace Assets.Scripts.Arrows
             // Check to see a layer of the object should not activate the effects
             if ((doNotActivate.value & (1 << col.gameObject.layer)) != 0) return;
             // If the arrow his a player
-            if (col.transform.tag.Equals("Player"))
+			if (col.transform.root.tag.Equals("Player"))
             {
                 // Damage the player hit
                 Controller controller = col.transform.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage);
                 hitPlayer = controller.ID;
             }
-            else if(col.transform.tag.Equals("Target"))
+			else if(col.transform.root.tag.Equals("Target"))
             {
                 col.gameObject.GetComponent<Target>().TargetHit(fromPlayer);
             }
@@ -117,13 +117,13 @@ namespace Assets.Scripts.Arrows
             // Check to see a layer of the object should not activate the effects
             if ((doNotActivate.value & (1 << col.gameObject.layer)) != 0) return;
             // If the arrow his a player
-            if (col.transform.tag.Equals("Player"))
+			if (col.transform.root.tag.Equals("Player"))
             {
                 Controller controller = col.transform.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage);
                 hitPlayer = controller.ID;
             }
-            else if (col.transform.tag.Equals("Target"))
+			else if (col.transform.root.tag.Equals("Target"))
             {
                 col.gameObject.GetComponent<Target>().TargetHit(fromPlayer);
             }
