@@ -12,7 +12,7 @@ namespace Assets.Scripts.Arrows
         {
             base.Init();
             // Turn the arrow into a trigger so it can travel through objects
-            GetComponent<Collider>().isTrigger = true;
+			GetComponentInChildren<Collider>().isTrigger = true;
         }
 
         public override void Effect(PlayerID hitPlayer) { }

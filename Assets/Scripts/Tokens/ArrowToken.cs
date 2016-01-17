@@ -18,7 +18,7 @@ namespace Assets.Scripts.Tokens
         /// <param name="controller">The controller that is doing the collecting</param>
         protected override void TokenCollected(Controller controller)
         {
-            controller.ArcheryComponent.CollectToken(this);
+			controller.ArcheryComponent.CollectToken(this);
         }
 
         #region C# Properties

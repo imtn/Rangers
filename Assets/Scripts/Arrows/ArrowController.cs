@@ -119,7 +119,7 @@ namespace Assets.Scripts.Arrows
             // If the arrow his a player
 			if (col.transform.root.tag.Equals("Player"))
             {
-                Controller controller = col.transform.GetComponent<Controller>();
+				Controller controller = col.transform.root.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage);
                 hitPlayer = controller.ID;
             }

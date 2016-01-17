@@ -29,10 +29,28 @@ namespace Assets.Scripts.Player
         protected Archery archery;
         protected Profile profile;
 
+		//Body parts for fun destruction
+		private List<RobotBodyPart> bodyParts;
+
         void Start()
         {
             // Initialize the effect timers list
             effectTimers = new List<Timer>();
+
+			//Find all the body parts
+			bodyParts = new List<RobotBodyPart>();
+			bodyParts.AddRange(Resources.FindObjectsOfTypeAll<RobotBodyPart>());
+			if(id == PlayerID.One) {
+				foreach(RobotBodyPart rb in bodyParts) {
+					Debug.Log(rb.pid);
+				}
+			}
+			bodyParts.RemoveAll((RobotBodyPart obj) => obj.pid != id);
+			if(id == PlayerID.One) {
+				foreach(RobotBodyPart rb in bodyParts) {
+					Debug.Log(rb.pid);
+				}
+			}
 
             // Init all componenets
             InitializePlayerComponents();
@@ -61,7 +79,13 @@ namespace Assets.Scripts.Player
         /// </summary>
         public void Disable()
         {
-            gameObject.SetActive(false);
+			foreach(RobotBodyPart rbp in bodyParts) {
+				rbp.DestroyBody();
+			}
+			GetComponent<Rigidbody>().detectCollisions = false;
+			GetComponent<Rigidbody>().isKinematic = true;
+			GetComponent<Animator>().enabled = false;
+//            gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -69,7 +93,13 @@ namespace Assets.Scripts.Player
         /// </summary>
         public void Enable()
         {
-            gameObject.SetActive(true);
+//            gameObject.SetActive(true);
+			GetComponent<Rigidbody>().detectCollisions = true;
+			GetComponent<Rigidbody>().isKinematic = false;
+			GetComponent<Animator>().enabled = true;
+			foreach(RobotBodyPart rbp in bodyParts) {
+				rbp.RespawnBody();
+			}
         }
 
         #region C# Properties

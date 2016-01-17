@@ -117,7 +117,7 @@ namespace Assets.Scripts.Player
 		}
 
 		public void JumpVelocity() {
-			GetComponent<Rigidbody>().velocity = Vector3.up*7f;
+			GetComponent<Rigidbody>().velocity = Vector3.up*8f;
 		}
 
 		void OnCollisionStay(Collision other) {

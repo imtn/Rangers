@@ -11,7 +11,7 @@ namespace Assets.Scripts.Tokens
         // Tokens will be collected via trigger
         void OnTriggerEnter(Collider col)
         {
-            TokenCollected(col.GetComponent<Controller>());
+			TokenCollected(col.transform.root.GetComponent<Controller>());
             // Set inactive since we are pooling
             gameObject.SetActive(false);
         }

@@ -37,7 +37,7 @@ namespace Assets.Scripts.Attacks
 				hitPlayer = controller.ID;
 			}
 			// Apply an explosion force to the object hit
-			col.GetComponent<Rigidbody> ().AddExplosionForce (200f, transform.position, 10);
+			col.transform.root.GetComponent<Rigidbody> ().AddExplosionForce (200f, transform.position, 10);
         }
     } 
 }
