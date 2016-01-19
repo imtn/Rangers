@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Data;
 using TeamUtility.IO;
 
 namespace Assets.Scripts.UI.Profiles
@@ -157,6 +158,13 @@ namespace Assets.Scripts.UI.Profiles
             rect.horizontalNormalizedPosition = Vector3.Lerp(rectPos, targetPos, 0.1f).x;
             // Clamp from 0-1 as is the range of horizontalNormalizedPosition
             rect.horizontalNormalizedPosition = Mathf.Clamp01(rect.horizontalNormalizedPosition);
+
+            if(InputManager.GetButtonDown("Start_P1"))
+            {
+                ProfileData data;
+                if (t.text != "")
+                    data = new ProfileData(t.text);
+            }
         }
 
         /// <summary>

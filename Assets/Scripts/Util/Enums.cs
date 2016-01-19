@@ -10,5 +10,7 @@
         public enum GameType { Stock, Kills, Target };
         public enum RepetitionTimerSettings { Limited, Unlimited };
         public enum Frequency { None, Sparce, Infrequent, Average, Frequent, Abundant, NumTypes };
+        public enum MenuDirections { Up, Down, Left, Right}
+        public enum UIStates { Splash, Main, SinglePlayer, Multiplayer, Settings, Audio, Video, Signin, None}
     }
 }
