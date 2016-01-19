@@ -294,224 +294,224 @@ namespace Assets.Scripts.Util
         // Default colors
         // Grey levels
         public static Color Black { get { return black; } }
-        public Color Darkest_Grey {  get { return darkest_grey; } }
-        public Color Darker_Grey { get { return darker_grey; } }
-        public Color Dark_Grey { get { return dark_grey; } }
-        public Color Grey { get { return grey; } }
-        public Color Light_Grey { get { return light_grey; } }
-        public Color Lighter_Grey { get { return lighter_grey; } }
-        public Color Lightest_Grey { get { return lightest_grey; } }
-        public Color Darkest_Gray { get { return darkest_gray; } }
-        public Color Darker_Gray { get { return darker_gray; } }
-        public Color Dark_Gray { get { return dark_gray; } }
-        public Color Gray { get { return gray; } }
-        public Color Light_Gray { get { return light_gray; } }
-        public Color Lighter_Gray { get { return lighter_gray; } }
-        public Color Lightest_Gray { get { return lightest_gray; } }
-        public Color White { get { return white; } }
+        public static Color Darkest_Grey {  get { return darkest_grey; } }
+        public static Color Darker_Grey { get { return darker_grey; } }
+        public static Color Dark_Grey { get { return dark_grey; } }
+        public static Color Grey { get { return grey; } }
+        public static Color Light_Grey { get { return light_grey; } }
+        public static Color Lighter_Grey { get { return lighter_grey; } }
+        public static Color Lightest_Grey { get { return lightest_grey; } }
+        public static Color Darkest_Gray { get { return darkest_gray; } }
+        public static Color Darker_Gray { get { return darker_gray; } }
+        public static Color Dark_Gray { get { return dark_gray; } }
+        public static Color Gray { get { return gray; } }
+        public static Color Light_Gray { get { return light_gray; } }
+        public static Color Lighter_Gray { get { return lighter_gray; } }
+        public static Color Lightest_Gray { get { return lightest_gray; } }
+        public static Color White { get { return white; } }
 
         // Sepia
-        public Color Darkest_Sepia { get { return darkest_sepia; } }
-        public Color Darker_Sepia { get { return darker_sepia; } }
-        public Color Dark_Sepia { get { return dark_sepia; } }
-        public Color Sepia { get { return sepia; } }
-        public Color Light_Sepia { get { return light_sepia; } }
-        public Color Lighter_Sepia { get { return lighter_sepia; } }
-        public Color Lightest_Sepia { get { return lightest_sepia; } }
+        public static Color Darkest_Sepia { get { return darkest_sepia; } }
+        public static Color Darker_Sepia { get { return darker_sepia; } }
+        public static Color Dark_Sepia { get { return dark_sepia; } }
+        public static Color Sepia { get { return sepia; } }
+        public static Color Light_Sepia { get { return light_sepia; } }
+        public static Color Lighter_Sepia { get { return lighter_sepia; } }
+        public static Color Lightest_Sepia { get { return lightest_sepia; } }
 
         // Standard colors
-        public Color Red { get { return red; } }
-        public Color Flame { get { return flame; } }
-        public Color Orange { get { return orange; } }
-        public Color Amber { get { return amber; } }
-        public Color Yellow { get { return yellow; } }
-        public Color Lime { get { return lime; } }
-        public Color Chartreuse { get { return chartreuse; } }
-        public Color Green { get { return green; } }
-        public Color Sea { get { return sea; } }
-        public Color Turquoise { get { return turquoise; } }
-        public Color Cyan { get { return cyan; } }
-        public Color Sky { get { return sky; } }
-        public Color Azure { get { return azure; } }
-        public Color Blue { get { return blue; } }
-        public Color Han { get { return han; } }
-        public Color Violet { get { return violet; } }
-        public Color Purple { get { return purple; } }
-        public Color Fuchsia { get { return fuchsia; } }
-        public Color Magenta { get { return magenta; } }
-        public Color Pink { get { return pink; } }
-        public Color Crimson { get { return crimson; } }
+        public static Color Red { get { return red; } }
+        public static Color Flame { get { return flame; } }
+        public static Color Orange { get { return orange; } }
+        public static Color Amber { get { return amber; } }
+        public static Color Yellow { get { return yellow; } }
+        public static Color Lime { get { return lime; } }
+        public static Color Chartreuse { get { return chartreuse; } }
+        public static Color Green { get { return green; } }
+        public static Color Sea { get { return sea; } }
+        public static Color Turquoise { get { return turquoise; } }
+        public static Color Cyan { get { return cyan; } }
+        public static Color Sky { get { return sky; } }
+        public static Color Azure { get { return azure; } }
+        public static Color Blue { get { return blue; } }
+        public static Color Han { get { return han; } }
+        public static Color Violet { get { return violet; } }
+        public static Color Purple { get { return purple; } }
+        public static Color Fuchsia { get { return fuchsia; } }
+        public static Color Magenta { get { return magenta; } }
+        public static Color Pink { get { return pink; } }
+        public static Color Crimson { get { return crimson; } }
 
         // Dark colors
-        public Color Dark_Red { get { return dark_red; } }
-        public Color Dark_Flame { get { return dark_flame; } }
-        public Color Dark_Orange { get { return dark_orange; } }
-        public Color Dark_Amber { get { return dark_amber; } }
-        public Color Dark_Yellow { get { return dark_yellow; } }
-        public Color Dark_Lime { get { return dark_lime; } }
-        public Color Dark_Chartreuse { get { return dark_chartreuse; } }
-        public Color Dark_Green { get { return dark_green; } }
-        public Color Dark_Sea { get { return dark_sea; } }
-        public Color Dark_Turquoise { get { return dark_turquoise; } }
-        public Color Dark_Cyan { get { return dark_cyan; } }
-        public Color Dark_Sky { get { return dark_sky; } }
-        public Color Dark_Azure { get { return dark_azure; } }
-        public Color Dark_Blue { get { return dark_blue; } }
-        public Color Dark_Han { get { return dark_han; } }
-        public Color Dark_Violet { get { return dark_violet; } }
-        public Color Dark_Purple { get { return dark_purple; } }
-        public Color Dark_Fuchsia { get { return dark_fuchsia; } }
-        public Color Dark_Magenta { get { return dark_magenta; } }
-        public Color Dark_Pink { get { return dark_pink; } }
-        public Color Dark_Crimson { get { return dark_crimson; } }
+        public static Color Dark_Red { get { return dark_red; } }
+        public static Color Dark_Flame { get { return dark_flame; } }
+        public static Color Dark_Orange { get { return dark_orange; } }
+        public static Color Dark_Amber { get { return dark_amber; } }
+        public static Color Dark_Yellow { get { return dark_yellow; } }
+        public static Color Dark_Lime { get { return dark_lime; } }
+        public static Color Dark_Chartreuse { get { return dark_chartreuse; } }
+        public static Color Dark_Green { get { return dark_green; } }
+        public static Color Dark_Sea { get { return dark_sea; } }
+        public static Color Dark_Turquoise { get { return dark_turquoise; } }
+        public static Color Dark_Cyan { get { return dark_cyan; } }
+        public static Color Dark_Sky { get { return dark_sky; } }
+        public static Color Dark_Azure { get { return dark_azure; } }
+        public static Color Dark_Blue { get { return dark_blue; } }
+        public static Color Dark_Han { get { return dark_han; } }
+        public static Color Dark_Violet { get { return dark_violet; } }
+        public static Color Dark_Purple { get { return dark_purple; } }
+        public static Color Dark_Fuchsia { get { return dark_fuchsia; } }
+        public static Color Dark_Magenta { get { return dark_magenta; } }
+        public static Color Dark_Pink { get { return dark_pink; } }
+        public static Color Dark_Crimson { get { return dark_crimson; } }
 
         // Darker colors
-        public Color Darker_Red { get { return darker_red; } }
-        public Color Darker_Flame { get { return darker_flame; } }
-        public Color Darker_Orange { get { return darker_orange; } }
-        public Color Darker_Amber { get { return darker_amber; } }
-        public Color Darker_Yellow { get { return darker_yellow; } }
-        public Color Darker_Lime { get { return darker_lime; } }
-        public Color Darker_Chartreuse { get { return darker_chartreuse; } }
-        public Color Darker_Green { get { return darker_green; } }
-        public Color Darker_Sea { get { return darker_sea; } }
-        public Color Darker_Turquoise { get { return darker_turquoise; } }
-        public Color Darker_Cyan { get { return darker_cyan; } }
-        public Color Darker_Sky { get { return darker_sky; } }
-        public Color Darker_Azure { get { return darker_azure; } }
-        public Color Darker_Blue { get { return darker_blue; } }
-        public Color Darker_Han { get { return darker_han; } }
-        public Color Darker_Violet { get { return darker_violet; } }
-        public Color Darker_Purple { get { return darker_purple; } }
-        public Color Darker_Fuchsia { get { return darker_fuchsia; } }
-        public Color Darker_Magenta { get { return darker_magenta; } }
-        public Color Darker_Pink { get { return darker_pink; } }
-        public Color Darker_Crimson { get { return darker_crimson; } }
+        public static Color Darker_Red { get { return darker_red; } }
+        public static Color Darker_Flame { get { return darker_flame; } }
+        public static Color Darker_Orange { get { return darker_orange; } }
+        public static Color Darker_Amber { get { return darker_amber; } }
+        public static Color Darker_Yellow { get { return darker_yellow; } }
+        public static Color Darker_Lime { get { return darker_lime; } }
+        public static Color Darker_Chartreuse { get { return darker_chartreuse; } }
+        public static Color Darker_Green { get { return darker_green; } }
+        public static Color Darker_Sea { get { return darker_sea; } }
+        public static Color Darker_Turquoise { get { return darker_turquoise; } }
+        public static Color Darker_Cyan { get { return darker_cyan; } }
+        public static Color Darker_Sky { get { return darker_sky; } }
+        public static Color Darker_Azure { get { return darker_azure; } }
+        public static Color Darker_Blue { get { return darker_blue; } }
+        public static Color Darker_Han { get { return darker_han; } }
+        public static Color Darker_Violet { get { return darker_violet; } }
+        public static Color Darker_Purple { get { return darker_purple; } }
+        public static Color Darker_Fuchsia { get { return darker_fuchsia; } }
+        public static Color Darker_Magenta { get { return darker_magenta; } }
+        public static Color Darker_Pink { get { return darker_pink; } }
+        public static Color Darker_Crimson { get { return darker_crimson; } }
 
         // Darkest colors
-        public Color Darkest_Red { get { return darkest_red; } }
-        public Color Darkest_Flame { get { return darkest_flame; } }
-        public Color Darkest_Orange { get { return darkest_orange; } }
-        public Color Darkest_Amber { get { return darkest_amber; } }
-        public Color Darkest_Yellow { get { return darkest_yellow; } }
-        public Color Darkest_Lime { get { return darkest_lime; } }
-        public Color Darkest_Chartreuse { get { return darkest_chartreuse; } }
-        public Color Darkest_Green { get { return darkest_green; } }
-        public Color Darkest_Sea { get { return darkest_sea; } }
-        public Color Darkest_Turquoise { get { return darkest_turquoise; } }
-        public Color Darkest_Cyan { get { return darkest_cyan; } }
-        public Color Darkest_Sky { get { return darkest_sky; } }
-        public Color Darkest_Azure { get { return darkest_azure; } }
-        public Color Darkest_Blue { get { return darkest_blue; } }
-        public Color Darkest_Han { get { return darkest_han; } }
-        public Color Darkest_Violet { get { return darkest_violet; } }
-        public Color Darkest_Purple { get { return darkest_purple; } }
-        public Color Darkest_Fuchsia { get { return darkest_fuchsia; } }
-        public Color Darkest_Magenta { get { return darkest_magenta; } }
-        public Color Darkest_Pink { get { return darkest_pink; } }
-        public Color Darkest_Crimson { get { return darkest_crimson; } }
+        public static Color Darkest_Red { get { return darkest_red; } }
+        public static Color Darkest_Flame { get { return darkest_flame; } }
+        public static Color Darkest_Orange { get { return darkest_orange; } }
+        public static Color Darkest_Amber { get { return darkest_amber; } }
+        public static Color Darkest_Yellow { get { return darkest_yellow; } }
+        public static Color Darkest_Lime { get { return darkest_lime; } }
+        public static Color Darkest_Chartreuse { get { return darkest_chartreuse; } }
+        public static Color Darkest_Green { get { return darkest_green; } }
+        public static Color Darkest_Sea { get { return darkest_sea; } }
+        public static Color Darkest_Turquoise { get { return darkest_turquoise; } }
+        public static Color Darkest_Cyan { get { return darkest_cyan; } }
+        public static Color Darkest_Sky { get { return darkest_sky; } }
+        public static Color Darkest_Azure { get { return darkest_azure; } }
+        public static Color Darkest_Blue { get { return darkest_blue; } }
+        public static Color Darkest_Han { get { return darkest_han; } }
+        public static Color Darkest_Violet { get { return darkest_violet; } }
+        public static Color Darkest_Purple { get { return darkest_purple; } }
+        public static Color Darkest_Fuchsia { get { return darkest_fuchsia; } }
+        public static Color Darkest_Magenta { get { return darkest_magenta; } }
+        public static Color Darkest_Pink { get { return darkest_pink; } }
+        public static Color Darkest_Crimson { get { return darkest_crimson; } }
 
         // Light colors
-        public Color Light_Red { get { return light_red; } }
-        public Color Light_Flame { get { return light_flame; } }
-        public Color Light_Orange { get { return light_orange; } }
-        public Color Light_Amber { get { return light_amber; } }
-        public Color Light_Yellow { get { return light_yellow; } }
-        public Color Light_Lime { get { return light_lime; } }
-        public Color Light_Chartreuse { get { return light_chartreuse; } }
-        public Color Light_Green { get { return light_green; } }
-        public Color Light_Sea { get { return light_sea; } }
-        public Color Light_Turquoise { get { return light_turquoise; } }
-        public Color Light_Cyan { get { return light_cyan; } }
-        public Color Light_Sky { get { return light_sky; } }
-        public Color Light_Azure { get { return light_azure; } }
-        public Color Light_Blue { get { return light_blue; } }
-        public Color Light_Han { get { return light_han; } }
-        public Color Light_Violet { get { return light_violet; } }
-        public Color Light_Purple { get { return light_purple; } }
-        public Color Light_Fuchsia { get { return light_fuchsia; } }
-        public Color Light_Magenta { get { return light_magenta; } }
-        public Color Light_Pink { get { return light_pink; } }
-        public Color Light_Crimson { get { return light_crimson; } }
+        public static Color Light_Red { get { return light_red; } }
+        public static Color Light_Flame { get { return light_flame; } }
+        public static Color Light_Orange { get { return light_orange; } }
+        public static Color Light_Amber { get { return light_amber; } }
+        public static Color Light_Yellow { get { return light_yellow; } }
+        public static Color Light_Lime { get { return light_lime; } }
+        public static Color Light_Chartreuse { get { return light_chartreuse; } }
+        public static Color Light_Green { get { return light_green; } }
+        public static Color Light_Sea { get { return light_sea; } }
+        public static Color Light_Turquoise { get { return light_turquoise; } }
+        public static Color Light_Cyan { get { return light_cyan; } }
+        public static Color Light_Sky { get { return light_sky; } }
+        public static Color Light_Azure { get { return light_azure; } }
+        public static Color Light_Blue { get { return light_blue; } }
+        public static Color Light_Han { get { return light_han; } }
+        public static Color Light_Violet { get { return light_violet; } }
+        public static Color Light_Purple { get { return light_purple; } }
+        public static Color Light_Fuchsia { get { return light_fuchsia; } }
+        public static Color Light_Magenta { get { return light_magenta; } }
+        public static Color Light_Pink { get { return light_pink; } }
+        public static Color Light_Crimson { get { return light_crimson; } }
 
         //Lighter colors
-        public Color Lighter_Red { get { return lighter_red; } }
-        public Color Lighter_Flame { get { return lighter_flame; } }
-        public Color Lighter_Orange { get { return lighter_orange; } }
-        public Color Lighter_Amber { get { return lighter_amber; } }
-        public Color Lighter_Yellow { get { return lighter_yellow; } }
-        public Color Lighter_Lime { get { return lighter_lime; } }
-        public Color Lighter_Chartreuse { get { return lighter_chartreuse; } }
-        public Color Lighter_Green { get { return lighter_green; } }
-        public Color Lighter_Sea { get { return lighter_sea; } }
-        public Color Lighter_Turquoise { get { return lighter_turquoise; } }
-        public Color Lighter_Cyan { get { return lighter_cyan; } }
-        public Color Lighter_Sky { get { return lighter_sky; } }
-        public Color Lighter_Azure { get { return lighter_azure; } }
-        public Color Lighter_Blue { get { return lighter_blue; } }
-        public Color Lighter_Han { get { return lighter_han; } }
-        public Color Lighter_Violet { get { return lighter_violet; } }
-        public Color Lighter_Purple { get { return lighter_purple; } }
-        public Color Lighter_Fuchsia { get { return lighter_fuchsia; } }
-        public Color Lighter_Magenta { get { return lighter_magenta; } }
-        public Color Lighter_Pink { get { return lighter_pink; } }
-        public Color Lighter_Crimson { get { return lighter_crimson; } }
+        public static Color Lighter_Red { get { return lighter_red; } }
+        public static Color Lighter_Flame { get { return lighter_flame; } }
+        public static Color Lighter_Orange { get { return lighter_orange; } }
+        public static Color Lighter_Amber { get { return lighter_amber; } }
+        public static Color Lighter_Yellow { get { return lighter_yellow; } }
+        public static Color Lighter_Lime { get { return lighter_lime; } }
+        public static Color Lighter_Chartreuse { get { return lighter_chartreuse; } }
+        public static Color Lighter_Green { get { return lighter_green; } }
+        public static Color Lighter_Sea { get { return lighter_sea; } }
+        public static Color Lighter_Turquoise { get { return lighter_turquoise; } }
+        public static Color Lighter_Cyan { get { return lighter_cyan; } }
+        public static Color Lighter_Sky { get { return lighter_sky; } }
+        public static Color Lighter_Azure { get { return lighter_azure; } }
+        public static Color Lighter_Blue { get { return lighter_blue; } }
+        public static Color Lighter_Han { get { return lighter_han; } }
+        public static Color Lighter_Violet { get { return lighter_violet; } }
+        public static Color Lighter_Purple { get { return lighter_purple; } }
+        public static Color Lighter_Fuchsia { get { return lighter_fuchsia; } }
+        public static Color Lighter_Magenta { get { return lighter_magenta; } }
+        public static Color Lighter_Pink { get { return lighter_pink; } }
+        public static Color Lighter_Crimson { get { return lighter_crimson; } }
 
         // Lightest colors
-        public Color Lightest_Red { get { return lightest_red; } }
-        public Color Lightest_Flame { get { return lightest_flame; } }
-        public Color Lightest_Orange { get { return lightest_orange; } }
-        public Color Lightest_Amber { get { return lightest_amber; } }
-        public Color Lightest_Yellow { get { return lightest_yellow; } }
-        public Color Lightest_Lime { get { return lightest_lime; } }
-        public Color Lightest_Chartreuse { get { return lightest_chartreuse; } }
-        public Color Lightest_Green { get { return lightest_green; } }
-        public Color Lightest_Sea { get { return lightest_sea; } }
-        public Color Lightest_Turquoise { get { return lightest_turquoise; } }
-        public Color Lightest_Cyan { get { return lightest_cyan; } }
-        public Color Lightest_Sky { get { return lightest_sky; } }
-        public Color Lightest_Azure { get { return lightest_azure; } }
-        public Color Lightest_Blue { get { return lightest_blue; } }
-        public Color Lightest_Han { get { return lightest_han; } }
-        public Color Lightest_Violet { get { return lightest_violet; } }
-        public Color Lightest_Purple { get { return lightest_purple; } }
-        public Color Lightest_Fuchsia { get { return lightest_fuchsia; } }
-        public Color Lightest_Magenta { get { return lightest_magenta; } }
-        public Color Lightest_Pink { get { return lightest_pink; } }
-        public Color Lightest_Crimson { get { return lightest_crimson; } }
+        public static Color Lightest_Red { get { return lightest_red; } }
+        public static Color Lightest_Flame { get { return lightest_flame; } }
+        public static Color Lightest_Orange { get { return lightest_orange; } }
+        public static Color Lightest_Amber { get { return lightest_amber; } }
+        public static Color Lightest_Yellow { get { return lightest_yellow; } }
+        public static Color Lightest_Lime { get { return lightest_lime; } }
+        public static Color Lightest_Chartreuse { get { return lightest_chartreuse; } }
+        public static Color Lightest_Green { get { return lightest_green; } }
+        public static Color Lightest_Sea { get { return lightest_sea; } }
+        public static Color Lightest_Turquoise { get { return lightest_turquoise; } }
+        public static Color Lightest_Cyan { get { return lightest_cyan; } }
+        public static Color Lightest_Sky { get { return lightest_sky; } }
+        public static Color Lightest_Azure { get { return lightest_azure; } }
+        public static Color Lightest_Blue { get { return lightest_blue; } }
+        public static Color Lightest_Han { get { return lightest_han; } }
+        public static Color Lightest_Violet { get { return lightest_violet; } }
+        public static Color Lightest_Purple { get { return lightest_purple; } }
+        public static Color Lightest_Fuchsia { get { return lightest_fuchsia; } }
+        public static Color Lightest_Magenta { get { return lightest_magenta; } }
+        public static Color Lightest_Pink { get { return lightest_pink; } }
+        public static Color Lightest_Crimson { get { return lightest_crimson; } }
 
         // Desaturated colors
-        public Color Desaturated_Red { get { return desaturated_red; } }
-        public Color Desaturated_Flame { get { return desaturated_flame; } }
-        public Color Desaturated_Orange { get { return desaturated_orange; } }
-        public Color Desaturated_Amber { get { return desaturated_amber; } }
-        public Color Desaturated_Yellow { get { return desaturated_yellow; } }
-        public Color Desaturated_Lime { get { return desaturated_lime; } }
-        public Color Desaturated_Chartreuse { get { return desaturated_chartreuse; } }
-        public Color Desaturated_Green { get { return desaturated_green; } }
-        public Color Desaturated_Sea { get { return desaturated_sea; } }
-        public Color Desaturated_Turquoise { get { return desaturated_turquoise; } }
-        public Color Desaturated_Cyan { get { return desaturated_cyan; } }
-        public Color Desaturated_Sky { get { return desaturated_sky; } }
-        public Color Desaturated_Azure { get { return desaturated_azure; } }
-        public Color Desaturated_Blue { get { return desaturated_blue; } }
-        public Color Desaturated_Han { get { return desaturated_han; } }
-        public Color Desaturated_Violet { get { return desaturated_violet; } }
-        public Color Desaturated_Purple { get { return desaturated_purple; } }
-        public Color Desaturated_Fuchsia { get { return desaturated_fuchsia; } }
-        public Color Desaturated_Magenta { get { return desaturated_magenta; } }
-        public Color Desaturated_Pink { get { return desaturated_pink; } }
-        public Color Desaturated_Crimson { get { return desaturated_crimson; } }
+        public static Color Desaturated_Red { get { return desaturated_red; } }
+        public static Color Desaturated_Flame { get { return desaturated_flame; } }
+        public static Color Desaturated_Orange { get { return desaturated_orange; } }
+        public static Color Desaturated_Amber { get { return desaturated_amber; } }
+        public static Color Desaturated_Yellow { get { return desaturated_yellow; } }
+        public static Color Desaturated_Lime { get { return desaturated_lime; } }
+        public static Color Desaturated_Chartreuse { get { return desaturated_chartreuse; } }
+        public static Color Desaturated_Green { get { return desaturated_green; } }
+        public static Color Desaturated_Sea { get { return desaturated_sea; } }
+        public static Color Desaturated_Turquoise { get { return desaturated_turquoise; } }
+        public static Color Desaturated_Cyan { get { return desaturated_cyan; } }
+        public static Color Desaturated_Sky { get { return desaturated_sky; } }
+        public static Color Desaturated_Azure { get { return desaturated_azure; } }
+        public static Color Desaturated_Blue { get { return desaturated_blue; } }
+        public static Color Desaturated_Han { get { return desaturated_han; } }
+        public static Color Desaturated_Violet { get { return desaturated_violet; } }
+        public static Color Desaturated_Purple { get { return desaturated_purple; } }
+        public static Color Desaturated_Fuchsia { get { return desaturated_fuchsia; } }
+        public static Color Desaturated_Magenta { get { return desaturated_magenta; } }
+        public static Color Desaturated_Pink { get { return desaturated_pink; } }
+        public static Color Desaturated_Crimson { get { return desaturated_crimson; } }
 
         // metallic
-        public Color Brass { get { return brass; } }
-        public Color Copper { get { return copper; } }
-        public Color Gold { get { return gold; } }
-        public Color Silver { get { return silver; } }
+        public static Color Brass { get { return brass; } }
+        public static Color Copper { get { return copper; } }
+        public static Color Gold { get { return gold; } }
+        public static Color Silver { get { return silver; } }
 
         // miscellaneous
-        public Color Celadon { get { return celadon; } }
-        public Color Peach { get { return peach; } }
+        public static Color Celadon { get { return celadon; } }
+        public static Color Peach { get { return peach; } }
         #endregion
     }
 }
