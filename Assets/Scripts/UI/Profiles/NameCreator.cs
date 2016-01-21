@@ -162,8 +162,8 @@ namespace Assets.Scripts.UI.Profiles
             if(InputManager.GetButtonDown("Start_P1"))
             {
                 ProfileData data;
-                if (t.text != "")
-                    data = new ProfileData(t.text);
+//                if (t.text != "")
+//                    data = new ProfileData(t.text);
             }
         }
 

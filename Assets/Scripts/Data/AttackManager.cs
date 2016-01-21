@@ -40,7 +40,15 @@ namespace Assets.Scripts.Data
         public GameObject GetEffect(Enums.Arrows type)
         {
             // Will check null in the script that gets this object
-            return effectPrefabs.Find(x => x.name.StartsWith(type.ToString()));
+//            return effectPrefabs.Find(x => x.name.StartsWith(type.ToString()));
+			Debug.Log(effectPrefabs);
+			foreach(GameObject g in effectPrefabs) {
+				Debug.Log(g + " " + g.name);
+				if(g.name.Contains(type.ToString())) {
+					return g;
+				}
+			}
+			return null;
         }
     } 
 }

@@ -8,9 +8,10 @@ namespace Assets.Scripts.Player
 
 		private bool facingRight = true;
 		private bool jumping = false;
+		private bool ledgeGrabbing = false;
 		private bool sliding = false;
 
-		public GameObject IKThingy;
+		private GameObject IKThingy;
 
 		private float slidingTime;
 		private float lastMotion;
@@ -82,8 +83,6 @@ namespace Assets.Scripts.Player
 
 			}
 
-//			Debug.Log("Jumping: " + jumping + ", Land Trigger: " + GetComponent<Animator>().GetBool("Land") + ", JTime: " + jumpingTimeOffset);
-//			Debug.Log(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Airtime"));
 		}
 
 		public void SlideOn() {
@@ -95,7 +94,7 @@ namespace Assets.Scripts.Player
 		}
 
 		void OnAnimatorIK() {
-			Collider[] overlaps = Physics.OverlapSphere(transform.position + Vector3.up,0.5f);
+			Collider[] overlaps = Physics.OverlapSphere(transform.position + Vector3.up,1f);
 			foreach(Collider c in overlaps) {
 				if(c.gameObject.tag.Equals("Ledge")) {
 					IKThingy = c.gameObject;
@@ -108,8 +107,8 @@ namespace Assets.Scripts.Player
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,1);
 				GetComponent<Animator>().SetIKPosition(AvatarIKGoal.LeftHand,IKThingy.transform.position + new Vector3(0.5f,0,0));
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
-				jumping = false;
-	//			GetComponent<Rigidbody>().velocity = Vector3.zero;
+				ledgeGrabbing = true;
+				GetComponent<Rigidbody>().velocity = Vector3.zero;
 			} else {
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,0);
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,0);
