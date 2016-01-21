@@ -40,17 +40,7 @@ namespace Assets.Scripts.Player
 			//Find all the body parts
 			bodyParts = new List<RobotBodyPart>();
 			bodyParts.AddRange(Resources.FindObjectsOfTypeAll<RobotBodyPart>());
-			if(id == PlayerID.One) {
-				foreach(RobotBodyPart rb in bodyParts) {
-					Debug.Log(rb.pid);
-				}
-			}
 			bodyParts.RemoveAll((RobotBodyPart obj) => obj.pid != id);
-			if(id == PlayerID.One) {
-				foreach(RobotBodyPart rb in bodyParts) {
-					Debug.Log(rb.pid);
-				}
-			}
 
             // Init all componenets
             InitializePlayerComponents();

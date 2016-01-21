@@ -27,12 +27,10 @@ public class PrototypingCameraFollow : MonoBehaviour {
 
 		for(int i = 0; i < numPlayers; i++) {
 			float tempDist = Vector3.Distance(GameManager.instance.AllPlayers[i].transform.position, averagePosition);
-			Debug.Log(tempDist);
 			if(tempDist > greatestDistance) {
 				greatestDistance = tempDist;
 			}
 		}
-		Debug.Log("EHREO: " + greatestDistance);
 		transform.position = Vector3.MoveTowards(transform.position, new Vector3(averagePosition.x, averagePosition.y, (-1.1f)*(greatestDistance+2)), Time.deltaTime*speed);
 
 	}
