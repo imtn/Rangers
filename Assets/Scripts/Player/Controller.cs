@@ -137,6 +137,7 @@ namespace Assets.Scripts.Player
         public PlayerID ID
         {
             get { return id; }
+            set { id = value; }
         }
         #endregion
     }
