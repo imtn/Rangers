@@ -20,6 +20,9 @@ namespace Assets.Scripts.Player
 
         private float health = MAX_HEALTH, lives = Mathf.Infinity;
 
+        // CHANGE FOR LATER
+        public int kills;
+
         // Last player to hit this player
         private PlayerID lastAttacker = PlayerID.None;
 
@@ -40,12 +43,13 @@ namespace Assets.Scripts.Player
         {
             lastAttacker = lastID;
             controller.Disable();
-            if(--lives > 0)
+            if (--lives > 0)
             {
                 Debug.Log("Lives: " + lives);
                 // Tell GameManager to setup respawn
                 GameManager.instance.Respawn(controller.ID);
             }
+            GameManager.instance.PlayerKilled(controller.ID, lastAttacker);
         }
 
         /// <summary>

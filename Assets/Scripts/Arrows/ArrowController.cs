@@ -82,7 +82,7 @@ namespace Assets.Scripts.Arrows
             {
                 // Damage the player hit
                 Controller controller = col.transform.GetComponent<Controller>();
-                controller.LifeComponent.ModifyHealth(-damage);
+                controller.LifeComponent.ModifyHealth(-damage, fromPlayer);
                 hitPlayer = controller.ID;
             }
 			else if(col.transform.root.tag.Equals("Target"))
@@ -120,7 +120,7 @@ namespace Assets.Scripts.Arrows
 			if (col.transform.root.tag.Equals("Player"))
             {
 				Controller controller = col.transform.root.GetComponent<Controller>();
-                controller.LifeComponent.ModifyHealth(-damage);
+                controller.LifeComponent.ModifyHealth(-damage, fromPlayer);
                 hitPlayer = controller.ID;
             }
 			else if (col.transform.root.tag.Equals("Target"))

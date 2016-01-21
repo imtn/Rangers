@@ -5,8 +5,6 @@ using Assets.Scripts.Player;
 using Assets.Scripts.Timers;
 using Assets.Scripts.Util;
 using TeamUtility.IO;
-using System;
-using System.Reflection;
 
 namespace Assets.Scripts.Data
 {
@@ -28,6 +26,9 @@ namespace Assets.Scripts.Data
         private List<GameObject> allTokens;
         private Dictionary<Enums.Tokens, Enums.Frequency> tokens;
 
+        [SerializeField]
+        private GameObject playerPrefab;
+
         // Match timer (optional)
         private Timer matchTimer;
 
@@ -35,6 +36,8 @@ namespace Assets.Scripts.Data
         private GameSettings currentGameSettings;
         // CustomColor object for efficient color getting
         private CustomColor customColor;
+
+        private int numDead = 0;
 
         // Sets up singleton instance. Will remain if one does not already exist in scene
         void Awake()
@@ -72,11 +75,16 @@ namespace Assets.Scripts.Data
             }
             // Load the last settings used
             //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
-            currentGameSettings = LoadManager.LoadGameSettingsXML("Test");
+            currentGameSettings = LoadManager.LoadGameSettingsXML("Timer");
             // Check for targets
-            currentGameSettings.Type = Enums.GameType.Target;
+            //currentGameSettings.Type = Enums.GameType.Target;
             // Initialize the tokens
             TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);
+
+            for (int i = 0; i < controllers.Count; i++)
+            {
+                controllers[i].LifeComponent.Lives = currentGameSettings.StockLimit;
+            }
 
             if (currentGameSettings.Type.Equals(Enums.GameType.Target))
             {
@@ -84,6 +92,20 @@ namespace Assets.Scripts.Data
                 matchTimer = gameObject.AddComponent<Timer>();
                 matchTimer.Initialize(Mathf.Infinity, "Match Timer");
             }
+            else
+            {
+                if (currentGameSettings.TimeLimitEnabled)
+                {
+                    matchTimer = gameObject.AddComponent<CountdownTimer>();
+                    matchTimer.Initialize(currentGameSettings.TimeLimit, "Match Timer");
+                    ((CountdownTimer)matchTimer).TimeOut += new CountdownTimer.TimerEvent(TimeUp);
+                }
+            }
+        }
+        
+        private void TimeUp(CountdownTimer t)
+        {
+            Debug.Log("Time is up");
         }
 
         /// <summary>
@@ -101,6 +123,16 @@ namespace Assets.Scripts.Data
         private void GameOver()
         {
             Debug.Log("Match concluded");
+        }
+
+        public void PlayerKilled(PlayerID killed, PlayerID killedBy = PlayerID.None)
+        {
+            Controller victim = controllers.Find(x => x.ID.Equals(killed));
+            Controller killer = controllers.Find(x => x.ID.Equals(killedBy));
+            killer.LifeComponent.kills++;
+            if (killer.LifeComponent.kills > currentGameSettings.KillLimit) GameOver();
+            if (victim.LifeComponent.Lives <= 0) numDead++;
+            if (numDead >= controllers.Count - 1) GameOver();
         }
 
         /// <summary>
@@ -135,6 +167,21 @@ namespace Assets.Scripts.Data
                 // Let the player revive itself
                 deadPlayer.LifeComponent.Respawn();
             }
+        }
+
+        public void InitializePlayer(PlayerID id)
+        {
+            GameObject newPlayer = Instantiate(playerPrefab);
+            Controller controller = newPlayer.GetComponent<Controller>();
+            controller.ID = id;
+            controllers.Add(controller);
+            controller.Disable();
+        }
+
+        public void RemovePlayer(PlayerID id)
+        {
+            Controller removePlayer = controllers.Find(x => x.ID.Equals(id));
+            controllers.Remove(removePlayer);
         }
 
         #region C# Properties

@@ -32,6 +32,12 @@ namespace Assets.Scripts.Player
 		//Body parts for fun destruction
 		private List<RobotBodyPart> bodyParts;
 
+        void Awake()
+        {
+            // Init all componenets
+            InitializePlayerComponents();
+        }
+
         void Start()
         {
             // Initialize the effect timers list
@@ -41,9 +47,6 @@ namespace Assets.Scripts.Player
 			bodyParts = new List<RobotBodyPart>();
 			bodyParts.AddRange(Resources.FindObjectsOfTypeAll<RobotBodyPart>());
 			bodyParts.RemoveAll((RobotBodyPart obj) => obj.pid != id);
-
-            // Init all componenets
-            InitializePlayerComponents();
         }
 
         /// <summary>

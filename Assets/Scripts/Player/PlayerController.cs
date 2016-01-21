@@ -9,7 +9,7 @@ namespace Assets.Scripts.Player
     /// </summary>
     public class PlayerController : Controller
     {
-        private bool fire;
+        private bool fire, canFire;
 
         void Update()
         {
@@ -19,25 +19,28 @@ namespace Assets.Scripts.Player
 			if (InputManager.GetButtonDown("Crouch_P" + (int)id, id)) parkour.SlideOn();
 			if (InputManager.GetButtonUp("Crouch_P" + (int)id, id)) parkour.SlideOff();
             // Updating the indicator of which direction the player is going to fire
-            if (InputManager.GetAxis("LookHorizontal_P" + (int)id, id) == 0 && InputManager.GetAxis("LookVertical_P" + (int)id, id) == 0)
+            if ( fire && InputManager.GetAxis("LookHorizontal_P" + (int)id, id) == 0 && InputManager.GetAxis("LookVertical_P" + (int)id, id) == 0)
             {
-				if(parkour.FacingRight) {
-                	archery.UpdateFirePoint(Vector3.Normalize(Vector3.right + new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), 0f)) * distanceToPlayer);
-				} else {
-					archery.UpdateFirePoint(Vector3.Normalize(Vector3.left + new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), 0f)) * distanceToPlayer);
-				}
+				//if(parkour.FacingRight) {
+    //            	archery.UpdateFirePoint(Vector3.Normalize(Vector3.right + new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), 0f)) * distanceToPlayer);
+				//} else {
+				//	archery.UpdateFirePoint(Vector3.Normalize(Vector3.left + new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), 0f)) * distanceToPlayer);
+				//}
+                archery.Fire();
+                fire = false;
             }
-            else
+            else if(Mathf.Abs(InputManager.GetAxis("LookHorizontal_P" + (int)id, id)) >= 0.5f || Mathf.Abs(InputManager.GetAxis("LookVertical_P" + (int)id, id)) >= 0.5f)
             {
                 archery.UpdateFirePoint(Vector3.Normalize(Vector3.Normalize(new Vector3(
-                                          InputManager.GetAxis("LookHorizontal_P" + (int)id, id) + (Random.Range(-shake, shake)),
-                                          InputManager.GetAxis("LookVertical_P" + (int)id, id) + (Random.Range(-shake, shake)),
+                                          -InputManager.GetAxis("LookHorizontal_P" + (int)id, id),
+                                          -InputManager.GetAxis("LookVertical_P" + (int)id, id),
                                           0))) * distanceToPlayer);
+                fire = true;
             }
+            /*
             if (InputManager.GetAxis("Fire_P" + (int)id, id) > 0)
             {
                 fire = true;
-//                shake = 0.1f;
             }
 			else if (fire && (InputManager.GetAxis("Fire_P" + (int)id, id) == 0 || InputManager.GetAxis("Fire_P" + (int)id, id) == -1))
             {
@@ -46,9 +49,8 @@ namespace Assets.Scripts.Player
 				//--Kartik
                 archery.Fire();
                 fire = false;
-                shake = 0f;
             }
-
+            */
         }
 
 		void LateUpdate() {
