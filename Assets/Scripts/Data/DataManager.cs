@@ -17,6 +17,7 @@ namespace Assets.Scripts.Data
 		protected static string videoDataPath;
         protected static string settingsDataPath;
         protected static string xmlSettingsDataPath;
+        protected static string profileDataPath;
 #endif
 
         // Call init on awake to initialize everything
@@ -26,6 +27,7 @@ namespace Assets.Scripts.Data
             videoDataPath = Application.persistentDataPath + "/Video.dat";
             settingsDataPath = Application.persistentDataPath + "/GameSettings/";
             xmlSettingsDataPath = "Files/";
+            profileDataPath = Application.persistentDataPath + "/Profiles/";
 
             Init();
 		}

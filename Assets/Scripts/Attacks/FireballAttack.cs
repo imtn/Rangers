@@ -9,13 +9,17 @@ namespace Assets.Scripts.Attacks
     public class FireballAttack : SpawnAttack
     {
 		private float size = 0f, maxSize = 10f, sizeDelta = 10f;
-		new protected float damage = 20f;
 
 		/// <summary>
 		/// Layers that are not affected by the explosion
 		/// </summary>
 		[SerializeField]
 		private LayerMask doNotActivate;
+
+        void Start()
+        {
+            damage = 20f;
+        }
         
         void Update()
         {

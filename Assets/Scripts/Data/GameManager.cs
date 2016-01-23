@@ -75,7 +75,7 @@ namespace Assets.Scripts.Data
             }
             // Load the last settings used
             //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
-            currentGameSettings = LoadManager.LoadGameSettingsXML("Timer");
+            currentGameSettings = LoadManager.LoadGameSettingsXML("Kill");
             // Check for targets
             //currentGameSettings.Type = Enums.GameType.Target;
             // Initialize the tokens
@@ -130,9 +130,15 @@ namespace Assets.Scripts.Data
             Controller victim = controllers.Find(x => x.ID.Equals(killed));
             Controller killer = controllers.Find(x => x.ID.Equals(killedBy));
             killer.LifeComponent.kills++;
-            if (killer.LifeComponent.kills > currentGameSettings.KillLimit) GameOver();
-            if (victim.LifeComponent.Lives <= 0) numDead++;
-            if (numDead >= controllers.Count - 1) GameOver();
+            if(currentGameSettings.Type.Equals(Enums.GameType.Kills))
+            {
+                if (killer.LifeComponent.kills > currentGameSettings.KillLimit) GameOver();
+            }
+            if (currentGameSettings.Type.Equals(Enums.GameType.Stock))
+            {
+                if (victim.LifeComponent.Lives <= 0) numDead++;
+                if (numDead >= controllers.Count - 1) GameOver();
+            }
         }
 
         /// <summary>
