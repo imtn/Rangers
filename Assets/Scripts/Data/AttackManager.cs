@@ -39,16 +39,7 @@ namespace Assets.Scripts.Data
         /// <returns>The appropriate effect for the arrow property.</returns>
         public GameObject GetEffect(Enums.Arrows type)
         {
-            // Will check null in the script that gets this object
-//            return effectPrefabs.Find(x => x.name.StartsWith(type.ToString()));
-			Debug.Log(effectPrefabs);
-			foreach(GameObject g in effectPrefabs) {
-				Debug.Log(g + " " + g.name);
-				if(g.name.Contains(type.ToString())) {
-					return g;
-				}
-			}
-			return null;
+            return effectPrefabs.Find(x => x.name.StartsWith(type.ToString()));
         }
     } 
 }

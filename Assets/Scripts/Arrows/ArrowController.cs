@@ -101,6 +101,11 @@ namespace Assets.Scripts.Arrows
             {
                 Destroy(rigidbody);
                 Destroy(collider);
+				Destroy(transform.FindChild("Model").GetComponent<TrailRenderer>());
+				GameObject g = new GameObject();
+				transform.parent = g.transform;
+				g.transform.parent = col.transform;
+				Destroy(this.gameObject,1f);
                 Destroy(this);
             }
             else

@@ -25,20 +25,27 @@ namespace Assets.Scripts.Player
         // The current types of arrows to fire
         private int types = 1;
 
+		// Force with which the arrow will be shot
+		// based on how long the player has been aiming in approximately the same direction
+		private float strength;
+
 		// So that the arrow fires realistically from the bow --kartik
 		public Transform bowPosition;
+
 
         void Awake()
         {
             timers = new List<TokenTimer>();
+			firePoint.localPosition = Vector3.right;
         }
 
         // Fires an arrow
         public void Fire()
         {
-            GameObject arrow = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
-			arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - bowPosition.position) * 10, ForceMode.Impulse);
+			GameObject arrow = (GameObject)Instantiate(arrowPrefab, firePoint.position + (Vector3.up*0.5f), firePoint.rotation);
+			arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - bowPosition.position) * 20 * (strength+0.1f), ForceMode.Impulse);
             arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
+			strength = 0;
         }
 
         /// <summary>
@@ -47,10 +54,17 @@ namespace Assets.Scripts.Player
         /// <param name="position">Position where the firepoint is set to</param>
         public void UpdateFirePoint(Vector3 position)
         {
+			if(Vector3.Distance(firePoint.localPosition, position) < 0.05f) {
+				IncreaseStrength();
+			}
             firePoint.localPosition = position;
         }
 
-		public void UpdateBodyAim(float strength) {
+		private void IncreaseStrength() {
+			strength = Mathf.Min(1f,strength+(Time.deltaTime/2f));
+		}
+
+		public void UpdateBodyAim() {
 			bowPosition.localRotation = Quaternion.identity;
 			float angle = Mathf.Atan((firePoint.position.y-bowPosition.position.y)/(firePoint.position.x-bowPosition.position.x))*Mathf.Rad2Deg;
 			if(firePoint.position.x < bowPosition.position.x) {
@@ -75,6 +89,19 @@ namespace Assets.Scripts.Player
 
 			GetComponent<Animator>().SetFloat("BowStrength",strength);
 
+		}
+
+
+		void LateUpdate() {
+			UpdateBodyAim();
+		}
+
+		public void AimUpperBodyWithLegs() {
+			if(GetComponent<Parkour>().FacingRight) {
+				firePoint.localPosition = Vector3.right;
+			} else {
+				firePoint.localPosition = Vector3.left;
+			}
 		}
 
 		private void UpdateTorsoAim(float val) {

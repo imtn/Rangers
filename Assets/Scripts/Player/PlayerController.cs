@@ -19,7 +19,7 @@ namespace Assets.Scripts.Player
 			if (InputManager.GetButtonDown("Crouch_P" + (int)id, id)) parkour.SlideOn();
 			if (InputManager.GetButtonUp("Crouch_P" + (int)id, id)) parkour.SlideOff();
             // Updating the indicator of which direction the player is going to fire
-            if ( fire && InputManager.GetAxis("LookHorizontal_P" + (int)id, id) == 0 && InputManager.GetAxis("LookVertical_P" + (int)id, id) == 0)
+			if ( fire && Mathf.Abs(InputManager.GetAxis("LookHorizontal_P" + (int)id, id)) < 0.1f && Mathf.Abs(InputManager.GetAxis("LookVertical_P" + (int)id, id)) <= 0.1f)
             {
 				//if(parkour.FacingRight) {
     //            	archery.UpdateFirePoint(Vector3.Normalize(Vector3.right + new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), 0f)) * distanceToPlayer);
@@ -37,6 +37,10 @@ namespace Assets.Scripts.Player
                                           0))) * distanceToPlayer);
                 fire = true;
             }
+			else
+			{
+				archery.AimUpperBodyWithLegs();
+			}
             /*
             if (InputManager.GetAxis("Fire_P" + (int)id, id) > 0)
             {
@@ -54,12 +58,14 @@ namespace Assets.Scripts.Player
         }
 
 		void LateUpdate() {
-			archery.UpdateBodyAim(InputManager.GetAxis("Fire_P" + (int)id, id));
+//			archery.UpdateBodyAim(InputManager.GetAxis("Fire_P" + (int)id, id));
 		}
 
 		void FixedUpdate() {
 			//This has to happen every fixed update as of now, can't think of a better way to handle it --kartik
-			parkour.Locomote(InputManager.GetAxis("Horizontal_P" + (int)id, id));
+			if(life.Health > 0) {
+				parkour.Locomote(InputManager.GetAxis("Horizontal_P" + (int)id, id));
+			}
 		}
     }
 }

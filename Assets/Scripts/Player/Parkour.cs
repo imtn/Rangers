@@ -107,9 +107,13 @@ namespace Assets.Scripts.Player
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,1);
 				GetComponent<Animator>().SetIKPosition(AvatarIKGoal.LeftHand,IKThingy.transform.position + new Vector3(0.5f,0,0));
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
+				jumping = false;
+				if(!ledgeGrabbing) {
+					GetComponent<Rigidbody>().velocity = Vector3.zero;
+				}
 				ledgeGrabbing = true;
-				GetComponent<Rigidbody>().velocity = Vector3.zero;
 			} else {
+				ledgeGrabbing = false;
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,0);
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,0);
 			}
