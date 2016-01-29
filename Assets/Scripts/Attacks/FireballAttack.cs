@@ -4,11 +4,11 @@ using Assets.Scripts.Player;
 namespace Assets.Scripts.Attacks
 {
 	/// <summary>
-	/// Attack the simulates an explosion and damages and sends affected objects flying
+	/// Attack that simulates an explosion and damages and sends affected objects flying
 	/// </summary>
     public class FireballAttack : SpawnAttack
     {
-		private float size = 0f, maxSize = 10f, sizeDelta = 10f;
+		private float maxSize = 10f;
 
 		/// <summary>
 		/// Layers that are not affected by the explosion
@@ -19,14 +19,16 @@ namespace Assets.Scripts.Attacks
         void Start()
         {
             damage = 20f;
+			transform.localScale = new Vector3 (maxSize, maxSize, maxSize);
+			Destroy(this.GetComponent<Collider>(),0.1f);
+			Destroy(this.gameObject,1f);
         }
         
         void Update()
         {
 			// Grow the explosion
-            size += sizeDelta * Time.deltaTime;
-			transform.localScale = new Vector3 (size, size, size);
-			if (size >= maxSize) Destroy(gameObject);
+//            size += sizeDelta * Time.deltaTime;
+//			if (size >= maxSize) Destroy(gameObject);
         }
 
         void OnTriggerEnter(Collider col)

@@ -22,7 +22,7 @@ namespace Assets.Scripts.Arrows
         private LayerMask doNotActivate;
 
         // Damage to be dealt when hit by an arrow
-        private float damage = 35f;
+        private float damage = 10f;
         // Player IDs for passing along information
         private PlayerID fromPlayer, hitPlayer;
         // For ricochet arrows

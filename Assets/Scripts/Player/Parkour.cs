@@ -108,12 +108,12 @@ namespace Assets.Scripts.Player
 				GetComponent<Animator>().SetIKPosition(AvatarIKGoal.LeftHand,IKThingy.transform.position + new Vector3(0.5f,0,0));
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
 				jumping = false;
-				if(!ledgeGrabbing) {
-					GetComponent<Rigidbody>().velocity = Vector3.zero;
-				}
-				ledgeGrabbing = true;
+//				if(!ledgeGrabbing) {
+//					GetComponent<Rigidbody>().velocity = Vector3.zero;
+//				}
+//				ledgeGrabbing = true;
 			} else {
-				ledgeGrabbing = false;
+//				ledgeGrabbing = false;
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.RightHand,0);
 				GetComponent<Animator>().SetIKPositionWeight(AvatarIKGoal.LeftHand,0);
 			}
@@ -125,7 +125,7 @@ namespace Assets.Scripts.Player
 
 		void OnCollisionStay(Collision other) {
 			if((GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Airtime") || GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("AirtimeLeft")) && other.gameObject.tag.Equals("Ground")) {
-				Debug.Log("Colliding With Ground");
+//				Debug.Log("Colliding With Ground");
 				GetComponent<Animator>().SetTrigger("Land");
 				jumping = false;
 			}

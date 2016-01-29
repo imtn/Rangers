@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Player;
 
 namespace Assets.Scripts.Util
 {
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Util
         void OnTriggerEnter(Collider col)
         {
             if (col.transform.tag.Equals("Arrow")) Destroy(col.gameObject);
+			if (col.transform.root.tag.Equals("Player")) col.transform.root.GetComponent<Controller>().LifeComponent.ModifyHealth(-100);
         }
     }
 }

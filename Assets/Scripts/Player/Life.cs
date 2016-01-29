@@ -98,6 +98,15 @@ namespace Assets.Scripts.Player
             get { return health; }
             set { health = value; }
         }
+
+		/// <summary>
+		/// Health divided by max health of the player
+		/// </summary>
+		public float HealthPercentage
+		{
+			get { return health/MAX_HEALTH; }
+		}
+
         /// <summary>
         /// Number of lives the player has
         /// </summary>

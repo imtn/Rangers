@@ -44,7 +44,7 @@ namespace Assets.Scripts.Player
 
 			//debug
 			if(id == PlayerID.One) {
-				Debug.Log(fireRateTimer);
+//				Debug.Log(fireRateTimer);
 //				Debug.Log(aim);
 //				Debug.Log(InputManager.GetAxis("LookHorizontal_P" + (int)id, id));
 			}

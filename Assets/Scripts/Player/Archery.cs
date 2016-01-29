@@ -29,6 +29,8 @@ namespace Assets.Scripts.Player
 		// based on how long the player has been aiming in approximately the same direction
 		private float strength;
 
+		private const float MAX_STRENGTH = 1;
+
 		// So that the arrow fires realistically from the bow --kartik
 		public Transform bowPosition;
 
@@ -61,7 +63,7 @@ namespace Assets.Scripts.Player
         }
 
 		private void IncreaseStrength() {
-			strength = Mathf.Min(1f,strength+(Time.deltaTime/2f));
+			strength = Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime));
 		}
 
 		public void UpdateBodyAim() {
@@ -163,5 +165,17 @@ namespace Assets.Scripts.Player
             }
             timers.Clear();
         }
+
+		public float StrengthPercentage {
+			get {
+				return strength/MAX_STRENGTH;
+			}
+		}
+
+		public bool UpperBodyFacingRight {
+			get {
+				return upperBodyFacingRight;
+			}
+		}
 	}
 }

@@ -31,7 +31,7 @@ public class PrototypingCameraFollow : MonoBehaviour {
 				greatestDistance = tempDist;
 			}
 		}
-		transform.position = Vector3.MoveTowards(transform.position, new Vector3(averagePosition.x, averagePosition.y, (-1.1f)*(greatestDistance+2)), Time.deltaTime*speed);
+		transform.position = Vector3.MoveTowards(transform.position, new Vector3(averagePosition.x, averagePosition.y, (-1.1f)*(greatestDistance+4)), Time.deltaTime*speed);
 
 	}
 }
