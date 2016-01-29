@@ -129,10 +129,10 @@ namespace Assets.Scripts.Data
         {
             Controller victim = controllers.Find(x => x.ID.Equals(killed));
             Controller killer = controllers.Find(x => x.ID.Equals(killedBy));
-            killer.LifeComponent.kills++;
+            if(killer != null) killer.LifeComponent.kills++;
             if(currentGameSettings.Type.Equals(Enums.GameType.Kills))
             {
-                if (killer.LifeComponent.kills > currentGameSettings.KillLimit) GameOver();
+                if (killer != null && killer.LifeComponent.kills > currentGameSettings.KillLimit) GameOver();
             }
             if (currentGameSettings.Type.Equals(Enums.GameType.Stock))
             {
