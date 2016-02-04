@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Assets.Scripts.Timers;
 using Assets.Scripts.Tokens;
 using Assets.Scripts.Util;
-using TeamUtility.IO;
 
-/// <summary>
-/// This class handles all the shooting that can be done by actors
-/// </summary>
 namespace Assets.Scripts.Player
 {
-	public class Archery : ControllerObject
+    /// <summary>
+    /// This class handles all the shooting that can be done by actors
+    /// </summary>
+    public class Archery : ControllerObject
 	{
         [SerializeField]
         private GameObject arrowPrefab;

@@ -42,13 +42,6 @@ namespace Assets.Scripts.Player
 			//updating the previous aim variable
 			prevAim = aim;
 
-			//debug
-			if(id == PlayerID.One) {
-//				Debug.Log(fireRateTimer);
-//				Debug.Log(aim);
-//				Debug.Log(InputManager.GetAxis("LookHorizontal_P" + (int)id, id));
-			}
-
 			if (InputManager.GetButtonDown("Jump_P" + (int)id, id)) parkour.Jump();
 			if (InputManager.GetButtonDown("Crouch_P" + (int)id, id)) parkour.SlideOn();
 			if (InputManager.GetButtonUp("Crouch_P" + (int)id, id)) parkour.SlideOff();
@@ -77,21 +70,6 @@ namespace Assets.Scripts.Player
 				//if the joystick isn't pushed in any direction then align the upper body with the legs
 				archery.AimUpperBodyWithLegs();
 			}
-
-            /*
-            if (InputManager.GetAxis("Fire_P" + (int)id, id) > 0)
-            {
-                fire = true;
-            }
-			else if (fire && (InputManager.GetAxis("Fire_P" + (int)id, id) == 0 || InputManager.GetAxis("Fire_P" + (int)id, id) == -1))
-            {
-				//I added a check for -1 because the Mac gamepad axis goes from -1 to 1, not 0 to 1
-				//Feel free to find another solution if this messes with Win gamepad
-				//--Kartik
-                archery.Fire();
-                fire = false;
-            }
-            */
         }
 
 		void FixedUpdate() {

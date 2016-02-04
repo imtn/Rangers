@@ -12,7 +12,6 @@ namespace Assets.Scripts.Player
     /// </summary>
     public class Controller : MonoBehaviour
     {
-        protected float shake, maxShake = 0.5f;
         // ID for identifying which player is accepting input
         [SerializeField]
         protected PlayerID id;
@@ -78,7 +77,6 @@ namespace Assets.Scripts.Player
 			GetComponent<Rigidbody>().detectCollisions = false;
 			GetComponent<Rigidbody>().isKinematic = true;
 			GetComponent<Animator>().enabled = false;
-//            gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -86,7 +84,6 @@ namespace Assets.Scripts.Player
         /// </summary>
         public void Enable()
         {
-//            gameObject.SetActive(true);
 			GetComponent<Rigidbody>().detectCollisions = true;
 			GetComponent<Rigidbody>().isKinematic = false;
 			GetComponent<Animator>().enabled = true;

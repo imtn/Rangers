@@ -76,8 +76,7 @@ namespace Assets.Scripts.Data
             // Load the last settings used
             //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
             currentGameSettings = LoadManager.LoadGameSettingsXML("Kill");
-            // Check for targets
-            //currentGameSettings.Type = Enums.GameType.Target;
+
             // Initialize the tokens
             TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);
 
@@ -86,14 +85,17 @@ namespace Assets.Scripts.Data
                 controllers[i].LifeComponent.Lives = currentGameSettings.StockLimit;
             }
 
+            // Set up a timer that counts up for targets
             if (currentGameSettings.Type.Equals(Enums.GameType.Target))
             {
                 currentGameSettings.TargetsInLevel = FindObjectsOfType<Target>().Length;
                 matchTimer = gameObject.AddComponent<Timer>();
                 matchTimer.Initialize(Mathf.Infinity, "Match Timer");
             }
+            // All other games will have a countdown timer
             else
             {
+                // If the timer is enabled in that game type
                 if (currentGameSettings.TimeLimitEnabled)
                 {
                     matchTimer = gameObject.AddComponent<CountdownTimer>();
@@ -103,6 +105,10 @@ namespace Assets.Scripts.Data
             }
         }
         
+        /// <summary>
+        /// Timer that will end the match
+        /// </summary>
+        /// <param name="t">The timer that timed out</param>
         private void TimeUp(CountdownTimer t)
         {
             Debug.Log("Time is up");
@@ -125,11 +131,20 @@ namespace Assets.Scripts.Data
             Debug.Log("Match concluded");
         }
 
+        /// <summary>
+        /// What happens when a player is killed.
+        /// </summary>
+        /// <param name="killed">The id of the player that is killed</param>
+        /// <param name="killedBy">The id of the player that is the killer</param>
         public void PlayerKilled(PlayerID killed, PlayerID killedBy = PlayerID.None)
         {
+            // Find those two players
             Controller victim = controllers.Find(x => x.ID.Equals(killed));
             Controller killer = controllers.Find(x => x.ID.Equals(killedBy));
+            // Increment killer score provided there is a killer that is not self
             if(killer != null) killer.LifeComponent.kills++;
+            
+            // Check if the game is over based on gametype
             if(currentGameSettings.Type.Equals(Enums.GameType.Kills))
             {
                 if (killer != null && killer.LifeComponent.kills > currentGameSettings.KillLimit) GameOver();
@@ -175,6 +190,10 @@ namespace Assets.Scripts.Data
             }
         }
 
+        /// <summary>
+        /// Creates a player when signing in and puts it in the list of active players
+        /// </summary>
+        /// <param name="id">ID of the player to create (the ID of the controller controlling it)</param>
         public void InitializePlayer(PlayerID id)
         {
             GameObject newPlayer = Instantiate(playerPrefab);
@@ -184,6 +203,10 @@ namespace Assets.Scripts.Data
             controller.Disable();
         }
 
+        /// <summary>
+        /// Remove the player from the list of active players
+        /// </summary>
+        /// <param name="id">ID of the player to deactivate from the game</param>
         public void RemovePlayer(PlayerID id)
         {
             Controller removePlayer = controllers.Find(x => x.ID.Equals(id));

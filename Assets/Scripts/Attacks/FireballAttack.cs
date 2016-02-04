@@ -20,15 +20,8 @@ namespace Assets.Scripts.Attacks
         {
             damage = 20f;
 			transform.localScale = new Vector3 (maxSize, maxSize, maxSize);
-			Destroy(this.GetComponent<Collider>(),0.1f);
-			Destroy(this.gameObject,1f);
-        }
-        
-        void Update()
-        {
-			// Grow the explosion
-//            size += sizeDelta * Time.deltaTime;
-//			if (size >= maxSize) Destroy(gameObject);
+			Destroy(GetComponent<Collider>(),0.1f);
+			Destroy(gameObject,1f);
         }
 
         void OnTriggerEnter(Collider col)

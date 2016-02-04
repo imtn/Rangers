@@ -125,7 +125,6 @@ namespace Assets.Scripts.Player
 
 		void OnCollisionStay(Collision other) {
 			if((GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Airtime") || GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("AirtimeLeft")) && other.gameObject.tag.Equals("Ground")) {
-//				Debug.Log("Colliding With Ground");
 				GetComponent<Animator>().SetTrigger("Land");
 				jumping = false;
 			}
