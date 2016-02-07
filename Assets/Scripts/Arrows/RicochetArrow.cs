@@ -1,5 +1,4 @@
-﻿using TeamUtility.IO;
-
+﻿
 namespace Assets.Scripts.Arrows
 {
     public class RicochetArrow : ArrowProperty

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.Data;
-using TeamUtility.IO;
 
 namespace Assets.Scripts.UI.Profiles
 {
@@ -66,14 +65,14 @@ namespace Assets.Scripts.UI.Profiles
         void Update()
         {
             // No axis is being pressed
-            if(InputManager.GetAxis("Horizontal_P1") == 0)
+			if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX, PlayerID.One) == 0)
             {
                 // Reset the timer so that we don't continue scrolling
                 timer = 0;
             }
             // Horizontal joystick is held right
             // Use > 0.5f so that sensitivity is not too high
-            else if(InputManager.GetAxis("Horizontal_P1") > 0.5f)
+			else if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX, PlayerID.One) > 0.5f)
             {
                 // If we can move and it is time to move
                 if(index < characters.Length && (timer >= delay || timer == 0))
@@ -86,7 +85,7 @@ namespace Assets.Scripts.UI.Profiles
             }
             // Horizontal joystick is held left
             // Use > 0.5f so that sensitivity is not too high
-            else if (InputManager.GetAxis("Horizontal_P1") < -0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX, PlayerID.One) < -0.5f)
             {
                 // If we can move and it is time to move
                 if (index > 0 && (timer >= delay || timer == 0))
@@ -98,13 +97,13 @@ namespace Assets.Scripts.UI.Profiles
                 timer += Time.deltaTime;
             }
             // A button is pressed
-            if (InputManager.GetButtonDown("Submit_P1"))
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A, PlayerID.One, true))
             {
                 // Debug - add letter to overall string
                 t.text += capital ? characters[index].ToString() : characters[index].ToString().ToLower();
             }
             // Left joystick button is pressed
-            if(InputManager.GetButtonDown("LeftStickClick_P1"))
+			if(ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.LeftStickClick, PlayerID.One, true))
             {
                 // Check capitalization
                 if(capital)
@@ -121,33 +120,25 @@ namespace Assets.Scripts.UI.Profiles
                 }
             }
             // Y button is pressed; add a space
-            if (InputManager.GetButtonDown("Y_P1")) t.text += " ";
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.Y, PlayerID.One, true)) t.text += " ";
             // X button is pressed; delete last character added
-            if (InputManager.GetButtonDown("X_P1") && t.text != "") t.text = t.text.Remove(t.text.Length - 1); 
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.X, PlayerID.One, true) && t.text != "") t.text = t.text.Remove(t.text.Length - 1); 
             // Have dpad functionality so that player can have precise control and joystick quick navigation
             // Check differently for Windows vs OSX
-            if(Application.platform.ToString().Contains("Windows") || Application.platform.ToString().Contains("Linux"))
+
+            // No dpad button is pressed
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX, PlayerID.One) == 0) dpadPressed = false;
+            // Dpad right is pressed; treating as DPADRightOnDown
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX, PlayerID.One) > 0 && !dpadPressed && index <characters.Length)
             {
-                // No dpad button is pressed
-                if (InputManager.GetAxis("DPADHorizontal_P1") == 0) dpadPressed = false;
-                // Dpad right is pressed; treating as DPADRightOnDown
-                if (InputManager.GetAxis("DPADHorizontal_P1") > 0 && !dpadPressed && index <characters.Length)
-                {
-                    dpadPressed = true;
-                    Move(1);
-                }
-                // Dpad right is pressed; treating as DPADLeftOnDown
-                if (InputManager.GetAxis("DPADHorizontal_P1") < 0 && !dpadPressed && index > 0)
-                {
-                    dpadPressed = true;
-                    Move(-1);
-                }
+                dpadPressed = true;
+                Move(1);
             }
-            else if(Application.platform.ToString().Contains("OSX"))
+            // Dpad right is pressed; treating as DPADLeftOnDown
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX, PlayerID.One) < 0 && !dpadPressed && index > 0)
             {
-                // Just check buttons
-                if (InputManager.GetButtonDown("DPADRight")) Move(1);
-                if (InputManager.GetButtonDown("DPADLeft")) Move(-1);
+                dpadPressed = true;
+                Move(-1);
             }
 
             // Current position of the horizontal scrollrect amount
@@ -159,7 +150,7 @@ namespace Assets.Scripts.UI.Profiles
             // Clamp from 0-1 as is the range of horizontalNormalizedPosition
             rect.horizontalNormalizedPosition = Mathf.Clamp01(rect.horizontalNormalizedPosition);
 
-            if(InputManager.GetButtonDown("Start_P1"))
+			if(ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.Start, PlayerID.One))
             {
                 ProfileData data;
 //                if (t.text != "")

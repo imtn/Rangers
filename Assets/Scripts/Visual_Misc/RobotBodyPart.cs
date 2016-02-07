@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Scripts.Player;
-using TeamUtility.IO;
 
 public class RobotBodyPart : MonoBehaviour {
 

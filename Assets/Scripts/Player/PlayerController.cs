@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TeamUtility.IO;
 
 namespace Assets.Scripts.Player
 {
@@ -29,8 +28,8 @@ namespace Assets.Scripts.Player
 
 			//keeping track of this every frame to help prevent accidental fires or mis-aiming
 			Vector3 aim = Vector3.Normalize(Vector3.Normalize(new Vector3(
-				-InputManager.GetAxis("LookHorizontal_P" + (int)id, id),
-				-InputManager.GetAxis("LookVertical_P" + (int)id, id),
+				-ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX, id),
+				-ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickY, id),
 				0))) * distanceToPlayer;
 
 			//checking to see if the joystick overshot the deadzone, and setting a boolean appropriately
@@ -49,9 +48,9 @@ namespace Assets.Scripts.Player
 //				Debug.Log(InputManager.GetAxis("LookHorizontal_P" + (int)id, id));
 			}
 
-			if (InputManager.GetButtonDown("Jump_P" + (int)id, id)) parkour.Jump();
-			if (InputManager.GetButtonDown("Crouch_P" + (int)id, id)) parkour.SlideOn();
-			if (InputManager.GetButtonUp("Crouch_P" + (int)id, id)) parkour.SlideOff();
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A,id)) parkour.Jump();
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B,id)) parkour.SlideOn();
+			else parkour.SlideOff();
 
             // Checking to see if the player can fire by checking the following:
 			// is the fire rate timer past the max fire rate
@@ -59,14 +58,14 @@ namespace Assets.Scripts.Player
 			// are we firing due to a regular release of the joystick (fire ...)
 			if (fireRateTimer > MAX_FIRE_RATE &&
 					(definitelyFire ||
-					(fire && Mathf.Abs(InputManager.GetAxis("LookHorizontal_P" + (int)id, id)) < 0.1f && Mathf.Abs(InputManager.GetAxis("LookVertical_P" + (int)id, id)) <= 0.1f)))
+					(fire && Mathf.Abs(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX, id)) < 0.1f && Mathf.Abs(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickY, id)) <= 0.1f)))
             {
                 archery.Fire();
                 fire = false;
 				definitelyFire = false;
 				fireRateTimer = 0;
             }
-            else if(Mathf.Abs(InputManager.GetAxis("LookHorizontal_P" + (int)id, id)) >= 0.5f || Mathf.Abs(InputManager.GetAxis("LookVertical_P" + (int)id, id)) >= 0.5f)
+			else if(Mathf.Abs(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX, id)) >= 0.5f || Mathf.Abs(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickY, id)) >= 0.5f)
             {
 				//if the joystick is pushed past the 50% mark in any direction, start aiming the bow
                 archery.UpdateFirePoint(aim);
@@ -97,7 +96,7 @@ namespace Assets.Scripts.Player
 		void FixedUpdate() {
 			//This has to happen every fixed update as of now, can't think of a better way to handle it --kartik
 			if(life.Health > 0) {
-				parkour.Locomote(InputManager.GetAxis("Horizontal_P" + (int)id, id));
+				parkour.Locomote(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX, id));
 			}
 		}
     }

@@ -2,7 +2,6 @@
 using UnityEngine.EventSystems;
 using Assets.Scripts.Data;
 using Assets.Scripts.Util;
-using TeamUtility.IO;
 
 namespace Assets.Scripts.UI
 {
@@ -68,7 +67,7 @@ namespace Assets.Scripts.UI
 
         private void Splash()
         {
-            if(InputManager.GetButtonDown("Start_P1") || InputManager.GetButtonDown("Submit_P1"))
+			if(ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.Start, PlayerID.One))
             {
                 if (GameManager.instance.AllPlayers.Count == 0)
                 {
@@ -81,7 +80,7 @@ namespace Assets.Scripts.UI
                     UpdatePanels(MainPanel);
                 }
             }
-            if(InputManager.GetButtonDown("Cancel_P1"))
+			if(ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B, PlayerID.One))
             {
                 ExitGame();
             }
@@ -95,7 +94,7 @@ namespace Assets.Scripts.UI
         private void SinglePlayer()
         {
             Navigate();
-            if (InputManager.GetButtonDown("Cancel_P1"))
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B, PlayerID.One))
             {
                 state = Enums.UIStates.Main;
                 UpdatePanels(MainPanel);
@@ -105,7 +104,7 @@ namespace Assets.Scripts.UI
         private void Multiplayer()
         {
             Navigate();
-            if (InputManager.GetButtonDown("Cancel_P1"))
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B, PlayerID.One))
             {
                 state = Enums.UIStates.Main;
                 UpdatePanels(MainPanel);
@@ -115,7 +114,7 @@ namespace Assets.Scripts.UI
         private void Settings()
         {
             Navigate();
-            if (InputManager.GetButtonDown("Cancel_P1"))
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B, PlayerID.One))
             {
                 state = Enums.UIStates.Main;
                 UpdatePanels(MainPanel);
@@ -125,7 +124,7 @@ namespace Assets.Scripts.UI
         private void Audio()
         {
             Navigate();
-            if (InputManager.GetButtonDown("Cancel_P1"))
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B, PlayerID.One))
             {
                 state = Enums.UIStates.Settings;
                 UpdatePanels(SettingPanel);
@@ -135,7 +134,7 @@ namespace Assets.Scripts.UI
         private void Video()
         {
             Navigate();
-            if (InputManager.GetButtonDown("Cancel_P1"))
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B, PlayerID.One))
             {
                 state = Enums.UIStates.Settings;
                 UpdatePanels(SettingPanel);
@@ -162,14 +161,14 @@ namespace Assets.Scripts.UI
         private void Navigate()
         {
             // No axis is being pressed
-            if (InputManager.GetAxis("Horizontal_P1") == 0)
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX,PlayerID.One) == 0)
             {
                 // Reset the timer so that we don't continue scrolling
                 hTimer = 0;
             }
             // Horizontal joystick is held right
             // Use > 0.5f so that sensitivity is not too high
-            else if (InputManager.GetAxis("Horizontal_P1") > 0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX,PlayerID.One) > 0.5f)
             {
                 // If we can move and it is time to move
                 if (hTimer >= delay || hTimer == 0)
@@ -182,7 +181,7 @@ namespace Assets.Scripts.UI
             }
             // Horizontal joystick is held left
             // Use > 0.5f so that sensitivity is not too high
-            else if (InputManager.GetAxis("Horizontal_P1") < -0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX,PlayerID.One) < -0.5f)
             {
                 // If we can move and it is time to move
                 if (hTimer >= delay || hTimer == 0)
@@ -195,14 +194,14 @@ namespace Assets.Scripts.UI
             }
 
             // No axis is being pressed
-            if (InputManager.GetAxis("Vertical_P1") == 0)
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickY,PlayerID.One) == 0)
             {
                 // Reset the timer so that we don't continue scrolling
                 vTimer = 0;
             }
             // Horizontal joystick is held right
             // Use > 0.5f so that sensitivity is not too high
-            else if (InputManager.GetAxis("Vertical_P1") > 0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickY,PlayerID.One) > 0.5f)
             {
                 // If we can move and it is time to move
                 if (vTimer >= delay || vTimer == 0)
@@ -215,7 +214,7 @@ namespace Assets.Scripts.UI
             }
             // Horizontal joystick is held left
             // Use > 0.5f so that sensitivity is not too high
-            else if (InputManager.GetAxis("Vertical_P1") < -0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickY,PlayerID.One) < -0.5f)
             {
                 // If we can move and it is time to move
                 if (vTimer >= delay || vTimer == 0)
@@ -229,45 +228,36 @@ namespace Assets.Scripts.UI
 
             // Have dpad functionality so that player can have precise control and joystick quick navigation
             // Check differently for Windows vs OSX
-            if (Application.platform.ToString().Contains("Windows") || Application.platform.ToString().Contains("Linux"))
-            {
-                // No dpad button is pressed
-                if ((InputManager.GetAxis("DPADHorizontal_P1") == 0) && (InputManager.GetAxis("DPADVertical_P1") == 0)) dpadPressed = false;
-                // Dpad right is pressed; treating as DPADRightOnDown
-                if (InputManager.GetAxis("DPADHorizontal_P1") > 0 && !dpadPressed)
-                {
-                    dpadPressed = true;
-                    Navigator.Navigate(Enums.MenuDirections.Right);
-                }
-                // Dpad right is pressed; treating as DPADLeftOnDown
-                if (InputManager.GetAxis("DPADHorizontal_P1") < 0 && !dpadPressed)
-                {
-                    dpadPressed = true;
-                    Navigator.Navigate(Enums.MenuDirections.Left);
-                }
-                // Dpad up is pressed; treating as DPADUpOnDown
-                if (InputManager.GetAxis("DPADVertical_P1") > 0 && !dpadPressed)
-                {
-                    dpadPressed = true;
-                    Navigator.Navigate(Enums.MenuDirections.Up);
-                }
-                // Dpad down is pressed; treating as DPADDownOnDown
-                if (InputManager.GetAxis("DPADVertical_P1") < 0 && !dpadPressed)
-                {
-                    dpadPressed = true;
-                    Navigator.Navigate(Enums.MenuDirections.Down);
-                }
-            }
-            else if (Application.platform.ToString().Contains("OSX"))
-            {
-                // Just check buttons
-                if (InputManager.GetButtonDown("DPADRight")) Navigator.Navigate(Enums.MenuDirections.Right);
-                if (InputManager.GetButtonDown("DPADLeft")) Navigator.Navigate(Enums.MenuDirections.Left);
-                if (InputManager.GetButtonDown("DPADUp")) Navigator.Navigate(Enums.MenuDirections.Up);
-                if (InputManager.GetButtonDown("DPADDown")) Navigator.Navigate(Enums.MenuDirections.Down);
-            }
 
-            if (InputManager.GetButtonDown("Submit_P1")) Navigator.CallSubmit();
+            // No dpad button is pressed
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX,PlayerID.One) == 0 && (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY,PlayerID.One) == 0)) dpadPressed = false;
+            // Dpad right is pressed; treating as DPADRightOnDown
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX,PlayerID.One) > 0 && !dpadPressed)
+            {
+                dpadPressed = true;
+                Navigator.Navigate(Enums.MenuDirections.Right);
+            }
+            // Dpad right is pressed; treating as DPADLeftOnDown
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX,PlayerID.One) < 0 && !dpadPressed)
+            {
+                dpadPressed = true;
+                Navigator.Navigate(Enums.MenuDirections.Left);
+            }
+            // Dpad up is pressed; treating as DPADUpOnDown
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY,PlayerID.One) > 0 && !dpadPressed)
+            {
+                dpadPressed = true;
+                Navigator.Navigate(Enums.MenuDirections.Up);
+            }
+            // Dpad down is pressed; treating as DPADDownOnDown
+			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY,PlayerID.One) < 0 && !dpadPressed)
+            {
+                dpadPressed = true;
+                Navigator.Navigate(Enums.MenuDirections.Down);
+            }
+            
+
+			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A, PlayerID.One)) Navigator.CallSubmit();
         }
 
         public void CallSinglePlayer()
