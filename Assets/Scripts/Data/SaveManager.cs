@@ -83,7 +83,6 @@ namespace Assets.Scripts.Data
             if (!Directory.Exists(settingsDataPath)) Directory.CreateDirectory(settingsDataPath);
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(settingsDataPath + extension);
-            Debug.Log(settingsDataPath + extension);
 
             bf.Serialize(file, data);
             file.Close();
