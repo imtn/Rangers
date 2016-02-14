@@ -74,7 +74,7 @@ namespace Assets.Scripts.Data
             }
             // Load the last settings used
             //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
-            currentGameSettings = LoadManager.LoadGameSettingsXML("Kill");
+            currentGameSettings = LoadManager.LoadGameSettingsXML("Stock");
 
             // Initialize the tokens
             TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);
