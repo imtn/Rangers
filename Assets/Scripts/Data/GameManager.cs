@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Assets.Scripts.Level;
 using Assets.Scripts.Player;
@@ -60,6 +61,14 @@ namespace Assets.Scripts.Data
             // Call Init
             InitializeMatch();
         }
+
+		void OnLevelWasLoaded(int level)
+		{
+			// Reinitialize when restarting a match.
+			controllers = new List<Controller>();
+			numDead = 0;
+			InitializeMatch();
+		}
 
         /// <summary>
         /// Initializes the match when one is started
@@ -127,8 +136,17 @@ namespace Assets.Scripts.Data
         /// </summary>
         private void GameOver()
         {
-            Debug.Log("Match concluded");
+			Debug.Log("Match concluded");
+			CountdownTimer.CreateTimer(gameObject, 3f, "GameOver", ResetLevel);
         }
+
+		/// <summary>
+		/// Resets the scene.
+		/// </summary>
+		private void ResetLevel(CountdownTimer t)
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
 
         /// <summary>
         /// What happens when a player is killed.
