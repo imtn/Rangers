@@ -43,9 +43,10 @@ namespace Assets.Scripts.Player
         // Fires an arrow
         public void Fire()
         {
-			GameObject arrow = (GameObject)Instantiate(arrowPrefab, firePoint.position + (Vector3.up*0.5f), firePoint.rotation);
-			arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - bowPosition.position) * 20 * (strength+0.1f), ForceMode.Impulse);
+			GameObject arrow = (GameObject)Instantiate(arrowPrefab, bowPosition.position + (firePoint.position - bowPosition.position)/2f, firePoint.rotation);
+			arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - (bowPosition.position+Vector3.up*0.1f)) * 20 * (strength+0.1f), ForceMode.Impulse);
             arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
+			arrow.transform.FindChild("Model").GetComponent<TrailRenderer>().material.color = firePoint.GetComponent<SpriteRenderer>().color;
 			strength = 0;
         }
 
@@ -55,14 +56,25 @@ namespace Assets.Scripts.Player
         /// <param name="position">Position where the firepoint is set to</param>
         public void UpdateFirePoint(Vector3 position)
         {
-			if(Vector3.Distance(firePoint.localPosition, position) < 0.05f) {
-				IncreaseStrength();
+			IncreaseStrength();
+			firePoint.localPosition = position*strength*2f;
+
+			//Makes the curving aim line
+			Vector3[] linePoints = new Vector3[10];
+			float scale = 0.1f;
+			Vector3 aVel = (firePoint.position - (bowPosition.position+Vector3.up*0.1f)) * 20 * (strength+0.1f);
+			aVel = new Vector3(aVel.x,aVel.y);
+			Vector3 aPos = bowPosition.position + (firePoint.position - bowPosition.position)/2f;
+			for(int i = 0; i < linePoints.Length; i++) {
+				linePoints[i] = new Vector3(aPos.x, aPos.y);
+				aPos += aVel*scale;
+				aVel += Vector3.up*Physics.gravity.y*scale;
 			}
-            firePoint.localPosition = position;
+			firePoint.GetComponent<LineRenderer>().SetPositions(linePoints);
         }
 
 		private void IncreaseStrength() {
-			strength = Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime));
+			strength = Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime/2f));
 		}
 
 		public void UpdateBodyAim() {
@@ -95,6 +107,8 @@ namespace Assets.Scripts.Player
 
 		void LateUpdate() {
 			UpdateBodyAim();
+			if(strength == 0) firePoint.GetComponent<LineRenderer>().SetColors(Color.clear,Color.clear);
+			else firePoint.GetComponent<LineRenderer>().SetColors(firePoint.GetComponent<SpriteRenderer>().color, firePoint.GetComponent<SpriteRenderer>().color);
 		}
 
 		public void AimUpperBodyWithLegs() {
