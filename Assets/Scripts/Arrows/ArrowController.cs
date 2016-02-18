@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Data;
 using Assets.Scripts.Level;
 using Assets.Scripts.Player;
 using Assets.Scripts.Util;
@@ -26,6 +27,9 @@ namespace Assets.Scripts.Arrows
         private PlayerID fromPlayer, hitPlayer;
         // For ricochet arrows
         private float bounciness = 0;
+        // For tracking arrows
+        private float trackingTime = 0f;
+        private Controller trackingTarget;
 
         // Reference to arrowhead
         [SerializeField]
@@ -62,6 +66,33 @@ namespace Assets.Scripts.Arrows
 
         void Update()
         {
+            // Rotate the arrow towards the closest enemy if it is tracking
+            if (trackingTime > 0)
+            {
+                Debug.Log(trackingTime);
+                trackingTime -= Time.deltaTime;
+                if (trackingTarget == null)
+                {
+                    // Find closest enemy player
+                    float minDistance = 0f;
+                    foreach (Controller player in GameManager.instance.AllPlayers)
+                    {
+                        float distance = Vector3.Distance(transform.position, player.transform.position);
+                        if (!PlayerID.One.Equals(fromPlayer) && (trackingTarget == null || distance < minDistance))
+                        {
+                            trackingTarget = player;
+                            minDistance = distance;
+                        }
+                    }
+                }
+                else
+                {
+                    // Rotate the arrow
+                    Vector3 direction = trackingTarget.transform.position - transform.position;
+                    direction /= direction.magnitude;
+                    rigidbody.velocity = rigidbody.velocity.magnitude * direction;
+                }
+            }
             // Point the arrow the direction it is travelling
             if (rigidbody != null && rigidbody.velocity != Vector3.zero)
             {
@@ -182,6 +213,10 @@ namespace Assets.Scripts.Arrows
                     return gameObject.AddComponent<GhostArrow>();
                 case Enums.Arrows.Gravity:
                     return gameObject.AddComponent<GravityArrow>();
+                case Enums.Arrows.Tracking:
+                    rigidbody.useGravity = false;
+                    trackingTime = TrackingArrow.trackingTime;
+                    return gameObject.AddComponent<TrackingArrow>();
                 default:
                     return gameObject.AddComponent<NormalArrow>();
             }
