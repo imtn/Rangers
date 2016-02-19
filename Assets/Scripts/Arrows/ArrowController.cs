@@ -189,8 +189,9 @@ namespace Assets.Scripts.Arrows
             }
         }
 
-		public float GetDamage() {
-			return damage;
+		public float Damage
+        {
+			get { return damage; }
 		}
     }
 }
