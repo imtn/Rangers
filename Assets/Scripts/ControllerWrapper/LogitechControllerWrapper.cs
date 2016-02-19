@@ -56,18 +56,23 @@ public class LogitechControllerWrapper : ControllerInputWrapper {
         return 0;
     }
 
-    public override bool GetButton(Buttons button, bool isDown = false)
+    public override bool GetButton(Buttons button)
     {
         string buttonName = GetButtonHelper(button);
 		if(buttonName != null) {
-			if (isDown)
-			{
-				return Input.GetButtonDown(buttonName);
-			}
 			return Input.GetButton(buttonName);
 		}
 		return false;
     }
+
+	public override bool GetButtonDown(Buttons button)
+	{
+		string buttonName = GetButtonHelper(button);
+		if(buttonName != null) {
+			return Input.GetButtonDown(buttonName);
+		}
+		return false;
+	}
 
     public override bool GetButtonUp(Buttons button)
     {

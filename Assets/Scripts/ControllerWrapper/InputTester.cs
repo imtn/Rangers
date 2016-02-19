@@ -7,16 +7,12 @@ public class InputTester : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ControllerManager test = new ControllerManager();
+		DontDestroyOnLoad(this.gameObject);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		if(Input.anyKeyDown) {
-			ControllerManager.instance.AddPlayer(ControllerInputWrapper.Buttons.Start);
-
-//			ControllerManager.instance.AllowPlayerRemoval(ControllerInputWrapper.Buttons.B);
-		}
-
+//		Debug.Log(ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.A,PlayerID.One));
+		ControllerManager.instance.AddPlayer(ControllerInputWrapper.Buttons.Start);
 	}
 }
