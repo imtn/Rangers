@@ -97,13 +97,13 @@ namespace Assets.Scripts.UI.Profiles
                 timer += Time.deltaTime;
             }
             // A button is pressed
-			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A, PlayerID.One, true))
+			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.A, PlayerID.One))
             {
                 // Debug - add letter to overall string
                 t.text += capital ? characters[index].ToString() : characters[index].ToString().ToLower();
             }
             // Left joystick button is pressed
-			if(ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.LeftStickClick, PlayerID.One, true))
+			if(ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.LeftStickClick, PlayerID.One))
             {
                 // Check capitalization
                 if(capital)
@@ -120,9 +120,9 @@ namespace Assets.Scripts.UI.Profiles
                 }
             }
             // Y button is pressed; add a space
-			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.Y, PlayerID.One, true)) t.text += " ";
+			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Y, PlayerID.One)) t.text += " ";
             // X button is pressed; delete last character added
-			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.X, PlayerID.One, true) && t.text != "") t.text = t.text.Remove(t.text.Length - 1); 
+			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.X, PlayerID.One) && t.text != "") t.text = t.text.Remove(t.text.Length - 1); 
             // Have dpad functionality so that player can have precise control and joystick quick navigation
             // Check differently for Windows vs OSX
 
