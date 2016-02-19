@@ -12,7 +12,6 @@ public class InputTester : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		Debug.Log(ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.A,PlayerID.One));
 		ControllerManager.instance.AddPlayer(ControllerInputWrapper.Buttons.Start);
 	}
 }
