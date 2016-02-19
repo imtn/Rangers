@@ -12,11 +12,13 @@ public class InputTester : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.anyKeyDown) {
-			ControllerManager.instance.AddPlayer(ControllerInputWrapper.Buttons.Start);
+		if(Input.anyKeyDown)
+        {
+            ControllerManager.instance.AddPlayer(ControllerInputWrapper.Buttons.Start);
+            ControllerManager.instance.AddPlayer(ControllerInputWrapper.Buttons.Start);
 
-//			ControllerManager.instance.AllowPlayerRemoval(ControllerInputWrapper.Buttons.B);
-		}
+            //			ControllerManager.instance.AllowPlayerRemoval(ControllerInputWrapper.Buttons.B);
+        }
 
 	}
 }

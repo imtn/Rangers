@@ -69,29 +69,39 @@ namespace Assets.Scripts.Arrows
             // Rotate the arrow towards the closest enemy if it is tracking
             if (trackingTime > 0)
             {
-                Debug.Log(trackingTime);
-                trackingTime -= Time.deltaTime;
-                if (trackingTarget == null)
+                // Find closest enemy player
+                if (trackingTarget == null || !trackingTarget.GetComponent<Rigidbody>().isKinematic)
                 {
-                    // Find closest enemy player
+                    trackingTarget = null;
                     float minDistance = 0f;
                     foreach (Controller player in GameManager.instance.AllPlayers)
                     {
                         float distance = Vector3.Distance(transform.position, player.transform.position);
-                        if (!PlayerID.One.Equals(fromPlayer) && (trackingTarget == null || distance < minDistance))
+                        if (!player.GetComponent<Rigidbody>().isKinematic 
+                            && !player.ID.Equals(fromPlayer) && (trackingTarget == null || distance < minDistance))
                         {
                             trackingTarget = player;
                             minDistance = distance;
                         }
                     }
                 }
-                else
+                // Changes arrow direction
+                if (trackingTarget != null)
                 {
-                    // Rotate the arrow
-                    Vector3 direction = trackingTarget.transform.position - transform.position;
+                    Vector3 direction = trackingTarget.transform.position - transform.position + new Vector3(0, 1, 0);
                     direction /= direction.magnitude;
-                    rigidbody.velocity = rigidbody.velocity.magnitude * direction;
+                    float magnitude = rigidbody.velocity.magnitude;
+                    // Ceiling used to prevent excess time from accumulating
+                    int iterations = Mathf.CeilToInt((trackingTime + Time.deltaTime) * 10) - Mathf.CeilToInt(trackingTime * 10);
+                    for (int i = 0; i < iterations; i++)
+                    {
+                        // Alters direction - Modify last value to change tracking intensity
+                        rigidbody.velocity += direction * Mathf.Pow(magnitude, 2) / 25;
+                        // Scales magnitude back to original
+                        rigidbody.velocity /= rigidbody.velocity.magnitude / magnitude;
+                    }
                 }
+                trackingTime -= Time.deltaTime;
             }
             // Point the arrow the direction it is travelling
             if (rigidbody != null && rigidbody.velocity != Vector3.zero)
