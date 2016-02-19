@@ -136,17 +136,17 @@ namespace Assets.Scripts.Data
         /// </summary>
         private void GameOver()
         {
-			Debug.Log("Match concluded");
-			CountdownTimer.CreateTimer(gameObject, 3f, "GameOver", ResetLevel);
+            Debug.Log("Match concluded");
+            CountdownTimer.CreateTimer(gameObject, 3f, "GameOver", ResetLevel);
         }
 
-		/// <summary>
-		/// Resets the scene.
-		/// </summary>
-		private void ResetLevel(CountdownTimer t)
-		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		}
+        /// <summary>
+        /// Resets the scene.
+        /// </summary>
+        private void ResetLevel(CountdownTimer t)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
         /// <summary>
         /// What happens when a player is killed.
