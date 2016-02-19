@@ -13,9 +13,10 @@ namespace Assets.Scripts.Player.AI
 
 		public void ChooseAction(AIController controller)
 		{
+			controller.aim = Vector3.Normalize(controller.opponent.transform.position - controller.transform.position);
 			if (controller.aiming)
 			{
-				if (controller.ArcheryComponent.StrengthPercentage > 0.5)
+				if (controller.ArcheryComponent.StrengthPercentage > 0.9)
 				{
 					controller.aiming = false;
 				}
@@ -24,8 +25,6 @@ namespace Assets.Scripts.Player.AI
 			{
 				if (fireCooldown++ > COOLDOWNTIME)
 				{
-					controller.aim = Vector3.Normalize(controller.opponent.transform.position - controller.transform.position);
-					Debug.Log(controller.aim);
 					controller.aiming = true;
 					fireCooldown = 0;
 				}
