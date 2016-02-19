@@ -34,6 +34,7 @@ public class PS4ControllerWrapper : ControllerInputWrapper {
 				break;
 			case Axis.DPadY:
 				axisName = getAxisName("8", "8", "8");
+				scale = -1;
 				break;
         }
         //Debug.Log(axisName);
@@ -47,18 +48,23 @@ public class PS4ControllerWrapper : ControllerInputWrapper {
         }
     }
 
-    public override bool GetButton(Buttons button, bool isDown = false)
+    public override bool GetButton(Buttons button)
     {
         string buttonName = GetButtonHelper(button);
 		if(buttonName != null) {
-			if (isDown)
-	        {
-	            return Input.GetButtonDown(buttonName);
-	        }
 	        return Input.GetButton(buttonName);
 		}
 		return false;
     }
+
+	public override bool GetButtonDown(Buttons button)
+	{
+		string buttonName = GetButtonHelper(button);
+		if(buttonName != null) {
+			return Input.GetButtonDown(buttonName);
+		}
+		return false;
+	}
 
     public override string GetButtonHelper(Buttons button)
     {
