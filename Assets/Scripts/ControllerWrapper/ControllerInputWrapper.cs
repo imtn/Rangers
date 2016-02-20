@@ -38,9 +38,11 @@ public abstract class ControllerInputWrapper
     public enum Buttons { A, B, X, Y, RightBumper, LeftBumper, Back, Start, LeftStickClick, RightStickClick, Key_1, Key_2, Key_3, Key_4, Key_Fire, Key_Confirm};
     public enum Triggers { RightTrigger, LeftTrigger };
 
-    public abstract bool GetButton(Buttons button, bool isDown = false);
+	public abstract bool GetButton(Buttons button);
 
-    public abstract bool GetButtonUp(Buttons button);
+	public abstract bool GetButtonDown(Buttons button);
+
+	public abstract bool GetButtonUp(Buttons button);
 
     public abstract float GetAxis(Axis axis, bool isRaw = false);
 
@@ -71,6 +73,10 @@ public abstract class ControllerInputWrapper
 		}
 
 		return false;
+	}
+
+	public override int GetHashCode () {
+		return base.GetHashCode ();
 	}
 
     protected virtual string getButtonName(string winID, string linID, string osxID)

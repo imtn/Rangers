@@ -102,19 +102,18 @@ public class XboxControllerWrapper : ControllerInputWrapper {
 		return buttonName;
 	}
 
-    public override bool GetButton(Buttons button, bool isDown = false)
+    public override bool GetButton(Buttons button)
     {
 		string buttonName = GetButtonHelper(button);
-        if (isDown)
-        {
-            return Input.GetButtonDown(buttonName);
-        }
-        else
-        {
-            return Input.GetButton(buttonName);
-        }
+        return Input.GetButton(buttonName);
     }
 
+
+	public override bool GetButtonDown(Buttons button)
+	{
+		string buttonName = GetButtonHelper(button);
+		return Input.GetButtonDown(buttonName);
+	}
     
 
     public override bool GetButtonUp(Buttons button)
