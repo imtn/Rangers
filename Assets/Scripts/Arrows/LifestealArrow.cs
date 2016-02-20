@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Data;
+using Assets.Scripts.Player;
 
 namespace Assets.Scripts.Arrows
 {
@@ -7,14 +9,13 @@ namespace Assets.Scripts.Arrows
 	/// </summary>
 	public class LifestealArrow : ArrowProperty
 	{
-
 		public override void Effect(PlayerID hitPlayer)
 		{
 			// If a player was hit
 			if (hitPlayer != 0)
 			{
-				Player.Controller sourceController = Data.GameManager.instance.GetPlayer(fromPlayer);
-				float damage = GetComponent<ArrowController>().GetDamage();
+				Controller sourceController = GameManager.instance.GetPlayer(fromPlayer);
+				float damage = GetComponent<ArrowController>().Damage;
 				sourceController.LifeComponent.ModifyHealth(damage);
 			}
 		}

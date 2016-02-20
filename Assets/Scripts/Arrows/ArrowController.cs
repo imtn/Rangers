@@ -184,13 +184,19 @@ namespace Assets.Scripts.Arrows
                     return gameObject.AddComponent<GravityArrow>();
 				case Enums.Arrows.Lifesteal:
 					return gameObject.AddComponent<LifestealArrow>();
+				case Enums.Arrows.Virus:
+					return gameObject.AddComponent<VirusArrow>();
                 default:
                     return gameObject.AddComponent<NormalArrow>();
             }
         }
 
-		public float GetDamage() {
-			return damage;
+		/// <summary>
+		/// Damage dealt by the arrow
+		/// </summary>
+		public float Damage 
+		{
+			get { return damage; }
 		}
     }
 }
