@@ -136,26 +136,34 @@ namespace Assets.Scripts.Player
             // Handle what type of token was collected
             if (token.GetType().Equals(typeof(ArrowToken)))
             {
-                // Find the running timer associated with the token
-                TokenTimer t = timers.Find(i => i.ID.Equals(((ArrowToken)token).Type.ToString()));
-                // If the token has not been collected yet
-                if (t == null)
-                {
-                    // Add a new Token Timer and initialize it
-                    TokenTimer tt = gameObject.AddComponent<TokenTimer>();
-                    tt.Initialize(TokenTimer.TOKEN_INTERVAL, ((ArrowToken)token).Type.ToString());
-                    // Make sure that the token is removed from the component when the timer times out
-                    tt.TimeOut += new TokenTimer.TimerEvent(RemoveToken);
-                    types = Bitwise.SetBit(types, (int)tt.TokenType);
-                    timers.Add(tt);
-                }
-                else
-                {
-                    // Token has already been collected so we just need to reset the timer
-                    t.Reset();
-                }
+				AddArrowType(((ArrowToken)token).Type);
             }
         }
+
+		public void AddArrowType(Enums.Arrows type)
+		{
+			if(type > 0 && type < Enums.Arrows.NumTypes)
+			{
+				// Find the running timer associated with the type
+				TokenTimer t = timers.Find(i => i.ID.Equals(type.ToString()));
+				// If the type has not been added yet
+				if (t == null)
+				{
+					// Add a new Token Timer and initialize it
+					TokenTimer tt = gameObject.AddComponent<TokenTimer>();
+					tt.Initialize(TokenTimer.TOKEN_INTERVAL, type.ToString());
+					// Make sure that the type is removed from the component when the timer times out
+					tt.TimeOut += new TokenTimer.TimerEvent(RemoveToken);
+					types = Bitwise.SetBit(types, (int)type);
+					timers.Add(tt);
+				}
+				else
+				{
+					// Type has already been added so we just need to reset the timer
+					t.Reset();
+				}
+			}
+		}
 
         // Removes the token from the types the player has collected
         private void RemoveToken(TokenTimer tt)
@@ -179,16 +187,19 @@ namespace Assets.Scripts.Player
             timers.Clear();
         }
 
-		public float StrengthPercentage {
-			get {
-				return strength/MAX_STRENGTH;
-			}
+		public float StrengthPercentage
+		{
+			get { return strength/MAX_STRENGTH; }
 		}
 
-		public bool UpperBodyFacingRight {
-			get {
-				return upperBodyFacingRight;
-			}
+		public bool UpperBodyFacingRight 
+		{
+			get { return upperBodyFacingRight; }
+		}
+
+		public int ArrowTypes 
+		{
+			get { return types; }
 		}
 	}
 }
