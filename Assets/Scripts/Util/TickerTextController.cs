@@ -5,14 +5,14 @@ using UnityEngine.UI;
 public class TickerTextController : MonoBehaviour {
 
 	private static string newsTicker = "|News| World News: The government has banned Twitter due to a miscommunication" +
-		" on Twitter that implied that Twitter CEO Alex Hyuhn is a Neo-Communist # |Sports| Rangers: The Fire Ferrets" +
-		" recently took on the much better funded Wet Weasels in the most unexpectedly boring match of the Doubles season, the" +
-		" game ended in a dissapointing tie # |Sports| Football: Yet again, there is no football this year. No one cares about" +
-		" football at all anymore # |News| Entertainment: Will Smith died yesterday, after living to the age of 230 by drinking" +
-		" nothing but Pepsi, which is notably one of his corporate sponsors # |Entertainment| Music: Kelly Clarkson has returned" +
-		" from the dead, upsetting many long time Kelly Clarkson fans # |News| World News: Russia 2 has declared war on Earth 3" +
-		" effectively ending the 10 year cabbage embargo. Martians are very concerned about their cabbages, as we all know that" +
-		" cabbages are an important aspect of the Martian economy";
+		" on Twitter that implied that Twitter CEO Alex Huynh is a Neo-Communist. # |Sports| Rangers: The Fire Ferrets" +
+		" recently took on the much better funded Wet Weasels in the most unexpectedly boring match of the Doubles season; the" +
+		" game ended in a disappointing tie. # |Sports| Football: Yet again, there is no football this year. No one cares about" +
+		" football at all anymore. # |News| Entertainment: Will Smith died yesterday, after living to the age of 230 by drinking" +
+		" nothing but Pepsi, which is notably one of his corporate sponsors. # |Entertainment| Music: Kelly Clarkson has returned" +
+		" from the dead, upsetting many long-time Kelly Clarkson fans. # |News| World News: Russia 2 has declared war on Earth 3" +
+		" effectively ending the 10-year cabbage embargo. Martians are very concerned about their cabbages, as we all know that" +
+		" cabbages are an important aspect of the Martian economy.";
 
 	private static string[] separatedNews;
 	private Text tickerText1, tickerText2;
