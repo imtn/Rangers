@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Assets.Scripts.Level;
 using Assets.Scripts.Player;
@@ -61,6 +62,14 @@ namespace Assets.Scripts.Data
             InitializeMatch();
         }
 
+		void OnLevelWasLoaded(int level)
+		{
+			// Reinitialize when restarting a match.
+			controllers = new List<Controller>();
+			numDead = 0;
+			InitializeMatch();
+		}
+
         /// <summary>
         /// Initializes the match when one is started
         /// </summary>
@@ -74,7 +83,7 @@ namespace Assets.Scripts.Data
             }
             // Load the last settings used
             //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
-            currentGameSettings = LoadManager.LoadGameSettingsXML("Kill");
+            currentGameSettings = LoadManager.LoadGameSettingsXML("Stock");
 
             // Initialize the tokens
             TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);
@@ -128,6 +137,15 @@ namespace Assets.Scripts.Data
         private void GameOver()
         {
             Debug.Log("Match concluded");
+            CountdownTimer.CreateTimer(gameObject, 3f, "GameOver", ResetLevel);
+        }
+
+        /// <summary>
+        /// Resets the scene.
+        /// </summary>
+        private void ResetLevel(CountdownTimer t)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         /// <summary>
