@@ -229,13 +229,18 @@ namespace Assets.Scripts.Arrows
                     rigidbody.useGravity = false;
                     trackingTime = TrackingArrow.trackingTime;
                     return gameObject.AddComponent<TrackingArrow>();
+				case Enums.Arrows.Virus:
+					return gameObject.AddComponent<VirusArrow>();
                 default:
                     return gameObject.AddComponent<NormalArrow>();
             }
         }
 
-		public float Damage
-        {
+		/// <summary>
+		/// Damage dealt by the arrow
+		/// </summary>
+		public float Damage 
+		{
 			get { return damage; }
 		}
     }
