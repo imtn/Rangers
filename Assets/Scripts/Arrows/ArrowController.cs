@@ -21,6 +21,8 @@ namespace Assets.Scripts.Arrows
         [SerializeField]
         private LayerMask doNotActivate;
 
+        // Limit types you can have to be only 3
+        private int MAX_TYPES = 3;
         // Damage to be dealt when hit by an arrow
         private float damage = 10f;
         // Player IDs for passing along information
@@ -152,6 +154,7 @@ namespace Assets.Scripts.Arrows
             {
                 // Reflect the arrow to bounce off object
                 rigidbody.velocity = Vector3.Reflect(prevVelocity, col.contacts[0].normal);
+                rigidbody.velocity = Vector3.Scale(rigidbody.velocity, new Vector3(1, 1, 0));
             }
         }
 
