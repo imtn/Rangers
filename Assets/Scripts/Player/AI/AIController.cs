@@ -60,6 +60,7 @@ namespace Assets.Scripts.Player.AI
 		{
 			if (opponent == null || life.Health <= 0) {
 				aiming = false;
+				return;
 			} else {
 				foreach (IPolicy policy in policies) {
 					policy.ChooseAction(this);
