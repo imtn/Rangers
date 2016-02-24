@@ -19,6 +19,8 @@ namespace Assets.Scripts.Player
 
 		public void Locomote(float motion) {
 
+			transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+
 			if(motion > 0) {
 				facingRight = true;
 			} else if (motion < 0) {
