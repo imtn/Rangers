@@ -58,6 +58,8 @@ namespace Assets.Scripts.Player
 				//if the joystick isn't pushed in any direction then align the upper body with the legs
 				archery.AimUpperBodyWithLegs();
 			}
+
+            //if (invincibleFrames > 0) invincibleFrames--;
         }
 
 		void FixedUpdate() {

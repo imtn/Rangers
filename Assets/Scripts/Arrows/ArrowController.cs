@@ -94,16 +94,22 @@ namespace Assets.Scripts.Arrows
                     direction /= direction.magnitude;
                     float magnitude = rigidbody.velocity.magnitude;
                     // Ceiling used to prevent excess time from accumulating
-                    int iterations = Mathf.CeilToInt((trackingTime + Time.deltaTime) * 10) - Mathf.CeilToInt(trackingTime * 10);
-                    for (int i = 0; i < iterations; i++)
-                    {
-                        // Alters direction - Modify last value to change tracking intensity
-                        rigidbody.velocity += direction * Mathf.Pow(magnitude, 2) / 25;
+                    //int iterations = Mathf.CeilToInt((trackingTime + Time.deltaTime) * 10) - Mathf.CeilToInt(trackingTime * 10);
+                    //for (int i = 0; i < iterations; i++)
+                    //{
+                    // Alters direction - Modify last value to change tracking intensity
+                    //rigidbody.velocity += direction * Mathf.Pow(magnitude, 2) / 25;
+                    rigidbody.AddForce(direction * 200);
+                    if (rigidbody.velocity.magnitude > 25) rigidbody.velocity /= magnitude * Time.deltaTime;
                         // Scales magnitude back to original
-                        rigidbody.velocity /= rigidbody.velocity.magnitude / magnitude;
-                    }
+                        //rigidbody.velocity /= rigidbody.velocity.magnitude / magnitude;
+                    //}
                 }
                 trackingTime -= Time.deltaTime;
+            }
+            else
+            {
+                rigidbody.useGravity = true;
             }
             // Point the arrow the direction it is travelling
             if (rigidbody != null && rigidbody.velocity != Vector3.zero)

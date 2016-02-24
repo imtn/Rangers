@@ -18,7 +18,7 @@ namespace Assets.Scripts.Attacks
 
         void Start()
         {
-            damage = 20f;
+            damage = 5;
 			transform.localScale = new Vector3 (maxSize, maxSize, maxSize);
 			Destroy(GetComponent<Collider>(),0.1f);
 			Destroy(gameObject,1f);
@@ -27,11 +27,10 @@ namespace Assets.Scripts.Attacks
         void OnTriggerEnter(Collider col)
         {
 			if ((doNotActivate.value & (1 << col.gameObject.layer)) != 0) return;
-
 			// Hit the player and damage
 			if (col.transform.tag.Equals ("Player"))
 			{
-				Controller controller = col.transform.GetComponent<Controller>();
+				Controller controller = col.transform.root.GetComponent<Controller>();
 				controller.LifeComponent.ModifyHealth(-damage);
 				hitPlayer = controller.ID;
 			}
