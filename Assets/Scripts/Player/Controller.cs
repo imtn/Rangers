@@ -27,6 +27,9 @@ namespace Assets.Scripts.Player
         protected Archery archery;
         protected Profile profile;
 
+        public const int INVINCIBLE_FRAMES = 2;
+        protected int invincibleFrames = INVINCIBLE_FRAMES;
+
 		//Body parts for fun destruction
 		private List<RobotBodyPart> bodyParts;
 
@@ -127,6 +130,17 @@ namespace Assets.Scripts.Player
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public int InvincibleFrames
+        {
+            get { return invincibleFrames; }
+            set { invincibleFrames = value; }
+        }
+
+        public bool Invincible
+        {
+            get { return invincibleFrames > 0; }
         }
         #endregion
     }

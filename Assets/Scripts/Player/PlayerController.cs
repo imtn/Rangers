@@ -56,6 +56,8 @@ namespace Assets.Scripts.Player
 					archery.AimUpperBodyWithLegs();
 				}
 			}
+
+            //if (invincibleFrames > 0) invincibleFrames--;
         }
 
 		void FixedUpdate() {
