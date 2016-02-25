@@ -21,7 +21,7 @@ namespace Assets.Scripts.Player
         // Distance from firePoint to player
         protected float distanceToPlayer = 1.5f;
 
-        // Componenets to manage
+        // Components to manage
         protected Parkour parkour;
         protected Life life;
         protected Archery archery;
@@ -35,7 +35,7 @@ namespace Assets.Scripts.Player
 
         void Awake()
         {
-            // Init all componenets
+            // Initialize all componenets
             InitializePlayerComponents();
         }
 

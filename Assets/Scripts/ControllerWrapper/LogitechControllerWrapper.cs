@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class LogitechControllerWrapper : ControllerInputWrapper {
+public class LogitechControllerWrapper : ControllerInputWrapper 
+{
 
 	public LogitechControllerWrapper(int joyNum) : base(joyNum)
 	{

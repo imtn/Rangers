@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class XboxControllerWrapper : ControllerInputWrapper {
+public class XboxControllerWrapper : ControllerInputWrapper 
+{
 
 	public XboxControllerWrapper(int joyNum) : base(joyNum)
 	{
