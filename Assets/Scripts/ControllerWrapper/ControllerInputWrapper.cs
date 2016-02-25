@@ -75,6 +75,10 @@ public abstract class ControllerInputWrapper
 		return false;
 	}
 
+	public override int GetHashCode () {
+		return base.GetHashCode ();
+	}
+
     protected virtual string getButtonName(string winID, string linID, string osxID)
     {
 		string buttonName = "j" + (joyNum+1) + "_Button";

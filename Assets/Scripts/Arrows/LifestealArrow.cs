@@ -14,6 +14,7 @@ namespace Assets.Scripts.Arrows
 			// If a player was hit
 			if (hitPlayer != 0)
 			{
+
 				Controller sourceController = GameManager.instance.GetPlayer(fromPlayer);
 				float damage = GetComponent<ArrowController>().Damage;
 				sourceController.LifeComponent.ModifyHealth(damage);
