@@ -175,6 +175,7 @@ namespace Assets.Scripts.Arrows
 				Controller controller = col.transform.root.GetComponent<Controller>();
                 controller.LifeComponent.ModifyHealth(-damage, fromPlayer);
                 hitPlayer = controller.ID;
+				trackingTime = 0f;
             }
 			else if (col.transform.root.tag.Equals("Target"))
             {
@@ -240,6 +241,8 @@ namespace Assets.Scripts.Arrows
                     return gameObject.AddComponent<TrackingArrow>();
 				case Enums.Arrows.Virus:
 					return gameObject.AddComponent<VirusArrow>();
+				case Enums.Arrows.Splitting:
+					return gameObject.AddComponent<SplittingArrow>();
                 default:
                     return gameObject.AddComponent<NormalArrow>();
             }
