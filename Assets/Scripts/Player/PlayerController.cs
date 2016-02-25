@@ -60,9 +60,11 @@ namespace Assets.Scripts.Player
             //if (invincibleFrames > 0) invincibleFrames--;
         }
 
-		void FixedUpdate() {
+		void FixedUpdate() 
+		{
 			//This has to happen every fixed update as of now, can't think of a better way to handle it --kartik
-			if(life.Health > 0) {
+			if(life.Health > 0) 
+			{
 				parkour.Locomote(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX, id));
 			}
 		}
