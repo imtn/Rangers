@@ -2,7 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class TickerTextController : MonoBehaviour {
+public class TickerTextController : MonoBehaviour 
+{
 
 	private static string newsTicker = "|News| World News: The government has banned Twitter due to a miscommunication" +
 		" on Twitter that implied that Twitter CEO Alex Hyuhn is a Neo-Communist # |Sports| Rangers: The Fire Ferrets" +
@@ -23,7 +24,8 @@ public class TickerTextController : MonoBehaviour {
 	private float movingTimer;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		movingTimer = maxMovingTimer;
 		tickerText1 = transform.GetChild(0).GetComponent<Text>();
 		tickerText2 = transform.GetChild(1).GetComponent<Text>();
@@ -31,19 +33,25 @@ public class TickerTextController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (nextString == null) {
+	void Update () 
+	{
+		if (nextString == null) 
+		{
 			nextString = separatedNews[(int)(Random.value*separatedNews.Length)];
-		} else {
+		} 
+		else 
+		{
 			tickerText1.transform.Translate(Vector3.left*Time.deltaTime*100f);
 			tickerText2.transform.Translate(Vector3.left*Time.deltaTime*100f);
-			if(tickerText1.rectTransform.anchoredPosition.x < -tickerText1.rectTransform.sizeDelta.x) {
+			if(tickerText1.rectTransform.anchoredPosition.x < -tickerText1.rectTransform.sizeDelta.x) 
+			{
 				tickerText1.text = nextString;
 				tickerText1.rectTransform.sizeDelta = new Vector2(tickerText1.text.Length*13, tickerText1.rectTransform.sizeDelta.y);
 				nextString = null;
 				tickerText1.rectTransform.anchoredPosition = new Vector2(tickerText2.rectTransform.anchoredPosition.x + tickerText2.rectTransform.sizeDelta.x, tickerText1.rectTransform.anchoredPosition.y);
 			}
-			if (tickerText2.rectTransform.anchoredPosition.x < -tickerText2.rectTransform.sizeDelta.x) {
+			if (tickerText2.rectTransform.anchoredPosition.x < -tickerText2.rectTransform.sizeDelta.x) 
+			{
 				tickerText2.text = nextString;
 				tickerText2.rectTransform.sizeDelta = new Vector2(tickerText2.text.Length*13, tickerText2.rectTransform.sizeDelta.y);
 				nextString = null;

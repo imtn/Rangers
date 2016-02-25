@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class PS4ControllerWrapper : ControllerInputWrapper {
+public class PS4ControllerWrapper : ControllerInputWrapper 
+{
 
 	public PS4ControllerWrapper(int joyNum) : base(joyNum)
 	{

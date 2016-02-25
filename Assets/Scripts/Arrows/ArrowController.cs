@@ -7,7 +7,7 @@ using Assets.Scripts.Util;
 namespace Assets.Scripts.Arrows
 {
     /// <summary>
-    /// Controls the different components of the arrow and activates all the effects upon inpact.
+    /// Controls the different components of the arrow and activates all the effects upon impact.
     /// </summary>
     public class ArrowController : MonoBehaviour
     {
@@ -199,7 +199,7 @@ namespace Assets.Scripts.Arrows
             if (types == 0) return;
             for(int i = 0; i < (int)Enums.Arrows.NumTypes; i++)
             {
-                // Check to see if the type exists int he current arrow
+                // Check to see if the type exists in the current arrow
                 if(Bitwise.IsBitOn(types, i))
                 {
                     // Add an arrow property and update the delegates
@@ -212,7 +212,7 @@ namespace Assets.Scripts.Arrows
             }
         }
 
-        /// Used to add the appropriatre script to the gameobject
+        /// Used to add the appropriate script to the gameobject
         private ArrowProperty GetArrowProperty(Enums.Arrows type)
         {
             switch(type)

@@ -64,18 +64,21 @@ public abstract class ControllerInputWrapper
 		}
 
 		ControllerInputWrapper test = obj as ControllerInputWrapper;
-		if ((System.Object)test == null) {
+		if ((System.Object)test == null) 
+		{
 			return false;
 		}
 
-		if(test.joyNum == this.joyNum) {
+		if(test.joyNum == this.joyNum) 
+		{
 			return true;
 		}
 
 		return false;
 	}
 
-	public override int GetHashCode () {
+	public override int GetHashCode () 
+	{
 		return base.GetHashCode ();
 	}
 
