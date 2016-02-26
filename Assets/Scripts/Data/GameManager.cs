@@ -13,6 +13,7 @@ namespace Assets.Scripts.Data
     /// </summary>
     public class GameManager : MonoBehaviour
     {
+        public string settingsName = "Stock";
         /// <summary>
         /// Use a singleton instance to make sure there is only one
         /// </summary>
@@ -83,7 +84,7 @@ namespace Assets.Scripts.Data
             }
             // Load the last settings used
             //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
-            currentGameSettings = LoadManager.LoadGameSettingsXML("Stock");
+            currentGameSettings = LoadManager.LoadGameSettingsXML(settingsName);
 
             // Initialize the tokens
             TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);
