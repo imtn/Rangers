@@ -137,7 +137,7 @@ namespace Assets.Scripts.Data
         /// </summary>
         private void GameOver()
         {
-            Debug.Log("Match concluded");
+            //Debug.Log("Match concluded");
             CountdownTimer.CreateTimer(gameObject, 3f, "GameOver", ResetLevel);
         }
 
