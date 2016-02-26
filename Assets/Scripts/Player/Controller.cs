@@ -39,7 +39,7 @@ namespace Assets.Scripts.Player
             InitializePlayerComponents();
         }
 
-        void Start()
+        protected void Start()
         {
             // Initialize the effect timers list
             effectTimers = new List<Timer>();
