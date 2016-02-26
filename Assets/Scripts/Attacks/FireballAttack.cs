@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Player;
+using Assets.Scripts.Level;
 
 namespace Assets.Scripts.Attacks
 {
@@ -28,14 +29,19 @@ namespace Assets.Scripts.Attacks
         {
 			if ((doNotActivate.value & (1 << col.gameObject.layer)) != 0) return;
 			// Hit the player and damage
-			if (col.transform.tag.Equals ("Player"))
+			if (col.transform.root.tag.Equals ("Player"))
 			{
 				Controller controller = col.transform.root.GetComponent<Controller>();
 				controller.LifeComponent.ModifyHealth(-damage);
 				hitPlayer = controller.ID;
-			}
-			// Apply an explosion force to the object hit
-			col.transform.root.GetComponent<Rigidbody> ().AddExplosionForce (200f, transform.position, 10);
+                // Apply an explosion force to the object hit
+                col.transform.root.GetComponent<Rigidbody>().AddExplosionForce(200f, transform.position, 10);
+            }
+            else if (col.transform.tag.Equals("Target"))
+            {
+                Debug.Log(col.transform.name);
+                col.gameObject.GetComponent<Target>().TargetHit(fromPlayer);
+            }
         }
     } 
 }
