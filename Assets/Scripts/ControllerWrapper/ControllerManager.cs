@@ -29,14 +29,14 @@ public class ControllerManager  {
 		}
 	}
 
-	public void AddPlayer(ControllerInputWrapper.Buttons connectCode) {
+	public bool AddPlayer(ControllerInputWrapper.Buttons connectCode) {
 		KeyboardWrapper kw = new KeyboardWrapper(-1);
 		if(!playerControls.ContainsValue(kw) && kw.GetButton(connectCode)) {
 			for(int j = 1; j < 5; j++) {
 				if(!playerControls.ContainsKey((PlayerID)j)) {
 					playerControls.Add((PlayerID)(j), kw);
 					Debug.Log((PlayerID)(j) + ": " + kw + " added");
-					return;
+					return true;
 				}
 			}
 		}
@@ -49,12 +49,13 @@ public class ControllerManager  {
 						if(!playerControls.ContainsKey((PlayerID)j)) {
 							playerControls.Add((PlayerID)(j), ciw);
 							Debug.Log((PlayerID)(j) + ": " + ciw + " added");
-							break;
+							return true;
 						}
 					}
 				}
 			}
 		}
+		return false;
 	}
 
 	public void AllowPlayerRemoval(ControllerInputWrapper.Buttons removalButton) {
