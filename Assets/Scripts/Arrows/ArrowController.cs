@@ -231,6 +231,8 @@ namespace Assets.Scripts.Arrows
                     return gameObject.AddComponent<TrackingArrow>();
 				case Enums.Arrows.Virus:
 					return gameObject.AddComponent<VirusArrow>();
+                case Enums.Arrows.HeavyKnockback:
+                    return gameObject.AddComponent<HeavyKnockbackArrow>();
                 default:
                     return gameObject.AddComponent<NormalArrow>();
             }
