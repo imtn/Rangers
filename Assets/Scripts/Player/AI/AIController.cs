@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Data;
 
 namespace Assets.Scripts.Player.AI
@@ -7,27 +8,32 @@ namespace Assets.Scripts.Player.AI
 	/// <summary> Interface for AI to control a character. </summary>
 	public class AIController : Controller
     {
-		private IPolicy policy;
+		/// <summary> The policies used to decide the AI's actions. </summary>
+		private List<IPolicy> policies;
 
 		/// <summary> The speed that the character is moving at. </summary>
 		[SerializeField]
-		public float runSpeed = 0;
+		internal float runSpeed = 0;
 
 		/// <summary> Whether the character is jumping. </summary>
 		[SerializeField]
-		public bool jump = false;
+		internal bool jump = false;
 		/// <summary> Whether the character is sliding. </summary>
 		[SerializeField]
-		public bool slide = false;
+		internal bool slide = false;
 
 		/// <summary> Whether the character is aiming a shot. </summary>
 		[SerializeField]
-		public bool aiming = false;
+		internal bool aiming = false;
 		/// <summary> Whether the character was aiming its shot on the last tick. </summary>
 		private bool wasAiming = false;
 		/// <summary> Vector in the direction that the character is aiming. </summary>
 		[SerializeField]
-		public Vector3 aim = Vector3.zero;
+		internal Vector3 aim = Vector3.zero;
+
+		/// <summary> The default movement speed of the character. </summmary>
+		[SerializeField]
+		private float defaultMoveSpeed = 1;
 
 		/// <summary> The opponent of this character. </summary>
 		public Controller opponent;
@@ -35,7 +41,9 @@ namespace Assets.Scripts.Player.AI
 		/// <summary> Initializes the AI policy to use. </summary>
 		void Start()
 		{
-			policy = new StandShoot();
+			policies = new List<IPolicy>();
+			policies.Add(new StandShoot(1, 0.6f));
+			policies.Add(new RushEnemy(5));
 			foreach (Controller controller in GameManager.instance.AllPlayers)
 			{
 				if (controller != this)
@@ -44,12 +52,20 @@ namespace Assets.Scripts.Player.AI
 					break;
 				}
 			}
+			base.Start();
 		}
 		
 		/// <summary> Moves the agent every tick. </summary>
 		void Update()
 		{
-			policy.ChooseAction(this);
+			if (opponent == null || life.Health <= 0) {
+				aiming = false;
+				return;
+			} else {
+				foreach (IPolicy policy in policies) {
+					policy.ChooseAction(this);
+				}
+			}
 
 			if (jump)
 			{
@@ -88,6 +104,29 @@ namespace Assets.Scripts.Player.AI
 			{
 				parkour.Locomote(runSpeed);
 			}
+		}
+
+		/// <summary>
+		/// Sets the character's run speed in the direction of the given number.
+		/// </summary>
+		/// <param name="direction">The direction to set the run speed to.</param>
+		internal void SetRunInDirection(float direction) {
+			if (direction > 0) {
+				runSpeed = defaultMoveSpeed;
+			} else if (direction < 0) {
+				runSpeed = -defaultMoveSpeed;
+			} else {
+				runSpeed = 0;
+			}
+		}
+
+		/// <summary>
+		/// Gets a vector of the difference between the opponent position and the AI position.
+		/// </summary>
+		/// <returns>A vector of the difference between the opponent position and the AI position.</returns>
+		internal Vector3 GetOpponentDistance()
+		{
+			return opponent.transform.position - transform.position;
 		}
 	}
 }
