@@ -26,38 +26,35 @@ namespace Assets.Scripts.Player
 			//updating fireRateTimer
 			fireRateTimer += Time.deltaTime;
 
-			//keeping track of this every frame to help prevent accidental fires or mis-aiming
-			Vector3 aim = new Vector3(
-				-ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX, id),
-				-ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickY, id),
-				0) * distanceToPlayer;
-
-			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A,id)) parkour.Jump();
-			if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B,id)) parkour.SlideOn();
-			else parkour.SlideOff();
-
-//			if(id == PlayerID.One) 
-//			{
-//				Debug.Log(Vector3.Magnitude(aim));
-//			}
-
-
-			if(Vector3.Magnitude(aim) > 1.2f)
-            {
-				//if the joystick is pushed past the 50% mark in any direction, start aiming the bow
-				archery.UpdateFirePoint(Vector3.Normalize(aim));
-                fire = true;
-			} else if (fireRateTimer > MAX_FIRE_RATE && fire)
+			if (life.Health > 0)
 			{
-				archery.Fire();
-				fire = false;
-				//				definitelyFire = false;
-				fireRateTimer = 0;
-			}
-			else
-			{
-				//if the joystick isn't pushed in any direction then align the upper body with the legs
-				archery.AimUpperBodyWithLegs();
+				//keeping track of this every frame to help prevent accidental fires or mis-aiming
+				Vector3 aim = new Vector3(
+					-ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickX, id),
+					-ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.RightStickY, id),
+					0) * distanceToPlayer;
+
+				if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A,id)) parkour.Jump();
+				if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B,id)) parkour.SlideOn();
+				else parkour.SlideOff();
+
+				if(Vector3.Magnitude(aim) > 1.2f)
+	            {
+					//if the joystick is pushed past the 50% mark in any direction, start aiming the bow
+					archery.UpdateFirePoint(Vector3.Normalize(aim));
+	                fire = true;
+				} else if (fireRateTimer > MAX_FIRE_RATE && fire)
+				{
+					archery.Fire();
+					fire = false;
+					//				definitelyFire = false;
+					fireRateTimer = 0;
+				}
+				else
+				{
+					//if the joystick isn't pushed in any direction then align the upper body with the legs
+					archery.AimUpperBodyWithLegs();
+				}
 			}
 
             //if (invincibleFrames > 0) invincibleFrames--;

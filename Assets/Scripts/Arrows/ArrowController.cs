@@ -153,7 +153,7 @@ namespace Assets.Scripts.Arrows
 				GameObject g = new GameObject();
 				transform.parent = g.transform;
 				g.transform.parent = col.transform;
-				Destroy(this.gameObject,1f);
+				Destroy(g, 1f);
                 Destroy(this);
             }
             else
@@ -243,6 +243,8 @@ namespace Assets.Scripts.Arrows
 					return gameObject.AddComponent<VirusArrow>();
 				case Enums.Arrows.Splitting:
 					return gameObject.AddComponent<SplittingArrow>();
+                case Enums.Arrows.HeavyKnockback:
+                    return gameObject.AddComponent<HeavyKnockbackArrow>();
                 default:
                     return gameObject.AddComponent<NormalArrow>();
             }
