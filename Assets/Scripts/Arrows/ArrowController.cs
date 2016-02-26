@@ -243,6 +243,8 @@ namespace Assets.Scripts.Arrows
 					return gameObject.AddComponent<VirusArrow>();
 				case Enums.Arrows.Splitting:
 					return gameObject.AddComponent<SplittingArrow>();
+                case Enums.Arrows.HeavyKnockback:
+                    return gameObject.AddComponent<HeavyKnockbackArrow>();
                 default:
                     return gameObject.AddComponent<NormalArrow>();
             }
