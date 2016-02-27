@@ -29,8 +29,7 @@ public class ControllerManager  {
 		get { return playerControls.Count; }
 	}
 
-	public void AddPlayer(ControllerInputWrapper.Buttons connectCode) 
-	{
+	public bool AddPlayer(ControllerInputWrapper.Buttons connectCode) {
 		KeyboardWrapper kw = new KeyboardWrapper(-1);
 		if(!playerControls.ContainsValue(kw) && kw.GetButton(connectCode)) 
 		{
@@ -40,7 +39,7 @@ public class ControllerManager  {
 				{
 					playerControls.Add((PlayerID)(j), kw);
 					Debug.Log((PlayerID)(j) + ": " + kw + " added");
-					return;
+					return true;
 				}
 			}
 		}
@@ -58,12 +57,13 @@ public class ControllerManager  {
 						{
 							playerControls.Add((PlayerID)(j), ciw);
 							Debug.Log((PlayerID)(j) + ": " + ciw + " added");
-							break;
+							return true;
 						}
 					}
 				}
 			}
 		}
+		return false;
 	}
 
 	public void AllowPlayerRemoval(ControllerInputWrapper.Buttons removalButton) 
