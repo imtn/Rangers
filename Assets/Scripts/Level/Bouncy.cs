@@ -17,7 +17,7 @@ namespace Assets.Scripts.Level
 				rb.position += orthogonal * 0.05f;
 
 				Vector3 velProjection = (Vector3.Dot(rb.velocity, orthogonal) / Vector3.Dot(orthogonal, orthogonal)) * orthogonal;
-				rb.velocity -= velProjection;
+				rb.velocity = velProjection;
 
 				rb.AddForce(strength * Vector3.Normalize(orthogonal) * rb.mass, ForceMode.Impulse);
 			}
