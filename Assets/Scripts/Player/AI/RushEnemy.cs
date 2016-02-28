@@ -20,17 +20,34 @@ namespace Assets.Scripts.Player.AI
 		public void ChooseAction(AIController controller)
 		{
 			Vector3 opponentDistance = controller.GetOpponentDistance();
-			if (Mathf.Abs(opponentDistance.x) > targetDistance) 
+			float horizontalDistance = Mathf.Abs(opponentDistance.x);
+			if (horizontalDistance > targetDistance)
 			{
 				controller.SetRunInDirection(opponentDistance.x);
 				// Don't chase an opponent off the map.
 				RaycastHit hit = new RaycastHit();
 				Vector3 offsetPosition = controller.transform.position;
 				offsetPosition.x += controller.runSpeed;
-				if (!Physics.Raycast(offsetPosition, Vector3.down, out hit, 100, 1 << 13)) {
-					controller.runSpeed = 0;
+				offsetPosition.y += 0.5f;
+				if (!Physics.Raycast(offsetPosition, Vector3.down, out hit, 100, 1 << 13))
+				{
+					if (controller.ParkourComponent.Sliding)
+					{
+						controller.SetRunInDirection(-opponentDistance.x);
+					}
+					else
+					{
+						controller.runSpeed = 0;
+					}
+					controller.slide = false;
 				}
-			} else {
+				else
+				{
+					controller.slide = horizontalDistance > targetDistance * 2;
+				}
+			}
+			else
+			{
 				controller.runSpeed = 0;
 			}
 		}

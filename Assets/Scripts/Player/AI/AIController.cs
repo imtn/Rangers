@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Data;
+using Assets.Scripts.Timers;
 
 namespace Assets.Scripts.Player.AI
 {
@@ -110,12 +111,18 @@ namespace Assets.Scripts.Player.AI
 		/// Sets the character's run speed in the direction of the given number.
 		/// </summary>
 		/// <param name="direction">The direction to set the run speed to.</param>
-		internal void SetRunInDirection(float direction) {
-			if (direction > 0) {
+		internal void SetRunInDirection(float direction)
+		{
+			if (direction > 0)
+			{
 				runSpeed = defaultMoveSpeed;
-			} else if (direction < 0) {
+			}
+			else if (direction < 0)
+			{
 				runSpeed = -defaultMoveSpeed;
-			} else {
+			}
+			else
+			{
 				runSpeed = 0;
 			}
 		}
