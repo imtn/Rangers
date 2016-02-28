@@ -168,11 +168,16 @@ namespace Assets.Scripts.Player
         // Removes the token from the types the player has collected
         private void RemoveToken(TokenTimer tt)
         {
-            // Clear the appropriate token bit and remove the timer from the list of running timers
-            types = Bitwise.ClearBit(types, (int)tt.TokenType);
-            TokenTimer t = timers.Find(i => i.ID.Equals(tt.TokenType.ToString()));
-            timers.Remove(t);
+			RemoveArrowType(tt.TokenType);
         }
+
+		public void RemoveArrowType(Enums.Arrows type)
+		{
+			// Clear the appropriate token bit and remove the timer from the list of running timers
+			types = Bitwise.ClearBit(types, (int) type);
+			TokenTimer t = timers.Find(i => i.ID.Equals(type.ToString()));
+			timers.Remove(t);
+		}
 
         /// <summary>
         /// Removes all active tokens from the player so shooting an arrow is only the normal arrow
