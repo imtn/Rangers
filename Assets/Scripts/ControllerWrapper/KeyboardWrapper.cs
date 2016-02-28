@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class KeyboardWrapper : ControllerInputWrapper {
+public class KeyboardWrapper : ControllerInputWrapper 
+{
 
 	public enum MouseControlMode {None, Drag, Offset};
 
