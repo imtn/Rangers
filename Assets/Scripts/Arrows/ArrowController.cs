@@ -231,8 +231,8 @@ namespace Assets.Scripts.Arrows
                     return gameObject.AddComponent<RicochetArrow>();
                 case Enums.Arrows.Ghost:
                     return gameObject.AddComponent<GhostArrow>();
-                case Enums.Arrows.Gravity:
-                    return gameObject.AddComponent<GravityArrow>();
+                case Enums.Arrows.ZeroGravity:
+                    return gameObject.AddComponent<ZeroGravityArrow>();
 				case Enums.Arrows.Lifesteal:
 					return gameObject.AddComponent<LifestealArrow>();
                 case Enums.Arrows.Tracking:

@@ -32,7 +32,6 @@ namespace Assets.Scripts.Arrows
             {
                 GameObject g = (GameObject)Instantiate(spawnEffect, colInfo.HitPosition, colInfo.HitRotation);
 				spawnedReference = g;
-                //g.GetComponent<SpawnAttack>().UpdatePlayerInfo(fromPlayer, hitPlayer);
             }
             else Debug.Log("Arrow of type: " + type.ToString() + " could not load an effect");
         }
