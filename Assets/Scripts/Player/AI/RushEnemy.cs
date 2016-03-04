@@ -1,22 +1,28 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Player.AI
 {
-	/// <summary> Rushes the opponent to fire at close range. </summary>
+	/// <summary>
+	/// Rushes the opponent to fire at close range.
+	/// </summary>
 	public class RushEnemy : IPolicy
 	{
 		/// <summary> The desired horizontal distance between the AI and the opponent. </summary>
-		private float targetDistance;
+		internal float targetDistance;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Assets.Scripts.Player.AI.RushEnemy"/> class.
+		/// Initializes a new AI.
 		/// </summary>
 		/// <param name="targetDistance">The desired horizontal distance between the AI and the opponent.</param>
-		public RushEnemy(float targetDistance) {
+		internal RushEnemy(float targetDistance) {
 			this.targetDistance = targetDistance;
 		}
 
+		/// <summary>
+		/// Picks an action for the character to do every tick.
+		/// </summary>
+		/// <param name="controller">The controller for the character.</param>
 		public void ChooseAction(AIController controller)
 		{
 			Vector3 opponentDistance = controller.GetOpponentDistance();
@@ -24,6 +30,16 @@ namespace Assets.Scripts.Player.AI
 			if (horizontalDistance > targetDistance)
 			{
 				controller.SetRunInDirection(opponentDistance.x);
+			}
+			else if (horizontalDistance < targetDistance - 1f)
+			{
+				controller.SetRunInDirection(-opponentDistance.x);
+			}
+			else
+			{
+				controller.runSpeed = 0;
+			}
+			if (controller.runSpeed != 0) {
 				// Don't chase an opponent off the map.
 				RaycastHit hit = new RaycastHit();
 				Vector3 offsetPosition = controller.transform.position;
@@ -46,11 +62,6 @@ namespace Assets.Scripts.Player.AI
 					controller.slide = horizontalDistance > targetDistance * 2;
 				}
 			}
-			else
-			{
-				controller.runSpeed = 0;
-			}
 		}
 	}
 }
-
