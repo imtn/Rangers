@@ -337,7 +337,7 @@ namespace Assets.Scripts.UI
         {
             if (panel)
             {
-                panel.gameObject.SetActive(true);
+				panel.gameObject.SetActive(true);
                 panel.SetAsLastSibling();
             }
             GameObject defaultButton = panel.GetComponent<MenuOption>().DefaultButton;
@@ -346,7 +346,7 @@ namespace Assets.Scripts.UI
                 EventSystem.current.SetSelectedGameObject(defaultButton);
                 Navigator.defaultGameObject = defaultButton;
             }
-            if (activePanel) activePanel.gameObject.SetActive(false);
+			if (activePanel) activePanel.gameObject.SetActive(false);
             activePanel = panel;
         }
     } 
