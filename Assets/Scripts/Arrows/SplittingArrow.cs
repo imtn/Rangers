@@ -25,15 +25,18 @@ namespace Assets.Scripts.Arrows
 		{
 			yield return new WaitForSeconds(delay);
 
-			Vector3 velocityCopy = GetComponent<Rigidbody>().velocity;
-			Vector3 backVect = Vector3.back;
-			Vector3 orthogonal = Vector3.up;
-			Vector3.OrthoNormalize(ref velocityCopy, ref backVect, ref orthogonal);
+			if(GetComponent<Rigidbody>() != null)
+			{
+				Vector3 velocityCopy = GetComponent<Rigidbody>().velocity;
+				Vector3 backVect = Vector3.back;
+				Vector3 orthogonal = Vector3.up;
+				Vector3.OrthoNormalize(ref velocityCopy, ref backVect, ref orthogonal);
 
-			GameObject upArrow = NewArrow();
-			upArrow.transform.position += orthogonal * spread;
-			GameObject downArrow = NewArrow();
-			downArrow.transform.position -= orthogonal * spread;
+				GameObject upArrow = NewArrow();
+				upArrow.transform.position += orthogonal * spread;
+				GameObject downArrow = NewArrow();
+				downArrow.transform.position -= orthogonal * spread;
+			}
 		}
 
 		private GameObject NewArrow()
