@@ -25,7 +25,7 @@ namespace Assets.Scripts.Timers
         /// <summary>
         /// Constant interval for tokens to remove them for player
         /// </summary>
-        public static float TOKEN_INTERVAL = 5f;
+        public static float TOKEN_INTERVAL = 50f;
 
         /// <summary>
         ///  Overriding the initialize method. Use the token type.ToString() as id

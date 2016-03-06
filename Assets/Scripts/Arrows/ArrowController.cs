@@ -106,10 +106,10 @@ namespace Assets.Scripts.Arrows
                     //}
                 }
                 trackingTime -= Time.deltaTime;
-            }
-            else
-            {
-                rigidbody.useGravity = true;
+                if (trackingTime <= 0)
+                {
+                    rigidbody.useGravity = true;
+                }
             }
             // Point the arrow the direction it is travelling
             if (rigidbody != null && rigidbody.velocity != Vector3.zero)
@@ -236,7 +236,6 @@ namespace Assets.Scripts.Arrows
 				case Enums.Arrows.Lifesteal:
 					return gameObject.AddComponent<LifestealArrow>();
                 case Enums.Arrows.Tracking:
-                    rigidbody.useGravity = false;
                     trackingTime = TrackingArrow.trackingTime;
                     return gameObject.AddComponent<TrackingArrow>();
 				case Enums.Arrows.Virus:
@@ -245,6 +244,8 @@ namespace Assets.Scripts.Arrows
 					return gameObject.AddComponent<SplittingArrow>();
                 case Enums.Arrows.HeavyKnockback:
                     return gameObject.AddComponent<HeavyKnockbackArrow>();
+                case Enums.Arrows.RapidFire:
+                    return gameObject.AddComponent<RapidFireArrow>();
                 default:
                     return gameObject.AddComponent<NormalArrow>();
             }
