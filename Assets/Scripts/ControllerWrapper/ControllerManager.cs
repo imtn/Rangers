@@ -6,7 +6,7 @@ public enum PlayerID {None, One, Two, Three, Four};
 
 public class ControllerManager  {
    
-    public enum ControlType { Xbox, PS3, PS4 };
+    public enum ControlType { None, Xbox, PS4, Keyboard };
     public enum OperatingSystem { Win, OSX, Linux };
 
 	public OperatingSystem currentOS;
@@ -14,47 +14,65 @@ public class ControllerManager  {
 
 	public static ControllerManager instance;
 
+    public const float CUSTOM_DEADZONE = 0.15f;
+
     public ControllerManager()
     {
 		setUpPlatform();
 		playerControls = new Dictionary<PlayerID, ControllerInputWrapper>();
-		if(instance != this) 
-		{
+		if(instance != this) {
 			instance = this;
 		}
     }
 
-	public int NumPlayers 
+	public void ClearPlayers()
 	{
-		get { return playerControls.Count; }
+		playerControls = new Dictionary<PlayerID, ControllerInputWrapper>();
+	}
+
+	public int NumPlayers {
+		get {
+			return playerControls.Count;
+		}
+	}
+
+	public ControlType PlayerControlType(PlayerID id) {
+		if(!playerControls.ContainsKey(id)) return ControlType.None;
+		if(playerControls[id].GetType().Equals(typeof(Xbox360ControllerWrapper))
+			|| playerControls[id].GetType().Equals(typeof(XboxOneControllerWrapper))) {
+			return ControlType.Xbox;
+		} else if(playerControls[id].GetType().Equals(typeof(PS4ControllerWrapper))
+			|| playerControls[id].GetType().Equals(typeof(PS3ControllerWrapper))) {
+			return ControlType.PS4;
+		}  else if(playerControls[id].GetType().Equals(typeof(KeyboardWrapper))) {
+			return ControlType.Keyboard;
+		} else {
+			return ControlType.None;
+		}
+	}
+
+	public void ResetInputs() {
+		playerControls = new Dictionary<PlayerID, ControllerInputWrapper>();
 	}
 
 	public bool AddPlayer(ControllerInputWrapper.Buttons connectCode) {
 		KeyboardWrapper kw = new KeyboardWrapper(-1);
-		if(!playerControls.ContainsValue(kw) && kw.GetButton(connectCode)) 
-		{
-			for(int j = 1; j < 5; j++) 
-			{
-				if(!playerControls.ContainsKey((PlayerID)j)) 
-				{
+		if(!playerControls.ContainsValue(kw) && kw.GetButton(connectCode)) {
+			for(int j = 1; j < 5; j++) {
+				if(!playerControls.ContainsKey((PlayerID)j)) {
 					playerControls.Add((PlayerID)(j), kw);
 					Debug.Log((PlayerID)(j) + ": " + kw + " added");
 					return true;
 				}
 			}
 		}
-		if(playerControls.Count < 4) 
-		{
+		if(playerControls.Count < 4) {
 			string[] controllerNames = Input.GetJoystickNames();
-			for (int i = 0; i < controllerNames.Length; i++) 
-			{
+			for (int i = 0; i < controllerNames.Length; i++) {
 				ControllerInputWrapper ciw = getControllerType(i);
-				if(ciw != null && !playerControls.ContainsValue(ciw) && ciw.GetButton(connectCode)) 
-				{
-					for(int j = 1; j < 5; j++) 
-					{
-						if(!playerControls.ContainsKey((PlayerID)j)) 
-						{
+				if(ciw != null && !playerControls.ContainsValue(ciw) && ciw.GetButton(connectCode)) {
+					for(int j = 1; j < 5; j++) {
+						if(!playerControls.ContainsKey((PlayerID)j)) {
 							playerControls.Add((PlayerID)(j), ciw);
 							Debug.Log((PlayerID)(j) + ": " + ciw + " added");
 							return true;
@@ -63,16 +81,14 @@ public class ControllerManager  {
 				}
 			}
 		}
+
 		return false;
 	}
 
-	public void AllowPlayerRemoval(ControllerInputWrapper.Buttons removalButton) 
-	{
+	public void AllowPlayerRemoval(ControllerInputWrapper.Buttons removalButton) {
 		PlayerID playerToRemove = PlayerID.None;
-		foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in ControllerManager.instance.playerControls) 
-		{
-			if(kvp.Value.GetButton(removalButton)) 
-			{
+		foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in ControllerManager.instance.playerControls) {
+			if(kvp.Value.GetButton(removalButton)) {
 				playerToRemove = kvp.Key;
 				break;
 			}
@@ -104,7 +120,6 @@ public class ControllerManager  {
         }
 //        joyNum--;
         string name = controllerNames[joyNum];
-
         //Debug.Log("Controllers connected: " + controllerNames.Length);
 
         if (name.Contains("Wireless"))
@@ -115,10 +130,14 @@ public class ControllerManager  {
         {
 			return new LogitechControllerWrapper(joyNum);
         }
-        else
+		else if (name.Contains("360"))
         {
-			return new XboxControllerWrapper(joyNum);
+			return new Xbox360ControllerWrapper(joyNum);
         }
+		else
+		{
+			return new XboxOneControllerWrapper(joyNum);
+		}
            
 
     }
@@ -167,8 +186,7 @@ public class ControllerManager  {
 		return playerControls[id].GetButton(button);
     }
 
-	public bool GetButtonDown(ControllerInputWrapper.Buttons button, PlayerID id) 
-	{
+	public bool GetButtonDown(ControllerInputWrapper.Buttons button, PlayerID id) {
 		if(!playerControls.ContainsKey(id)) return false;
 		if (playerControls[id] == null)
 		{
