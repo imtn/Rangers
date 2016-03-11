@@ -74,7 +74,7 @@ namespace Assets.Scripts.Player
         }
 
 		private void IncreaseStrength() {
-			strength = Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime/2f));
+			strength = Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime*2f));
 		}
 
 		public void UpdateBodyAim() {

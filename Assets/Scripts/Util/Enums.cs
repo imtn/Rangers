@@ -11,7 +11,7 @@
         public enum RepetitionTimerSettings { Limited, Unlimited }
         public enum Frequency { None, Sparce, Infrequent, Average, Frequent, Abundant, NumTypes }
         public enum MenuDirections { Up, Down, Left, Right}
-        public enum UIStates { Splash, Main, SinglePlayer, Multiplayer, Settings, Audio, Video, Signin, None}
+        public enum UIStates { Splash, Main, SinglePlayer, Multiplayer, Settings, Audio, Video, Signin, ArenaStandard, ValueModifier, None}
 		/// <summary>
 		/// Different AI modes that can control AI rangers.
 		/// </summary>
