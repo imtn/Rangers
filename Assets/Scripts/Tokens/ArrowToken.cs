@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Player;
 using Assets.Scripts.Util;
+using Assets.Scripts.Data;
 
 namespace Assets.Scripts.Tokens
 {
@@ -18,7 +19,16 @@ namespace Assets.Scripts.Tokens
         /// <param name="controller">The controller that is doing the collecting</param>
         protected override void TokenCollected(Controller controller)
         {
-			controller.ArcheryComponent.CollectToken(this);
+			if (GameManager.instance.CurrentGameSettings.Variant == Enums.GameVariant.TokensForEveryone)
+			{
+				foreach (Controller TFEPlayerController in GameManager.instance.AllPlayers)
+				{
+					TFEPlayerController.ArcheryComponent.CollectToken(this);
+				}
+
+			} else {
+				controller.ArcheryComponent.CollectToken(this);
+			}
         }
 
         #region C# Properties
