@@ -206,6 +206,7 @@ namespace Assets.Scripts.Player
 		public int ArrowTypes 
 		{
 			get { return types; }
+			set { types = value; }
 		}
 	}
 }
