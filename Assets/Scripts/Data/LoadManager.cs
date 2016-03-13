@@ -265,7 +265,7 @@ namespace Assets.Scripts.Data
         {
             // Get a default settings in case none exists
             TargetSettings data = new TargetSettings();
-
+            Debug.Log(xmlSettingsDataPath + extension);
             TextAsset xmlFile = (TextAsset)Resources.Load(xmlSettingsDataPath + extension);
             MemoryStream assetStream = new MemoryStream(xmlFile.bytes);
             XmlReader reader = XmlReader.Create(assetStream);
