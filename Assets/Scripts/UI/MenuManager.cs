@@ -355,6 +355,11 @@ namespace Assets.Scripts.UI
             UpdatePanels(SinglePanel);
         }
 
+		public void CallLevelSelect()
+		{
+
+		}
+
 		public void CallMain()
 		{
 			state = Enums.UIStates.Main;
