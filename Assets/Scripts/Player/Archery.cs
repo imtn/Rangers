@@ -74,7 +74,8 @@ namespace Assets.Scripts.Player
         }
 
 		private void IncreaseStrength() {
-			strength = Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime/2f));
+			strength = Bitwise.IsBitOn(types, (int)Enums.Arrows.RapidFire)?
+                MAX_STRENGTH : Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime/2f));
 		}
 
 		public void UpdateBodyAim() {
@@ -205,6 +206,7 @@ namespace Assets.Scripts.Player
 		public int ArrowTypes 
 		{
 			get { return types; }
+			set { types = value; }
 		}
 	}
 }

@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using Assets.Scripts.Data;
 using Assets.Scripts.Util;
 using Assets.Scripts.UI.Profiles;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
@@ -11,6 +12,7 @@ namespace Assets.Scripts.UI
         public static MenuManager instance;
 
         public static Enums.UIStates state = Enums.UIStates.Splash;
+		private Enums.UIStates prevState = Enums.UIStates.None;
 
         private float hTimer, vTimer, delay = 0.1f;
 
@@ -18,8 +20,10 @@ namespace Assets.Scripts.UI
 
         private bool dpadPressed;
 
+		private ValueModifierUI currentValueMod;
+
         [SerializeField]
-        private Transform SplashPanel, MainPanel, SignInPanel, SinglePanel, MultiPanel, SettingPanel, AudioPanel, VideoPanel, PlayerPanel;
+        private Transform SplashPanel, MainPanel, SignInPanel, SinglePanel, MultiPanel, SettingPanel, AudioPanel, VideoPanel, PlayerPanel, ArenaStandardPanel;
 
         
         void Awake()
@@ -65,6 +69,12 @@ namespace Assets.Scripts.UI
                 case Enums.UIStates.Video:
                     Video();
                     break;
+				case Enums.UIStates.ArenaStandard:
+					ArenaStandardMatch();
+					break;
+				case Enums.UIStates.ValueModifier:
+					ValueModifier();
+					break;
                 case Enums.UIStates.None:
                     break;
             }
@@ -135,6 +145,16 @@ namespace Assets.Scripts.UI
             }
         }
 
+		private void ArenaStandardMatch()
+		{
+			Navigate();
+			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
+			{
+				state = Enums.UIStates.Multiplayer;
+				UpdatePanels(MultiPanel);
+			}
+		}
+
         private void Settings()
         {
             Navigate();
@@ -165,6 +185,42 @@ namespace Assets.Scripts.UI
             }
         }
 
+		private void ValueModifier() {
+			if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY, PlayerID.One) > ControllerManager.CUSTOM_DEADZONE
+				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY, PlayerID.One) > 0) {
+				if (vTimer >= delay || vTimer == 0)
+				{
+					currentValueMod.IncrementValue();
+					vTimer = 0;
+				}
+				vTimer += Time.deltaTime;
+			} else if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY, PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE
+				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY, PlayerID.One) < 0) {
+				if (vTimer >= delay || vTimer == 0)
+				{
+					currentValueMod.DecrementValue();
+					vTimer = 0;
+				}
+				vTimer += Time.deltaTime;
+			} else {
+				vTimer = 0;
+			}
+
+			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One)
+				|| ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.A, PlayerID.One))
+			{
+				state = prevState;
+				currentValueMod.GetComponent<Selectable>().interactable = true;
+			}
+		}
+
+		public void ValueModifierEntered(ValueModifierUI val) {
+			prevState = state;
+			state = Enums.UIStates.ValueModifier;
+			currentValueMod = val;
+			currentValueMod.GetComponent<Selectable>().interactable = false;
+		}
+
         private void None()
         {
 
@@ -180,6 +236,7 @@ namespace Assets.Scripts.UI
             SettingPanel.gameObject.SetActive(false);
             AudioPanel.gameObject.SetActive(false);
             VideoPanel.gameObject.SetActive(false);
+			ArenaStandardPanel.gameObject.SetActive(false);
         }
 
         private void Navigate()
@@ -192,7 +249,7 @@ namespace Assets.Scripts.UI
             }
             // Horizontal joystick is held right
             // Use > 0.5f so that sensitivity is not too high
-			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) > 0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) > ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
                 if (hTimer >= delay || hTimer == 0)
@@ -205,7 +262,7 @@ namespace Assets.Scripts.UI
             }
             // Horizontal joystick is held left
             // Use > 0.5f so that sensitivity is not too high
-			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) < -0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
                 if (hTimer >= delay || hTimer == 0)
@@ -225,7 +282,7 @@ namespace Assets.Scripts.UI
             }
             // Horizontal joystick is held right
             // Use > 0.5f so that sensitivity is not too high
-			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY,PlayerID.One) > 0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY,PlayerID.One) > ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
                 if (vTimer >= delay || vTimer == 0)
@@ -238,7 +295,7 @@ namespace Assets.Scripts.UI
             }
             // Horizontal joystick is held left
             // Use > 0.5f so that sensitivity is not too high
-			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY,PlayerID.One) < -0.5f)
+			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY,PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
                 if (vTimer >= delay || vTimer == 0)
@@ -298,6 +355,11 @@ namespace Assets.Scripts.UI
             UpdatePanels(SinglePanel);
         }
 
+		public void CallLevelSelect()
+		{
+
+		}
+
 		public void CallMain()
 		{
 			state = Enums.UIStates.Main;
@@ -327,6 +389,12 @@ namespace Assets.Scripts.UI
             state = Enums.UIStates.Video;
             UpdatePanels(VideoPanel);
         }
+
+		public void CallArenaStandard()
+		{
+			state = Enums.UIStates.ArenaStandard;
+			UpdatePanels(ArenaStandardPanel);
+		}
 
         public void ExitGame()
         {

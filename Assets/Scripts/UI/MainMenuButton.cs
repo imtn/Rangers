@@ -17,26 +17,28 @@ public class MainMenuButton : Selectable {
 	}
 
 	void OnEnable() {
+		base.OnEnable();
 		parentText = transform.GetChild(1);
 		transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -10f);
 		parentText.localPosition = new Vector3(parentText.localPosition.x, parentText.localPosition.y, -20f);
 		parentText.GetChild(0).localPosition = new Vector3(parentText.GetChild(0).localPosition.x, parentText.GetChild(0).localPosition.y, 30f);
 		parentText.GetChild(1).localPosition = new Vector3(parentText.GetChild(1).localPosition.x, parentText.GetChild(1).localPosition.y, 60f);
 		startingTimer = 1f;
+//		GetComponent<Selectable>().interactable = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+//		GetComponent<Selectable>().interactable = true;
 		if(startingTimer > 0) {
 			startingTimer -= Time.deltaTime;
 			if(Random.value < startingTimer) {
-				GetComponent<Image>().color = new Color(1, 1, 1, Random.value+0.5f);
+//				GetComponent<Image>().color = new Color(1, 1, 1, Random.value+0.5f);
 				parentText.GetComponent<Text>().color = new Color(1, 1, 1, Random.value+0.5f);
-				parentText.GetChild(0).GetComponent<Text>().color = new Color(Random.value, Random.value, Random.value, Random.value/2f);
-				parentText.GetChild(1).GetComponent<Text>().color = new Color(Random.value, Random.value, Random.value, Random.value/2f);
+				parentText.GetChild(0).GetComponent<Text>().color = new Color(Random.value*2f + 0.5f, Random.value*2f + 0.5f, Random.value*2f + 0.5f, Random.value/2f);
+				parentText.GetChild(1).GetComponent<Text>().color = new Color(Random.value*2f + 0.5f, Random.value*2f + 0.5f, Random.value*2f + 0.5f, Random.value/4f);
 			} else {
-				GetComponent<Image>().color = Color.white;
+//				GetComponent<Image>().color = Color.white;
 				parentText.GetComponent<Text>().color = Color.white;
 				parentText.GetChild(0).GetComponent<Text>().color = new Color(1,1,1,0.5f);
 				parentText.GetChild(1).GetComponent<Text>().color = new Color(1,1,1,0.25f);
