@@ -34,7 +34,7 @@ namespace Assets.Scripts.Data
         private Timer matchTimer;
 
         // Current game settings to abide by
-        private GameSettings currentGameSettings;
+		private GameSettings currentGameSettings;
         // CustomColor object for efficient color getting
         private CustomColor customColor;
 
@@ -163,7 +163,7 @@ namespace Assets.Scripts.Data
             if(killer != null) killer.LifeComponent.kills++;
             
             // Check if the game is over based on gametype
-            if(currentGameSettings.Type.Equals(Enums.GameType.Kills))
+            if(currentGameSettings.Type.Equals(Enums.GameType.Deathmatch))
             {
                 if (killer != null && killer.LifeComponent.kills > currentGameSettings.KillLimit) GameOver();
             }
@@ -187,7 +187,7 @@ namespace Assets.Scripts.Data
                 // Initialize the respawn timer
                 CountdownTimer t = gameObject.AddComponent<CountdownTimer>();
                 t.Initialize(3f, deadPlayer.ID.ToString());
-                t.TimeOut += new CountdownTimer.TimerEvent(ResawnHelper);
+                t.TimeOut += new CountdownTimer.TimerEvent(RespawnHelper);
             }
         }
 
@@ -195,7 +195,7 @@ namespace Assets.Scripts.Data
         /// Target for the respawn timer to run on timeout.
         /// </summary>
         /// <param name="t">The timer that is firing the event</param>
-        private void ResawnHelper(CountdownTimer t)
+        private void RespawnHelper(CountdownTimer t)
         {
             // Find the dead player again
             Controller deadPlayer = controllers.Find(x => x.ID.Equals(System.Enum.Parse(typeof(PlayerID), t.ID)));

@@ -22,9 +22,7 @@ public class InputTester : MonoBehaviour {
         }
     }
 
-	void OnLevelWasLoaded(int level) {
-		if(level == 0 && cm != null) {
-			cm.ClearPlayers();
-		}
+	void Update() {
+		cm.AddPlayer(ControllerInputWrapper.Buttons.Start);
 	}
 }
