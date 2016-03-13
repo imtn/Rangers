@@ -29,5 +29,6 @@ public class MatchDesigner : MonoBehaviour {
 		GameSettings settings = new GameSettings();
 		settings.Type = Assets.Scripts.Util.Enums.GameType.Deathmatch;
 		settings.KillLimit = kills.value;
+		return settings;
 	}
 }
