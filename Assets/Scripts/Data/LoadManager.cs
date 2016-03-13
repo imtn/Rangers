@@ -175,6 +175,9 @@ namespace Assets.Scripts.Data
                         case "Type":
                             data.Type = (Enums.GameType)System.Enum.Parse(typeof(Enums.GameType), reader.ReadElementContentAsString());
                             break;
+						case "Variant":
+							data.Type = (Enums.GameVariant)System.Enum.Parse(typeof(Enums.GameVariant), reader.ReadElementContentAsString());
+							break;
                         case "TimeLimitEnabled":
                             data.TimeLimitEnabled = reader.ReadElementContentAsBoolean();
                             break;
