@@ -9,19 +9,19 @@ using Assets.Scripts.Util;
 public class ProfileData
 {
 	private string tag;
-    private Color primary, secondary;
+    //private Color primary, secondary;
 
     public ProfileData()
     {
         tag = "";
-        primary = CustomColor.Black;
-        secondary = CustomColor.White;
+        //primary = CustomColor.Black;
+        //secondary = CustomColor.White;
     }
     public ProfileData(string name)
     {
-        this.tag = name;
-        primary = CustomColor.Black;
-        secondary = CustomColor.White;
+        tag = name;
+        //primary = CustomColor.Black;
+        //secondary = CustomColor.White;
     }
 
     public string Name

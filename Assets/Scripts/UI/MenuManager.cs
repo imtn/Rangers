@@ -23,7 +23,7 @@ namespace Assets.Scripts.UI
 		private ValueModifierUI currentValueMod;
 
         [SerializeField]
-        private Transform SplashPanel, MainPanel, SignInPanel, SinglePanel, MultiPanel, SettingPanel, AudioPanel, VideoPanel, PlayerPanel, ArenaStandardPanel;
+        private Transform SplashPanel = null, MainPanel = null, SignInPanel = null, SinglePanel = null, MultiPanel = null, SettingPanel = null, AudioPanel = null, VideoPanel = null, PlayerPanel = null, ArenaStandardPanel = null;
 
         
         void Awake()
@@ -33,7 +33,7 @@ namespace Assets.Scripts.UI
                 DontDestroyOnLoad(gameObject);
                 instance = this;
                 UpdatePanels(SplashPanel);
-				ControllerManager manager = new ControllerManager();
+				//ControllerManager manager = new ControllerManager();
             }
             else if (instance != this)
             {

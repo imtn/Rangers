@@ -55,13 +55,13 @@ namespace Assets.Scripts.Player.AI
         /// <summary>
 		/// Initializes the AI policy to use.
 		/// </summary>
-        private void Start()
+        private new void Start()
         {
-			switch(mode)
-			{
-			case Enums.AIModes.ApproachShoot: policy = new ApproachShoot(); break;
-			case Enums.AIModes.RangerBot: policy = new RangerBot(); break;
-			}
+            switch (mode)
+            {
+                case Enums.AIModes.ApproachShoot: policy = new ApproachShoot(); break;
+                case Enums.AIModes.RangerBot: policy = new RangerBot(); break;
+            }
             foreach (Controller controller in GameManager.instance.AllPlayers)
             {
                 if (controller != this)

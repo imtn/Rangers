@@ -9,8 +9,9 @@ namespace Assets.Scripts.Player
 
 		private bool facingRight = true;
 		private bool jumping = false;
-		private bool ledgeGrabbing = false;
+		//private bool ledgeGrabbing = false;
 		private bool sliding = false;
+        private bool grappling = false;
 
 		private GameObject IKThingy;
 
@@ -20,10 +21,10 @@ namespace Assets.Scripts.Player
 
 		/// <summary> The animator attached to the player. </summary>
 		private Animator animator;
-		/// <summary> The rigidbody attached to the player. </summary>
-		private Rigidbody rigidbody;
+        /// <summary> The rigidbody attached to the player. </summary>
+        private new Rigidbody rigidbody;
 
-		private void Start()
+        private void Start()
 		{
 			animator = GetComponent<Animator>();
 			rigidbody = GetComponent<Rigidbody>();
@@ -66,9 +67,13 @@ namespace Assets.Scripts.Player
 			sliding = state.IsName("Slide") || state.IsName("SlideLeft");
 		}
 
-		public void Jump() 
+		public void Jump()
 		{
-			if(!jumping) 
+            if(grappling)
+            {
+                GetComponent<Grapple>().Ungrapple();
+            }
+			else if(!jumping) 
 			{
 				animator.ResetTrigger("Land");
 				if(facingRight)
@@ -194,6 +199,12 @@ namespace Assets.Scripts.Player
 		{
 			get { return facingRight; }
 		}
+
+        public bool Grappling
+        {
+            get { return grappling; }
+            set { grappling = value; }
+        }
 
 		/// <summary>
 		/// Overriding the collect token method from player controller object
