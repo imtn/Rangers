@@ -57,6 +57,7 @@ namespace Assets.Scripts.Player.AI
 		/// </summary>
         private new void Start()
         {
+			ControllerManager.instance.AddAI(this.id);
             switch (mode)
             {
                 case Enums.AIModes.ApproachShoot: policy = new ApproachShoot(); break;

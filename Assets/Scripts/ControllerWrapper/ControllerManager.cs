@@ -85,6 +85,24 @@ public class ControllerManager  {
 		return false;
 	}
 
+	/// <summary>
+	/// Adds an AI controller to the game.
+	/// </summary>
+	/// <returns>Whether the AI controller was successfully added.</returns>
+	public bool AddAI(PlayerID id) {
+		if (playerControls.Count < 4 && !playerControls.ContainsKey(id)) {
+			for (int i = 1; i < 5; i++) {
+				if (!playerControls.ContainsKey((PlayerID)i)) {
+					AIWrapper aiw = new AIWrapper(-2);
+					playerControls.Add((PlayerID)(i), aiw);
+					Debug.Log((PlayerID)(i) + ": " + aiw + " added");
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public void AllowPlayerRemoval(ControllerInputWrapper.Buttons removalButton) {
 		PlayerID playerToRemove = PlayerID.None;
 		foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in ControllerManager.instance.playerControls) {
