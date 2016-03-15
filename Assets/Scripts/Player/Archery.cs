@@ -196,6 +196,7 @@ namespace Assets.Scripts.Player
 		public float StrengthPercentage
 		{
 			get { return strength/MAX_STRENGTH; }
+			set { strength = value*MAX_STRENGTH; }
 		}
 
 		public bool UpperBodyFacingRight 
