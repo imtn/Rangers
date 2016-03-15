@@ -6,23 +6,23 @@ using Assets.Scripts.Util;
 
 namespace Assets.Scripts.Player
 {
-    /// <summary>
-    /// This class handles all the shooting that can be done by actors
-    /// </summary>
-    public class Archery : ControllerObject
+	/// <summary>
+	/// This class handles all the shooting that can be done by actors
+	/// </summary>
+	public class Archery : ControllerObject
 	{
-        [SerializeField]
-        private GameObject arrowPrefab;
-        [SerializeField]
-        private Transform firePoint;
+		[SerializeField]
+		private GameObject arrowPrefab;
+		[SerializeField]
+		private Transform firePoint;
 
 		private bool upperBodyFacingRight = true;
 
-        // All the token timers running
-        private List<TokenTimer> timers;
+		// All the token timers running
+		private List<TokenTimer> timers;
 
-        // The current types of arrows to fire
-        private int types = 1;
+		// The current types of arrows to fire
+		private int types = 1;
 
 		// Force with which the arrow will be shot
 		// based on how long the player has been aiming in approximately the same direction
@@ -34,28 +34,28 @@ namespace Assets.Scripts.Player
 		public Transform bowPosition;
 
 
-        void Awake()
-        {
-            timers = new List<TokenTimer>();
+		void Awake()
+		{
+			timers = new List<TokenTimer>();
 			firePoint.localPosition = Vector3.right;
-        }
+		}
 
-        // Fires an arrow
-        public void Fire()
-        {
+		// Fires an arrow
+		public void Fire()
+		{
 			GameObject arrow = (GameObject)Instantiate(arrowPrefab, bowPosition.position + (firePoint.position - bowPosition.position)/2f, firePoint.rotation);
 			arrow.GetComponent<Rigidbody>().AddRelativeForce((firePoint.position - (bowPosition.position+Vector3.up*0.1f)) * 20 * (strength+0.1f), ForceMode.Impulse);
-            arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
+			arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
 			arrow.transform.FindChild("Model").GetComponent<TrailRenderer>().material.color = firePoint.GetComponent<SpriteRenderer>().color;
 			strength = 0;
-        }
+		}
 
-        /// <summary>
-        /// Sets the firepoint for the player
-        /// </summary>
-        /// <param name="position">Position where the firepoint is set to</param>
-        public void UpdateFirePoint(Vector3 position)
-        {
+		/// <summary>
+		/// Sets the firepoint for the player
+		/// </summary>
+		/// <param name="position">Position where the firepoint is set to</param>
+		public void UpdateFirePoint(Vector3 position)
+		{
 			IncreaseStrength();
 			firePoint.localPosition = position*strength*2f;
 
@@ -71,11 +71,11 @@ namespace Assets.Scripts.Player
 				aVel += Vector3.up*Physics.gravity.y*scale;
 			}
 			firePoint.GetComponent<LineRenderer>().SetPositions(linePoints);
-        }
+		}
 
 		private void IncreaseStrength() {
 			strength = Bitwise.IsBitOn(types, (int)Enums.Arrows.RapidFire)?
-                MAX_STRENGTH : Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime/2f));
+				MAX_STRENGTH : Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime/2f));
 		}
 
 		public void UpdateBodyAim() {
@@ -128,18 +128,18 @@ namespace Assets.Scripts.Player
 			}
 		}
 
-        /// <summary>
-        /// Called by colliding with a Token (from Token's OnTriggerEnter)
-        /// </summary>
-        /// <param name="token">Token that was collected</param>
-        public override void CollectToken(Token token)
-        {
-            // Handle what type of token was collected
-            if (token.GetType().Equals(typeof(ArrowToken)))
-            {
+		/// <summary>
+		/// Called by colliding with a Token (from Token's OnTriggerEnter)
+		/// </summary>
+		/// <param name="token">Token that was collected</param>
+		public override void CollectToken(Token token)
+		{
+			// Handle what type of token was collected
+			if (token.GetType().Equals(typeof(ArrowToken)))
+			{
 				AddArrowType(((ArrowToken)token).Type);
-            }
-        }
+			}
+		}
 
 		public void AddArrowType(Enums.Arrows type)
 		{
@@ -166,11 +166,11 @@ namespace Assets.Scripts.Player
 			}
 		}
 
-        // Removes the token from the types the player has collected
-        private void RemoveToken(TokenTimer tt)
-        {
+		// Removes the token from the types the player has collected
+		private void RemoveToken(TokenTimer tt)
+		{
 			RemoveArrowType(tt.TokenType);
-        }
+		}
 
 		public void RemoveArrowType(Enums.Arrows type)
 		{
@@ -180,22 +180,23 @@ namespace Assets.Scripts.Player
 			timers.Remove(t);
 		}
 
-        /// <summary>
-        /// Removes all active tokens from the player so shooting an arrow is only the normal arrow
-        /// </summary>
-        public void ClearAllTokens()
-        {
-            foreach (TokenTimer t in timers)
-            {
-                types = Bitwise.ClearBit(types, (int)t.TokenType);
-                Destroy(t);
-            }
-            timers.Clear();
-        }
+		/// <summary>
+		/// Removes all active tokens from the player so shooting an arrow is only the normal arrow
+		/// </summary>
+		public void ClearAllTokens()
+		{
+			foreach (TokenTimer t in timers)
+			{
+				types = Bitwise.ClearBit(types, (int)t.TokenType);
+				Destroy(t);
+			}
+			timers.Clear();
+		}
 
 		public float StrengthPercentage
 		{
 			get { return strength/MAX_STRENGTH; }
+			set { strength = value*MAX_STRENGTH; }
 		}
 
 		public bool UpperBodyFacingRight 
