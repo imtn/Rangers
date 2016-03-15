@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class MainMenuButton : Selectable {
 
@@ -11,12 +10,13 @@ public class MainMenuButton : Selectable {
 	private Transform parentText;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+        base.Start();
 		parentText.GetChild(0).GetComponent<Text>().CrossFadeAlpha(0.25f,0.5f, false);
 		parentText.GetChild(1).GetComponent<Text>().CrossFadeAlpha(0.25f,0.5f, false);
 	}
 
-	void OnEnable() {
+	protected override void OnEnable() {
 		base.OnEnable();
 		parentText = transform.GetChild(1);
 		transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -10f);

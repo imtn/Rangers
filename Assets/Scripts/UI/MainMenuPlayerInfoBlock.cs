@@ -7,7 +7,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	public PlayerID playerID;
 
 	private Text tagText;
-	private Image tagBG;
+	//private Image tagBG;
 	private GameObject pressToJoin;
 	private GameObject pressToOpen;
 	private GameObject nameCreator;
@@ -17,7 +17,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		tagText = transform.FindChild("TagBox").FindChild("PlayerTag").GetComponent<Text>();
-		tagBG = transform.FindChild("TagBox").GetComponent<Image>();
+		//tagBG = transform.FindChild("TagBox").GetComponent<Image>();
 		pressToJoin = transform.FindChild("PressToJoin").gameObject;
 		pressToOpen = transform.FindChild("StartToOpen").gameObject;
 		nameCreator = transform.FindChild("NameCreator").gameObject;
