@@ -17,13 +17,14 @@ namespace Assets.Scripts.UI
         private float hTimer, vTimer, delay = 0.1f;
 
         private Transform activePanel;
+		private Transform prevPanel;
 
         private bool dpadPressed;
 
 		private ValueModifierUI currentValueMod;
 
         [SerializeField]
-        private Transform SplashPanel = null, MainPanel = null, SignInPanel = null, SinglePanel = null, MultiPanel = null, SettingPanel = null, AudioPanel = null, VideoPanel = null, PlayerPanel = null, ArenaStandardPanel = null;
+		private Transform SplashPanel = null, MainPanel = null, SignInPanel = null, LevelSelectPanel = null, SinglePanel = null, MultiPanel = null, SettingPanel = null, AudioPanel = null, VideoPanel = null, PlayerPanel = null, ArenaStandardPanel = null;
 
         
         void Awake()
@@ -74,6 +75,9 @@ namespace Assets.Scripts.UI
 					break;
 				case Enums.UIStates.ValueModifier:
 					ValueModifier();
+					break;
+				case Enums.UIStates.LevelSelect:
+					LevelSelect();
 					break;
                 case Enums.UIStates.None:
                     break;
@@ -185,9 +189,20 @@ namespace Assets.Scripts.UI
             }
         }
 
+		private void LevelSelect() {
+			Navigate();
+			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
+			{
+				state = prevState;
+				UpdatePanels(prevPanel);
+			}
+		}
+
 		private void ValueModifier() {
 			if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY, PlayerID.One) > ControllerManager.CUSTOM_DEADZONE
-				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY, PlayerID.One) > 0) {
+				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY, PlayerID.One) > 0
+				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX, PlayerID.One) > ControllerManager.CUSTOM_DEADZONE
+				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX, PlayerID.One) > 0) {
 				if (vTimer >= delay || vTimer == 0)
 				{
 					currentValueMod.IncrementValue();
@@ -195,7 +210,9 @@ namespace Assets.Scripts.UI
 				}
 				vTimer += Time.deltaTime;
 			} else if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY, PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE
-				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY, PlayerID.One) < 0) {
+				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY, PlayerID.One) < 0
+				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX, PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE
+				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX, PlayerID.One) < 0) {
 				if (vTimer >= delay || vTimer == 0)
 				{
 					currentValueMod.DecrementValue();
@@ -355,9 +372,14 @@ namespace Assets.Scripts.UI
             UpdatePanels(SinglePanel);
         }
 
-		public void CallLevelSelect()
+		public void CallLevelSelect(MatchDesigner match)
 		{
-
+			GameSettings settings = match.GetSettings();
+			SaveManager.SaveGameSettings(settings,"Current");
+			prevState = state;
+			prevPanel = activePanel;
+			state = Enums.UIStates.LevelSelect;
+			UpdatePanels(LevelSelectPanel);
 		}
 
 		public void CallMain()
@@ -408,6 +430,7 @@ namespace Assets.Scripts.UI
 				panel.gameObject.SetActive(true);
                 panel.SetAsLastSibling();
             }
+
             GameObject defaultButton = panel.GetComponent<MenuOption>().DefaultButton;
             if (defaultButton)
             {

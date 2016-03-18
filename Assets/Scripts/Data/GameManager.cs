@@ -82,6 +82,8 @@ namespace Assets.Scripts.Data
             {
                 controllers.Add(findControllers[i]);
             }
+
+
             // Load the last settings used
             //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
             currentGameSettings = LoadManager.LoadGameSettingsXML(settingsName);
