@@ -136,16 +136,17 @@ namespace Assets.Scripts.Player.AI
 		/// <param name="direction">The direction to set the run speed to.</param>
 		internal void SetRunInDirection(float direction)
 		{
-			if (direction > 0)
+			if (Mathf.Abs(direction) < defaultMoveSpeed * Time.deltaTime * 4)
+			{
+				runSpeed = 0;
+			}
+			else if (direction > 0)
 			{
 				runSpeed = defaultMoveSpeed;
 			}
 			else if (direction < 0)
 			{
 				runSpeed = -defaultMoveSpeed;
-			}
-			else {
-				runSpeed = 0;
 			}
 		}
 

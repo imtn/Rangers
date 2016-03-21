@@ -23,6 +23,6 @@ public class InputTester : MonoBehaviour {
     }
 
 	void Update() {
-//		cm.AddPlayer(ControllerInputWrapper.Buttons.Start);
+		cm.AddPlayer(ControllerInputWrapper.Buttons.Start);
 	}
 }

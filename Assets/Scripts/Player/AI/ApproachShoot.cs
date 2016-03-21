@@ -16,7 +16,7 @@ namespace Assets.Scripts.Player.AI
 		/// </summary>
 		internal ApproachShoot()
 		{
-			policies = new IPolicy[]{new Shoot(5, 0.4f, Mathf.PI / 6), new RushEnemy(10)};
+			policies = new IPolicy[]{new Shoot(5, 0.2f, 0), new RushEnemy(5)};
 		}
 
 		/// <summary>
