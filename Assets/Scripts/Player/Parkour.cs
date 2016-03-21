@@ -41,6 +41,10 @@ namespace Assets.Scripts.Player
 			{
 				facingRight = false;
 			}
+			else
+			{
+				facingRight = !animator.GetCurrentAnimatorStateInfo(0).IsTag("Left");
+			}
 			if(facingRight && Physics.Raycast(new Ray(transform.position, transform.forward),0.5f,~(1<<9))) 
 			{
 				animator.SetFloat("RunSpeed", Mathf.Min(0,motion));
@@ -166,7 +170,11 @@ namespace Assets.Scripts.Player
 				animator.SetIKPositionWeight(AvatarIKGoal.RightHand,1);
 				animator.SetIKPosition(AvatarIKGoal.LeftHand,IKThingy.transform.position + new Vector3(0.5f,0,0));
 				animator.SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
-				jumping = false;
+				AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+				if(!state.IsName("Jump") && !state.IsName("JumpLeft"))
+				{
+					jumping = false;
+				}
 				//				if(!ledgeGrabbing) 
 				//				{
 				//					rigidbody.velocity = Vector3.zero;
