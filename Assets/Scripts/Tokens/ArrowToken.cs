@@ -18,7 +18,12 @@ namespace Assets.Scripts.Tokens
         /// <param name="controller">The controller that is doing the collecting</param>
         protected override void TokenCollected(Controller controller)
         {
-			controller.ArcheryComponent.CollectToken(this);
+            if (controller.ArcheryComponent.CanCollectToken() && !Util.Bitwise.IsBitOn(controller.ArcheryComponent.ArrowTypes, (int)type))
+            {
+                controller.ArcheryComponent.CollectToken(this);
+                // Set inactive since we are pooling
+                gameObject.SetActive(false);
+            }
         }
 
         #region C# Properties

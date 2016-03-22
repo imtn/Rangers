@@ -18,11 +18,14 @@ namespace Assets.Scripts.Player
 
 		private bool upperBodyFacingRight = true;
 
+        private int numTokens = 0;
+
 		// All the token timers running
-		private List<TokenTimer> timers;
+		//private List<TokenTimer> timers;
 
 		// The current types of arrows to fire
 		private int types = 1;
+        private int permanentTypes = 1;
 
 		// Force with which the arrow will be shot
 		// based on how long the player has been aiming in approximately the same direction
@@ -36,7 +39,7 @@ namespace Assets.Scripts.Player
 
 		void Awake()
 		{
-			timers = new List<TokenTimer>();
+			//timers = new List<TokenTimer>();
 			firePoint.localPosition = Vector3.right;
 		}
 
@@ -48,6 +51,7 @@ namespace Assets.Scripts.Player
 			arrow.GetComponent<Arrows.ArrowController>().InitArrow(types, controller.ID);
 			arrow.transform.FindChild("Model").GetComponent<TrailRenderer>().material.color = firePoint.GetComponent<SpriteRenderer>().color;
 			strength = 0;
+            ClearAllTokens();
 		}
 
 		/// <summary>
@@ -134,11 +138,14 @@ namespace Assets.Scripts.Player
 		/// <param name="token">Token that was collected</param>
 		public override void CollectToken(Token token)
 		{
-			// Handle what type of token was collected
-			if (token.GetType().Equals(typeof(ArrowToken)))
-			{
-				AddArrowType(((ArrowToken)token).Type);
-			}
+            // Handle what type of token was collected
+            if (numTokens < 3)
+            {
+                if (token.GetType().Equals(typeof(ArrowToken)))
+                {
+                    AddArrowType(((ArrowToken)token).Type);
+                }
+            }
 		}
 
 		public void AddArrowType(Enums.Arrows type)
@@ -146,52 +153,60 @@ namespace Assets.Scripts.Player
 			if(type > 0 && type < Enums.Arrows.NumTypes)
 			{
 				// Find the running timer associated with the type
-				TokenTimer t = timers.Find(i => i.ID.Equals(type.ToString()));
+				//TokenTimer t = timers.Find(i => i.ID.Equals(type.ToString()));
 				// If the type has not been added yet
-				if (t == null)
-				{
+				//if (t == null)
+				//{
 					// Add a new Token Timer and initialize it
-					TokenTimer tt = gameObject.AddComponent<TokenTimer>();
-					tt.Initialize(TokenTimer.TOKEN_INTERVAL, type.ToString());
+				//	TokenTimer tt = gameObject.AddComponent<TokenTimer>();
+				//	tt.Initialize(TokenTimer.TOKEN_INTERVAL, type.ToString());
 					// Make sure that the type is removed from the component when the timer times out
-					tt.TimeOut += new TokenTimer.TimerEvent(RemoveToken);
-					types = Bitwise.SetBit(types, (int)type);
-					timers.Add(tt);
-				}
-				else
-				{
+				//	tt.TimeOut += new TokenTimer.TimerEvent(RemoveToken);
+				types = Bitwise.SetBit(types, (int)type);
+                numTokens++;
+				//	timers.Add(tt);
+				//}
+				//else
+				//{
 					// Type has already been added so we just need to reset the timer
-					t.Reset();
-				}
+				//	t.Reset();
+				//}
 			}
 		}
 
 		// Removes the token from the types the player has collected
-		private void RemoveToken(TokenTimer tt)
-		{
-			RemoveArrowType(tt.TokenType);
-		}
+		//private void RemoveToken(TokenTimer tt)
+		//{
+		//	RemoveArrowType(tt.TokenType);
+		//}
 
-		public void RemoveArrowType(Enums.Arrows type)
-		{
+		//public void RemoveArrowType(Enums.Arrows type)
+		//{
 			// Clear the appropriate token bit and remove the timer from the list of running timers
-			types = Bitwise.ClearBit(types, (int) type);
-			TokenTimer t = timers.Find(i => i.ID.Equals(type.ToString()));
-			timers.Remove(t);
-		}
+		//	types = Bitwise.ClearBit(types, (int) type);
+		//	TokenTimer t = timers.Find(i => i.ID.Equals(type.ToString()));
+		//	timers.Remove(t);
+		//}
 
 		/// <summary>
 		/// Removes all active tokens from the player so shooting an arrow is only the normal arrow
 		/// </summary>
 		public void ClearAllTokens()
 		{
-			foreach (TokenTimer t in timers)
-			{
-				types = Bitwise.ClearBit(types, (int)t.TokenType);
-				Destroy(t);
-			}
-			timers.Clear();
-		}
+		//	foreach (TokenTimer t in timers)
+		//	{
+		//		types = Bitwise.ClearBit(types, (int)t.TokenType);
+            types = permanentTypes;
+            numTokens = 0;
+            //		Destroy(t);
+            //	}
+            //	timers.Clear();
+        }
+
+        public bool CanCollectToken()
+        {
+            return numTokens < 3;
+        }
 
 		public float StrengthPercentage
 		{
@@ -209,5 +224,11 @@ namespace Assets.Scripts.Player
 			get { return types; }
 			set { types = value; }
 		}
-	}
+
+        public int PermanentArrowTypes
+        {
+            get { return permanentTypes; }
+            set { permanentTypes = value; }
+        }
+    }
 }
