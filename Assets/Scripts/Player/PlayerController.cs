@@ -15,7 +15,7 @@ namespace Assets.Scripts.Player
 		private bool definitelyFire;
 
 		//used to help check for overshooting the joystick deadzone
-		Vector3 prevAim = Vector3.zero;
+		//Vector3 prevAim = Vector3.zero;
 
 		//locking the maximum fire rate for anyone spamming the joystick or any accidental input
 		private const float MAX_FIRE_RATE = 0.5f;

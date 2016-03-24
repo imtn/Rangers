@@ -36,7 +36,7 @@ namespace Assets.Scripts.Data
         // Current game settings to abide by
 		private GameSettings currentGameSettings;
         // CustomColor object for efficient color getting
-        private CustomColor customColor;
+        //private CustomColor customColor;
 
         private int numDead = 0;
 
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Data
             }
 
             controllers = new List<Controller>();
-            customColor = new CustomColor();
+            //customColor = new CustomColor();
         }
 
         void Start()
@@ -82,6 +82,8 @@ namespace Assets.Scripts.Data
             {
                 controllers.Add(findControllers[i]);
             }
+
+
             // Load the last settings used
             //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
             currentGameSettings = LoadManager.LoadGameSettingsXML(settingsName);

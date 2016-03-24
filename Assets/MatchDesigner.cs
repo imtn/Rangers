@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Scripts.Util;
 
 public class MatchDesigner : MonoBehaviour {
 
 	public ValueModifierUI kills, stock, time;
-
+	public Text matchType;
 
 //	private int killLimit, stockLimit;
 //
@@ -27,8 +28,10 @@ public class MatchDesigner : MonoBehaviour {
 	/// <returns>The game settings</returns>
 	public GameSettings GetSettings() {
 		GameSettings settings = new GameSettings();
-		settings.Type = Assets.Scripts.Util.Enums.GameType.Deathmatch;
 		settings.KillLimit = kills.value;
+		settings.StockLimit = stock.value;
+		settings.TimeLimit = time.value;
+		settings.Type = (Enums.GameType)System.Enum.Parse(typeof(Enums.GameType),matchType.text);
 		return settings;
 	}
 }

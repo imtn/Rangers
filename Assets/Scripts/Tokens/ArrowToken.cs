@@ -19,16 +19,19 @@ namespace Assets.Scripts.Tokens
         /// <param name="controller">The controller that is doing the collecting</param>
         protected override void TokenCollected(Controller controller)
         {
-			if (GameManager.instance.CurrentGameSettings.Variant == Enums.GameVariant.TokensForEveryone)
-			{
-				foreach (Controller TFEPlayerController in GameManager.instance.AllPlayers)
-				{
-					TFEPlayerController.ArcheryComponent.CollectToken(this);
+            if (controller.ArcheryComponent.CanCollectToken() && !Util.Bitwise.IsBitOn(controller.ArcheryComponent.ArrowTypes, (int)type))
+            {
+				if (GameManager.instance.CurrentGameSettings.Variant == Enums.GameVariant.TokensForEveryone) {
+					Debug.Log ("Tokens for everyone");
+					foreach (Controller TFEPlayerController in GameManager.instance.AllPlayers) {
+						TFEPlayerController.ArcheryComponent.CollectToken (this);
+					}
+				} else {
+					controller.ArcheryComponent.CollectToken (this);
+					// Set inactive since we are pooling
+					gameObject.SetActive (false);
 				}
-
-			} else {
-				controller.ArcheryComponent.CollectToken(this);
-			}
+			}				
         }
 
         #region C# Properties
