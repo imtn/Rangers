@@ -451,7 +451,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 0
+    axis: 7
     joyNum: 1
   - serializedVersion: 3
     m_Name: j1_Axis9

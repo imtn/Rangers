@@ -22,6 +22,9 @@ namespace Assets.Scripts.Data
         // List of all the controllers of the players
         private List<Controller> controllers;
 
+		//List of all spawnpoints, collected on Start()
+		private List<GameObject> spawnPoints;
+
         // List of all the types of tokens available
         [SerializeField]
         private List<GameObject> allTokens;
@@ -29,6 +32,9 @@ namespace Assets.Scripts.Data
 
         [SerializeField]
         private GameObject playerPrefab;
+
+		[SerializeField]
+		private GameObject aiPlayerPrefab;
 
         // Match timer (optional)
         private Timer matchTimer;
@@ -54,6 +60,7 @@ namespace Assets.Scripts.Data
             }
 
             controllers = new List<Controller>();
+			spawnPoints = new List<GameObject>();
             //customColor = new CustomColor();
         }
 
@@ -82,11 +89,24 @@ namespace Assets.Scripts.Data
             {
                 controllers.Add(findControllers[i]);
             }
+			// Load the last settings used
+			//currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
+			currentGameSettings = LoadManager.LoadGameSettingsXML(settingsName);
 
+			//Find the spawnpoints
+			spawnPoints.AddRange(GameObject.FindGameObjectsWithTag("Respawn"));
 
-            // Load the last settings used
-            //currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
-            currentGameSettings = LoadManager.LoadGameSettingsXML(settingsName);
+			//If there aren't already players in this scene, we need to create them
+			if(controllers.Count == 0) {
+				for (int i = 0; i < ControllerManager.instance.NumPlayers; i++) {
+					GameObject temp = (GameObject)GameObject.Instantiate(playerPrefab, spawnPoints[i].transform.position, Quaternion.Euler(0,90,0));
+					Controller tempController = temp.GetComponent<Controller>();
+					controllers.Add(tempController);
+					tempController.ProfileComponent = ProfileManager.instance.GetProfile((PlayerID)(i+1));
+					tempController.ID = (PlayerID)(i+1);
+				}
+			}
+
 
             // Initialize the tokens
             TokenSpawner.instance.Init(currentGameSettings.EnabledTokens);

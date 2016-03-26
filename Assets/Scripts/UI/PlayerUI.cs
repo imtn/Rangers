@@ -30,12 +30,12 @@ public class PlayerUI : MonoBehaviour
 		if(playerRef.ArcheryComponent.UpperBodyFacingRight && !Mathf.Approximately(transform.localEulerAngles.y,270f))
 		{
 			GetComponent<RectTransform>().localRotation = Quaternion.RotateTowards(GetComponent<RectTransform>().localRotation,
-				Quaternion.Euler(new Vector3(0f,270f,0f)), Time.deltaTime*360f);
+				Quaternion.Euler(new Vector3(0f,270f,0f)), Time.deltaTime*720f);
 		} 
 		else if(!playerRef.ArcheryComponent.UpperBodyFacingRight && !Mathf.Approximately(transform.localEulerAngles.y,90f)) 
 		{
 			GetComponent<RectTransform>().localRotation = Quaternion.RotateTowards(GetComponent<RectTransform>().localRotation,
-				Quaternion.Euler(new Vector3(0f,90f,0f)), Time.deltaTime*360f);
+				Quaternion.Euler(new Vector3(0f,90f,0f)), Time.deltaTime*720f);
 		}
 	}
 }

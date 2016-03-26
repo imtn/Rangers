@@ -38,7 +38,6 @@ public class PS4ControllerWrapper : ControllerInputWrapper
 				scale = -1;
 				break;
         }
-        //Debug.Log(axisName);
         if (isRaw)
         {
             return Input.GetAxisRaw(axisName) * scale;

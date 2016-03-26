@@ -20,17 +20,33 @@ public class RobotBodyPart : MonoBehaviour
 		//gets playerID from parent
 		pid = transform.root.GetComponent<Controller>().ID;
 
-		//creates copy and disables
+		//creates copy and disables and removes children
 		copy = (GameObject)GameObject.Instantiate(this.gameObject,transform.position,transform.rotation);
-		Destroy(copy.GetComponent<RobotBodyPart>());
+		for (int i = 0; i < copy.transform.childCount; i++) {
+			Destroy(copy.transform.GetChild(i).gameObject);
+		}
+		DestroyImmediate(copy.GetComponent<RobotBodyPart>());
 		rb = copy.AddComponent<Rigidbody>();
 		bc = copy.AddComponent<BoxCollider>();
+
+		ProfileData profile = transform.root.GetComponent<Controller>().ProfileComponent;
+		if(profile != null) {
+			if(copy.GetComponent<MeshRenderer>().material.name.Equals("PlayerMat1 (Instance)")) {
+				copy.GetComponent<MeshRenderer>().material.color = profile.PrimaryColor;
+				copy.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.PrimaryColor.r/3f,profile.PrimaryColor.g/3f, profile.PrimaryColor.b/3f));
+			} else {
+				copy.GetComponent<MeshRenderer>().material.color = profile.SecondaryColor;
+				copy.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.SecondaryColor.r/3f,profile.SecondaryColor.g/3f, profile.SecondaryColor.b/3f));
+			}
+		}
+
 		copy.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+
 		if(respawning)
 		{
 			copy.transform.position = Vector3.MoveTowards(copy.transform.position, transform.position, Time.deltaTime*(moveSpeed+Vector3.Distance(copy.transform.position,transform.position)));
@@ -50,12 +66,12 @@ public class RobotBodyPart : MonoBehaviour
 		respawning = false;
 		//move the body parts to where the players body is/was
 		//I don't know why I have to check to see if copy is null but for some reason some of them are null and idk why
-		if(copy != null) 
+		if(this != null && copy != null) 
 		{
+			copy.gameObject.SetActive(true);
 			bc.enabled = true;
 			rb.isKinematic = false;
 			GetComponent<MeshRenderer>().enabled = false;
-			copy.gameObject.SetActive(true);
 			copy.transform.position = transform.position;
 			copy.transform.rotation = transform.rotation;
 		}
@@ -63,7 +79,7 @@ public class RobotBodyPart : MonoBehaviour
 
 	public void RespawnBody()
 	{
-		if(copy != null)
+		if(this != null && copy != null)
 		{
 			bc.enabled = false;
 			rb.isKinematic = true;
