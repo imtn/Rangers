@@ -12,8 +12,6 @@ namespace Assets.Scripts.Tokens
         void OnTriggerEnter(Collider col)
         {
 			TokenCollected(col.transform.root.GetComponent<Controller>());
-            // Set inactive since we are pooling
-            gameObject.SetActive(false);
         }
 
         /// <summary>

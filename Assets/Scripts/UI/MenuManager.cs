@@ -4,6 +4,7 @@ using Assets.Scripts.Data;
 using Assets.Scripts.Util;
 using Assets.Scripts.UI.Profiles;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI
 {
@@ -31,7 +32,7 @@ namespace Assets.Scripts.UI
         {
             if(instance == null)
             {
-                DontDestroyOnLoad(gameObject);
+//                DontDestroyOnLoad(gameObject);
                 instance = this;
                 UpdatePanels(SplashPanel);
 				//ControllerManager manager = new ControllerManager();
@@ -196,6 +197,11 @@ namespace Assets.Scripts.UI
 				state = prevState;
 				UpdatePanels(prevPanel);
 			}
+		}
+
+		public void GoToGame(MapSelector selection) {
+			string selectedMap = selection.arenaSelector ? ((Enums.BattleStages)selection.currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)selection.currentSelectedMap).ToString();
+			SceneManager.LoadScene(selectedMap, LoadSceneMode.Single);
 		}
 
 		private void ValueModifier() {

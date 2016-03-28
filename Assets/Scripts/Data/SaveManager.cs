@@ -20,7 +20,7 @@ namespace Assets.Scripts.Data
 		{
 			if(instance == null)
 			{
-				DontDestroyOnLoad(gameObject);
+//				DontDestroyOnLoad(this);
 				instance = this;
 			}
 			else if(instance != this)

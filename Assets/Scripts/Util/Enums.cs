@@ -17,5 +17,8 @@
 		/// Different AI modes that can control AI rangers.
 		/// </summary>
 		public enum AIModes { ApproachShoot, RangerBot }
+
+		public enum BattleStages { ProLeagueStandard, NumStages }
+		public enum TargetPracticeStages { Intro, NumStages }
     }
 }

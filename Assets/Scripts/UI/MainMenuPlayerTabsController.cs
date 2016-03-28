@@ -19,7 +19,7 @@ public class MainMenuPlayerTabsController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(ControllerManager.instance.AddPlayer(ControllerInputWrapper.Buttons.A)) {
+		if(ControllerManager.instance.AddPlayer(ControllerInputWrapper.Buttons.Start)) {
 			if(ControllerManager.instance.NumPlayers == 2) {
 				infoBlock2.PlayerAdded();
 			}

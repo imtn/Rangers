@@ -19,6 +19,8 @@ namespace Assets.Scripts.Tokens
         protected override void TokenCollected(Controller controller)
         {
             controller.LifeComponent.CollectToken(this);
+            // Set inactive since we are pooling
+            gameObject.SetActive(false);
         }
 
         #region C# Properties
