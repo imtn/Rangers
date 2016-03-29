@@ -17,7 +17,7 @@ namespace Assets.Scripts.Player
         /// </summary>
         public const float MAX_HEALTH = 100f;
 
-        private float health = MAX_HEALTH, lives = Mathf.Infinity;
+        private float health = MAX_HEALTH, lives = Mathf.Infinity, deaths = 0;
 
         // CHANGE FOR LATER
         public int kills;
@@ -49,9 +49,10 @@ namespace Assets.Scripts.Player
             controller.Disable();
             if (--lives > 0)
             {
-                Debug.Log("Lives: " + lives);
+//                Debug.Log("Lives: " + lives);
                 // Tell GameManager to setup respawn
                 GameManager.instance.Respawn(controller.ID);
+				deaths++;
             }
             GameManager.instance.PlayerKilled(controller.ID, lastAttacker);
         }
@@ -119,6 +120,11 @@ namespace Assets.Scripts.Player
             get { return lives; }
             set { lives = value; }
         }
+
+		public float Deaths
+		{
+			get { return deaths; }
+		}
         #endregion
     }
 }

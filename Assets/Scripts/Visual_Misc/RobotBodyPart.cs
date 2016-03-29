@@ -18,29 +18,42 @@ public class RobotBodyPart : MonoBehaviour
 	void Start () 
 	{
 		//gets playerID from parent
-		pid = transform.root.GetComponent<Controller>().ID;
+		if(transform.root.GetComponent<Controller>()) {
+			pid = transform.root.GetComponent<Controller>().ID;
 
-		//creates copy and disables and removes children
-		copy = (GameObject)GameObject.Instantiate(this.gameObject,transform.position,transform.rotation);
-		for (int i = 0; i < copy.transform.childCount; i++) {
-			Destroy(copy.transform.GetChild(i).gameObject);
-		}
-		DestroyImmediate(copy.GetComponent<RobotBodyPart>());
-		rb = copy.AddComponent<Rigidbody>();
-		bc = copy.AddComponent<BoxCollider>();
+			//creates copy and disables and removes children
+			copy = (GameObject)GameObject.Instantiate(this.gameObject,transform.position,transform.rotation);
+			for (int i = 0; i < copy.transform.childCount; i++) {
+				Destroy(copy.transform.GetChild(i).gameObject);
+			}
+			DestroyImmediate(copy.GetComponent<RobotBodyPart>());
+			rb = copy.AddComponent<Rigidbody>();
+			bc = copy.AddComponent<BoxCollider>();
 
-		ProfileData profile = transform.root.GetComponent<Controller>().ProfileComponent;
-		if(profile != null) {
-			if(copy.GetComponent<MeshRenderer>().material.name.Equals("PlayerMat1 (Instance)")) {
-				copy.GetComponent<MeshRenderer>().material.color = profile.PrimaryColor;
-				copy.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.PrimaryColor.r/3f,profile.PrimaryColor.g/3f, profile.PrimaryColor.b/3f));
-			} else {
-				copy.GetComponent<MeshRenderer>().material.color = profile.SecondaryColor;
-				copy.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.SecondaryColor.r/3f,profile.SecondaryColor.g/3f, profile.SecondaryColor.b/3f));
+			ProfileData profile = transform.root.GetComponent<Controller>().ProfileComponent;
+			if(profile != null) {
+				if(copy.GetComponent<MeshRenderer>().material.name.Equals("PlayerMat1 (Instance)")) {
+					copy.GetComponent<MeshRenderer>().material.color = profile.PrimaryColor;
+					copy.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.PrimaryColor.r/3f,profile.PrimaryColor.g/3f, profile.PrimaryColor.b/3f));
+				} else {
+					copy.GetComponent<MeshRenderer>().material.color = profile.SecondaryColor;
+					copy.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.SecondaryColor.r/3f,profile.SecondaryColor.g/3f, profile.SecondaryColor.b/3f));
+				}
+			}
+
+			copy.gameObject.SetActive(false);
+		} else if(transform.root.GetComponent<CosmeticPlayer>()) {
+			ProfileData profile = ProfileManager.instance.GetProfile(transform.root.GetComponent<CosmeticPlayer>().id);
+			if(profile != null) {
+				if(GetComponent<MeshRenderer>().material.name.Equals("PlayerMat1 (Instance)")) {
+					GetComponent<MeshRenderer>().material.color = profile.PrimaryColor;
+					GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.PrimaryColor.r/3f,profile.PrimaryColor.g/3f, profile.PrimaryColor.b/3f));
+				} else {
+					GetComponent<MeshRenderer>().material.color = profile.SecondaryColor;
+					GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.SecondaryColor.r/3f,profile.SecondaryColor.g/3f, profile.SecondaryColor.b/3f));
+				}
 			}
 		}
-
-		copy.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
