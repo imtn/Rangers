@@ -41,10 +41,12 @@ public class InGamePlayerInfoUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(livesText) livesText.text = GameManager.instance.GetPlayer(id).LifeComponent.Lives.ToString();
-		if(deathsText) deathsText.text = GameManager.instance.GetPlayer(id).LifeComponent.Deaths.ToString();
-		if(killsText) killsText.text = GameManager.instance.GetPlayer(id).LifeComponent.kills.ToString();
-		if(GameManager.instance.CurrentWinner == id) crownIcon.SetActive(true);
-		else crownIcon.SetActive(false);
+		if(crownIcon != null) {
+			if(livesText) livesText.text = GameManager.instance.GetPlayer(id).LifeComponent.Lives.ToString();
+			if(deathsText) deathsText.text = GameManager.instance.GetPlayer(id).LifeComponent.Deaths.ToString();
+			if(killsText) killsText.text = GameManager.instance.GetPlayer(id).LifeComponent.kills.ToString();
+			if(GameManager.instance.CurrentWinner == id) crownIcon.SetActive(true);
+			else crownIcon.SetActive(false);
+		}
 	}
 }
