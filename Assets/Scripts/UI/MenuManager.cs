@@ -156,7 +156,7 @@ namespace Assets.Scripts.UI
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
 			{
 				state = Enums.UIStates.Multiplayer;
-				UpdatePanels(MultiPanel);
+				UpdatePanels(MainPanel);
 			}
 		}
 
