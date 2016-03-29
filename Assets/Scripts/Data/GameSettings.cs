@@ -193,17 +193,7 @@ public class GameSettings
     public Enums.GameType Type
     {
         get { return type; }
-        set {
-			switch(type) {
-				case Enums.GameType.Stock:
-					killLimit = Mathf.Infinity;
-					break;
-				case Enums.GameType.Deathmatch:
-					stockLimit = Mathf.Infinity;
-					break;
-			}
-			type = value;
-		}
+		set { type = value; }
     }
 
 	/// <summary>

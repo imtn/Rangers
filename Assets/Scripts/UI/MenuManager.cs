@@ -234,6 +234,7 @@ namespace Assets.Scripts.UI
 			{
 				state = prevState;
 				currentValueMod.GetComponent<Selectable>().interactable = true;
+				Navigator.CallCancel();
 			}
 		}
 
@@ -381,7 +382,7 @@ namespace Assets.Scripts.UI
 		public void CallLevelSelect(MatchDesigner match)
 		{
 			GameSettings settings = match.GetSettings();
-			SaveManager.SaveGameSettings(settings,"Current");
+			SaveManager.SaveGameSettings(settings,"Current.dat");
 			prevState = state;
 			prevPanel = activePanel;
 			state = Enums.UIStates.LevelSelect;

@@ -39,6 +39,11 @@ namespace Assets.Scripts.Data
         // Match timer (optional)
         private Timer matchTimer;
 
+		//GameOver UI
+		private GameObject gameOverUI;
+		private bool gameOver;
+		private PlayerID currentWinner;
+
         // Current game settings to abide by
 		private GameSettings currentGameSettings;
         // CustomColor object for efficient color getting
@@ -51,7 +56,7 @@ namespace Assets.Scripts.Data
         {
             if (instance == null)
             {
-                DontDestroyOnLoad(gameObject);
+//                DontDestroyOnLoad(gameObject);
                 instance = this;
             }
             else if (instance != this)
@@ -67,6 +72,8 @@ namespace Assets.Scripts.Data
         void Start()
         {
             // Call Init
+			gameOverUI = GameObject.Find("GameOverUI");
+			gameOverUI.SetActive(false);
             InitializeMatch();
         }
 
@@ -91,7 +98,7 @@ namespace Assets.Scripts.Data
             }
 			// Load the last settings used
 			//currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
-			currentGameSettings = LoadManager.LoadGameSettingsXML(settingsName);
+			currentGameSettings = LoadManager.LoadGameSettings(settingsName);
 
 			//Find the spawnpoints
 			spawnPoints.AddRange(GameObject.FindGameObjectsWithTag("Respawn"));
@@ -126,6 +133,7 @@ namespace Assets.Scripts.Data
             // All other games will have a countdown timer
             else
             {
+//				Debug.Log("Loading: " + currentGameSettings.Type.ToString() + ": Kills-" + currentGameSettings.KillLimit + ", Lives-" + currentGameSettings.StockLimit);
                 // If the timer is enabled in that game type
                 if (currentGameSettings.TimeLimitEnabled)
                 {
@@ -143,6 +151,7 @@ namespace Assets.Scripts.Data
         private void TimeUp(CountdownTimer t)
         {
             Debug.Log("Time is up");
+			GameOver();
         }
 
         /// <summary>
@@ -160,8 +169,27 @@ namespace Assets.Scripts.Data
         private void GameOver()
         {
             //Debug.Log("Match concluded");
-            CountdownTimer.CreateTimer(gameObject, 3f, "GameOver", ResetLevel);
+			gameOverUI.SetActive(true);
+			gameOver = true;
+			foreach(Controller c in controllers) {
+				c.Disable();
+			}
+			CountdownTimer.CreateTimer(gameObject, 10f, "GameOver", GoToMatchSummary);
+
         }
+
+		private void GoToMatchSummary(CountdownTimer t)
+		{
+			GameObject g = new GameObject("MatchSummaryManager");
+			MatchSummaryManager summary = g.AddComponent<MatchSummaryManager>();
+			DontDestroyOnLoad(g);
+			MatchSummaryManager.winner = currentWinner;
+			MatchSummaryManager.others = new List<PlayerID>();
+			for(int i = 0; i < controllers.Count; i++) {
+				if(controllers[i].ID != currentWinner && !MatchSummaryManager.others.Contains(controllers[i].ID)) MatchSummaryManager.others.Add(controllers[i].ID);
+			}
+			SceneManager.LoadScene("MatchSummary", LoadSceneMode.Single);
+		}
 
         /// <summary>
         /// Resets the scene.
@@ -188,11 +216,36 @@ namespace Assets.Scripts.Data
             if(currentGameSettings.Type.Equals(Enums.GameType.Deathmatch))
             {
                 if (killer != null && killer.LifeComponent.kills > currentGameSettings.KillLimit) GameOver();
+				else if (killer != null) {
+					int maxNumKills = 0;
+					PlayerID mostKills = PlayerID.None;
+					foreach(Controller c in controllers) {
+						if(c.LifeComponent.kills > maxNumKills) {
+							maxNumKills = c.LifeComponent.kills;
+							mostKills = c.ID;
+						} else if(c.LifeComponent.kills == maxNumKills) {
+							if (c.LifeComponent.Deaths < GetPlayer(mostKills).LifeComponent.Deaths) {
+								mostKills = c.ID;
+							}
+						}
+					}
+					currentWinner = mostKills;
+				}
             }
             if (currentGameSettings.Type.Equals(Enums.GameType.Stock))
             {
                 if (victim.LifeComponent.Lives <= 0) numDead++;
                 if (numDead >= controllers.Count - 1) GameOver();
+
+				int maxLives = 0;
+				PlayerID mostLives = PlayerID.None;
+				foreach(Controller c in controllers) {
+					if(c.LifeComponent.Lives > maxLives) {
+						maxLives = (int)c.LifeComponent.Lives;
+						mostLives = c.ID;
+					}
+				}
+				currentWinner = mostLives;
             }
         }
 
@@ -281,6 +334,21 @@ namespace Assets.Scripts.Data
         {
             get { return controllers; }
         }
+
+		public float CurrentTime
+		{
+			get { return matchTimer.CurrentTime; }
+		}
+
+		public bool GameFinished
+		{
+			get {return gameOver; }
+		}
+
+		public PlayerID CurrentWinner
+		{
+			get {return currentWinner; }
+		}
         #endregion
     }
 }
