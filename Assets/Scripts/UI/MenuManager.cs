@@ -15,7 +15,7 @@ namespace Assets.Scripts.UI
         public static Enums.UIStates state = Enums.UIStates.Splash;
 		private Enums.UIStates prevState = Enums.UIStates.None;
 
-        private float hTimer, vTimer, delay = 0.1f;
+        private float hTimer, vTimer, delay = 0.3f;
 
         private Transform activePanel;
 		private Transform prevPanel;
@@ -276,7 +276,8 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) > ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                if (hTimer >= delay || hTimer == 0)
+                Debug.Log(hTimer);
+                if (hTimer >= delay)
                 {
                     // Move and reset timer
                     Navigator.Navigate(Enums.MenuDirections.Right);
@@ -289,7 +290,7 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                if (hTimer >= delay || hTimer == 0)
+                if (hTimer >= delay)
                 {
                     // Move and reset timer
                     Navigator.Navigate(Enums.MenuDirections.Left);
@@ -309,7 +310,7 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY,PlayerID.One) > ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                if (vTimer >= delay || vTimer == 0)
+                if (vTimer >= delay)
                 {
                     // Move and reset timer
                     Navigator.Navigate(Enums.MenuDirections.Up);
@@ -322,7 +323,7 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY,PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                if (vTimer >= delay || vTimer == 0)
+                if (vTimer >= delay)
                 {
                     // Move and reset timer
                     Navigator.Navigate(Enums.MenuDirections.Down);
@@ -333,7 +334,7 @@ namespace Assets.Scripts.UI
 
             // Have dpad functionality so that player can have precise control and joystick quick navigation
             // Check differently for Windows vs OSX
-
+            
             // No dpad button is pressed
 			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX,PlayerID.One) == 0 && (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY,PlayerID.One) == 0)) dpadPressed = false;
             // Dpad right is pressed; treating as DPADRightOnDown
