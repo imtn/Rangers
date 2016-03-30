@@ -46,6 +46,7 @@ namespace Assets.Scripts.Data
 
         // Current game settings to abide by
 		private GameSettings currentGameSettings;
+		private TargetSettings currentTargetGameSettings;
         // CustomColor object for efficient color getting
         //private CustomColor customColor;
 
@@ -97,8 +98,13 @@ namespace Assets.Scripts.Data
                 controllers.Add(findControllers[i]);
             }
 			// Load the last settings used
-			//currentGameSettings = LoadManager.LoadGameSettings(GameSettings.persistentExtension);
-			currentGameSettings = LoadManager.LoadGameSettings(settingsName);
+			if(settingsName.Contains("Target"))
+				currentTargetGameSettings = LoadManager.LoadTargetSettingsXML(settingsName);
+			else
+				currentGameSettings = LoadManager.LoadGameSettings(settingsName);
+
+//			Debug.Log(currentGameSettings.Type);
+			
 
 			//Find the spawnpoints
 			spawnPoints.AddRange(GameObject.FindGameObjectsWithTag("Respawn"));
@@ -124,9 +130,9 @@ namespace Assets.Scripts.Data
             }
 
             // Set up a timer that counts up for targets
-            if (currentGameSettings.Type.Equals(Enums.GameType.Target))
+			if (currentTargetGameSettings != null)
             {
-                currentGameSettings.TargetsInLevel = FindObjectsOfType<Target>().Length;
+				currentTargetGameSettings.TargetsInLevel = FindObjectsOfType<Target>().Length;
                 matchTimer = gameObject.AddComponent<Timer>();
                 matchTimer.Initialize(Mathf.Infinity, "Match Timer");
             }

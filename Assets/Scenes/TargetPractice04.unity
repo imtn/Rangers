@@ -6705,6 +6705,7 @@ MonoBehaviour:
   - {fileID: 148824, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
   - {fileID: 148824, guid: 620705417fe842d46bb079b8700f00ed, type: 2}
   playerPrefab: {fileID: 0}
+  aiPlayerPrefab: {fileID: 0}
 --- !u!4 &1356824451
 Transform:
   m_ObjectHideFlags: 0
@@ -6726,7 +6727,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 405312, guid: 20d48e886c18ad44f9cc67f0c529a47b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.31
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 405312, guid: 20d48e886c18ad44f9cc67f0c529a47b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6754,7 +6755,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405312, guid: 20d48e886c18ad44f9cc67f0c529a47b, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 137284, guid: 20d48e886c18ad44f9cc67f0c529a47b, type: 2}
       propertyPath: m_Name
