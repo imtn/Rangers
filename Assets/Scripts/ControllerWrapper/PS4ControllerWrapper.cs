@@ -35,10 +35,10 @@ public class PS4ControllerWrapper : ControllerInputWrapper
 				break;
 			case Axis.DPadY:
 				axisName = getAxisName("8", "8", "8");
-				scale = -1;
+				if(ControllerManager.instance.currentOS != ControllerManager.OperatingSystem.Win)
+					scale = -1;
 				break;
         }
-        //Debug.Log(axisName);
         if (isRaw)
         {
             return Input.GetAxisRaw(axisName) * scale;

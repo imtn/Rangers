@@ -4,6 +4,7 @@ using Assets.Scripts.Data;
 using Assets.Scripts.Util;
 using Assets.Scripts.UI.Profiles;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI
 {
@@ -14,7 +15,7 @@ namespace Assets.Scripts.UI
         public static Enums.UIStates state = Enums.UIStates.Splash;
 		private Enums.UIStates prevState = Enums.UIStates.None;
 
-        private float hTimer, vTimer, delay = 0.1f;
+        private float hTimer, vTimer, delay = 0.3f;
 
         private Transform activePanel;
 		private Transform prevPanel;
@@ -31,7 +32,7 @@ namespace Assets.Scripts.UI
         {
             if(instance == null)
             {
-                DontDestroyOnLoad(gameObject);
+//                DontDestroyOnLoad(gameObject);
                 instance = this;
                 UpdatePanels(SplashPanel);
 				//ControllerManager manager = new ControllerManager();
@@ -155,7 +156,7 @@ namespace Assets.Scripts.UI
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
 			{
 				state = Enums.UIStates.Multiplayer;
-				UpdatePanels(MultiPanel);
+				UpdatePanels(MainPanel);
 			}
 		}
 
@@ -198,6 +199,11 @@ namespace Assets.Scripts.UI
 			}
 		}
 
+		public void GoToGame(MapSelector selection) {
+			string selectedMap = selection.arenaSelector ? ((Enums.BattleStages)selection.currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)selection.currentSelectedMap).ToString();
+			SceneManager.LoadScene(selectedMap, LoadSceneMode.Single);
+		}
+
 		private void ValueModifier() {
 			if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY, PlayerID.One) > ControllerManager.CUSTOM_DEADZONE
 				|| ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY, PlayerID.One) > 0
@@ -228,6 +234,7 @@ namespace Assets.Scripts.UI
 			{
 				state = prevState;
 				currentValueMod.GetComponent<Selectable>().interactable = true;
+				Navigator.CallCancel();
 			}
 		}
 
@@ -269,7 +276,8 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) > ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                if (hTimer >= delay || hTimer == 0)
+                Debug.Log(hTimer);
+                if (hTimer >= delay)
                 {
                     // Move and reset timer
                     Navigator.Navigate(Enums.MenuDirections.Right);
@@ -282,7 +290,7 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                if (hTimer >= delay || hTimer == 0)
+                if (hTimer >= delay)
                 {
                     // Move and reset timer
                     Navigator.Navigate(Enums.MenuDirections.Left);
@@ -302,7 +310,7 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY,PlayerID.One) > ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                if (vTimer >= delay || vTimer == 0)
+                if (vTimer >= delay)
                 {
                     // Move and reset timer
                     Navigator.Navigate(Enums.MenuDirections.Up);
@@ -315,7 +323,7 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY,PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                if (vTimer >= delay || vTimer == 0)
+                if (vTimer >= delay)
                 {
                     // Move and reset timer
                     Navigator.Navigate(Enums.MenuDirections.Down);
@@ -326,7 +334,7 @@ namespace Assets.Scripts.UI
 
             // Have dpad functionality so that player can have precise control and joystick quick navigation
             // Check differently for Windows vs OSX
-
+            
             // No dpad button is pressed
 			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX,PlayerID.One) == 0 && (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY,PlayerID.One) == 0)) dpadPressed = false;
             // Dpad right is pressed; treating as DPADRightOnDown
@@ -375,7 +383,7 @@ namespace Assets.Scripts.UI
 		public void CallLevelSelect(MatchDesigner match)
 		{
 			GameSettings settings = match.GetSettings();
-			SaveManager.SaveGameSettings(settings,"Current");
+			SaveManager.SaveGameSettings(settings,"Current.dat");
 			prevState = state;
 			prevPanel = activePanel;
 			state = Enums.UIStates.LevelSelect;

@@ -28,10 +28,21 @@ public class MatchDesigner : MonoBehaviour {
 	/// <returns>The game settings</returns>
 	public GameSettings GetSettings() {
 		GameSettings settings = new GameSettings();
-		settings.KillLimit = kills.value;
-		settings.StockLimit = stock.value;
+
+		if (kills.gameObject.activeInHierarchy)
+			settings.KillLimit = kills.value;
+		else
+			settings.KillLimit = Mathf.Infinity;
+		
+		if (stock.gameObject.activeInHierarchy)
+			settings.StockLimit = stock.value;
+		else
+			settings.StockLimit = Mathf.Infinity;
+
 		settings.TimeLimit = time.value;
+
 		settings.Type = (Enums.GameType)System.Enum.Parse(typeof(Enums.GameType),matchType.text);
+
 		return settings;
 	}
 }

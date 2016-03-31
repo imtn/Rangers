@@ -61,6 +61,8 @@ namespace Assets.Scripts.Attacks
 					lights.Add((Enums.Arrows) i, light);
 				}
 			}
+
+            hitController.ArcheryComponent.ArrowTypes = hitController.ArcheryComponent.PermanentArrowTypes;
 				
 			if(lights.Count == 0) 
 			{

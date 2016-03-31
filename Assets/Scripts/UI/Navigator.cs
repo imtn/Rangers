@@ -78,5 +78,14 @@ namespace Assets.Scripts.UI
                 ExecuteEvents.Execute(EventSystem.current.currentSelectedGameObject, pointer, ExecuteEvents.submitHandler);
             }
         }
+
+		public static void CallCancel()
+		{
+			if (EventSystem.current.currentSelectedGameObject)
+			{
+				var pointer = new PointerEventData(EventSystem.current);
+				ExecuteEvents.Execute(EventSystem.current.currentSelectedGameObject, pointer, ExecuteEvents.cancelHandler);
+			}
+		}
     } 
 }

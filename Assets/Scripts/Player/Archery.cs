@@ -61,7 +61,7 @@ namespace Assets.Scripts.Player
 		public void UpdateFirePoint(Vector3 position)
 		{
 			IncreaseStrength();
-			firePoint.localPosition = position*strength*2f;
+			firePoint.localPosition = Vector3.MoveTowards(firePoint.localPosition, position*strength*2f, Time.deltaTime*Vector3.Distance(firePoint.localPosition,position*strength*2f)*4f);
 
 			//Makes the curving aim line
 			Vector3[] linePoints = new Vector3[10];
@@ -79,7 +79,7 @@ namespace Assets.Scripts.Player
 
 		private void IncreaseStrength() {
 			strength = Bitwise.IsBitOn(types, (int)Enums.Arrows.RapidFire)?
-				MAX_STRENGTH : Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime/2f));
+				MAX_STRENGTH : Mathf.Min(MAX_STRENGTH,strength+(Time.deltaTime*2f));
 		}
 
 		public void UpdateBodyAim() {

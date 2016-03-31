@@ -20,7 +20,7 @@ namespace Assets.Scripts.Data
 		{
 			if(instance == null)
 			{
-				DontDestroyOnLoad(gameObject);
+//				DontDestroyOnLoad(this);
 				instance = this;
 			}
 			else if(instance != this)
@@ -79,6 +79,7 @@ namespace Assets.Scripts.Data
         /// <param name="extension">The name of the path/file to save</param>
         public static void SaveGameSettings(GameSettings data, string extension)
         {
+			Debug.Log("Saving: " + data.Type.ToString() + ": Kills-" + data.KillLimit + ", Lives-" + data.StockLimit);
             // Create a new save file
             if (!Directory.Exists(settingsDataPath)) Directory.CreateDirectory(settingsDataPath);
             BinaryFormatter bf = new BinaryFormatter();
@@ -86,6 +87,13 @@ namespace Assets.Scripts.Data
 
             bf.Serialize(file, data);
             file.Close();
+
+			bf = new BinaryFormatter();
+			file = File.Open(settingsDataPath + extension, FileMode.Open);
+
+			data = (GameSettings)bf.Deserialize(file);
+			Debug.Log("Loading: " + data.Type.ToString() + ": Kills-" + data.KillLimit + ", Lives-" + data.StockLimit);
+			file.Close();
         }
     }
 }

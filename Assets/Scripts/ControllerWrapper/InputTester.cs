@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputTester : MonoBehaviour {
 
@@ -12,7 +13,7 @@ public class InputTester : MonoBehaviour {
     {
         if (instance == null)
         {
-            DontDestroyOnLoad(gameObject);
+//			DontDestroyOnLoad(this);
             instance = this;
             cm = new ControllerManager();
         }
@@ -23,6 +24,7 @@ public class InputTester : MonoBehaviour {
     }
 
 	void Update() {
-		cm.AddPlayer(ControllerInputWrapper.Buttons.Start);
+		if(SceneManager.GetActiveScene().name.Contains("Testing"))
+			cm.AddPlayer(ControllerInputWrapper.Buttons.Start);
 	}
 }

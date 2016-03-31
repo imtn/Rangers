@@ -25,7 +25,7 @@ namespace Assets.Scripts.Player
         protected Parkour parkour;
         protected Life life;
         protected Archery archery;
-        protected Profile profile;
+		protected ProfileData profile;
 
         public const int INVINCIBLE_FRAMES = 2;
         protected int invincibleFrames = INVINCIBLE_FRAMES;
@@ -47,7 +47,19 @@ namespace Assets.Scripts.Player
 			//Find all the body parts
 			bodyParts = new List<RobotBodyPart>();
 			bodyParts.AddRange(Resources.FindObjectsOfTypeAll<RobotBodyPart>());
-			bodyParts.RemoveAll((RobotBodyPart obj) => obj.pid != id);
+			bodyParts.RemoveAll((RobotBodyPart obj) => obj == null || obj.pid != id);
+
+			if(profile != null) {
+				foreach(RobotBodyPart rbp in bodyParts) {
+					if(rbp.GetComponent<MeshRenderer>().material.name.Equals("PlayerMat1 (Instance)")) {
+						rbp.GetComponent<MeshRenderer>().material.color = profile.PrimaryColor;
+						rbp.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.PrimaryColor.r/3f,profile.PrimaryColor.g/3f, profile.PrimaryColor.b/3f));
+					} else {
+						rbp.GetComponent<MeshRenderer>().material.color = profile.SecondaryColor;
+						rbp.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(profile.SecondaryColor.r/3f,profile.SecondaryColor.g/3f, profile.SecondaryColor.b/3f));
+					}
+				}
+			}
         }
 
         /// <summary>
@@ -59,13 +71,11 @@ namespace Assets.Scripts.Player
             life = GetComponent<Life>();
             parkour = GetComponent<Parkour>();
             archery = GetComponent<Archery>();
-            profile = GetComponent<Profile>();
 
             // Tell all components this is their controller
             life.Controller = this;
             parkour.Controller = this;
             archery.Controller = this;
-            profile.Controller = this;
         }
 
         /// <summary>
@@ -119,9 +129,10 @@ namespace Assets.Scripts.Player
         /// <summary>
         /// Profile component of the player
         /// </summary>
-        public Profile ProfileComponent
+		public ProfileData ProfileComponent
         {
             get { return profile; }
+			set { profile = value; }
         }
         /// <summary>
         /// ID of the player

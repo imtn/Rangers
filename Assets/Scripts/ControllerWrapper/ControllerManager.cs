@@ -194,7 +194,7 @@ public class ControllerManager  {
 		return playerControls[id].GetTrigger(trigger, isRaw);
 	}
 
-	public bool GetButton(ControllerInputWrapper.Buttons button, PlayerID id)
+	public bool GetButton(ControllerInputWrapper.Buttons button, PlayerID id = PlayerID.One)
 	{
 		if(!playerControls.ContainsKey(id)) return false;
 		if (playerControls[id] == null)
@@ -204,7 +204,7 @@ public class ControllerManager  {
 		return playerControls[id].GetButton(button);
 	}
 
-	public bool GetButtonDown(ControllerInputWrapper.Buttons button, PlayerID id) {
+	public bool GetButtonDown(ControllerInputWrapper.Buttons button, PlayerID id = PlayerID.One) {
 		if(!playerControls.ContainsKey(id)) return false;
 		if (playerControls[id] == null)
 		{
