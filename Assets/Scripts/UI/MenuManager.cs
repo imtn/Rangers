@@ -122,7 +122,7 @@ namespace Assets.Scripts.UI
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Start, PlayerID.One))
 			{
 				string text = SignInPanel.FindChild("NameCreator").FindChild("LetterHolder").GetComponent<NameCreator>().t.text;
-				if(text.Length == 4) {
+				if(text.Length > 0) {
 					ProfileData pd = new ProfileData(text);
 					ProfileManager.instance.AddProfile(pd);
 					SignInToMain();

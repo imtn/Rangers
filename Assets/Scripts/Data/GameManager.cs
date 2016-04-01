@@ -143,8 +143,9 @@ namespace Assets.Scripts.Data
                 // If the timer is enabled in that game type
                 if (currentGameSettings.TimeLimitEnabled)
                 {
+					float timeLimit = currentGameSettings.TimeLimit == 0 ? Mathf.Infinity : currentGameSettings.TimeLimit;
                     matchTimer = gameObject.AddComponent<CountdownTimer>();
-                    matchTimer.Initialize(currentGameSettings.TimeLimit, "Match Timer");
+					matchTimer.Initialize(timeLimit, "Match Timer");
                     ((CountdownTimer)matchTimer).TimeOut += new CountdownTimer.TimerEvent(TimeUp);
                 }
             }
