@@ -48,7 +48,9 @@ public class ValueModifierUI : MonoBehaviour {
 			break;
 		case ValueModifierUIType.MatchType:
 			value--;
-			value = Mathf.Abs(((int)value) % (int)Enums.GameType.NumTypes);
+			if (value < 0) {
+				value = (int)Enums.GameType.NumTypes - 1;
+			}
 			break;
 		}
 		UpdateText();
