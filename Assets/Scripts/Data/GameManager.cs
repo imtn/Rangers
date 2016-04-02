@@ -207,15 +207,20 @@ namespace Assets.Scripts.Data
             Controller victim = controllers.Find(x => x.ID.Equals(killed));
             Controller killer = controllers.Find(x => x.ID.Equals(killedBy));
             // Increment killer score provided there is a killer that is not self
-            if (killer == null || killer == victim) return;
+            if(killer == victim)
+            {
+                killer.LifeComponent.kills--;
+                return;
+            }
+            if (killer == null) return;
             killer.LifeComponent.kills++;
             
             // Check if the game is over based on gametype
             if(currentGameSettings.Type.Equals(Enums.GameType.Deathmatch))
             {
-                if (killer != null && killer.LifeComponent.kills >= currentGameSettings.KillLimit) GameOver();
+                if (killer.LifeComponent.kills >= currentGameSettings.KillLimit) GameOver();
 				else if (killer != null) {
-					int maxNumKills = 0;
+					float maxNumKills = Mathf.NegativeInfinity;
 					PlayerID mostKills = PlayerID.None;
 					foreach(Controller c in controllers) {
 						if(c.LifeComponent.kills > maxNumKills) {
