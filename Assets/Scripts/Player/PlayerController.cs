@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Tokens;
 
 namespace Assets.Scripts.Player
 {
@@ -39,7 +40,8 @@ namespace Assets.Scripts.Player
 
 				if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A,id)) parkour.Jump();
 				if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B,id)) parkour.SlideOn();
-				else parkour.SlideOff();
+                if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.X, id)) GrabToken();
+                else parkour.SlideOff();
 
 				if(Vector3.Magnitude(aim) > 1.2f)
 	            {
@@ -55,7 +57,6 @@ namespace Assets.Scripts.Player
 					drawnArrow = false;
 					archery.Fire();
 					fire = false;
-					//				definitelyFire = false;
 					fireRateTimer = 0;
 				}
 				else
@@ -64,8 +65,25 @@ namespace Assets.Scripts.Player
 					archery.AimUpperBodyWithLegs();
 				}
 			}
-
             //if (invincibleFrames > 0) invincibleFrames--;
+        }
+
+        private void GrabToken()
+        {
+            if (!ArcheryComponent.CanCollectToken()) return;
+            Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
+            for(int i = 0; i < cols.Length; i++)
+            {
+                if(cols[i].GetComponent<ArrowToken>() != null)
+                {
+                    ArrowToken t = cols[i].GetComponent<ArrowToken>();
+                    if (!Util.Bitwise.IsBitOn(ArcheryComponent.ArrowTypes, (int)t.Type))
+                    {
+                        t.TokenCollected(this);
+                        return;
+                    }
+                }
+            }
         }
 
 		void FixedUpdate() 
