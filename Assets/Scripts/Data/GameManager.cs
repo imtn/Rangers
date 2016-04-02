@@ -217,7 +217,8 @@ namespace Assets.Scripts.Data
             Controller victim = controllers.Find(x => x.ID.Equals(killed));
             Controller killer = controllers.Find(x => x.ID.Equals(killedBy));
             // Increment killer score provided there is a killer that is not self
-            if(killer != null) killer.LifeComponent.kills++;
+            if (killer == null || killer == victim) return;
+            killer.LifeComponent.kills++;
             
             // Check if the game is over based on gametype
             if(currentGameSettings.Type.Equals(Enums.GameType.Deathmatch))

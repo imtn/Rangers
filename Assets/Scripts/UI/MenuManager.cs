@@ -201,7 +201,7 @@ namespace Assets.Scripts.UI
 
 		public void GoToGame(MapSelector selection) {
 			string selectedMap = selection.arenaSelector ? ((Enums.BattleStages)selection.currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)selection.currentSelectedMap).ToString();
-			SceneManager.LoadScene(selectedMap, LoadSceneMode.Single);
+			if(ProfileManager.instance.NumSignedIn() > 1) SceneManager.LoadScene(selectedMap, LoadSceneMode.Single);
 		}
 
 		private void ValueModifier() {
@@ -276,7 +276,6 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) > ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                Debug.Log(hTimer);
                 if (hTimer >= delay)
                 {
                     // Move and reset timer
