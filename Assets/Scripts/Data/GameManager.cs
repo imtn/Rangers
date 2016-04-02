@@ -139,9 +139,9 @@ namespace Assets.Scripts.Data
             // All other games will have a countdown timer
             else
             {
-//				Debug.Log("Loading: " + currentGameSettings.Type.ToString() + ": Kills-" + currentGameSettings.KillLimit + ", Lives-" + currentGameSettings.StockLimit);
+				Debug.Log("Loading: " + currentGameSettings.Type.ToString() + ": Time-" + currentGameSettings.TimeLimit + " : " + currentGameSettings.TimeLimitEnabled);
                 // If the timer is enabled in that game type
-                if (currentGameSettings.TimeLimitEnabled)
+				if (currentGameSettings.TimeLimit > 0)
                 {
 					float timeLimit = currentGameSettings.TimeLimit == 0 ? Mathf.Infinity : currentGameSettings.TimeLimit;
                     matchTimer = gameObject.AddComponent<CountdownTimer>();
@@ -345,7 +345,10 @@ namespace Assets.Scripts.Data
 
 		public float CurrentTime
 		{
-			get { return matchTimer.CurrentTime; }
+			get {
+				if(matchTimer) return matchTimer.CurrentTime;
+				return -1f;
+			}
 		}
 
 		public bool GameFinished

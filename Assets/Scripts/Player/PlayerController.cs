@@ -11,6 +11,9 @@ namespace Assets.Scripts.Player
 		//has the player drawn the bow back, and is ready to fire?
 		private bool fire;
 
+		//should we play the drawArrow sound effect?
+		private bool drawnArrow;
+
 		//did the joystick overshoot the deadzone, triggering a fire?
 		private bool definitelyFire;
 
@@ -43,8 +46,13 @@ namespace Assets.Scripts.Player
 					//if the joystick is pushed past the 50% mark in any direction, start aiming the bow
 					archery.UpdateFirePoint(Vector3.Normalize(aim));
 	                fire = true;
+					if(!drawnArrow) {
+						SFXManager.instance.PlayArrowPull();
+						drawnArrow = true;
+					}
 				} else if (fireRateTimer > MAX_FIRE_RATE && fire)
 				{
+					drawnArrow = false;
 					archery.Fire();
 					fire = false;
 					//				definitelyFire = false;

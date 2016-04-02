@@ -45,6 +45,7 @@ namespace Assets.Scripts.Player
         // Handles when players die
         private void Die(PlayerID lastID = PlayerID.None)
         {
+			SFXManager.instance.PlayDeath();
             lastAttacker = lastID;
             controller.Disable();
             if (--lives > 0)

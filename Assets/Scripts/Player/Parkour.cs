@@ -90,6 +90,7 @@ namespace Assets.Scripts.Player
 				}
 				jumping = true;
 				jumpingTimeOffset = 0.1f;
+				SFXManager.instance.PlayJump();
 			}
 		}
 
