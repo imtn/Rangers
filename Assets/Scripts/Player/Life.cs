@@ -32,25 +32,22 @@ namespace Assets.Scripts.Player
         /// <param name="id">The player who dealt the damage</param>
         public void ModifyHealth(float delta, PlayerID id = PlayerID.None)
         {
-            //if (controller.Invincible && delta < 0) return;
+			if(id != PlayerID.None) lastAttacker = id;
             if (health > 0)
             {
                 health = Mathf.Clamp((health + delta), 0, MAX_HEALTH);
-                Debug.Log("Health: " + health);
-                if (health <= 0) Die(id);
+				if (health <= 0) Die();
                 //controller.InvincibleFrames = Controller.INVINCIBLE_FRAMES;
             }
         }
 
         // Handles when players die
-        private void Die(PlayerID lastID = PlayerID.None)
-        {
+        private void Die()
+		{
 			SFXManager.instance.PlayDeath();
-            lastAttacker = lastID;
             controller.Disable();
             if (--lives > 0)
             {
-//                Debug.Log("Lives: " + lives);
                 // Tell GameManager to setup respawn
                 GameManager.instance.Respawn(controller.ID);
 				deaths++;

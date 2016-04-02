@@ -138,7 +138,6 @@ namespace Assets.Scripts.Data
                 FileStream file = File.Open(settingsDataPath + extension, FileMode.Open);
 
                 data = (GameSettings)bf.Deserialize(file);
-				Debug.Log("Loading: " + data.Type.ToString() + ": Kills-" + data.KillLimit + ", Lives-" + data.StockLimit);
                 file.Close();
 
                 return data;

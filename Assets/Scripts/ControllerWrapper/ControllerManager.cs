@@ -112,25 +112,12 @@ public class ControllerManager  {
 			}
 		}
 		if(playerToRemove != PlayerID.None) {
-			//			Debug.Log(playerToRemove + " removed");
 			playerControls.Remove(playerToRemove);
-		}
-	}
-
-	public void setUpControls()
-	{
-		setUpPlatform();
-		string[] controllerNames = Input.GetJoystickNames();
-		//Debug.Log("Controllers connected: " + controllerNames.Length);
-		for (int i = 0; i < controllerNames.Length; i++)
-		{
-			//            playerControls[i] = getControllerType(i + 1);
 		}
 	}
 
 	public ControllerInputWrapper getControllerType(int joyNum)
 	{
-		//Debug.Log(joyNum);
 		string[] controllerNames = Input.GetJoystickNames();
 		if (joyNum < 0 || joyNum > controllerNames.Length)
 		{
@@ -138,7 +125,6 @@ public class ControllerManager  {
 		}
 		//        joyNum--;
 		string name = controllerNames[joyNum];
-		//Debug.Log("Controllers connected: " + controllerNames.Length);
 
 		if (name.Contains("Wireless"))
 		{

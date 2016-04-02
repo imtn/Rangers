@@ -16,13 +16,15 @@ public class MusicAffected : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float[] samples = new float[10];
-		source.clip.GetData(samples,source.timeSamples);
-		float totalSample = 0f;
-		for(int i = 0; i < samples.Length; i++) {
-			totalSample += samples[i];
+		if(source.isPlaying && source.time > 0.1f) {
+			float[] samples = new float[10];
+			source.clip.GetData(samples,source.timeSamples);
+			float totalSample = 0f;
+			for(int i = 0; i < samples.Length; i++) {
+				totalSample += samples[i];
+			}
+			totalSample *= sampleScale;
+			transform.position = initialPos + new Vector3(totalSample*translate.x,totalSample*translate.y, totalSample*translate.z);
 		}
-		totalSample *= sampleScale;
-		transform.position = initialPos + new Vector3(totalSample*translate.x,totalSample*translate.y, totalSample*translate.z);
 	}
 }

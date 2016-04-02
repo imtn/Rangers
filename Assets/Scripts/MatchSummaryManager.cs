@@ -15,7 +15,6 @@ public class MatchSummaryManager : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level) {
-		Debug.Log("Test" + SceneManager.GetActiveScene().name);
 		if (SceneManager.GetActiveScene().name.Equals("MatchSummary")) {
 			GameObject winnerObj = GameObject.Find("Player_Cosmetic_Winner");
 			winnerObj.GetComponent<CosmeticPlayer>().id = winner;
