@@ -186,7 +186,7 @@ namespace Assets.Scripts.Data
 			MatchSummaryManager.winner = currentWinner;
 			MatchSummaryManager.playerInfo = new Dictionary<PlayerID, int>();
 			for(int i = 0; i < controllers.Count; i++) {
-				if(controllers[i].ID != currentWinner && !MatchSummaryManager.playerInfo.ContainsKey(controllers[i].ID)) MatchSummaryManager.playerInfo.Add(controllers[i].ID,controllers[i].LifeComponent.kills);
+				MatchSummaryManager.playerInfo.Add(controllers[i].ID,controllers[i].LifeComponent.kills);
 			}
 			SceneManager.LoadScene("MatchSummary", LoadSceneMode.Single);
 		}
