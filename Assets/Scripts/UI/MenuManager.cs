@@ -135,7 +135,7 @@ namespace Assets.Scripts.UI
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Start, PlayerID.One))
 			{
 				string text = SignInPanel.FindChild("NameCreator").FindChild("LetterHolder").GetComponent<NameCreator>().t.text;
-				if(text.Length > 0) {
+				if(text.Length > 0 && text.ToCharArray()[text.Length-1] != ' ') {
 					ProfileData pd = new ProfileData(text);
 					ProfileManager.instance.AddProfile(pd);
 					SignInToMain();
