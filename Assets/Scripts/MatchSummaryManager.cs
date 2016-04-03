@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class MatchSummaryManager : MonoBehaviour {
 
+	public static Dictionary<PlayerID,int> playerInfo;
+
 	public static PlayerID winner;
-
-	public static List<PlayerID> others;
-
 
 	// Use this for initialization
 	void Start () {
@@ -16,34 +16,36 @@ public class MatchSummaryManager : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		if (SceneManager.GetActiveScene().name.Equals("MatchSummary")) {
-			GameObject winnerObj = GameObject.Find("Player_Cosmetic_Winner");
-			winnerObj.GetComponent<CosmeticPlayer>().id = winner;
+			IEnumerable<KeyValuePair<PlayerID, int>> query = playerInfo.OrderBy((KeyValuePair<PlayerID, int> arg) => arg.Value);
 
+			GameObject p1 = GameObject.Find("Player_Cosmetic_Winner");
 			GameObject p2 = GameObject.Find("Player_Cosmetic (1)");
 			GameObject p3 = GameObject.Find("Player_Cosmetic (2)");
 			GameObject p4 = GameObject.Find("Player_Cosmetic (3)");
-			
-			p2.GetComponent<CosmeticPlayer>().id = others[0];
 
-			if(others.Count > 1) {
-				p3.GetComponent<CosmeticPlayer>().id = others[1];
-			} else {
+			p1.GetComponent<CosmeticPlayer>().id = playerInfo.Keys.ElementAt(0);
+			p2.GetComponent<CosmeticPlayer>().id = playerInfo.Keys.ElementAt(1);
+
+			if(playerInfo.Count == 2) {
 				p3.SetActive(false);
-			}
-
-			if(others.Count > 2) {
-				p4.GetComponent<CosmeticPlayer>().id = others[2];
-			} else {
 				p4.SetActive(false);
+				p2.transform.position = new Vector3(-0.5f,-3f,-0.5f);
+				p1.transform.position = new Vector3(0.5f,-3f,-0.5f);
+			}
+			else if(playerInfo.Count == 3) {
+				p3.GetComponent<CosmeticPlayer>().id = playerInfo.Keys.ElementAt(2);
+				p4.SetActive(false);
+				p3.transform.position = new Vector3(-0.5f,-3f,-0.5f);
+				p2.transform.position = new Vector3(0f,-3f,-0.5f);
+				p1.transform.position = new Vector3(0.5f,-3f,-0.5f);
+			}
+			else if(playerInfo.Count == 4) {
+				p3.GetComponent<CosmeticPlayer>().id = playerInfo.Keys.ElementAt(2);
+				p4.GetComponent<CosmeticPlayer>().id = playerInfo.Keys.ElementAt(3);
 			}
 
 		} else {
 			Destroy(this.gameObject);
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

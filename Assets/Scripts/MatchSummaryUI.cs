@@ -8,11 +8,9 @@ public class MatchSummaryUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		congratsText.text = ProfileManager.instance.GetProfile(MatchSummaryManager.winner).Name + " Wins!";
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		if (MatchSummaryManager.winner != PlayerID.None)
+			congratsText.text = ProfileManager.instance.GetProfile(MatchSummaryManager.winner).Name + " Wins!";
+		else
+			congratsText.text = "Tied!";
 	}
 }
