@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Tokens;
 
 namespace Assets.Scripts.Player
 {
@@ -10,6 +11,9 @@ namespace Assets.Scripts.Player
     {
 		//has the player drawn the bow back, and is ready to fire?
 		private bool fire;
+
+		//should we play the drawArrow sound effect?
+		private bool drawnArrow;
 
 		//did the joystick overshoot the deadzone, triggering a fire?
 		private bool definitelyFire;
@@ -36,18 +40,23 @@ namespace Assets.Scripts.Player
 
 				if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A,id)) parkour.Jump();
 				if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B,id)) parkour.SlideOn();
-				else parkour.SlideOff();
+                if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.X, id)) GrabToken();
+                else parkour.SlideOff();
 
 				if(Vector3.Magnitude(aim) > 1.2f)
 	            {
 					//if the joystick is pushed past the 50% mark in any direction, start aiming the bow
 					archery.UpdateFirePoint(Vector3.Normalize(aim));
 	                fire = true;
+					if(!drawnArrow) {
+						SFXManager.instance.PlayArrowPull();
+						drawnArrow = true;
+					}
 				} else if (fireRateTimer > MAX_FIRE_RATE && fire)
 				{
+					drawnArrow = false;
 					archery.Fire();
 					fire = false;
-					//				definitelyFire = false;
 					fireRateTimer = 0;
 				}
 				else
@@ -56,8 +65,25 @@ namespace Assets.Scripts.Player
 					archery.AimUpperBodyWithLegs();
 				}
 			}
-
             //if (invincibleFrames > 0) invincibleFrames--;
+        }
+
+        private void GrabToken()
+        {
+            if (!ArcheryComponent.CanCollectToken()) return;
+            Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
+            for(int i = 0; i < cols.Length; i++)
+            {
+                if(cols[i].GetComponent<ArrowToken>() != null)
+                {
+                    ArrowToken t = cols[i].GetComponent<ArrowToken>();
+                    if (!Util.Bitwise.IsBitOn(ArcheryComponent.ArrowTypes, (int)t.Type))
+                    {
+                        t.TokenCollected(this);
+                        return;
+                    }
+                }
+            }
         }
 
 		void FixedUpdate() 

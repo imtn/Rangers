@@ -62,6 +62,7 @@ namespace Assets.Scripts.UI
                     // Stop of the next componenet is active and enabled
                     EventSystem.current.SetSelectedGameObject(next);
                     nextIsValid = next.GetComponent<Selectable>().interactable;
+					SFXManager.instance.PlayWhoosh();
                 }
                 else nextIsValid = true;
             }
@@ -76,6 +77,7 @@ namespace Assets.Scripts.UI
             {
                 var pointer = new PointerEventData(EventSystem.current);
                 ExecuteEvents.Execute(EventSystem.current.currentSelectedGameObject, pointer, ExecuteEvents.submitHandler);
+				SFXManager.instance.PlayAffirm();
             }
         }
 
@@ -85,6 +87,7 @@ namespace Assets.Scripts.UI
 			{
 				var pointer = new PointerEventData(EventSystem.current);
 				ExecuteEvents.Execute(EventSystem.current.currentSelectedGameObject, pointer, ExecuteEvents.cancelHandler);
+				SFXManager.instance.PlayNegative();
 			}
 		}
     } 

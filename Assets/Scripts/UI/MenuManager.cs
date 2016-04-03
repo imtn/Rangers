@@ -24,8 +24,13 @@ namespace Assets.Scripts.UI
 
 		private ValueModifierUI currentValueMod;
 
+		public GameObject menuTitle;
+
         [SerializeField]
 		private Transform SplashPanel = null, MainPanel = null, SignInPanel = null, LevelSelectPanel = null, SinglePanel = null, MultiPanel = null, SettingPanel = null, AudioPanel = null, VideoPanel = null, PlayerPanel = null, ArenaStandardPanel = null;
+
+		[SerializeField]
+		private Transform TargetLevelSelectPanel = null;
 
         
         void Awake()
@@ -80,6 +85,9 @@ namespace Assets.Scripts.UI
 				case Enums.UIStates.LevelSelect:
 					LevelSelect();
 					break;
+				case Enums.UIStates.TargetLevelSelect:
+					TargetLevelSelect();
+					break;
                 case Enums.UIStates.None:
                     break;
             }
@@ -99,6 +107,7 @@ namespace Assets.Scripts.UI
 //                {
 					state = Enums.UIStates.Signin;
 					UpdatePanels(SignInPanel);
+				SFXManager.instance.PlayAffirm();
 //                }
             }
 			if(ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
@@ -118,6 +127,7 @@ namespace Assets.Scripts.UI
 			{
 				state = Enums.UIStates.Splash;
 				UpdatePanels(SplashPanel);
+				SFXManager.instance.PlayNegative();
 			}
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Start, PlayerID.One))
 			{
@@ -126,6 +136,7 @@ namespace Assets.Scripts.UI
 					ProfileData pd = new ProfileData(text);
 					ProfileManager.instance.AddProfile(pd);
 					SignInToMain();
+					SFXManager.instance.PlayAffirm();
 				}
 			}
 		}
@@ -137,6 +148,7 @@ namespace Assets.Scripts.UI
             {
                 state = Enums.UIStates.Main;
                 UpdatePanels(MainPanel);
+				SFXManager.instance.PlayNegative();
             }
         }
 
@@ -147,6 +159,7 @@ namespace Assets.Scripts.UI
             {
                 state = Enums.UIStates.Main;
                 UpdatePanels(MainPanel);
+				SFXManager.instance.PlayNegative();
             }
         }
 
@@ -155,8 +168,9 @@ namespace Assets.Scripts.UI
 			Navigate();
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
 			{
-				state = Enums.UIStates.Multiplayer;
+				state = Enums.UIStates.Main;
 				UpdatePanels(MainPanel);
+				SFXManager.instance.PlayNegative();
 			}
 		}
 
@@ -167,6 +181,7 @@ namespace Assets.Scripts.UI
             {
                 state = Enums.UIStates.Main;
                 UpdatePanels(MainPanel);
+				SFXManager.instance.PlayNegative();
             }
         }
 
@@ -177,6 +192,7 @@ namespace Assets.Scripts.UI
             {
                 state = Enums.UIStates.Settings;
                 UpdatePanels(SettingPanel);
+				SFXManager.instance.PlayNegative();
             }
         }
 
@@ -187,6 +203,7 @@ namespace Assets.Scripts.UI
             {
                 state = Enums.UIStates.Settings;
                 UpdatePanels(SettingPanel);
+				SFXManager.instance.PlayNegative();
             }
         }
 
@@ -196,12 +213,23 @@ namespace Assets.Scripts.UI
 			{
 				state = prevState;
 				UpdatePanels(prevPanel);
+				SFXManager.instance.PlayNegative();
+			}
+		}
+
+		private void TargetLevelSelect() {
+			Navigate();
+			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
+			{
+				state = Enums.UIStates.SinglePlayer;
+				UpdatePanels(SinglePanel);
+				SFXManager.instance.PlayNegative();
 			}
 		}
 
 		public void GoToGame(MapSelector selection) {
 			string selectedMap = selection.arenaSelector ? ((Enums.BattleStages)selection.currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)selection.currentSelectedMap).ToString();
-			SceneManager.LoadScene(selectedMap, LoadSceneMode.Single);
+			if(ProfileManager.instance.NumSignedIn() > 1) SceneManager.LoadScene(selectedMap, LoadSceneMode.Single);
 		}
 
 		private void ValueModifier() {
@@ -213,6 +241,7 @@ namespace Assets.Scripts.UI
 				{
 					currentValueMod.IncrementValue();
 					vTimer = 0;
+					SFXManager.instance.PlayClick();
 				}
 				vTimer += Time.deltaTime;
 			} else if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickY, PlayerID.One) < -ControllerManager.CUSTOM_DEADZONE
@@ -223,6 +252,7 @@ namespace Assets.Scripts.UI
 				{
 					currentValueMod.DecrementValue();
 					vTimer = 0;
+					SFXManager.instance.PlayClick();
 				}
 				vTimer += Time.deltaTime;
 			} else {
@@ -276,7 +306,6 @@ namespace Assets.Scripts.UI
 			else if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) > ControllerManager.CUSTOM_DEADZONE)
             {
                 // If we can move and it is time to move
-                Debug.Log(hTimer);
                 if (hTimer >= delay)
                 {
                     // Move and reset timer
@@ -372,6 +401,7 @@ namespace Assets.Scripts.UI
 			UpdatePanels(MainPanel);
 			PlayerPanel.gameObject.SetActive(true);
 			PlayerPanel.SetAsLastSibling();
+			menuTitle.SetActive(true);
 		}
 
         public void CallSinglePlayer()
@@ -426,6 +456,12 @@ namespace Assets.Scripts.UI
 			UpdatePanels(ArenaStandardPanel);
 		}
 
+		public void CallTargetLevelSelect()
+		{
+			state = Enums.UIStates.TargetLevelSelect;
+			UpdatePanels(TargetLevelSelectPanel);
+		}
+
         public void ExitGame()
         {
              if(!Application.platform.ToString().Contains("Web")) Application.Quit();
@@ -438,7 +474,6 @@ namespace Assets.Scripts.UI
 				panel.gameObject.SetActive(true);
                 panel.SetAsLastSibling();
             }
-
             GameObject defaultButton = panel.GetComponent<MenuOption>().DefaultButton;
             if (defaultButton)
             {

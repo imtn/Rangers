@@ -47,22 +47,26 @@ public class PlayerInfoController : MonoBehaviour
 
 
 		//Handles time UI updating
-		int tempVal = (int)GameManager.instance.CurrentTime;
-		int tempValMod = tempVal%60;
-		timerUI.GetComponent<Text>().text = ((int)(tempVal/60f)) + ":" + (tempValMod < 10 && tempValMod > 0 ? "0" + tempValMod : (tempValMod == 0 ? "00" : tempValMod+""));
-		if(!timerUI.GetComponent<Text>().text.Equals(prevTimeText)) {
-			foreach(DelayedTextCopy dtc in timerUI.transform.GetComponentsInChildren<DelayedTextCopy>())
-				dtc.CopyText();
+		if(GameManager.instance.CurrentTime != -1f) {
+			int tempVal = (int)GameManager.instance.CurrentTime;
+			int tempValMod = tempVal%60;
+			timerUI.GetComponent<Text>().text = ((int)(tempVal/60f)) + ":" + (tempValMod < 10 && tempValMod > 0 ? "0" + tempValMod : (tempValMod == 0 ? "00" : tempValMod+""));
+			if(!timerUI.GetComponent<Text>().text.Equals(prevTimeText)) {
+				foreach(DelayedTextCopy dtc in timerUI.transform.GetComponentsInChildren<DelayedTextCopy>())
+					dtc.CopyText();
+			}
+			if(tempVal < 20) {
+				if(tempVal % 2 == 0) timerUI.GetComponent<Text>().color = Color.red;
+				else timerUI.GetComponent<Text>().color = Color.white;
+			}
+			if(tempVal < 10) {
+				timerUI.transform.localScale = Vector3.one*(Mathf.Sin(Time.time*2f)+2)*0.5f;
+				timerUI.GetComponent<Text>().color = Color.red;
+			}
+			prevTimeText = timerUI.GetComponent<Text>().text;
+		} else {
+			timerUI.transform.parent.gameObject.SetActive(false);
 		}
-		if(tempVal < 20) {
-			if(tempVal % 2 == 0) timerUI.GetComponent<Text>().color = Color.red;
-			else timerUI.GetComponent<Text>().color = Color.white;
-		}
-		if(tempVal < 10) {
-			timerUI.transform.localScale = Vector3.one*(Mathf.Sin(Time.time*2f)+2)*0.5f;
-			timerUI.GetComponent<Text>().color = Color.red;
-		}
-		prevTimeText = timerUI.GetComponent<Text>().text;
 
 	}
 }
