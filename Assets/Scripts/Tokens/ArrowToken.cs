@@ -16,7 +16,7 @@ namespace Assets.Scripts.Tokens
         ///  Override the TokenCollected method and tell the Archery component to collect the token
         /// </summary>
         /// <param name="controller">The controller that is doing the collecting</param>
-        protected override void TokenCollected(Controller controller)
+        public override void TokenCollected(Controller controller)
         {
             if (controller.ArcheryComponent.CanCollectToken() && !Util.Bitwise.IsBitOn(controller.ArcheryComponent.ArrowTypes, (int)type))
             {

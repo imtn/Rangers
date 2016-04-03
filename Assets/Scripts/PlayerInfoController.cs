@@ -30,19 +30,35 @@ public class PlayerInfoController : MonoBehaviour
 		if(ControllerManager.instance.NumPlayers > 1 && PlayerInfoBlock2 == null) 
 		{
 			PlayerInfoBlock2 = (GameObject)(GameObject.Instantiate(PlayerInfoBlock1,Vector3.zero,Quaternion.identity));
-			PlayerInfoBlock2.GetComponent<RectTransform>().SetParent(PlayerInfoBlock1.transform.parent,false);
-			PlayerInfoBlock2.GetComponent<RectTransform>().anchoredPosition = new Vector2(PlayerInfoBlock1.GetComponent<RectTransform>().sizeDelta.x/2f,0f);
-			PlayerInfoBlock1.GetComponent<RectTransform>().anchoredPosition = new Vector2(-PlayerInfoBlock1.GetComponent<RectTransform>().sizeDelta.x/2f,0f);
+			RectTransform block1Transform = PlayerInfoBlock1.GetComponent<RectTransform>();
+			RectTransform block2Transform = PlayerInfoBlock2.GetComponent<RectTransform>();
+			block2Transform.SetParent(PlayerInfoBlock1.transform.parent,false);
+			block2Transform.anchoredPosition = new Vector2(block1Transform.sizeDelta.x/2f,0f);
+			block1Transform.anchoredPosition = new Vector2(-block1Transform.sizeDelta.x/2f,0f);
 			PlayerInfoBlock2.GetComponent<InGamePlayerInfoUI>().id = PlayerID.Two;
 		}
 		if(ControllerManager.instance.NumPlayers > 2 && PlayerInfoBlock3 == null) 
 		{
 			PlayerInfoBlock3 = (GameObject)(GameObject.Instantiate(PlayerInfoBlock1,Vector3.zero,Quaternion.identity));
-			PlayerInfoBlock3.GetComponent<RectTransform>().SetParent(PlayerInfoBlock1.transform.parent,false);
-			PlayerInfoBlock3.GetComponent<RectTransform>().anchoredPosition = new Vector2(PlayerInfoBlock1.GetComponent<RectTransform>().sizeDelta.x,0f);
+			RectTransform block1Transform = PlayerInfoBlock1.GetComponent<RectTransform>();
+			RectTransform block3Transform = PlayerInfoBlock3.GetComponent<RectTransform>();
+			block3Transform.SetParent(PlayerInfoBlock1.transform.parent,false);
+			block3Transform.anchoredPosition = new Vector2(block1Transform.sizeDelta.x,0f);
 			PlayerInfoBlock2.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,0f);
-			PlayerInfoBlock1.GetComponent<RectTransform>().anchoredPosition = new Vector2(-PlayerInfoBlock1.GetComponent<RectTransform>().sizeDelta.x,0f);
+			PlayerInfoBlock1.GetComponent<RectTransform>().anchoredPosition = new Vector2(-block1Transform.sizeDelta.x,0f);
 			PlayerInfoBlock3.GetComponent<InGamePlayerInfoUI>().id = PlayerID.Three;
+		}
+		if(ControllerManager.instance.NumPlayers > 3 && PlayerInfoBlock4 == null) 
+		{
+			PlayerInfoBlock4 = (GameObject)(GameObject.Instantiate(PlayerInfoBlock1,Vector3.zero,Quaternion.identity));
+			RectTransform block1Transform = PlayerInfoBlock1.GetComponent<RectTransform>();
+			RectTransform block4Transform = PlayerInfoBlock4.GetComponent<RectTransform>();
+			block4Transform.SetParent(PlayerInfoBlock1.transform.parent,false);
+			block4Transform.anchoredPosition = new Vector2(PlayerInfoBlock1.GetComponent<RectTransform>().sizeDelta.x*1.5f,0f);
+			PlayerInfoBlock3.GetComponent<RectTransform>().anchoredPosition = new Vector2(block1Transform.sizeDelta.x/2,0f);
+			PlayerInfoBlock2.GetComponent<RectTransform>().anchoredPosition = new Vector2(-block1Transform.sizeDelta.x/2,0f);
+			block1Transform.anchoredPosition = new Vector2(-block1Transform.sizeDelta.x*1.5f,0f);
+			PlayerInfoBlock4.GetComponent<InGamePlayerInfoUI>().id = PlayerID.Four;
 		}
 
 

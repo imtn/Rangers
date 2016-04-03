@@ -54,7 +54,7 @@ public class GameSettings
         enabledTokens = new Dictionary<Enums.Tokens, Enums.Frequency>();
         for(int i = 0; i < (int)Enums.Tokens.NumTypes; i++)
         {
-            enabledTokens.Add((Enums.Tokens)i, Enums.Frequency.Abundant);
+            enabledTokens.Add((Enums.Tokens)i, Enums.Frequency.Infrequent);
         }
         defaultTokens = new List<Enums.Tokens>();
 }

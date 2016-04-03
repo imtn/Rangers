@@ -11,11 +11,14 @@ namespace Assets.Scripts.Player.AI
 		/// <summary> Timer for delay between firing. </summary>
 		private float fireCooldown = 0;
 		/// <summary> The delay between firing. </summary>
-		private float cooldownTime = 5;
+		private float cooldownTime = 0;
 		/// <summary> The minimum power that the AI will shoot arrows at. </summary>
 		private float minPower;
 		/// <summary> The minimum angle (in radians) that the AI will shoot arrows at. </summary>
 		private float minAngle;
+
+		/// <summary> The opponent that the AI will target next. </summary>
+		internal Controller target;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Assets.Scripts.Player.AI.StandShoot"/> class.
@@ -35,12 +38,13 @@ namespace Assets.Scripts.Player.AI
 		/// <param name="controller">The controller for the character.</param>
 		public void ChooseAction(AIController controller)
 		{
-			if (controller.opponent.LifeComponent.Health <= 0) {
+			if (target == null || target.LifeComponent.Health <= 0) {
 				controller.aiming = false;
 				return;
 			}
 
-			Vector3 positionOffset = controller.opponent.transform.position - controller.transform.position;
+			Vector3 positionOffset = target.transform.position - controller.transform.position;
+			positionOffset.y += 0.25f;
 			bool left = false;
 			if (positionOffset.x < 0)
 			{
@@ -52,7 +56,7 @@ namespace Assets.Scripts.Player.AI
 			angle = Mathf.Max(angle, minAngle);
 
 			float x = positionOffset.x;
-			float y = positionOffset.y - 0.5f;
+			float y = positionOffset.y;
 			float g = -Physics.gravity.y;
 
 			// Find the minimum power for the required angle.

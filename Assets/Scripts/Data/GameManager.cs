@@ -106,11 +106,13 @@ namespace Assets.Scripts.Data
 			//If there aren't already players in this scene, we need to create them
 			if(controllers.Count == 0) {
 				for (int i = 0; i < ControllerManager.instance.NumPlayers; i++) {
-					GameObject temp = (GameObject)GameObject.Instantiate(playerPrefab, spawnPoints[i].transform.position, Quaternion.Euler(0,90,0));
+					PlayerID currentID = (PlayerID)(i + 1);
+					GameObject spawnPrefab = ControllerManager.instance.IsAIController(currentID) ? aiPlayerPrefab : playerPrefab;
+					GameObject temp = (GameObject)GameObject.Instantiate(spawnPrefab, spawnPoints[i].transform.position, Quaternion.Euler(0,90,0));
 					Controller tempController = temp.GetComponent<Controller>();
 					controllers.Add(tempController);
-					tempController.ProfileComponent = ProfileManager.instance.GetProfile((PlayerID)(i+1));
-					tempController.ID = (PlayerID)(i+1);
+					tempController.ProfileComponent = ProfileManager.instance.GetProfile(currentID);
+					tempController.ID = currentID;
 				}
 			}
 
@@ -165,6 +167,8 @@ namespace Assets.Scripts.Data
         /// </summary>
         private void GameOver()
         {
+            //Debug.Log("Match concluded");
+            if (matchTimer != null) matchTimer.On = false;
 			gameOverUI.SetActive(true);
 			gameOver = true;
 			foreach(Controller c in controllers) {
@@ -206,33 +210,35 @@ namespace Assets.Scripts.Data
             Controller victim = controllers.Find(x => x.ID.Equals(killed));
             Controller killer = controllers.Find(x => x.ID.Equals(killedBy));
             // Increment killer score provided there is a killer that is not self
-            if (killer == null || killer == victim) return;
+            if(killer == victim)
+            {
+                killer.LifeComponent.kills--;
+                return;
+            }
+            if (killer == null) return;
             killer.LifeComponent.kills++;
             
             // Check if the game is over based on gametype
             if(currentGameSettings.Type.Equals(Enums.GameType.Deathmatch))
             {
-                if (killer != null && killer.LifeComponent.kills >= currentGameSettings.KillLimit) GameOver();
-				else if (killer != null) {
-					int maxNumKills = 0;
-					PlayerID mostKills = PlayerID.None;
-					foreach(Controller c in controllers) {
-						if(c.LifeComponent.kills > maxNumKills) {
-							maxNumKills = c.LifeComponent.kills;
+				float maxNumKills = Mathf.NegativeInfinity;
+				PlayerID mostKills = PlayerID.None;
+				foreach(Controller c in controllers) {
+					if(c.LifeComponent.kills > maxNumKills) {
+						maxNumKills = c.LifeComponent.kills;
+						mostKills = c.ID;
+					} else if(c.LifeComponent.kills == maxNumKills) {
+						if (c.LifeComponent.Deaths < GetPlayer(mostKills).LifeComponent.Deaths) {
 							mostKills = c.ID;
-						} else if(c.LifeComponent.kills == maxNumKills) {
-							if (c.LifeComponent.Deaths < GetPlayer(mostKills).LifeComponent.Deaths) {
-								mostKills = c.ID;
-							}
 						}
 					}
-					currentWinner = mostKills;
 				}
+				currentWinner = mostKills;
+                if (killer.LifeComponent.kills >= currentGameSettings.KillLimit) GameOver();
             }
             if (currentGameSettings.Type.Equals(Enums.GameType.Stock))
             {
                 if (victim.LifeComponent.Lives <= 0) numDead++;
-                if (numDead >= controllers.Count - 1) GameOver();
 
 				int maxLives = 0;
 				PlayerID mostLives = PlayerID.None;
@@ -243,6 +249,7 @@ namespace Assets.Scripts.Data
 					}
 				}
 				currentWinner = mostLives;
+                if (numDead >= controllers.Count - 1) GameOver();
             }
         }
 

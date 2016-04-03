@@ -156,6 +156,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -7980,6 +7981,13 @@ MonoBehaviour:
   - {fileID: 148824, guid: 01a4cc8acebc9074ca37ca449dc7e031, type: 2}
   - {fileID: 148824, guid: 4079ebb4e81811f40b4b5045291e1d59, type: 2}
   - {fileID: 148824, guid: 620705417fe842d46bb079b8700f00ed, type: 2}
+  - {fileID: 148824, guid: caa42567ffed6fb45be3be4e884f6de6, type: 2}
+  - {fileID: 148824, guid: 37e74118d39b2d749984c417c985f1a0, type: 2}
+  - {fileID: 148824, guid: aa1d14df422011e48a74f0928e1f02a1, type: 2}
+  - {fileID: 151848, guid: 356e65fdd857e374fb90db1273840efd, type: 2}
+  - {fileID: 151848, guid: e1218eb2df1d573418a57c543744cf57, type: 2}
+  - {fileID: 148824, guid: 81085c2bcd6ed9d46a8d4b432ed5e94f, type: 2}
+  - {fileID: 148824, guid: 6d94054004ac25645b13106d5cf3e8bc, type: 2}
   playerPrefab: {fileID: 186412, guid: badf013dea59345dea4f7bf40c82acba, type: 2}
   aiPlayerPrefab: {fileID: 105426, guid: af12fc772ec84464884347262c0edf19, type: 2}
 --- !u!4 &1356824451
@@ -9493,7 +9501,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458378, guid: d9a4aea200c2b6646a525c3304a067bd, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9a4aea200c2b6646a525c3304a067bd, type: 2}

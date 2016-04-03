@@ -26,6 +26,7 @@ namespace Assets.Scripts.Player
 
         void Update()
         {
+			base.Update();
 			//updating fireRateTimer
 			fireRateTimer += Time.deltaTime;
 
@@ -39,7 +40,8 @@ namespace Assets.Scripts.Player
 
 				if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A,id)) parkour.Jump();
 				if (ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.B,id)) parkour.SlideOn();
-				else parkour.SlideOff();
+                if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.X, id)) GrabToken();
+                else parkour.SlideOff();
 
 				if(Vector3.Magnitude(aim) > 1.2f)
 	            {
@@ -55,7 +57,6 @@ namespace Assets.Scripts.Player
 					drawnArrow = false;
 					archery.Fire();
 					fire = false;
-					//				definitelyFire = false;
 					fireRateTimer = 0;
 				}
 				else
@@ -64,7 +65,6 @@ namespace Assets.Scripts.Player
 					archery.AimUpperBodyWithLegs();
 				}
 			}
-
             //if (invincibleFrames > 0) invincibleFrames--;
         }
 

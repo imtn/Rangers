@@ -15,6 +15,9 @@ namespace Assets.Scripts.UI
         public static Enums.UIStates state = Enums.UIStates.Splash;
 		private Enums.UIStates prevState = Enums.UIStates.None;
 
+		/// <summary> The last object that was selected before the Navigator was set to uninteractable. </summary>
+		private GameObject prevSelected;
+
         private float hTimer, vTimer, delay = 0.3f;
 
         private Transform activePanel;
@@ -265,11 +268,13 @@ namespace Assets.Scripts.UI
 				state = prevState;
 				currentValueMod.GetComponent<Selectable>().interactable = true;
 				Navigator.CallCancel();
+				EventSystem.current.SetSelectedGameObject(prevSelected);
 			}
 		}
 
 		public void ValueModifierEntered(ValueModifierUI val) {
 			prevState = state;
+			prevSelected = EventSystem.current.currentSelectedGameObject;
 			state = Enums.UIStates.ValueModifier;
 			currentValueMod = val;
 			currentValueMod.GetComponent<Selectable>().interactable = false;
@@ -483,5 +488,5 @@ namespace Assets.Scripts.UI
 			if (activePanel) activePanel.gameObject.SetActive(false);
             activePanel = panel;
         }
-    } 
+    }
 }
