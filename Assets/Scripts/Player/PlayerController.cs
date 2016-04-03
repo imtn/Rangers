@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Assets.Scripts.Tokens;
 
 namespace Assets.Scripts.Player
 {
@@ -27,6 +26,7 @@ namespace Assets.Scripts.Player
 
         void Update()
         {
+			base.Update();
 			//updating fireRateTimer
 			fireRateTimer += Time.deltaTime;
 
@@ -66,24 +66,6 @@ namespace Assets.Scripts.Player
 				}
 			}
             //if (invincibleFrames > 0) invincibleFrames--;
-        }
-
-        private void GrabToken()
-        {
-            if (!ArcheryComponent.CanCollectToken()) return;
-            Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
-            for(int i = 0; i < cols.Length; i++)
-            {
-                if(cols[i].GetComponent<ArrowToken>() != null)
-                {
-                    ArrowToken t = cols[i].GetComponent<ArrowToken>();
-                    if (!Util.Bitwise.IsBitOn(ArcheryComponent.ArrowTypes, (int)t.Type))
-                    {
-                        t.TokenCollected(this);
-                        return;
-                    }
-                }
-            }
         }
 
 		void FixedUpdate() 

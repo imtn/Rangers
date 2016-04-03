@@ -6,6 +6,10 @@ public class MainMenuPlayerTabsController : MonoBehaviour {
 
 	private MainMenuPlayerInfoBlock infoBlock1, infoBlock2, infoBlock3, infoBlock4;
 
+	/// <summary> The timer to delay adding AI players. </summary>
+	private float aiAddTimer;
+	/// <summary> Delay before another AI player can be added. </summary>
+	private float AIADDDELAY = 0.15f;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +33,18 @@ public class MainMenuPlayerTabsController : MonoBehaviour {
 			if(ControllerManager.instance.NumPlayers == 4) {
 				infoBlock4.PlayerAdded();
 			}
+		} else if(aiAddTimer <= 0 && ControllerManager.instance.AddAI(ControllerInputWrapper.Buttons.RightBumper)) {
+			if(ControllerManager.instance.NumPlayers == 2) {
+				infoBlock2.AIAdded();
+			}
+			if(ControllerManager.instance.NumPlayers == 3) {
+				infoBlock3.AIAdded();
+			}
+			if(ControllerManager.instance.NumPlayers == 4) {
+				infoBlock4.AIAdded();
+			}
+			aiAddTimer = AIADDDELAY;
 		}
-	
+		aiAddTimer -= Time.deltaTime;
 	}
 }
