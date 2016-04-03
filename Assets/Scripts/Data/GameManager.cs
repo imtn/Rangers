@@ -187,7 +187,7 @@ namespace Assets.Scripts.Data
 			MatchSummaryManager.winner = currentWinner;
 			MatchSummaryManager.playerInfo = new Dictionary<PlayerID, int>();
 			for(int i = 0; i < controllers.Count; i++) {
-				if(controllers[i].ID != currentWinner && !MatchSummaryManager.playerInfo.ContainsKey(controllers[i].ID)) MatchSummaryManager.playerInfo.Add(controllers[i].ID,controllers[i].LifeComponent.kills);
+				MatchSummaryManager.playerInfo.Add(controllers[i].ID,controllers[i].LifeComponent.kills);
 			}
 			SceneManager.LoadScene("MatchSummary", LoadSceneMode.Single);
 		}
@@ -282,7 +282,7 @@ namespace Assets.Scripts.Data
             if (deadPlayer != null)
             {
                 // Find an appropriate spawning pod (set to default for now)
-                deadPlayer.transform.position = Vector3.zero;
+				deadPlayer.transform.position = spawnPoints[Random.Range(0,spawnPoints.Count)].transform.position;
                 // Let the player revive itself
                 deadPlayer.LifeComponent.Respawn();
             }

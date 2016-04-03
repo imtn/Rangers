@@ -28,7 +28,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	void Update () {
 		if(nameCreator.activeInHierarchy) {
 			if(ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Start,playerID)
-				&& tagText.text.Length > 0) {
+				&& tagText.text.Length > 0 && tagText.text.ToCharArray()[tagText.text.Length-1] != ' ') {
 				ProfileManager.instance.AddProfile(new ProfileData(tagText.text), playerID);
 				HideNameCreator();
 				playerNumIndicator.color = Color.white;
