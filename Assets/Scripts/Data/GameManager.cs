@@ -165,7 +165,6 @@ namespace Assets.Scripts.Data
         /// </summary>
         private void GameOver()
         {
-            //Debug.Log("Match concluded");
 			gameOverUI.SetActive(true);
 			gameOver = true;
 			foreach(Controller c in controllers) {
@@ -181,9 +180,9 @@ namespace Assets.Scripts.Data
 			MatchSummaryManager summary = g.AddComponent<MatchSummaryManager>();
 			DontDestroyOnLoad(g);
 			MatchSummaryManager.winner = currentWinner;
-			MatchSummaryManager.others = new List<PlayerID>();
+			MatchSummaryManager.playerInfo = new Dictionary<PlayerID, int>();
 			for(int i = 0; i < controllers.Count; i++) {
-				if(controllers[i].ID != currentWinner && !MatchSummaryManager.others.Contains(controllers[i].ID)) MatchSummaryManager.others.Add(controllers[i].ID);
+				if(controllers[i].ID != currentWinner && !MatchSummaryManager.playerInfo.ContainsKey(controllers[i].ID)) MatchSummaryManager.playerInfo.Add(controllers[i].ID,controllers[i].LifeComponent.kills);
 			}
 			SceneManager.LoadScene("MatchSummary", LoadSceneMode.Single);
 		}
