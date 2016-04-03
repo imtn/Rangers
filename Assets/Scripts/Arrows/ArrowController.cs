@@ -116,6 +116,10 @@ namespace Assets.Scripts.Arrows
                 // Cache the previous velocity
                 prevVelocity = rigidbody.velocity;
             }
+			if (transform.position.y < -30) 
+			{
+				GameObject.Destroy(gameObject);
+			}
         }
 
         // Arrow hits something

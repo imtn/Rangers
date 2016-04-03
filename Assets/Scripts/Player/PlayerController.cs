@@ -26,6 +26,7 @@ namespace Assets.Scripts.Player
 
         void Update()
         {
+			base.Update();
 			//updating fireRateTimer
 			fireRateTimer += Time.deltaTime;
 

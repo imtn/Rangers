@@ -28,7 +28,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	void Update () {
 		if(nameCreator.activeInHierarchy) {
 			if(ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Start,playerID)
-				&& tagText.text.Length == 4) {
+				&& tagText.text.Length > 0) {
 				ProfileManager.instance.AddProfile(new ProfileData(tagText.text), playerID);
 				HideNameCreator();
 				playerNumIndicator.color = Color.white;
@@ -44,6 +44,16 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 		} else {
 			ShowNameCreator();
 		}
+	}
+
+	/// <summary>
+	/// Adds an AI player to the block.
+	/// </summary>
+	public void AIAdded() {
+		SetTag("AI " + (int)playerID);
+		ProfileManager.instance.AddProfile(new ProfileData(tagText.text), playerID);
+		HidePressToJoinGraphic();
+		playerNumIndicator.color = Color.white;
 	}
 
 	public void HidePressToJoinGraphic() {

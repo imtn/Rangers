@@ -10,11 +10,6 @@ public class MapSelector : MonoBehaviour {
 	public int currentSelectedMap;
 
 	public Text mapTitle;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,16 +18,48 @@ public class MapSelector : MonoBehaviour {
 
 	public void NextMap() {
 		currentSelectedMap = (currentSelectedMap + 1) % (arenaSelector ? ((int)Enums.BattleStages.NumStages) : ((int)Enums.TargetPracticeStages.NumStages));
-		mapTitle.text = (arenaSelector ? ((Enums.BattleStages)currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)currentSelectedMap).ToString());
-		mapTitle.transform.GetChild(0).GetComponent<Text>().text = (arenaSelector ? ((Enums.BattleStages)currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)currentSelectedMap).ToString());
-		mapTitle.transform.GetChild(1).GetComponent<Text>().text = (arenaSelector ? ((Enums.BattleStages)currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)currentSelectedMap).ToString());
+		UpdateStageName();
 	}
 
 	public void PrevMap() {
-		currentSelectedMap = (currentSelectedMap - 1) % (arenaSelector ? ((int)Enums.BattleStages.NumStages) : ((int)Enums.TargetPracticeStages.NumStages));
-		currentSelectedMap = Mathf.Abs(currentSelectedMap);
-		mapTitle.text = (arenaSelector ? ((Enums.BattleStages)currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)currentSelectedMap).ToString());
-		mapTitle.transform.GetChild(0).GetComponent<Text>().text = (arenaSelector ? ((Enums.BattleStages)currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)currentSelectedMap).ToString());
-		mapTitle.transform.GetChild(1).GetComponent<Text>().text = (arenaSelector ? ((Enums.BattleStages)currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)currentSelectedMap).ToString());
+		currentSelectedMap = Mathf.Abs(currentSelectedMap - 1);
+		UpdateStageName();
+	}
+
+	/// <summary>
+	/// Gets the name of the currently selected stage.
+	/// </summary>
+	/// <returns>The name of the currently selected stage.</returns>
+	private void UpdateStageName() {
+		string currentStageName = arenaSelector ? GetBattleStageName() : GetTargetStageName();
+		mapTitle.text = currentStageName;
+		mapTitle.transform.GetChild(0).GetComponent<Text>().text = currentStageName;
+		mapTitle.transform.GetChild(1).GetComponent<Text>().text = currentStageName;
+	}
+
+	/// <summary>
+	/// Gets the name of the current battle stage.
+	/// Used to put spaces where they should be.
+	/// </summary>
+	/// <returns>The name of the current battle stage.</returns>
+	private string GetBattleStageName() {
+		Enums.BattleStages stage = (Enums.BattleStages)currentSelectedMap;
+		switch (stage) {
+		case Enums.BattleStages.ProLeagueStandard: return "Pro League Standard";
+		default: return stage.ToString();
+		}
+	}
+
+	/// <summary>
+	/// Gets the name of the current target stage.
+	/// Used to put spaces where they should be.
+	/// </summary>
+	/// <returns>The name of the current target stage.</returns>
+	private string GetTargetStageName() {
+		Enums.TargetPracticeStages stage = (Enums.TargetPracticeStages)currentSelectedMap;
+		switch (stage) {
+		case Enums.TargetPracticeStages.MagneticDistortion: return "Magnetic Distortion";
+		default: return stage.ToString();
+		}
 	}
 }
