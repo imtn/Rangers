@@ -116,6 +116,10 @@ namespace Assets.Scripts.Arrows
                 // Cache the previous velocity
                 prevVelocity = rigidbody.velocity;
             }
+			if (transform.position.y < -30) 
+			{
+				GameObject.Destroy(gameObject);
+			}
         }
 
         // Arrow hits something
@@ -128,6 +132,7 @@ namespace Assets.Scripts.Arrows
             {
                 // Damage the player hit
                 Controller controller = col.transform.GetComponent<Controller>();
+				SFXManager.instance.PlayArrowHit();
                 controller.LifeComponent.ModifyHealth(-damage, fromPlayer);
                 hitPlayer = controller.ID;
             }
@@ -171,6 +176,7 @@ namespace Assets.Scripts.Arrows
 			if (col.transform.root.tag.Equals("Player"))
             {
 				Controller controller = col.transform.root.GetComponent<Controller>();
+				SFXManager.instance.PlayArrowHit();
                 controller.LifeComponent.ModifyHealth(-damage, fromPlayer);
                 hitPlayer = controller.ID;
 				trackingTime = 0f;

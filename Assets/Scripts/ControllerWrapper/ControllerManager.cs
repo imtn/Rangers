@@ -89,14 +89,24 @@ public class ControllerManager  {
 	/// Adds an AI controller to the game.
 	/// </summary>
 	/// <returns>Whether the AI controller was successfully added.</returns>
-	public bool AddAI(PlayerID id) {
-		if (playerControls.Count < 4 && !playerControls.ContainsKey(id)) {
-			for (int i = 1; i < 5; i++) {
-				if (!playerControls.ContainsKey((PlayerID)i)) {
-					AIWrapper aiw = new AIWrapper(-2);
-					playerControls.Add((PlayerID)(i), aiw);
-					Debug.Log((PlayerID)(i) + ": " + aiw + " added");
-					return true;
+	public bool AddAI(ControllerInputWrapper.Buttons connectCode) {
+		if (playerControls.Count < 4) {
+			string[] controllerNames = Input.GetJoystickNames();
+			ControllerInputWrapper[] controllers = new ControllerInputWrapper[controllerNames.Length + 1];
+			controllers[0] = new KeyboardWrapper(-1);
+			for (int i = 0; i < controllerNames.Length; i++) {
+				controllers[i + 1] = getControllerType(i);
+			}
+			foreach (ControllerInputWrapper ciw in controllers) {
+				if (ciw != null && ciw.GetButton(connectCode)) {
+					for (int j = 1; j < 5; j++) {
+						if (!playerControls.ContainsKey((PlayerID)j)) {
+							AIWrapper aiw = new AIWrapper(-2);
+							playerControls.Add((PlayerID)(j), aiw);
+							Debug.Log((PlayerID)(j) + ": " + aiw + " added");
+							return true;
+						}
+					}
 				}
 			}
 		}
@@ -112,25 +122,12 @@ public class ControllerManager  {
 			}
 		}
 		if(playerToRemove != PlayerID.None) {
-			//			Debug.Log(playerToRemove + " removed");
 			playerControls.Remove(playerToRemove);
-		}
-	}
-
-	public void setUpControls()
-	{
-		setUpPlatform();
-		string[] controllerNames = Input.GetJoystickNames();
-		//Debug.Log("Controllers connected: " + controllerNames.Length);
-		for (int i = 0; i < controllerNames.Length; i++)
-		{
-			//            playerControls[i] = getControllerType(i + 1);
 		}
 	}
 
 	public ControllerInputWrapper getControllerType(int joyNum)
 	{
-		//Debug.Log(joyNum);
 		string[] controllerNames = Input.GetJoystickNames();
 		if (joyNum < 0 || joyNum > controllerNames.Length)
 		{
@@ -138,7 +135,6 @@ public class ControllerManager  {
 		}
 		//        joyNum--;
 		string name = controllerNames[joyNum];
-		//Debug.Log("Controllers connected: " + controllerNames.Length);
 
 		if (name.Contains("Wireless"))
 		{
@@ -172,6 +168,19 @@ public class ControllerManager  {
 		{
 			currentOS = OperatingSystem.Win;
 		}
+	}
+
+	/// <summary>
+	/// Checks if the controller with a certain ID is an AI controller.
+	/// </summary>
+	/// <returns>Whether the controller with the given ID is an AI controller.</returns>
+	/// <param name="id">The ID of the controller to check.</param>
+	public bool IsAIController(PlayerID id) {
+		ControllerInputWrapper controller;
+		if (playerControls.TryGetValue(id, out controller)) {
+			return controller is AIWrapper;
+		}
+		return false;
 	}
 
 	public float GetAxis(ControllerInputWrapper.Axis axis, PlayerID id, bool isRaw = false)

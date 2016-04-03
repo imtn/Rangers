@@ -8305,7 +8305,7 @@ Transform:
   m_PrefabParentObject: {fileID: 459354, guid: 140d1869ff8e34934a5ac0961e0f4951, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 959027272}
-  m_LocalRotation: {x: 0.6486332, y: -0.3270553, z: -0.6086527, w: 0.31914246}
+  m_LocalRotation: {x: 0.6486331, y: -0.32705528, z: -0.60865265, w: 0.31914243}
   m_LocalPosition: {x: 0.0683514, y: 0.07508168, z: 0.01237604}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11886,6 +11886,66 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: badf013dea59345dea4f7bf40c82acba, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1694735355 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 135574, guid: badf013dea59345dea4f7bf40c82acba, type: 2}
+  m_PrefabInternal: {fileID: 1694735354}
+--- !u!1 &1694735356 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 156022, guid: badf013dea59345dea4f7bf40c82acba, type: 2}
+  m_PrefabInternal: {fileID: 1694735354}
+--- !u!54 &1694735357
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1694735355}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1694735358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1694735355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcb3ecb3fd35479a8fb01ee33b44ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1694735359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1694735356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcb3ecb3fd35479a8fb01ee33b44ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &1694735360
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1694735356}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1716267684
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,9 @@ namespace Assets.Scripts.Attacks
 
         protected override void Unaffect(GameObject g)
         {
+			if (g == null) {
+				return;
+			}
             Rigidbody rigidbody = g.transform.root.GetComponent<Rigidbody>();
             if (rigidbody)
             {

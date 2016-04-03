@@ -16,11 +16,6 @@ public class ProfileManager : MonoBehaviour {
 			Destroy(this);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void AddProfile(ProfileData data, PlayerID id = PlayerID.One) {
 		loadedProfiles.Add(id,data);
@@ -33,4 +28,9 @@ public class ProfileManager : MonoBehaviour {
 	public bool ProfileExists(PlayerID id) {
 		return loadedProfiles.ContainsKey(id);
 	}
+
+    public int NumSignedIn()
+    {
+        return loadedProfiles.Count;
+    }
 }

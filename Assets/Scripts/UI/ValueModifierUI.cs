@@ -48,7 +48,9 @@ public class ValueModifierUI : MonoBehaviour {
 			break;
 		case ValueModifierUIType.MatchType:
 			value--;
-			value = Mathf.Abs(((int)value) % (int)Enums.GameType.NumTypes);
+			if (value < 0) {
+				value = (int)Enums.GameType.NumTypes - 1;
+			}
 			break;
 		}
 		UpdateText();
@@ -71,9 +73,9 @@ public class ValueModifierUI : MonoBehaviour {
 		case ValueModifierUIType.Time:
 			if(value <= 0) {
 				value = 0;
-				transform.GetChild(1).GetComponent<Text>().text = "∞:∞";
-				transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "∞:∞";
-				transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "∞:∞";
+				transform.GetChild(1).GetComponent<Text>().text = "∞";
+				transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "∞";
+				transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "∞";
 			} else {
 				int tempVal = ((int)(value)%60);
 				transform.GetChild(1).GetComponent<Text>().text = ((int)(value/60)) + ":" + (tempVal == 0 ? "00" : tempVal+"");
