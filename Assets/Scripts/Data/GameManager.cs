@@ -281,7 +281,7 @@ namespace Assets.Scripts.Data
             if (deadPlayer != null)
             {
                 // Find an appropriate spawning pod (set to default for now)
-                deadPlayer.transform.position = Vector3.zero;
+				deadPlayer.transform.position = spawnPoints[Random.Range(0,spawnPoints.Count)].transform.position;
                 // Let the player revive itself
                 deadPlayer.LifeComponent.Respawn();
             }
