@@ -16,7 +16,7 @@ namespace Assets.Scripts.Player.AI
 		/// <summary> The policy the AI is using to approach an enemy. </summary>
 		private RushEnemy rushPolicy = new RushEnemy(TARGETDISTANCE);
 		/// <summary> The policy the AI is using to shoot at an enemy. </summary>
-		private Shoot shootPolicy = new Shoot(0, 0.2f, 0);
+		private Shoot shootPolicy = new Shoot(0.25f, 0.4f, 0);
 
 		/// <summary> The opponent that the AI is currently shooting at. </summary>
 		private Controller shootTarget;

@@ -17810,6 +17810,7 @@ MonoBehaviour:
   PlayerPanel: {fileID: 1867671711}
   ArenaStandardPanel: {fileID: 1525615010}
   TargetLevelSelectPanel: {fileID: 1390564584}
+  TabsPanel: {fileID: 968876366}
 --- !u!114 &1170135334
 MonoBehaviour:
   m_ObjectHideFlags: 0

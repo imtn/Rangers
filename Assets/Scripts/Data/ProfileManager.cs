@@ -21,6 +21,14 @@ public class ProfileManager : MonoBehaviour {
 		loadedProfiles.Add(id,data);
 	}
 
+	/// <summary>
+	/// Removes the profile with the specified player ID.
+	/// </summary>
+	/// <param name="id">The ID of the player to remove.</param>
+	public void RemoveProfile(PlayerID id) {
+		loadedProfiles.Remove(id);
+	}
+
 	public ProfileData GetProfile(PlayerID id) {
 		return loadedProfiles[id];
 	}
@@ -33,4 +41,24 @@ public class ProfileManager : MonoBehaviour {
     {
         return loadedProfiles.Count;
     }
+
+	/// <summary>
+	/// Gets the ID of the next occupied profile.
+	/// </summary>
+	/// <returns>The ID of the next occupied profile.</returns>
+	/// <param name="id">The current profile ID to get the next profile ID from.</param>
+	public PlayerID GetNextProfile(PlayerID id) {
+		if (id == PlayerID.Four) {
+			return PlayerID.None;
+		}
+		PlayerID nextID = id;
+		do {
+			if (nextID == PlayerID.Four) {
+				nextID = PlayerID.None;
+				break;
+			}
+			nextID++;
+		} while (!ProfileExists(nextID));
+		return nextID;
+	}
 }

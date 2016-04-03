@@ -56,6 +56,24 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 		playerNumIndicator.color = Color.white;
 	}
 
+	/// <summary>
+	/// Removes the player from the block.
+	/// </summary>
+	public void PlayerRemoved() {
+		SetTag("####");
+		ProfileManager.instance.RemoveProfile(playerID);
+		ShowPressToJoinGraphic();
+		playerNumIndicator.color = Color.red;
+	}
+
+	/// <summary>
+	/// Shows the join graphic on the block.
+	/// </summary>
+	public void ShowPressToJoinGraphic() {
+		pressToJoin.SetActive(true);
+		pressToOpen.SetActive(false);
+	}
+
 	public void HidePressToJoinGraphic() {
 		pressToJoin.SetActive(false);
 		pressToOpen.SetActive(true);
@@ -74,5 +92,13 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	public void HideNameCreator() {
 		nameCreator.SetActive(false);
 		pressToOpen.SetActive(true);
+	}
+
+	/// <summary>
+	/// Checks if a name is currently being chosen in the block.
+	/// </summary>
+	/// <returns>Whether a name is currently being chosen in the block.</returns>
+	public bool ChoosingName() {
+		return nameCreator.activeInHierarchy;
 	}
 }
