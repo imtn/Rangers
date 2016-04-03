@@ -8,8 +8,22 @@ namespace Assets.Scripts.Player.AI
 	/// </summary>
 	public class RushEnemy : IPolicy
 	{
-		/// <summary> The desired horizontal distance between the AI and the opponent. </summary>
+		/// <summary> The desired horizontal distance between the AI and the target. </summary>
 		internal float targetDistance;
+
+		/// <summary> The object that the AI is targeting. </summary>
+		internal GameObject target;
+
+		/// <summary> The AI's speed on the previous tick.</summary>
+		private float lastSpeed;
+
+		/// <summary> Timer for allowing the AI to turn. </summary>
+		private int turnTimer;
+		/// <summary> Tick cooldown for the AI turning. </summary>
+		private const int TURNCOOLDOWN = 3;
+
+		/// <summary> Layer mask for raycasting platforms. </summary>
+		private const int LAYERMASK = 1 | 1 << 13;
 
 		/// <summary>
 		/// Initializes a new AI.
@@ -25,29 +39,57 @@ namespace Assets.Scripts.Player.AI
 		/// <param name="controller">The controller for the character.</param>
 		public void ChooseAction(AIController controller)
 		{
+			if (target == null) {
+				return;
+			}
+
+			lastSpeed = controller.runSpeed;
+
+			// Check if the AI is falling to its death.
+			RaycastHit under;
+			Physics.Raycast(controller.transform.position + Vector3.up * 0.5f, Vector3.down, out under, 30, LAYERMASK);
+			if (under.collider == null)
+			{
+				controller.SetRunInDirection(-controller.transform.position.x);
+				controller.jump = true;
+				return;
+			}
+
 			controller.jump = false;
 			float currentTargetDistance = targetDistance;
-			Vector3 opponentOffset = controller.GetOpponentDistance();
+			Vector3 opponentOffset = target.transform.position - controller.transform.position;
 			Vector3 targetOffset = opponentOffset;
 			float distanceTolerance = 1f;
-			RaycastHit hit;
+
+
 			// Check if there is a platform in the way of shooting.
-			Physics.Raycast(controller.transform.position + Vector3.up * 0.5f, opponentOffset, out hit, Vector3.Magnitude(opponentOffset), 1 | 1 << 13);
+			RaycastHit hit;
+			Physics.Raycast(controller.transform.position + Vector3.up * 0.5f, opponentOffset, out hit, Vector3.Magnitude(opponentOffset), LAYERMASK);
 			if (hit.collider != null)
 			{
 				// If an obstacle is in the way, move around it.
 				BoxCollider closest = null;
 				float closestDistance = Mathf.Infinity;
-				foreach (BoxCollider child in hit.collider.GetComponentsInChildren<BoxCollider>())
-				{
-					// Look for the closest ledge to grab or fall from.
-					if (child.tag == "Ledge")
+				if (hit.collider != null) {
+					// Find ledges on the obstructing platform.
+					BoxCollider[] children = hit.collider.GetComponentsInChildren<BoxCollider>();
+					foreach (BoxCollider child in children)
 					{
-						float currentDistance = Vector3.Distance(child.transform.position, controller.transform.position);
-						if (currentDistance < closestDistance)
+						if (child.tag == "Ledge")
 						{
-							closest = child;
-							closestDistance = currentDistance;
+							Vector3 ledgeOffset = child.transform.position - controller.transform.position;
+							if (Mathf.Sign(ledgeOffset.y) == Mathf.Sign(targetOffset.y)) {
+								// Look for the closest ledge to grab or fall from.
+								float currentDistance = Vector3.Distance(child.transform.position, controller.transform.position);
+								if (currentDistance < closestDistance)
+								{
+									if (Physics.Raycast(child.transform.position + Vector3.down * 0.5f, Vector3.down, 30, LAYERMASK)) {
+										// Only use ledges that aren't hanging off the edge of the stage.
+										closest = child;
+										closestDistance = currentDistance;
+									}
+								}
+							}
 						}
 					}
 				}
@@ -56,13 +98,16 @@ namespace Assets.Scripts.Player.AI
 					// Move towards the nearest ledge, jumping if needed.
 					Vector3 closestVector = closest.transform.position - controller.transform.position;
 					float ledgeOffset = 0.6f;
-					if (closest.transform.position.x - hit.collider.transform.position.x > 0)
+					if (hit.collider != null)
 					{
-						closestVector.x += ledgeOffset;
-					}
-					else
-					{
-						closestVector.x -= ledgeOffset;
+						if (closest.transform.position.x - hit.collider.transform.position.x > 0)
+						{
+							closestVector.x += ledgeOffset;
+						}
+						else
+						{
+							closestVector.x -= ledgeOffset;
+						}
 					}
 					if (Math.Abs(closestVector.x) < 1f)
 					{
@@ -81,7 +126,7 @@ namespace Assets.Scripts.Player.AI
 			if (currentTargetDistance > 0 && targetOffset.y < 0)
 			{
 				// Move onto a platform if a ledge was just negotiated.
-				if (!Physics.Raycast(controller.transform.position, Vector3.down, out hit, -targetOffset.y + 0.5f, 1 | 1 << 13))
+				if (!Physics.Raycast(controller.transform.position, Vector3.down, out hit, -targetOffset.y + 0.5f, LAYERMASK))
 				{
 					currentTargetDistance = 0;
 				}
@@ -108,9 +153,8 @@ namespace Assets.Scripts.Player.AI
 				offsetPosition.x += controller.runSpeed;
 				offsetPosition.y += 0.5f;
 				float heightDifference = Mathf.Abs(offsetPosition.y - opponentOffset.y);
-				if (!Physics.Raycast(offsetPosition, Vector3.down, out hit, heightDifference + 0.5f, 1 | 1 << 13))
+				if (!Physics.Raycast(offsetPosition, Vector3.down, out hit, heightDifference + 0.5f, LAYERMASK))
 				{
-					Debug.DrawRay(offsetPosition, Vector3.down * (heightDifference + 0.5f), Color.red, Time.deltaTime);
 					if (controller.ParkourComponent.Sliding)
 					{
 						controller.SetRunInDirection(-opponentOffset.x);
@@ -125,6 +169,16 @@ namespace Assets.Scripts.Player.AI
 				{
 					// Slide if the opponent is far enough away for sliding to be useful.
 					controller.slide = horizontalDistance > targetDistance * 2;
+				}
+			}
+
+			if (controller.runSpeed > 0 && lastSpeed < 0 || controller.runSpeed < 0 && lastSpeed > 0)
+			{
+				// Check if the AI turned very recently to avoid thrashing.
+				if (turnTimer-- <= 0) {
+					turnTimer = TURNCOOLDOWN;
+				} else {
+					controller.runSpeed = 0;
 				}
 			}
 		}

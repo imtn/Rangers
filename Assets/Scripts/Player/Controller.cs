@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Assets.Scripts.Timers;
 using Assets.Scripts.Tokens;
 
-
 namespace Assets.Scripts.Player
 {
     /// <summary>
@@ -80,6 +79,14 @@ namespace Assets.Scripts.Player
             archery.Controller = this;
         }
 
+		protected void Update()
+		{
+			if (transform.position.y < -30) 
+			{
+				LifeComponent.ModifyHealth(-100);
+			}
+		}
+
         /// <summary>
         /// Disables the player
         /// </summary>
@@ -104,25 +111,25 @@ namespace Assets.Scripts.Player
 			foreach(RobotBodyPart rbp in bodyParts) {
 				rbp.RespawnBody();
 			}
-        }
+		}
 
-        protected void GrabToken()
-        {
-            if (!ArcheryComponent.CanCollectToken()) return;
-            Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
-            for (int i = 0; i < cols.Length; i++)
-            {
-                if (cols[i].GetComponent<ArrowToken>() != null)
-                {
-                    ArrowToken t = cols[i].GetComponent<ArrowToken>();
-                    if (!Util.Bitwise.IsBitOn(ArcheryComponent.ArrowTypes, (int)t.Type))
-                    {
-                        t.TokenCollected(this);
-                        return;
-                    }
-                }
-            }
-        }
+		protected void GrabToken()
+		{
+			if (!ArcheryComponent.CanCollectToken()) return;
+			Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
+			for(int i = 0; i < cols.Length; i++)
+			{
+				if(cols[i].GetComponent<ArrowToken>() != null)
+				{
+					ArrowToken t = cols[i].GetComponent<ArrowToken>();
+					if (!Util.Bitwise.IsBitOn(ArcheryComponent.ArrowTypes, (int)t.Type))
+					{
+						t.TokenCollected(this);
+						return;
+					}
+				}
+			}
+		}
 
         #region C# Properties
         /// <summary>

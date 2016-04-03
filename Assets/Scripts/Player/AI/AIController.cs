@@ -28,6 +28,11 @@ namespace Assets.Scripts.Player.AI
 		[Tooltip("Whether the ranger is sliding.")]
 		internal bool slide = false;
 
+		/// <summary> Whether the ranger is grabbing a token. </summary>
+		[SerializeField]
+		[Tooltip("Whether the ranger is grabbing a token")]
+		internal bool grabToken = true;
+
 		/// <summary> Whether the ranger is aiming a shot. </summary>
 		[SerializeField]
 		[Tooltip("Whether the ranger is aiming a shot.")]
@@ -44,10 +49,6 @@ namespace Assets.Scripts.Player.AI
 		[Tooltip("The default movement speed of the ranger.")]
 		private float defaultMoveSpeed = 1;
 
-		/// <summary> The opponent of this ranger. </summary>
-		[Tooltip("The opponent of this ranger.")]
-		public Controller opponent;
-
 		/// <summary> The AI mode that this ranger will use. </summary>
 		[Tooltip("The AI mode that this ranger will use.")]
 		public Enums.AIModes mode;
@@ -57,19 +58,10 @@ namespace Assets.Scripts.Player.AI
 		/// </summary>
 		private new void Start()
 		{
-			ControllerManager.instance.AddAI(this.id);
 			switch (mode)
 			{
 			case Enums.AIModes.ApproachShoot: policy = new ApproachShoot(); break;
 			case Enums.AIModes.RangerBot: policy = new RangerBot(); break;
-			}
-			foreach (Controller controller in GameManager.instance.AllPlayers)
-			{
-				if (controller != this)
-				{
-					opponent = controller;
-					break;
-				}
 			}
 			base.Start();
 		}
@@ -79,7 +71,8 @@ namespace Assets.Scripts.Player.AI
 		/// </summary>
 		private void Update()
 		{
-			if (opponent == null || life.Health <= 0)
+			base.Update();
+			if (life.Health <= 0 || GameManager.instance.GameFinished)
 			{
 				aiming = false;
 				return;
@@ -103,9 +96,18 @@ namespace Assets.Scripts.Player.AI
 				parkour.SlideOff();
 			}
 
+			if (grabToken)
+			{
+				GrabToken();
+			}
+
 			if (aiming)
 			{
 				archery.UpdateFirePoint(Vector3.Normalize(aim));
+				if (!wasAiming)
+				{
+					SFXManager.instance.PlayArrowPull();
+				}
 				wasAiming = true;
 			}
 			else if (wasAiming)
@@ -148,15 +150,6 @@ namespace Assets.Scripts.Player.AI
 			{
 				runSpeed = -defaultMoveSpeed;
 			}
-		}
-
-		/// <summary>
-		/// Gets a vector of the difference between the opponent position and the AI position.
-		/// </summary>
-		/// <returns>A vector of the difference between the opponent position and the AI position.</returns>
-		internal Vector3 GetOpponentDistance()
-		{
-			return opponent.transform.position - transform.position;
 		}
 	}
 }

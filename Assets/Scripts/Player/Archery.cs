@@ -115,6 +115,7 @@ namespace Assets.Scripts.Player
 			UpdateBodyAim();
 			if(strength == 0) firePoint.GetComponent<LineRenderer>().SetColors(Color.clear,Color.clear);
 			else firePoint.GetComponent<LineRenderer>().SetColors(firePoint.GetComponent<SpriteRenderer>().color, firePoint.GetComponent<SpriteRenderer>().color);
+			firePoint.gameObject.SetActive(controller.LifeComponent.Health > 0);
 		}
 
 		public void AimUpperBodyWithLegs() {
