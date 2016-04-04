@@ -136,6 +136,7 @@ namespace Assets.Scripts.UI
 				state = Enums.UIStates.Splash;
 				UpdatePanels(SplashPanel);
 				SFXManager.instance.PlayNegative();
+				ControllerManager.instance.AllowPlayerRemoval(ControllerInputWrapper.Buttons.B);
 			}
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Start, PlayerID.One))
 			{
@@ -451,6 +452,14 @@ namespace Assets.Scripts.UI
             state = Enums.UIStates.Settings;
             UpdatePanels(SettingPanel);
         }
+
+		public void CallSplash()
+		{
+			state = Enums.UIStates.Splash;
+			PlayerPanel.gameObject.SetActive(false);
+			menuTitle.SetActive(false);
+			UpdatePanels(SplashPanel);
+		}
 
         public void CallAudio()
         {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Scripts.UI;
 
 public class MainMenuPlayerTabsController : MonoBehaviour {
 
@@ -12,7 +13,7 @@ public class MainMenuPlayerTabsController : MonoBehaviour {
 	private float AIADDDELAY = 0.15f;
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		for(int i = 0; i < infoBlocks.Length; i++) {
 			infoBlocks[i] = transform.GetChild(i).GetComponent<MainMenuPlayerInfoBlock>();
 		}
@@ -39,6 +40,10 @@ public class MainMenuPlayerTabsController : MonoBehaviour {
 				RemovePlayer(removedPlayer - 1);
 				aiAddTimer = AIADDDELAY;
 			}
+		}
+
+		if(ControllerManager.instance.NumPlayers == 0) {
+			MenuManager.instance.CallSplash();
 		}
 
 		aiAddTimer -= Time.deltaTime;

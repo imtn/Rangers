@@ -8,6 +8,8 @@ public class AutoKeyUI : MonoBehaviour {
 
 	private PlayerID prevID = PlayerID.None;
 
+	private ControllerManager.ControlType prevControlType = ControllerManager.ControlType.None;
+
 	private enum Type {Button, Axis, Trigger};
 
 	[SerializeField]
@@ -21,21 +23,24 @@ public class AutoKeyUI : MonoBehaviour {
 	// Use this for initialization
 	void OnEnable () {
 		if(GetComponent<Image>() != null) uiImage = true;
-		if(uiImage) GetComponent<Image>().sprite = null;
-		else GetComponent<SpriteRenderer>().sprite = null;
+//		if(uiImage) GetComponent<Image>().sprite = null;
+//		else GetComponent<SpriteRenderer>().sprite = null;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 		if(ControllerManager.instance.NumPlayers < (int)id) return;
-		if(prevID == id) return;
 		if(id == PlayerID.None) {
 			if(!uiImage) GetComponent<SpriteRenderer>().sprite = null;
+			
+			prevControlType = ControllerManager.ControlType.None;
 		}
+		if(prevID == id && prevControlType == ControllerManager.instance.PlayerControlType(id)) return;
 
 		prevID = id;
+		prevControlType = ControllerManager.instance.PlayerControlType(id);
 
 		switch(type) {
 		case Type.Axis:
@@ -189,7 +194,29 @@ public class AutoKeyUI : MonoBehaviour {
 				}
 				break;
 			case ControllerInputWrapper.Buttons.Start:
-
+				switch(ControllerManager.instance.PlayerControlType(id)) {
+				case ControllerManager.ControlType.Keyboard:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.KEY_START;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.KEY_START;
+					}
+					break;
+				case ControllerManager.ControlType.Xbox:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.XBOX_START;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.XBOX_START;
+					}
+					break;
+				case ControllerManager.ControlType.PS4:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.PS4_START;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.PS4_START;
+					}
+					break;
+				}
 				break;
 			case ControllerInputWrapper.Buttons.X:
 				switch(ControllerManager.instance.PlayerControlType(id)) {
@@ -237,6 +264,31 @@ public class AutoKeyUI : MonoBehaviour {
 						GetComponent<Image>().sprite = InputTester.instance.PS4_Y;
 					} else {
 						GetComponent<SpriteRenderer>().sprite = InputTester.instance.PS4_Y;
+					}
+					break;
+				}
+				break;
+			case ControllerInputWrapper.Buttons.Back:
+				switch(ControllerManager.instance.PlayerControlType(id)) {
+				case ControllerManager.ControlType.Keyboard:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.KEY_BACK;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.KEY_BACK;
+					}
+					break;
+				case ControllerManager.ControlType.Xbox:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.XBOX_BACK;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.XBOX_BACK;
+					}
+					break;
+				case ControllerManager.ControlType.PS4:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.PS4_BACK;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.PS4_BACK;
 					}
 					break;
 				}

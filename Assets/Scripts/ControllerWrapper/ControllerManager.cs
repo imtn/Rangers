@@ -172,7 +172,9 @@ public class ControllerManager  {
 	/// <returns>Whether the player with the given ID is an AI player.</returns>
 	/// <param name="id">The ID of the player to check.</param></param>
 	public bool IsAI(PlayerID id) {
-		return playerControls[id] is AIWrapper;
+		if(playerControls.ContainsKey(id))
+			return playerControls[id] is AIWrapper;
+		return false;
 	}
 
 	public ControllerInputWrapper getControllerType(int joyNum)
