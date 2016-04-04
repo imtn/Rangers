@@ -24,7 +24,7 @@ namespace Assets.Scripts.Player
 		private const float MAX_FIRE_RATE = 0.5f;
 		private float fireRateTimer = 0;
 
-        void Update()
+        private new void Update()
         {
 			base.Update();
 			//updating fireRateTimer

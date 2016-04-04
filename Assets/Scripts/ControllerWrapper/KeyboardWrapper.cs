@@ -162,6 +162,9 @@ public class KeyboardWrapper : ControllerInputWrapper
 		case Buttons.RightStickClick:
 			buttonName = getButtonName("RightStickClick", "RightStickClick", "RightStickClick");
 			break;
+		case Buttons.Back:
+			buttonName = getButtonName("Back", "Back", "Back");
+			break;
 		}
 		return buttonName;
 	}

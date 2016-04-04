@@ -94,7 +94,8 @@ namespace Assets.Scripts.Player.AI
 			}
 			else
 			{
-				if (fireCooldown++ > cooldownTime)
+				fireCooldown += Time.deltaTime;
+				if (fireCooldown > cooldownTime)
 				{
 					controller.aiming = true;
 					fireCooldown = 0;

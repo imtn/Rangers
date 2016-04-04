@@ -69,7 +69,7 @@ namespace Assets.Scripts.Player.AI
 		/// <summary>
 		/// Moves the ranger every tick.
 		/// </summary>
-		private void Update()
+		private new void Update()
 		{
 			base.Update();
 			if (life.Health <= 0 || GameManager.instance.GameFinished)

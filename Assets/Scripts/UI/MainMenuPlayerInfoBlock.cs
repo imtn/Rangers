@@ -22,6 +22,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 		pressToOpen = transform.FindChild("StartToOpen").gameObject;
 		nameCreator = transform.FindChild("NameCreator").gameObject;
 		playerNumIndicator = transform.FindChild("Player" + (int)playerID + "Indicator").GetChild((int)playerID - 1).GetComponent<Image>();
+		ShowPressToJoinGraphic();
 	}
 	
 	// Update is called once per frame
@@ -56,9 +57,49 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 		playerNumIndicator.color = Color.white;
 	}
 
+	/// <summary>
+	/// Removes the player from the block.
+	/// </summary>
+	public void PlayerRemoved() {
+		ProfileManager.instance.RemoveProfile(playerID);
+	}
+
+	/// <summary>
+	/// Checks if the block is unoccupied.
+	/// </summary>
+	/// <returns>Whether the block is unoccupied.</returns></returns>
+	public bool IsOpen() {
+		return pressToJoin.activeSelf;
+	}
+
+	/// <summary>
+	/// Reverts the block to an unoccupied state.
+	/// </summary>
+	public void SetOpen() {
+		SetTag("####");
+		ShowPressToJoinGraphic();
+		playerNumIndicator.color = Color.red;
+	}
+
+	/// <summary>
+	/// Shows the join graphic on the block.
+	/// </summary>
+	public void ShowPressToJoinGraphic() {
+		pressToJoin.SetActive(true);
+		pressToOpen.SetActive(false);
+	}
+
 	public void HidePressToJoinGraphic() {
 		pressToJoin.SetActive(false);
 		pressToOpen.SetActive(true);
+	}
+
+	/// <summary>
+	/// Gets the text currently displayed on the block.
+	/// </summary>
+	/// <returns>The text currently displayed on the block.</returns>
+	public string GetTag() {
+		return tagText.text;
 	}
 
 	public void SetTag(string text) {
@@ -74,5 +115,13 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	public void HideNameCreator() {
 		nameCreator.SetActive(false);
 		pressToOpen.SetActive(true);
+	}
+
+	/// <summary>
+	/// Checks if a name is currently being chosen in the block.
+	/// </summary>
+	/// <returns>Whether a name is currently being chosen in the block.</returns>
+	public bool ChoosingName() {
+		return nameCreator.activeInHierarchy;
 	}
 }

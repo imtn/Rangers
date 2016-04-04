@@ -105,8 +105,9 @@ namespace Assets.Scripts.Data
 
 			//If there aren't already players in this scene, we need to create them
 			if(controllers.Count == 0) {
+				PlayerID currentID = PlayerID.None;
 				for (int i = 0; i < ControllerManager.instance.NumPlayers; i++) {
-					PlayerID currentID = (PlayerID)(i + 1);
+					currentID = (PlayerID)(i + 1);
 					GameObject spawnPrefab = ControllerManager.instance.IsAIController(currentID) ? aiPlayerPrefab : playerPrefab;
 					GameObject temp = (GameObject)GameObject.Instantiate(spawnPrefab, spawnPoints[i].transform.position, Quaternion.Euler(0,90,0));
 					Controller tempController = temp.GetComponent<Controller>();

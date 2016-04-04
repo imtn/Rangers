@@ -35,6 +35,11 @@ namespace Assets.Scripts.UI
 		[SerializeField]
 		private Transform TargetLevelSelectPanel = null;
 
+		/// <summary> The panel displaying player names. </summary>
+		[SerializeField]
+		[Tooltip("The panel displaying player names.")]
+		private MainMenuPlayerTabsController TabsPanel = null;
+
         
         void Awake()
         {
@@ -300,6 +305,10 @@ namespace Assets.Scripts.UI
 
         private void Navigate()
         {
+			if (PlayerOneChoosingName())
+			{
+				return;
+			}
             // No axis is being pressed
 			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) == 0)
             {
@@ -488,5 +497,15 @@ namespace Assets.Scripts.UI
 			if (activePanel) activePanel.gameObject.SetActive(false);
             activePanel = panel;
         }
+
+		/// <summary>
+		/// Checks if player one is choosing a name.
+		/// </summary>
+		/// <returns>Whether player one is choosing a name.</returns>
+		private bool PlayerOneChoosingName()
+		{
+			MainMenuPlayerInfoBlock block = TabsPanel.GetBlock(0);
+			return block == null ? false : block.ChoosingName();
+		}
     }
 }
