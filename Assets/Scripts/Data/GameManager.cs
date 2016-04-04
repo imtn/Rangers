@@ -236,10 +236,26 @@ namespace Assets.Scripts.Data
 						maxNumKills = c.LifeComponent.kills;
 						mostKills = c.ID;
 					} else if(c.LifeComponent.kills == maxNumKills) {
-						if (c.LifeComponent.Deaths < GetPlayer(mostKills).LifeComponent.Deaths) {
-							mostKills = c.ID;
-						} else if (c.LifeComponent.Deaths == GetPlayer(mostKills).LifeComponent.Deaths) {
-							mostKills = PlayerID.None;
+						if (mostKills != PlayerID.None) {
+							if (c.LifeComponent.Deaths < GetPlayer(mostKills).LifeComponent.Deaths) {
+								mostKills = c.ID;
+							} else if (c.LifeComponent.Deaths == GetPlayer(mostKills).LifeComponent.Deaths) {
+								mostKills = PlayerID.None;
+							}
+						} else {
+							PlayerID winningID = PlayerID.None;
+							float leastDeaths = Mathf.Infinity;
+							foreach (Controller controller in controllers) {
+								if (controller.LifeComponent.kills == maxNumKills) {
+									if (controller.LifeComponent.Deaths < leastDeaths) {
+										winningID = controller.ID;
+										leastDeaths = controller.LifeComponent.Deaths;
+									} else if (controller.LifeComponent.Deaths == leastDeaths) {
+										winningID = PlayerID.None;
+									}
+								}
+							}
+							mostKills = winningID;
 						}
 					}
 				}

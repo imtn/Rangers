@@ -131,6 +131,15 @@ namespace Assets.Scripts.Player
 			}
 		}
 
+		/// <summary>
+		/// Checks if the controller is holding the jump button.
+		/// </summary>
+		/// <returns>Whether the controller is holding the jump button.</returns>
+		internal virtual bool IsHoldingJump()
+		{
+			return false;
+		}
+
         #region C# Properties
         /// <summary>
         /// Archery component of the player

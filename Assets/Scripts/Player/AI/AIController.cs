@@ -53,6 +53,9 @@ namespace Assets.Scripts.Player.AI
 		[Tooltip("The AI mode that this ranger will use.")]
 		public Enums.AIModes mode;
 
+		/// <summary> Layer mask for raycasting platforms. </summary>
+		internal const int LAYERMASK = 1 | 1 << 13;
+
 		/// <summary>
 		/// Initializes the AI policy to use.
 		/// </summary>
@@ -150,6 +153,24 @@ namespace Assets.Scripts.Player.AI
 			{
 				runSpeed = -defaultMoveSpeed;
 			}
+		}
+
+		/// <summary>
+		/// Checks if the controller is holding the jump button.
+		/// </summary>
+		/// <returns>Whether the controller is holding the jump button.</returns>
+		internal override bool IsHoldingJump() {
+			return jump;
+		}
+
+		/// <summary>
+		/// Checks if there is an unobstructed shot between the ranger and a target.
+		/// </summary>
+		/// <returns>Whether there is an unobstructed shot between the ranger and a target.</returns>
+		/// <param name="positionOffset">The vector from the ranger to its target.</param>
+		/// <param name="hit">The raycast information for the shot.</param> 
+		internal bool HasClearShot(Vector3 positionOffset, out RaycastHit hit) {
+			return Bitwise.IsBitOn(ArcheryComponent.ArrowTypes, (int)Enums.Arrows.Ghost) || !Physics.Raycast(transform.position + Vector3.up * 0.5f, positionOffset, out hit, Vector3.Magnitude(positionOffset), LAYERMASK);
 		}
 	}
 }
