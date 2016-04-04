@@ -229,8 +229,8 @@ namespace Assets.Scripts.UI
 			Navigate();
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
 			{
-				state = Enums.UIStates.SinglePlayer;
-				UpdatePanels(SinglePanel);
+				state = Enums.UIStates.Main;
+				UpdatePanels(MainPanel);
 				SFXManager.instance.PlayNegative();
 			}
 		}
@@ -414,7 +414,7 @@ namespace Assets.Scripts.UI
 			state = Enums.UIStates.Main;
 			UpdatePanels(MainPanel);
 			PlayerPanel.gameObject.SetActive(true);
-			PlayerPanel.SetAsLastSibling();
+			PlayerPanel.SetAsFirstSibling();
 			menuTitle.SetActive(true);
 		}
 

@@ -12,6 +12,11 @@ namespace Assets.Scripts.Tokens
         [SerializeField]
         private Enums.Arrows type;
 
+		[HideInInspector]
+		public bool collected;
+
+		private SpriteRenderer collectKey;
+
         /// <summary>
         ///  Override the TokenCollected method and tell the Archery component to collect the token
         /// </summary>
@@ -22,9 +27,37 @@ namespace Assets.Scripts.Tokens
             {
                 controller.ArcheryComponent.CollectToken(this);
                 // Set inactive since we are pooling
-                gameObject.SetActive(false);
+				collected = true;
+				GetComponent<Collider>().enabled = false;
             }
         }
+
+		void Start() {
+			collectKey = transform.FindChild("CollectKey").GetComponent<SpriteRenderer>();
+		}
+
+		void Update() {
+			if(collected) {
+				transform.localScale += new Vector3(Time.deltaTime*transform.localScale.x,-Time.deltaTime*transform.localScale.y*10f,0f);
+				if(transform.localScale.y <= 0.1f) {
+					collected = false;
+					GetComponent<Collider>().enabled = true;
+					gameObject.SetActive(false);
+				}
+			}
+		}
+
+		void OnTriggerEnter(Collider other) {
+			if(other.transform.root.GetComponent<Controller>()) {
+				collectKey.GetComponent<AutoKeyUI>().id = other.transform.root.GetComponent<Controller>().ID;
+			}
+		}
+
+		void OnTriggerExit(Collider other) {
+			if(other.transform.root.GetComponent<Controller>()) {
+				collectKey.GetComponent<AutoKeyUI>().id = PlayerID.None;
+			}
+		}
 
         #region C# Properties
         /// <summary>

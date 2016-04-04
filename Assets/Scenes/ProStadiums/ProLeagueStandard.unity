@@ -156,7 +156,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -7987,7 +7986,6 @@ MonoBehaviour:
   - {fileID: 151848, guid: 356e65fdd857e374fb90db1273840efd, type: 2}
   - {fileID: 151848, guid: e1218eb2df1d573418a57c543744cf57, type: 2}
   - {fileID: 148824, guid: 81085c2bcd6ed9d46a8d4b432ed5e94f, type: 2}
-  - {fileID: 148824, guid: 6d94054004ac25645b13106d5cf3e8bc, type: 2}
   playerPrefab: {fileID: 186412, guid: badf013dea59345dea4f7bf40c82acba, type: 2}
   aiPlayerPrefab: {fileID: 105426, guid: af12fc772ec84464884347262c0edf19, type: 2}
 --- !u!4 &1356824451
@@ -8516,7 +8514,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1 &1433155763
 GameObject:
   m_ObjectHideFlags: 0
