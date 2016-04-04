@@ -20,6 +20,9 @@ namespace Assets.Scripts.Player.AI
 		/// <summary> The opponent that the AI will target next. </summary>
 		internal Controller target;
 
+		/// <summary> Layer mask for raycasting platforms. </summary>
+		private const int LAYERMASK = 1 | 1 << 13;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Assets.Scripts.Player.AI.StandShoot"/> class.
 		/// </summary>
@@ -39,7 +42,7 @@ namespace Assets.Scripts.Player.AI
 		public void ChooseAction(AIController controller)
 		{
 			if (target == null || target.LifeComponent.Health <= 0) {
-				controller.aiming = false;
+				controller.aiming = true;
 				return;
 			}
 
@@ -83,6 +86,13 @@ namespace Assets.Scripts.Player.AI
 			}
 
 			controller.aim = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
+
+			// Keep the bow drawn without shooting if there isn't a clear shot.
+			RaycastHit hit;
+			if (!controller.HasClearShot(positionOffset, out hit)) {
+				controller.aiming = true;
+				return;
+			}
 
 			if (controller.aiming)
 			{

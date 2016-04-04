@@ -195,7 +195,7 @@ namespace Assets.Scripts.Player
 		public void JumpVelocity() 
 		{
 			// If the jump button is still being held, full hop
-			if ((ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A,controller.ID)))
+			if (controller.IsHoldingJump())
 				rigidbody.velocity = Vector3.up*8f;
 			// else short hop
 			else

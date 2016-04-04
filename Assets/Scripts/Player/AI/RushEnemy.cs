@@ -22,9 +22,6 @@ namespace Assets.Scripts.Player.AI
 		/// <summary> Tick cooldown for the AI turning. </summary>
 		private const int TURNCOOLDOWN = 3;
 
-		/// <summary> Layer mask for raycasting platforms. </summary>
-		private const int LAYERMASK = 1 | 1 << 13;
-
 		/// <summary>
 		/// Initializes a new AI.
 		/// </summary>
@@ -47,7 +44,7 @@ namespace Assets.Scripts.Player.AI
 
 			// Check if the AI is falling to its death.
 			RaycastHit under;
-			Physics.Raycast(controller.transform.position + Vector3.up * 0.5f, Vector3.down, out under, 30, LAYERMASK);
+			Physics.Raycast(controller.transform.position + Vector3.up * 0.5f, Vector3.down, out under, 30, AIController.LAYERMASK);
 			if (under.collider == null)
 			{
 				controller.SetRunInDirection(-controller.transform.position.x);
@@ -64,7 +61,7 @@ namespace Assets.Scripts.Player.AI
 
 			// Check if there is a platform in the way of shooting.
 			RaycastHit hit;
-			Physics.Raycast(controller.transform.position + Vector3.up * 0.5f, opponentOffset, out hit, Vector3.Magnitude(opponentOffset), LAYERMASK);
+			controller.HasClearShot(opponentOffset, out hit);
 			if (hit.collider != null)
 			{
 				// If an obstacle is in the way, move around it.
@@ -83,7 +80,7 @@ namespace Assets.Scripts.Player.AI
 								float currentDistance = Vector3.Distance(child.transform.position, controller.transform.position);
 								if (currentDistance < closestDistance)
 								{
-									if (Physics.Raycast(child.transform.position + Vector3.down * 0.5f, Vector3.down, 30, LAYERMASK)) {
+									if (Physics.Raycast(child.transform.position + Vector3.down * 0.5f, Vector3.down, 30, AIController.LAYERMASK)) {
 										// Only use ledges that aren't hanging off the edge of the stage.
 										closest = child;
 										closestDistance = currentDistance;
@@ -126,7 +123,7 @@ namespace Assets.Scripts.Player.AI
 			if (currentTargetDistance > 0 && targetOffset.y < 0)
 			{
 				// Move onto a platform if a ledge was just negotiated.
-				if (!Physics.Raycast(controller.transform.position, Vector3.down, out hit, -targetOffset.y + 0.5f, LAYERMASK))
+				if (!Physics.Raycast(controller.transform.position, Vector3.down, out hit, -targetOffset.y + 0.5f, AIController.LAYERMASK))
 				{
 					currentTargetDistance = 0;
 				}
@@ -152,8 +149,7 @@ namespace Assets.Scripts.Player.AI
 				Vector3 offsetPosition = controller.transform.position;
 				offsetPosition.x += controller.runSpeed;
 				offsetPosition.y += 0.5f;
-				float heightDifference = Mathf.Abs(offsetPosition.y - opponentOffset.y);
-				if (!Physics.Raycast(offsetPosition, Vector3.down, out hit, heightDifference + 0.5f, LAYERMASK))
+				if (!Physics.Raycast(offsetPosition, Vector3.down, out hit, 30, AIController.LAYERMASK))
 				{
 					if (controller.ParkourComponent.Sliding)
 					{
@@ -180,6 +176,11 @@ namespace Assets.Scripts.Player.AI
 				} else {
 					controller.runSpeed = 0;
 				}
+			}
+
+			// Jump to reach some tokens.
+			if (targetDistance == 0 && controller.runSpeed == 0) {
+				controller.jump = true;
 			}
 		}
 	}
