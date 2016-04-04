@@ -11,6 +11,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	private GameObject pressToJoin;
 	private GameObject pressToOpen;
 	private GameObject nameCreator;
+	private GameObject nameCreatorInstructions;
 	private Image playerNumIndicator;
 
 
@@ -21,6 +22,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 		pressToJoin = transform.FindChild("PressToJoin").gameObject;
 		pressToOpen = transform.FindChild("StartToOpen").gameObject;
 		nameCreator = transform.FindChild("NameCreator").gameObject;
+		nameCreatorInstructions = transform.FindChild("Instructions").gameObject;
 		playerNumIndicator = transform.FindChild("Player" + (int)playerID + "Indicator").GetChild((int)playerID - 1).GetComponent<Image>();
 		ShowPressToJoinGraphic();
 	}
@@ -109,12 +111,14 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	public void ShowNameCreator() {
 		nameCreator.SetActive(true);
 		pressToJoin.SetActive(false);
+		nameCreatorInstructions.SetActive(true);
 		SetTag("");
 	}
 
 	public void HideNameCreator() {
 		nameCreator.SetActive(false);
 		pressToOpen.SetActive(true);
+		nameCreatorInstructions.SetActive(false);
 	}
 
 	/// <summary>

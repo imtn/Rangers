@@ -4,7 +4,9 @@ using UnityEngine.UI;
 
 public class AutoKeyUI : MonoBehaviour {
 
-	public PlayerID id;
+	public PlayerID id = PlayerID.None;
+
+	private PlayerID prevID = PlayerID.None;
 
 	private enum Type {Button, Axis, Trigger};
 
@@ -28,10 +30,12 @@ public class AutoKeyUI : MonoBehaviour {
 	void Update () {
 		
 		if(ControllerManager.instance.NumPlayers < (int)id) return;
-		if(id == PlayerID.One) GetComponent<Image>();
-		if(uiImage && GetComponent<Image>().sprite != null) return;
-		else if(!uiImage && GetComponent<SpriteRenderer>().sprite != null) return;
+		if(prevID == id) return;
+		if(id == PlayerID.None) {
+			if(!uiImage) GetComponent<SpriteRenderer>().sprite = null;
+		}
 
+		prevID = id;
 
 		switch(type) {
 		case Type.Axis:
@@ -213,7 +217,29 @@ public class AutoKeyUI : MonoBehaviour {
 				}
 				break;
 			case ControllerInputWrapper.Buttons.Y:
-
+				switch(ControllerManager.instance.PlayerControlType(id)) {
+				case ControllerManager.ControlType.Keyboard:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.KEY_Y;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.KEY_Y;
+					}
+					break;
+				case ControllerManager.ControlType.Xbox:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.XBOX_Y;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.XBOX_Y;
+					}
+					break;
+				case ControllerManager.ControlType.PS4:
+					if(uiImage) {
+						GetComponent<Image>().sprite = InputTester.instance.PS4_Y;
+					} else {
+						GetComponent<SpriteRenderer>().sprite = InputTester.instance.PS4_Y;
+					}
+					break;
+				}
 				break;
 			}
 			break;
