@@ -8,23 +8,30 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 
 	private Text tagText;
 	//private Image tagBG;
-	private GameObject pressToJoin;
 	private GameObject pressToOpen;
+	private GameObject pressToJoin;
 	private GameObject nameCreator;
 	private GameObject nameCreatorInstructions;
+	private GameObject primaryColorHolder, secondaryColorHolder;
 	private Image playerNumIndicator;
+
+	private bool menuOpen = false;
+	private Vector3 startingPosition;
 
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		tagText = transform.FindChild("TagBox").FindChild("PlayerTag").GetComponent<Text>();
 		//tagBG = transform.FindChild("TagBox").GetComponent<Image>();
 		pressToJoin = transform.FindChild("PressToJoin").gameObject;
 		pressToOpen = transform.FindChild("StartToOpen").gameObject;
 		nameCreator = transform.FindChild("NameCreator").gameObject;
+		primaryColorHolder = transform.FindChild("Customization").FindChild("PrimaryColorSelector").FindChild("PrimaryColorHolder").gameObject;
+		secondaryColorHolder = transform.FindChild("Customization").FindChild("SecondaryColorSelector").FindChild("SecondaryColorHolder").gameObject;
 		nameCreatorInstructions = transform.FindChild("Instructions").gameObject;
 		playerNumIndicator = transform.FindChild("Player" + (int)playerID + "Indicator").GetChild((int)playerID - 1).GetComponent<Image>();
 		ShowPressToJoinGraphic();
+		startingPosition = transform.localPosition;
 	}
 	
 	// Update is called once per frame
@@ -34,14 +41,63 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 				&& tagText.text.Length > 0 && tagText.text.ToCharArray()[tagText.text.Length-1] != ' ') {
 				ProfileManager.instance.AddProfile(new ProfileData(tagText.text), playerID);
 				HideNameCreator();
+				tagText.color = ProfileManager.instance.GetProfile(playerID).SecondaryColor;
+				tagText.transform.parent.GetComponent<Image>().color = ProfileManager.instance.GetProfile(playerID).PrimaryColor;
 				playerNumIndicator.color = Color.white;
 			}
+		}
+		else if(ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Start, playerID)) {
+			TogglePlayerMenu();
+		}
+		if(menuOpen) {
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition, startingPosition + new Vector3(34,150,0),Time.deltaTime*(Vector3.Distance(transform.localPosition,startingPosition)*20f+2f));
+			if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX,playerID) != 0) {
+				float h = 0f;
+				float s = 0f;
+				float v = 0f;
+				Color.RGBToHSV(ProfileManager.instance.GetProfile(playerID).PrimaryColor, out h, out s, out v);
+
+				h += Time.deltaTime*ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadX,playerID)*0.5f;
+				if(h > 1)  {
+					h = 0;
+				}
+				if(h < 0)  {
+					h = 0.99f;
+				}
+
+				Color final = Color.HSVToRGB(h, 0.75f, 0.75f);
+				ProfileManager.instance.GetProfile(playerID).PrimaryColor = final;
+			}
+			if(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY,playerID) != 0) {
+				float h = 0f;
+				float s = 0f;
+				float v = 0f;
+				Color.RGBToHSV(ProfileManager.instance.GetProfile(playerID).SecondaryColor, out h, out s, out v);
+				h += Time.deltaTime*ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.DPadY,playerID)*0.5f;
+				if(h > 1)  {
+					h = 0;
+				}
+				if(h < 0)  {
+					h = 0.99f;
+				}
+
+				Color final = Color.HSVToRGB(h, 0.75f, 0.75f);
+				ProfileManager.instance.GetProfile(playerID).SecondaryColor = final;
+			}
+			primaryColorHolder.GetComponent<Image>().color = ProfileManager.instance.GetProfile(playerID).PrimaryColor;
+			secondaryColorHolder.GetComponent<Image>().color = ProfileManager.instance.GetProfile(playerID).SecondaryColor;
+			tagText.color = ProfileManager.instance.GetProfile(playerID).SecondaryColor;
+			tagText.transform.parent.GetComponent<Image>().color = ProfileManager.instance.GetProfile(playerID).PrimaryColor;
+		} else {
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition, startingPosition,Time.deltaTime*(Vector3.Distance(transform.localPosition,startingPosition + new Vector3(34,150,0))*20f+2f));
 		}
 	}
 
 	public void PlayerAdded() {
 		if(ProfileManager.instance.ProfileExists(playerID)) {
 			SetTag(ProfileManager.instance.GetProfile(playerID).Name);
+			tagText.color = ProfileManager.instance.GetProfile(playerID).SecondaryColor;
+			tagText.transform.parent.GetComponent<Image>().color = ProfileManager.instance.GetProfile(playerID).PrimaryColor;
 			HidePressToJoinGraphic();
 			playerNumIndicator.color = Color.white;
 		} else {
@@ -55,8 +111,12 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	public void AIAdded() {
 		SetTag("AI " + (int)playerID);
 		ProfileManager.instance.AddProfile(new ProfileData(tagText.text), playerID);
+		ProfileManager.instance.GetProfile(playerID).SetAI();
 		HidePressToJoinGraphic();
+		pressToOpen.SetActive(false);
 		playerNumIndicator.color = Color.white;
+		tagText.color = Color.red;
+		tagText.transform.parent.GetComponent<Image>().color = Color.black;
 	}
 
 	/// <summary>
@@ -71,7 +131,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	/// </summary>
 	/// <returns>Whether the block is unoccupied.</returns></returns>
 	public bool IsOpen() {
-		return pressToJoin.activeSelf;
+		return playerNumIndicator.color == Color.red;
 	}
 
 	/// <summary>
@@ -83,17 +143,22 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 		playerNumIndicator.color = Color.red;
 	}
 
+	public void TogglePlayerMenu() {
+		menuOpen = !menuOpen;
+		pressToOpen.SetActive(!pressToOpen.activeSelf);
+	}
+
 	/// <summary>
 	/// Shows the join graphic on the block.
 	/// </summary>
 	public void ShowPressToJoinGraphic() {
-		pressToJoin.SetActive(true);
 		pressToOpen.SetActive(false);
+		pressToJoin.SetActive(true);
 	}
 
 	public void HidePressToJoinGraphic() {
-		pressToJoin.SetActive(false);
 		pressToOpen.SetActive(true);
+		pressToJoin.SetActive(false);
 	}
 
 	/// <summary>
@@ -106,6 +171,14 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 
 	public void SetTag(string text) {
 		tagText.text = text;
+		if(!text.Contains("#")) {
+			playerNumIndicator.color = Color.white;
+			tagText.color = Color.red;
+			tagText.transform.parent.GetComponent<Image>().color = Color.black;
+		}
+		else {
+			playerNumIndicator.color = Color.red;
+		}
 	}
 
 	public void ShowNameCreator() {

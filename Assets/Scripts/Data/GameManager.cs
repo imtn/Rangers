@@ -186,8 +186,14 @@ namespace Assets.Scripts.Data
 			DontDestroyOnLoad(g);
 			MatchSummaryManager.winner = currentWinner;
 			MatchSummaryManager.playerInfo = new Dictionary<PlayerID, int>();
-			for(int i = 0; i < controllers.Count; i++) {
-				MatchSummaryManager.playerInfo.Add(controllers[i].ID,controllers[i].LifeComponent.kills);
+			if(currentGameSettings.Type == Enums.GameType.Deathmatch) {
+				for(int i = 0; i < controllers.Count; i++) {
+					MatchSummaryManager.playerInfo.Add(controllers[i].ID,controllers[i].LifeComponent.kills);
+				}
+			} else {
+				for(int i = 0; i < controllers.Count; i++) {
+					MatchSummaryManager.playerInfo.Add(controllers[i].ID,(int)controllers[i].LifeComponent.Lives);
+				}
 			}
 			SceneManager.LoadScene("MatchSummary", LoadSceneMode.Single);
 		}
@@ -210,18 +216,19 @@ namespace Assets.Scripts.Data
             // Find those two players
             Controller victim = controllers.Find(x => x.ID.Equals(killed));
             Controller killer = controllers.Find(x => x.ID.Equals(killedBy));
-            // Increment killer score provided there is a killer that is not self
-            if(killer == victim)
-            {
-                killer.LifeComponent.kills--;
-                return;
-            }
-            if (killer == null) return;
-            killer.LifeComponent.kills++;
             
             // Check if the game is over based on gametype
             if(currentGameSettings.Type.Equals(Enums.GameType.Deathmatch))
             {
+				// Increment killer score provided there is a killer that is not self
+				if(killer == victim)
+				{
+					killer.LifeComponent.kills--;
+					return;
+				}
+				if (killer == null) return;
+				killer.LifeComponent.kills++;
+
 				float maxNumKills = Mathf.NegativeInfinity;
 				PlayerID mostKills = PlayerID.None;
 				foreach(Controller c in controllers) {
@@ -231,6 +238,8 @@ namespace Assets.Scripts.Data
 					} else if(c.LifeComponent.kills == maxNumKills) {
 						if (c.LifeComponent.Deaths < GetPlayer(mostKills).LifeComponent.Deaths) {
 							mostKills = c.ID;
+						} else if (c.LifeComponent.Deaths == GetPlayer(mostKills).LifeComponent.Deaths) {
+							mostKills = PlayerID.None;
 						}
 					}
 				}
@@ -241,12 +250,14 @@ namespace Assets.Scripts.Data
             {
                 if (victim.LifeComponent.Lives <= 0) numDead++;
 
-				int maxLives = 0;
+				int maxLives = 99999999;
 				PlayerID mostLives = PlayerID.None;
 				foreach(Controller c in controllers) {
 					if(c.LifeComponent.Lives > maxLives) {
 						maxLives = (int)c.LifeComponent.Lives;
 						mostLives = c.ID;
+					} else if (c.LifeComponent.Lives == maxLives) {
+						mostLives = PlayerID.None;
 					}
 				}
 				currentWinner = mostLives;
