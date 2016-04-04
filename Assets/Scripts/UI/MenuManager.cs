@@ -489,7 +489,7 @@ namespace Assets.Scripts.UI
                 panel.SetAsLastSibling();
             }
             GameObject defaultButton = panel.GetComponent<MenuOption>().DefaultButton;
-            if (defaultButton)
+            if (defaultButton != null && EventSystem.current !=  null)
             {
                 EventSystem.current.SetSelectedGameObject(defaultButton);
                 Navigator.defaultGameObject = defaultButton;
