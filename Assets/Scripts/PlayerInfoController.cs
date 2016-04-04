@@ -35,7 +35,7 @@ public class PlayerInfoController : MonoBehaviour
 			block2Transform.SetParent(PlayerInfoBlock1.transform.parent,false);
 			block2Transform.anchoredPosition = new Vector2(block1Transform.sizeDelta.x/2f,0f);
 			block1Transform.anchoredPosition = new Vector2(-block1Transform.sizeDelta.x/2f,0f);
-			PlayerInfoBlock2.GetComponent<InGamePlayerInfoUI>().id = ProfileManager.instance.GetNextProfile(PlayerID.One);
+			PlayerInfoBlock2.GetComponent<InGamePlayerInfoUI>().id = PlayerID.Two;
 		}
 		if(ControllerManager.instance.NumPlayers > 2 && PlayerInfoBlock3 == null) 
 		{
@@ -46,7 +46,7 @@ public class PlayerInfoController : MonoBehaviour
 			block3Transform.anchoredPosition = new Vector2(block1Transform.sizeDelta.x,0f);
 			PlayerInfoBlock2.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,0f);
 			PlayerInfoBlock1.GetComponent<RectTransform>().anchoredPosition = new Vector2(-block1Transform.sizeDelta.x,0f);
-			PlayerInfoBlock3.GetComponent<InGamePlayerInfoUI>().id = ProfileManager.instance.GetNextProfile(PlayerInfoBlock2.GetComponent<InGamePlayerInfoUI>().id);
+			PlayerInfoBlock3.GetComponent<InGamePlayerInfoUI>().id = PlayerID.Three;
 		}
 		if(ControllerManager.instance.NumPlayers > 3 && PlayerInfoBlock4 == null) 
 		{

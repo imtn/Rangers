@@ -110,14 +110,14 @@ public class ControllerManager  {
 
 	public int AllowPlayerRemoval(ControllerInputWrapper.Buttons removalButton) {
 		PlayerID playerToRemove = PlayerID.None;
-		foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in ControllerManager.instance.playerControls) {
+		foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in playerControls) {
 			if(kvp.Value.GetButton(removalButton)) {
 				playerToRemove = kvp.Key;
 				break;
 			}
 		}
 		if(playerToRemove != PlayerID.None) {
-			playerControls.Remove(playerToRemove);
+			RemoveController(playerToRemove);
 		}
 		return (int)playerToRemove;
 	}
@@ -130,23 +130,49 @@ public class ControllerManager  {
 	public int AllowAIRemoval(ControllerInputWrapper.Buttons removalButton) {
 		PlayerID playerToRemove = PlayerID.None;
 		bool removing = false;
-		foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in ControllerManager.instance.playerControls) {
+		foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in playerControls) {
 			if(kvp.Value.GetButton(removalButton)) {
 				removing = true;
 				break;
 			}
 		}
 		if(removing) {
-			foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in ControllerManager.instance.playerControls) {
+			foreach(KeyValuePair<PlayerID, ControllerInputWrapper> kvp in playerControls) {
 				if(kvp.Value is AIWrapper && kvp.Key > playerToRemove) {
 					playerToRemove = kvp.Key;
 				}
 			}
 		}
 		if(playerToRemove != PlayerID.None) {
-			playerControls.Remove(playerToRemove);
+			RemoveController(playerToRemove);
 		}
 		return (int)playerToRemove;
+	}
+
+	/// <summary>
+	/// Removes a controller from the controller list and shifts over any controllers past it.
+	/// </summary>
+	/// <param name="playerToRemove">The ID of the controller to remove.</param>
+	private void RemoveController(PlayerID playerToRemove) {
+		playerControls.Remove(playerToRemove);
+		if ((int)playerToRemove <= NumPlayers) {
+			// Shift all players after the removed player back one place.
+			for (int i = (int)playerToRemove + 1; i <= NumPlayers + 1; i++) {
+				PlayerID currentID = (PlayerID)i;
+				ControllerInputWrapper controller = playerControls[currentID];
+				playerControls.Remove(currentID);
+				playerControls.Add((PlayerID)(i - 1), controller);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Checks if the player with the given ID is an AI player.
+	/// </summary>
+	/// <returns>Whether the player with the given ID is an AI player.</returns>
+	/// <param name="id">The ID of the player to check.</param></param>
+	public bool IsAI(PlayerID id) {
+		return playerControls[id] is AIWrapper;
 	}
 
 	public ControllerInputWrapper getControllerType(int joyNum)

@@ -22,6 +22,7 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 		pressToOpen = transform.FindChild("StartToOpen").gameObject;
 		nameCreator = transform.FindChild("NameCreator").gameObject;
 		playerNumIndicator = transform.FindChild("Player" + (int)playerID + "Indicator").GetChild((int)playerID - 1).GetComponent<Image>();
+		ShowPressToJoinGraphic();
 	}
 	
 	// Update is called once per frame
@@ -60,8 +61,22 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	/// Removes the player from the block.
 	/// </summary>
 	public void PlayerRemoved() {
-		SetTag("####");
 		ProfileManager.instance.RemoveProfile(playerID);
+	}
+
+	/// <summary>
+	/// Checks if the block is unoccupied.
+	/// </summary>
+	/// <returns>Whether the block is unoccupied.</returns></returns>
+	public bool IsOpen() {
+		return pressToJoin.activeSelf;
+	}
+
+	/// <summary>
+	/// Reverts the block to an unoccupied state.
+	/// </summary>
+	public void SetOpen() {
+		SetTag("####");
 		ShowPressToJoinGraphic();
 		playerNumIndicator.color = Color.red;
 	}
@@ -77,6 +92,14 @@ public class MainMenuPlayerInfoBlock : MonoBehaviour {
 	public void HidePressToJoinGraphic() {
 		pressToJoin.SetActive(false);
 		pressToOpen.SetActive(true);
+	}
+
+	/// <summary>
+	/// Gets the text currently displayed on the block.
+	/// </summary>
+	/// <returns>The text currently displayed on the block.</returns>
+	public string GetTag() {
+		return tagText.text;
 	}
 
 	public void SetTag(string text) {

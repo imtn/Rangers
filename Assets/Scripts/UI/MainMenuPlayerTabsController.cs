@@ -27,7 +27,7 @@ public class MainMenuPlayerTabsController : MonoBehaviour {
 		}
 		int removedPlayer = ControllerManager.instance.AllowPlayerRemoval(ControllerInputWrapper.Buttons.Back);
 		if(removedPlayer >= 1) {
-			infoBlocks[removedPlayer - 1].PlayerRemoved();
+			RemovePlayer(removedPlayer - 1);
 		}
 		if(aiAddTimer <= 0) {
 			if(ControllerManager.instance.AddAI(ControllerInputWrapper.Buttons.RightBumper)) {
@@ -36,7 +36,7 @@ public class MainMenuPlayerTabsController : MonoBehaviour {
 			}
 			removedPlayer = ControllerManager.instance.AllowAIRemoval(ControllerInputWrapper.Buttons.LeftBumper);
 			if(removedPlayer >= 1) {
-				infoBlocks[removedPlayer - 1].PlayerRemoved();
+				RemovePlayer(removedPlayer - 1);
 				aiAddTimer = AIADDDELAY;
 			}
 		}
@@ -51,5 +51,27 @@ public class MainMenuPlayerTabsController : MonoBehaviour {
 	/// <param name="blockIndex">The index of the block to get.</param>
 	public MainMenuPlayerInfoBlock GetBlock(int blockIndex) {
 		return infoBlocks[blockIndex];
+	}
+
+	/// <summary>
+	/// Unregisters a player.
+	/// </summary>
+	/// <param name="blockIndex">The index of the block to unregister.</param></param>
+	private void RemovePlayer(int blockIndex) {
+		for (int i = blockIndex; i <= infoBlocks.Length; i++) {
+			if (i == infoBlocks.Length - 1 || infoBlocks[i + 1].IsOpen()) {
+				infoBlocks[i].SetOpen();
+				break;
+			} else {
+				string newTag;
+				if (ControllerManager.instance.IsAI((PlayerID)(i + 1))) {
+					newTag = "AI " + (i + 1);
+				} else {
+					newTag = infoBlocks[i + 1].GetTag();
+				}
+				infoBlocks[i].SetTag(newTag);
+			}
+		}
+		infoBlocks[blockIndex].PlayerRemoved();
 	}
 }
