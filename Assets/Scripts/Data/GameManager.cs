@@ -266,7 +266,7 @@ namespace Assets.Scripts.Data
             {
                 if (victim.LifeComponent.Lives <= 0) numDead++;
 
-				int maxLives = 99999999;
+				int maxLives = -99999999;
 				PlayerID mostLives = PlayerID.None;
 				foreach(Controller c in controllers) {
 					if(c.LifeComponent.Lives > maxLives) {
