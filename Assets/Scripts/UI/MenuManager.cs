@@ -58,7 +58,6 @@ namespace Assets.Scripts.UI
         }
 
 		void OnEnable() {
-			Debug.Log(ControllerManager.instance.NumPlayers);
 			if(ControllerManager.instance.NumPlayers > 0) {
 				state = Enums.UIStates.Main;
 				UpdatePanels(MainPanel);
