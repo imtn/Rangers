@@ -21,7 +21,8 @@ namespace Assets.Scripts.Attacks
         private Controller controller;
 
         void Start()
-        {
+		{
+			controller = GetComponent<Controller>();
             // Get all AcidAttacks already on the player (this component should have at least been added)
             AcidAttack[] currentAttacks = gameObject.GetComponents<AcidAttack>();
             // If this component is not the only AcidAttack on the player
@@ -49,7 +50,6 @@ namespace Assets.Scripts.Attacks
             else
             {
                 // Initialize the acid attack
-                controller = GetComponent<Controller>();
 				InitializeTimer();
             }
         }
