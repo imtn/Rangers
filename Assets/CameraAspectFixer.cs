@@ -22,6 +22,8 @@ public class CameraAspectFixer : MonoBehaviour {
 			float heightDiff = fix/Screen.height;
 			view = new Rect(0f,(1-heightDiff)/2f,1,heightDiff);
 			widescreen = true;
+		} else {
+			view = GetComponent<Camera>().rect;
 		}
 
 		blank = new Texture2D(1,1);
