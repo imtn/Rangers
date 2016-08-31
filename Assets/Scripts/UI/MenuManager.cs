@@ -35,6 +35,11 @@ namespace Assets.Scripts.UI
 		[SerializeField]
 		private Transform TargetLevelSelectPanel = null;
 
+		/// <summary> The panel displaying player names. </summary>
+		[SerializeField]
+		[Tooltip("The panel displaying player names.")]
+		private MainMenuPlayerTabsController TabsPanel = null;
+
         
         void Awake()
         {
@@ -49,7 +54,18 @@ namespace Assets.Scripts.UI
             {
                 Destroy(gameObject);
             }
+				
         }
+
+		void OnEnable() {
+			if(ControllerManager.instance.NumPlayers > 0) {
+				state = Enums.UIStates.Main;
+				UpdatePanels(MainPanel);
+				PlayerPanel.gameObject.SetActive(true);
+				PlayerPanel.SetAsFirstSibling();
+				menuTitle.SetActive(true);
+			}
+		}
 
         void Update()
         {
@@ -131,6 +147,7 @@ namespace Assets.Scripts.UI
 				state = Enums.UIStates.Splash;
 				UpdatePanels(SplashPanel);
 				SFXManager.instance.PlayNegative();
+				ControllerManager.instance.AllowPlayerRemoval(ControllerInputWrapper.Buttons.B);
 			}
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.Start, PlayerID.One))
 			{
@@ -224,14 +241,15 @@ namespace Assets.Scripts.UI
 			Navigate();
 			if (ControllerManager.instance.GetButtonDown(ControllerInputWrapper.Buttons.B, PlayerID.One))
 			{
-				state = Enums.UIStates.SinglePlayer;
-				UpdatePanels(SinglePanel);
+				state = Enums.UIStates.Main;
+				UpdatePanels(MainPanel);
 				SFXManager.instance.PlayNegative();
 			}
 		}
 
 		public void GoToGame(MapSelector selection) {
 			string selectedMap = selection.arenaSelector ? ((Enums.BattleStages)selection.currentSelectedMap).ToString() : ((Enums.TargetPracticeStages)selection.currentSelectedMap).ToString();
+			GameManager.lastLoadedLevel = selectedMap;
 			if(ProfileManager.instance.NumSignedIn() > 1) SceneManager.LoadScene(selectedMap, LoadSceneMode.Single);
 		}
 
@@ -300,6 +318,10 @@ namespace Assets.Scripts.UI
 
         private void Navigate()
         {
+			if (PlayerOneChoosingName())
+			{
+				return;
+			}
             // No axis is being pressed
 			if (ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX,PlayerID.One) == 0)
             {
@@ -405,7 +427,7 @@ namespace Assets.Scripts.UI
 			state = Enums.UIStates.Main;
 			UpdatePanels(MainPanel);
 			PlayerPanel.gameObject.SetActive(true);
-			PlayerPanel.SetAsLastSibling();
+			PlayerPanel.SetAsFirstSibling();
 			menuTitle.SetActive(true);
 		}
 
@@ -442,6 +464,14 @@ namespace Assets.Scripts.UI
             state = Enums.UIStates.Settings;
             UpdatePanels(SettingPanel);
         }
+
+		public void CallSplash()
+		{
+			state = Enums.UIStates.Splash;
+			PlayerPanel.gameObject.SetActive(false);
+			menuTitle.SetActive(false);
+			UpdatePanels(SplashPanel);
+		}
 
         public void CallAudio()
         {
@@ -480,7 +510,7 @@ namespace Assets.Scripts.UI
                 panel.SetAsLastSibling();
             }
             GameObject defaultButton = panel.GetComponent<MenuOption>().DefaultButton;
-            if (defaultButton)
+            if (defaultButton != null && EventSystem.current !=  null)
             {
                 EventSystem.current.SetSelectedGameObject(defaultButton);
                 Navigator.defaultGameObject = defaultButton;
@@ -488,5 +518,15 @@ namespace Assets.Scripts.UI
 			if (activePanel) activePanel.gameObject.SetActive(false);
             activePanel = panel;
         }
+
+		/// <summary>
+		/// Checks if player one is choosing a name.
+		/// </summary>
+		/// <returns>Whether player one is choosing a name.</returns>
+		private bool PlayerOneChoosingName()
+		{
+			MainMenuPlayerInfoBlock block = TabsPanel.GetBlock(0);
+			return block == null ? false : block.ChoosingName();
+		}
     }
 }

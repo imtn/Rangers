@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Player;
 using Assets.Scripts.Util;
-using Assets.Scripts.Data;
 
 namespace Assets.Scripts.Tokens
 {
@@ -13,6 +12,11 @@ namespace Assets.Scripts.Tokens
         [SerializeField]
         private Enums.Arrows type;
 
+		[HideInInspector]
+		public bool collected;
+
+		private SpriteRenderer collectKey;
+
         /// <summary>
         ///  Override the TokenCollected method and tell the Archery component to collect the token
         /// </summary>
@@ -21,18 +25,40 @@ namespace Assets.Scripts.Tokens
         {
             if (controller.ArcheryComponent.CanCollectToken() && !Util.Bitwise.IsBitOn(controller.ArcheryComponent.ArrowTypes, (int)type))
             {
-				if (GameManager.instance.CurrentGameSettings.Variant == Enums.GameVariant.TokensForEveryone) {
-					Debug.Log ("Tokens for everyone");
-					foreach (Controller TFEPlayerController in GameManager.instance.AllPlayers) {
-						TFEPlayerController.ArcheryComponent.CollectToken (this);
-					}
-				} else {
-					controller.ArcheryComponent.CollectToken (this);
-					// Set inactive since we are pooling
-					gameObject.SetActive (false);
-				}
-			}				
+                controller.ArcheryComponent.CollectToken(this);
+                // Set inactive since we are pooling
+				collected = true;
+				GetComponent<Collider>().enabled = false;
+            }
         }
+
+		void Start() {
+			collectKey = transform.FindChild("CollectKey").GetComponent<SpriteRenderer>();
+		}
+
+		void Update() {
+			if(collected) {
+				transform.localScale += new Vector3(Time.deltaTime*transform.localScale.x,-Time.deltaTime*transform.localScale.y*10f,0f);
+				if(transform.localScale.y <= 0.1f) {
+					transform.localScale = Vector3.one;
+					collected = false;
+					GetComponent<Collider>().enabled = true;
+					gameObject.SetActive(false);
+				}
+			}
+		}
+
+		void OnTriggerEnter(Collider other) {
+			if(other.transform.root.GetComponent<Controller>()) {
+				collectKey.GetComponent<AutoKeyUI>().id = other.transform.root.GetComponent<Controller>().ID;
+			}
+		}
+
+		void OnTriggerExit(Collider other) {
+			if(other.transform.root.GetComponent<Controller>()) {
+				collectKey.GetComponent<AutoKeyUI>().id = PlayerID.None;
+			}
+		}
 
         #region C# Properties
         /// <summary>

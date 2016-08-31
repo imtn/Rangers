@@ -24,7 +24,7 @@ namespace Assets.Scripts.Player
 		private const float MAX_FIRE_RATE = 0.5f;
 		private float fireRateTimer = 0;
 
-        void Update()
+        private new void Update()
         {
 			base.Update();
 			//updating fireRateTimer
@@ -75,6 +75,14 @@ namespace Assets.Scripts.Player
 			{
 				parkour.Locomote(ControllerManager.instance.GetAxis(ControllerInputWrapper.Axis.LeftStickX, id));
 			}
+		}
+
+		/// <summary>
+		/// Checks if the controller is holding the jump button.
+		/// </summary>
+		/// <returns>Whether the controller is holding the jump button.</returns>
+		internal override bool IsHoldingJump() {
+			return ControllerManager.instance.GetButton(ControllerInputWrapper.Buttons.A,ID);
 		}
     }
 }

@@ -99,6 +99,9 @@ public class PS4ControllerWrapper : ControllerInputWrapper
             case Buttons.Start:
                 buttonName = getButtonName("9", "9", "9");
                 break;
+			case Buttons.Back:
+                buttonName = getButtonName("8", "8", "8");
+                break;
         }
         return buttonName;
     }

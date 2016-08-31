@@ -199,7 +199,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -759,6 +758,7 @@ MonoBehaviour:
   flashMin: 0
   flashMax: 0
   numFlash: 0
+  flashBrightness: 8
 --- !u!1 &194099628
 GameObject:
   m_ObjectHideFlags: 0
@@ -6823,6 +6823,7 @@ GameObject:
   - 114: {fileID: 1123281899}
   - 114: {fileID: 1123281900}
   - 114: {fileID: 1123281901}
+  - 114: {fileID: 1123281902}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6974,6 +6975,17 @@ MonoBehaviour:
   m_MinZ: 0.01
   m_SSAOShader: {fileID: 4800000, guid: 43ca18288c424f645aaa1e9e07f04c50, type: 3}
   m_RandomTexture: {fileID: 2800000, guid: a181ca8e3c62f3e4b8f183f6c586b032, type: 3}
+--- !u!114 &1123281902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123281892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc0ef35adc3741e5a878209046ddccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1154328990
 GameObject:
   m_ObjectHideFlags: 0
@@ -8769,6 +8781,7 @@ GameObject:
   - 124: {fileID: 1634757974}
   - 114: {fileID: 1634757971}
   - 114: {fileID: 1634757970}
+  - 114: {fileID: 1634757972}
   m_Layer: 13
   m_Name: BlurCamera
   m_TagString: MainCamera
@@ -8821,6 +8834,17 @@ MonoBehaviour:
   blurIterations: 2
   blurType: 0
   blurShader: {fileID: 4800000, guid: f9d5fa183cd6b45eeb1491f74863cd91, type: 3}
+--- !u!114 &1634757972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1634757968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc0ef35adc3741e5a878209046ddccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &1634757974
 Behaviour:
   m_ObjectHideFlags: 0
